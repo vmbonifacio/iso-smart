@@ -1,0 +1,143 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="title">Incidentes</ui:define>
+
+    <ui:define name="viewname">
+        <li><i class="pi pi-chevron-right"></i></li>
+        <li>
+            <p:link outcome="/formIncidente">Formulario de Incidentes</p:link>
+        </li>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form>
+                <div class="col-12">
+                    <div class="card">
+                        <h5 style="margin-bottom: 20px;">Registo del incidente</h5>
+                        <div class="ui-fluid formgrid grid">
+                            <div class="border-bottom-2 border-yellow-500 w-29rem h-3rem surface-overlay font-bold m-2  align-items-center justify-content-center">Información del incidente</div>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="lugar" value="Lugar" />
+                                <p:inputText id="lugar" />
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="hora" value="Hora" />
+                                <p:inputText id="hora" />
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="fecha" value="Fecha"/>
+                                <p:datePicker placeholder="00/00/00" id="fecha" showIcon="true"/>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="consecuencia" value="Causas/Consecuencia" />
+                                <p:inputText id="consecuencia" />
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="accion" value="Acción tomada" />
+                                <p:inputText id="accion" />
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="gravedad" value="Gravedad"/>
+                                <p:selectOneMenu id="gravedad">
+                                <f:selectItem itemLabel="Seleccionar" itemValue="" />
+                                <f:selectItem itemLabel="Leve" itemValue="1" />
+                                <f:selectItem itemLabel="Moderada" itemValue="2" />
+                                <f:selectItem itemLabel="Importante" itemValue="3" />
+                                <f:selectItem itemLabel="Crítica" itemValue="4" />
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="tipo" value="Tipo de incidencia"/>
+                                <p:selectOneMenu id="tipo">
+                                    <f:selectItem itemLabel="Seleccionar" itemValue="" />
+                                    <f:selectItem itemLabel="Seguridad" itemValue="1" />
+                                    <f:selectItem itemLabel="Técnico" itemValue="2" />
+                                    <f:selectItem itemLabel="Servicio" itemValue="3" />
+                                    <f:selectItem itemLabel="Ambiental" itemValue="4" />
+                                    <f:selectItem itemLabel="Seguridad laboral" itemValue="5" />
+                                    <f:selectItem itemLabel="Atención al cliente" itemValue="6" />
+                                    <f:selectItem itemLabel="Incumplimiento normativo" itemValue="7" />
+                                </p:selectOneMenu>
+                            </div>   
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="descripcion" value="Descripción" />
+                                <p:inputTextarea id="descripcion"/>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="recomendacion" value="Evaluación" />
+                                <p:inputTextarea id="recomendacion"/>
+                            </div>
+                            <div class="border-bottom-2 border-yellow-500 w-29rem h-3rem surface-overlay font-bold m-2  align-items-center justify-content-center">Detalle de personas involucradas</div>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="nombre" value="Nombres"/>
+                                <p:inputText id="nombre"/>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="apellidop" value="Apellido paterno"/>
+                                <p:inputText id="apellidop"/>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="apellidom" value="Apellido materno"/>
+                                <p:inputText id="apellidom"/>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="posicion" value="Posición"/>
+                                <p:selectOneMenu id="posicion">
+                                <f:selectItem itemLabel="Seleccionar" itemValue="" />
+                                <f:selectItem itemLabel="Testigo" itemValue="1" />
+                                <f:selectItem itemLabel="Responsable" itemValue="2" />
+                                <f:selectItem itemLabel="Sospechoso" itemValue="3" />
+                                <f:selectItem itemLabel="Personal afectado" itemValue="4" />
+                                <f:selectItem itemLabel="Personal de seguridad" itemValue="5" />
+                                <f:selectItem itemLabel="Personal de Emergencia" itemValue="6" />
+                                </p:selectOneMenu>
+                            </div>
+                             <div class="field col-12 md:col-6">
+                                <p:outputLabel for="edad" value="Edad"/>
+                                <p:spinner id="edad"/>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="dni" value="DNI"/>
+                                <p:inputText id="dni"/>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="telefono" value="N. teléfono"/>
+                                <p:inputText id="telefono"/>
+                            </div>
+                             <div class="field col-12 md:col-6">
+                                <p:outputLabel value="Género"/>
+                                <p:selectOneRadio layout="responsive" columns="2">
+                                <f:selectItem itemLabel="Femenino" itemValue="1" />
+                                <f:selectItem itemLabel="Masculino" itemValue="2" />
+                            </p:selectOneRadio>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="relacion" value="Relación"/>
+                                <p:inputText id="relacion"/>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="direccion" value="Dirección"/>
+                                <p:inputText id="direccion"/>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="cargo" value="Cargo"/>
+                                <p:inputText id="cargo"/>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="area" value="Área"/>
+                                <p:inputText id="area"/>
+                            </div>
+                            <p:button value="GUARDAR" styleClass="ui-button-raised mr-2 mb-2" />
+                            <p:button outcome="formConsecuencia" value="REGRESAR" styleClass="ui-button-raised mr-2 mb-2"  />
+                        </div>
+                    </div>
+                </div>
+     </h:form>
+</ui:define>
+
+</ui:composition>

@@ -1,0 +1,61 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="title">Consecuencia</ui:define>
+
+    <ui:define name="viewname">
+        <li>1/4</li>
+        <li><i class="pi pi-chevron-right"></i></li>
+        <li>
+            <p:link outcome="/formAccidente">REGISTRO DE ACCIDENTES</p:link>
+        </li>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form>
+                <div class="col-12" >
+                    <div class="card" style="background-color: black; border-radius: 10px;">
+                        <h5 class="w-full h-4rem text-center text-4xl pt-2 border-round-md" style="background-color: #f8da45;">Registros de accidentes</h5>
+                        <div class="ui-fluid formgrid grid border-round-sm"  style="background-color: #20212b; border: 1px solid #cbcbcb; padding-left: 6px">
+                            <h5 class="pt-2" style="color: white;">Datos del empleador principal</h5>
+                           <div class="ui-fluid formgrid grid border-round-sm"  style="background-color: #5a5a5a; border: 1px solid #cbcbcb; width: 101%;">
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="social" value="Razon social o denominación social"  style="color: white;" />
+                                <p:inputText id="social" placeholder="Ingrese aquí la razón o denominación social" />
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="ruc" value="Ruc"  style="color: white;" />
+                                <p:inputText id="ruc" placeholder="Ingrese aquí el ruc" />
+                            </div>
+                            <div class="field col-12">
+                                <p:outputLabel for="address" value="Address"  style="color: white;"/>
+                                <p:inputTextarea id="address" rows="4" />
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="city" value="City"  style="color: white;"/>
+                                <p:inputText id="city" />
+                            </div>
+                            <div class="field col-12 md:col-3">
+                                <p:outputLabel for="state" value="State" />
+                                <p:selectOneMenu id="state">
+                                    <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true"/>
+                                    <f:selectItem itemLabel="Option 1" itemValue="Option 1" />
+                                    <f:selectItem itemLabel="Option 2" itemValue="Option 2" />
+                                    <f:selectItem itemLabel="Option 3" itemValue="Option 3" />
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="field col-12 md:col-3">
+                                <p:outputLabel for="zip" value="Zip" />
+                                <p:inputText id="zip" />
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+        </h:form>
+    </ui:define>
+</ui:composition>
