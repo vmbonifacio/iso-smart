@@ -1,0 +1,83 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+    
+    <ui:define name="title">Jerarquia de Empresa</ui:define>
+
+    <ui:define name="viewname">
+        <li>KIT</li>
+        <li><i class="pi pi-chevron-right"></i></li>
+        <li>
+            <p:link outcome="/f_jerarquiaE">FORMULARIO</p:link>
+        </li>
+    </ui:define>
+
+    <ui:define name="content">
+        
+            <!--FORMULARIO PARA E REGISTRO!-->
+                <div class="col-12">
+                    <div class="card">
+                        <h5>FORMULARIO DE JERARQUIA </h5>
+                        <div class="ui-fluid formgrid grid">
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="firstname1" value="Nombre" />
+                                <p:inputText id="firstname1" />
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="lastname3" value="Correo" />
+                                <p:inputText id="lastname3" />
+                                <br></br>
+                                <h5>Género</h5>
+                                <p:selectOneRadio layout="responsive" columns="3">
+                                    <f:selectItem itemLabel="M" itemValue="1" />
+                                    <f:selectItem itemLabel="F" itemValue="2" />
+                                </p:selectOneRadio>
+                                <br></br>
+                                <div class="field col-12 md:col-6">
+                                 <p:outputLabel for="lastname2" value="Apellido" />
+                                <p:inputText id="lastname2" />     
+                                </div>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="city" value="Dirección" />
+                                <p:inputText id="city" />
+                                <br></br>
+                                <h5>Fecha de nacimiento</h5>
+                                <p:datePicker showIcon="true"/>
+                                <br></br>
+                                <div class="field col-12 md:col-3"> 
+                                    <p:outputLabel for="state" value="Titulo de trabajo" />
+                                    <p:selectOneMenu id="state">
+                                        <f:selectItem itemLabel="CEO" itemValue="#{null}" noSelectionOption="true"/>
+                                        <f:selectItem itemLabel="PRESIDENTE" itemValue="PRESIDENTE" />
+                                          <f:selectItem itemLabel="VICEPRESIDENTE" itemValue="VICEPRESIDENTE" />
+                                        <f:selectItem itemLabel="JEFE DE AREA" itemValue="JEFE DE AREA" />
+                                        <f:selectItem itemLabel="GERENTE DE AREA" itemValue="GERENTE DE AREA" />
+                                        <f:selectItem itemLabel="SUPERVISOR" itemValue="SUPERVISOR" />
+                                        <f:selectItem itemLabel="EMPLEADO" itemValue="EMPLEADO" />
+                                </p:selectOneMenu>
+                                </div>
+                                <div class="field">
+                                    <span class="ui-float-label">
+                                        <p:inputNumber/>
+                                        <p:outputLabel for="@previous" value="Años de Experiencia"/>
+                                    </span>
+                                </div>
+                                <div class="field col-12 md:col-6">
+                                <p:outputLabel for="educacion" value="Educación y Formacion" />
+                                <p:inputText id="educacion" />
+                                </div>
+                                 <div class="field col-12 md:col-6">
+                                <p:outputLabel for="habilidades" value="Habilidades y conocimientos" />
+                                <p:inputText id="habilidades" />
+                                 </div>  
+                            </div>
+                                <p:selectBooleanButton onLabel="Registrado" offLabel="Registrar" styleClass="ui-button-raised mr-2 mb-2" />
+                        </div>
+                    </div>
+                </div>
+    </ui:define>
+</ui:composition>
