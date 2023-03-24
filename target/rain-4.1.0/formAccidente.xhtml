@@ -19,21 +19,22 @@
         <h:form>
                 <div class="col-12" >
                     <div class="card" style="background-color: black; border-radius: 10px;">
-                        <h5 class="w-full h-4rem text-center text-4xl pt-2 border-round-md" style="background-color: #f8da45;">Registros de accidentes</h5>
+                        <h5 class="w-full h-4rem text-center text-4xl c border-round-md" style="background-color: #f8da45;">Registros de accidentes</h5>
                         <div class="ui-fluid formgrid grid border-round-sm"  style="background-color: #20212b; border: 1px solid #cbcbcb; padding-left: 6px">
                             <h5 class="pt-2" style="color: white;">Datos del empleador principal</h5>
                            <div class="ui-fluid formgrid grid border-round-sm"  style="background-color: #5a5a5a; border: 1px solid #cbcbcb; width: 101%;">
                             <div class="field col-12 md:col-6">
-                                <p:outputLabel for="social" value="Razon social o denominación social"  style="color: white;" />
+                                <p:outputLabel for="social" value="Razon social o denominación social"  class="pt-2" style="color: white;" />
                                 <p:inputText id="social" placeholder="Ingrese aquí la razón o denominación social" />
                             </div>
                             <div class="field col-12 md:col-6">
-                                <p:outputLabel for="ruc" value="Ruc"  style="color: white;" />
+                                <p:outputLabel for="ruc" value="Ruc"  style="color: white;" class="pt-2"/>
                                 <p:inputText id="ruc" placeholder="Ingrese aquí el ruc" />
                             </div>
-                            <div class="field col-12">
-                                <p:outputLabel for="address" value="Address"  style="color: white;"/>
-                                <p:inputTextarea id="address" rows="4" />
+                            <p:outputLabel  value="Domicilio: "  style="color: white;" class="pl-2"/>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="departamento" value="Departamento"  style="color: white;" />
+                                <p:inputText id="departamento" class="w-5" placeholder="Ingrese aquí" />
                             </div>
                             <div class="field col-12 md:col-6">
                                 <p:outputLabel for="city" value="City"  style="color: white;"/>
