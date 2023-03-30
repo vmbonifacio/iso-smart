@@ -24,34 +24,35 @@
                     <div class="card" style="background-color: #5a5a5a; color: white;">
                         <h5>Datos de trabajador</h5>
                         <div class="ui-fluid formgrid grid">
-                            <div class="field col-12 md:col-6">
-                                <p:outputLabel for="firstname2" value="Nombre"/>
-                                <p:inputText id="firstname2" />
-                            </div>
-                            
-                            <div class="field col-12 md:col-6">
-                                <p:outputLabel for="apellidop" value="Apellido paterno" />
-                                <p:inputText id="apellidop" />
-                            </div>
-                            
-                            <div class="field col-12 md:col-6">
-                                <p:outputLabel for="apellidom" value="Apellido materno" />
-                                <p:inputText id="apellidom" />
-                            </div>
-                            
-                            <div class="field col-12 md:col-6">
-                                <p:outputLabel for="direccion" value="Dirección" />
-                                <p:inputText id="direccion" />
-                            </div>
                             
                              <div class="field col-12 md:col-6">
-                                        <p:outputLabel value="Fecha de Nacimiento" />
+                                <label id="nombre" class="ui-outputlabel ui-widget pt-2" style="color: white;" for="nombre">Nombre</label><input id="nombe" name="nombre" type="text" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" placeholder="Ingrese su nombre"></input>
+                            </div>
+                            
+                            <div class="field col-12 md:col-6">
+                                <label id="ap_paterno" class="ui-outputlabel ui-widget pt-2" style="color: white;" for="ap_paterno">Apellido paterno</label><input id="ap_paterno" name="ap_paterno" type="text" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" placeholder="Ingrese su apellido paterno"></input>
+                            </div>
+                            
+                            <div class="field col-12 md:col-6">
+                                <label id="ap_materno" class="ui-outputlabel ui-widget pt-2" style="color: white;" for="ap_materno">Apellido materno</label><input id="ap_materno" name="ap_materno" type="text" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" placeholder="Ingrese su apellido materno"></input>
+                            </div>
+                            
+                            <div class="field col-12 md:col-6">
+                                <label id="direccion" class="ui-outputlabel ui-widget pt-2" style="color: white;" for="direccion">Dirección</label><input id="direccion" name="direccion" type="text" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" placeholder="Ingrese su direccion"></input>
+                            </div>
+                            
+                            <div class="field col-12 md:col-6">
+                                <label id="nacionalidad" class="ui-outputlabel ui-widget pt-2" style="color: white;" for="nacionalidad">Nacionalidad</label><input id="nacionalidad" name="nacionalidad" type="text" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" placeholder="Ingrese su nacionalidad"></input>
+                            </div>
+                            
+                            <div class="field col-12 md:col-6">
+                                        <p:outputLabel value="Fecha de nacimiento" />
                                         <p:datePicker placeholder="00/00/00" showIcon="true"/>
-                             </div> 
+                            </div>
                             
                              <div class="field col-12 md:col-6">
-                                <p:outputLabel for="nacionalidad" value="Nacionalidad" />
-                                <p:selectOneMenu id="nacionalidad">
+                                 <p:outputLabel class="text-white-alpha-90" for="Nacionalidad" value="Nacionalidad" style="color: white"/>
+                                <p:selectOneMenu class="text-white-alpha-90" id="Nacionalidad" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;">
                                     <f:selectItem itemLabel="Selecionar" itemValue=""/>
                                     <f:selectItem itemLabel="00" itemValue="1" />
                                     <f:selectItem itemLabel="000" itemValue="2" />
@@ -64,13 +65,12 @@
                             </div>
                             
                             <div class="field col-12 md:col-6">
-                                <p:outputLabel for="DNICE" value="DNI/CE" />
-                                <p:inputText id="DNICE" />
+                                <label id="dni/ce" class="ui-outputlabel ui-widget pt-2" style="color: white;" for="dni/ce">DNI/CE</label><input id="dni/ce" name="dni/ce" type="text" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" placeholder="Ingrese su dni o ce"></input>
                             </div>
                             
                             <div class="field col-12 md:col-6">
-                                <p:outputLabel for="EC" value="Estado civil" />
-                                <p:selectOneMenu id="EC">
+                                 <p:outputLabel class="text-white-alpha-90" for="Ecivil" value="Estado civil" style="color: white"/>
+                                <p:selectOneMenu class="text-white-alpha-90" id="Ecivil" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;">
                                     <f:selectItem itemLabel="Selecionar" itemValue=""/>
                                     <f:selectItem itemLabel="Soltero" itemValue="1" />
                                     <f:selectItem itemLabel="Casado" itemValue="2" />
@@ -80,8 +80,8 @@
                             </div>
                             
                             <div class="field col-12 md:col-6">
-                                <p:outputLabel for="puesto" value="Puesto de trabajo" />
-                                <p:selectOneMenu id="puesto">
+                                 <p:outputLabel class="text-white-alpha-90" for="Puesto" value="Puesto de trabajo" style="color: white"/>
+                                <p:selectOneMenu class="text-white-alpha-90" id="Puesto" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;">
                                     <f:selectItem itemLabel="Selecionar" itemValue=""/>
                                     <f:selectItem itemLabel="0" itemValue="1" />
                                     <f:selectItem itemLabel="00" itemValue="2" />
@@ -97,8 +97,8 @@
                             </div>
                             
                             <div class="field col-12 md:col-6">
-                                <p:outputLabel for="TC" value="Tipo de contrato" />
-                                <p:selectOneMenu id="TC">
+                                 <p:outputLabel class="text-white-alpha-90" for="Tcon" value="Tipo de contrato" style="color: white"/>
+                                <p:selectOneMenu class="text-white-alpha-90" id="Tcon" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;">
                                     <f:selectItem itemLabel="Selecionar" itemValue=""/>
                                     <f:selectItem itemLabel="0" itemValue="1" />
                                     <f:selectItem itemLabel="00" itemValue="2" />
@@ -112,8 +112,8 @@
                             </div>
                             
                             <div class="field col-12 md:col-6">
-                                <p:outputLabel for="Turno" value="Turno" />
-                                <p:selectOneMenu id="Turno">
+                                 <p:outputLabel class="text-white-alpha-90" for="Turno" value="Turno" style="color: white"/>
+                                <p:selectOneMenu class="text-white-alpha-90" id="Turno" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;">
                                     <f:selectItem itemLabel="Selecionar" itemValue=""/>
                                     <f:selectItem itemLabel="D" itemValue=""/>
                                     <f:selectItem itemLabel="T" itemValue="1" />
@@ -122,8 +122,8 @@
                             </div>
                             
                             <div class="field col-12 md:col-6">
-                                <p:outputLabel for="NVLE" value="Nivel de estudios" />
-                                <p:selectOneMenu id="NVLE">
+                                 <p:outputLabel class="text-white-alpha-90" for="Nestu" value="Nivel de estudios" style="color: white"/>
+                                <p:selectOneMenu class="text-white-alpha-90" id="Nestu" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;">
                                     <f:selectItem itemLabel="Selecionar" itemValue=""/>
                                     <f:selectItem itemLabel="00" itemValue="1" />
                                     <f:selectItem itemLabel="00000" itemValue="2" />
@@ -131,13 +131,12 @@
                             </div>
                             
                             <div class="field col-12 md:col-6">
-                                <p:outputLabel for="TELP" value="Tiempo de experiencia en el puesto" />
-                                <p:inputText id="TELP" />
+                                <label id="tiempodex" class="ui-outputlabel ui-widget pt-2" style="color: white;" for="tiempodex">Tiempo de experiencia</label><input id="tiempodex" name="tiempodex" type="text" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" placeholder="Ingrese su tiempo de experiencia"></input>
                             </div>
                             
                             <div class="field col-12 md:col-6">
-                                <p:outputLabel for="Area" value="Área" />
-                                <p:selectOneMenu id="Area">
+                                 <p:outputLabel class="text-white-alpha-90" for="area" value="Área" style="color: white"/>
+                                <p:selectOneMenu class="text-white-alpha-90" id="area" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;">
                                     <f:selectItem itemLabel="Selecionar" itemValue=""/>
                                     <f:selectItem itemLabel="00" itemValue="1" />
                                     <f:selectItem itemLabel="00000" itemValue="2" />
@@ -145,13 +144,11 @@
                             </div>
                             
                             <div class="field col-12 md:col-6">
-                                <p:outputLabel for="supervisor" value="Supervisor Directo" />
-                                <p:inputText id="supervisor" />
+                                <label id="supervisor" class="ui-outputlabel ui-widget pt-2" style="color: white;" for="supervisor">Supervisor directo</label><input id="supervisor" name="supervisor" type="text" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" placeholder="Ingrese el supervisor directo"></input>
                             </div>
                             
                             <div class="field col-12 md:col-6">
-                                <p:outputLabel for="Salario" value="Salario" />
-                                <p:inputText id="Salario" />
+                                <label id="salario" class="ui-outputlabel ui-widget pt-2" style="color: white;" for="salario">Salario</label><input id="salario" name="ruc" type="text" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" placeholder="Ingrese su salario"></input>
                             </div>
                             
                         </div>

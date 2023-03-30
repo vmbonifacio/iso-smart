@@ -5,10 +5,10 @@
   --surface-d:#DFE3EA;
   --surface-e:#ffffff;
   --surface-f:#ffffff;
-  --text-color:#4B576F;
-  --text-color-secondary:#8B95A9;
-  --primary-color:#25A4D4;
-  --primary-color-text:#f8fafc;
+  --text-color:#ffffff;
+  --text-color-secondary:#ffffff;
+  --primary-color:#ffffff;
+  --primary-color-text:#ffffff;
   --font-family:-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
   --surface-0: #ffffff;
   --surface-50: #FAFAFA;
@@ -936,7 +936,7 @@ body .ui-splitbuttonmenu .ui-splitbuttonmenu-filter-container {
   margin: 0;
   border-bottom: 0 none;
   background: #F6F8FA;
-  color: #4B576F;
+  color: #ffffff;
 }
 body .ui-splitbuttonmenu .ui-splitbuttonmenu-filter-container .ui-splitbuttonmenu-filter.ui-inputfield {
   padding: 0.5rem 0.5rem;
@@ -3812,7 +3812,7 @@ body .ui-input-icon-right > .ui-inputfield {
   padding-right: 2rem;
 }
 body .ui-inputfield {
-  color: #4B576F;
+  color: #ffffff;
   background: #ffffff;
   padding: 0.5rem 0.5rem;
   border: 1px solid #D9DEE6;
