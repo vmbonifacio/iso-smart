@@ -1,0 +1,148 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="title">Consecuencia</ui:define>
+
+    <ui:define name="viewname">
+        <li>2/4</li>
+        <li><i class="pi pi-chevron-right"></i></li>
+        <li>
+            <p:link outcome="/formIncidente2">REGISTRO DE INCIDENTES</p:link>
+        </li>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form>
+                <div class="col-12 m-0 p-0" >
+                    <div class="card m-0 p-5" style="background-color: black; border-radius: 2px;">
+                     <div class="w-full h-4rem text-center text-4xl c border-round-md p-2" style="background-color: #fff600;">Registros de incidentes</div>
+                    <div class="card mt-4 p-0" style="background-color: black; border-radius: 10px;">
+                        <div class="ui-fluid formgrid grid border-round-sm w-full ml-0"  style="background-color: #20212b; border: 1px solid #cbcbcb; padding-left: 6px">
+                            <h5 class="pt-2" style="color: white;">Datos del trabajdor incidentado</h5>
+                           <div class="ui-fluid formgrid grid border-round-sm"  style="background-color: #5a5a5a; border: 1px solid #cbcbcb; width: 101%;">
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="nc" value="Nombres Completos"  class="pt-2" style="color: white;" />
+                                <p:inputText id="nc" placeholder="Nombres Completos" style="background:transparent; color: white; border: none; border-bottom: 3px solid yellow;"/>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="ap" value="Apellido paterno"  style="color: white;" class="pt-2"/>
+                                <p:inputText id="ap" placeholder="Apellido paterno" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;"/>
+                            </div>
+                             <div class="field col-12 md:col-6">
+                                <p:outputLabel for="am" value="Apellido materno"  style="color: white;" class="pt-2"/>
+                                <p:inputText id="am" placeholder="Apellido materno" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;"/>
+                            </div>
+                               <div class="field col-12 md:col-6">
+                                <p:outputLabel for="dni" value="N° DNI/CE"  style="color: white;" class="pt-2"/>
+                                <p:inputText id="dni" placeholder="N° DNI/CE" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;"/>
+                                </div>
+                               <div class="field col-12 md:col-6">
+                                <p:outputLabel for="edad" value="Edad"  style="color: white;" class="pt-2"/>
+                                <p:inputText id="edad" placeholder="Edad" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;"/>
+                                </div>
+                               <div class="field col-12 md:col-6">
+                                <p:outputLabel for="genero" value="Género" style="color: white;"/>
+                                <p:selectOneRadio id="genero" layout="responsive" columns="2" style="color: white;">
+                                <f:selectItem itemLabel="Femenino" itemValue="1" />
+                                <f:selectItem itemLabel="Masculino" itemValue="2" />
+                                </p:selectOneRadio>
+                                </div>
+                               <div class="ui-fluid formgrid grid border-round-sm w-11 ml-5 border-y-2"  style="background-color: #aaaaaa; border: 1px solid #fff600;">
+                                <div class="pt-2 pl-2 text-lg mb-4" style="color: black; margin-right: 70%">DOMICILIO:</div>
+                                <div class="field col-12 md:col-6">                                
+                                <p:outputLabel for="area" value="Area de trabajo"  style="color: black;" class="pt-2"/>
+                                <p:inputText id="area" placeholder="Area de trabajo" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;"/>
+                                </div>
+                                 <div class="field col-12 md:col-6">
+                                <p:outputLabel for="puesto" value="Puesto de trabajo"  style="color: black;" class="pt-2"/>
+                                <p:inputText id="puesto" placeholder="Puesto de trabajo" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;"/>
+                                </div>
+                                <div class="field col-12 md:col-6">
+                                <p:outputLabel for="antiguedad" value="Antiguedad en empleo"  style="color: black;" class="pt-2"/>
+                                <p:inputText id="antiguedad" placeholder="Antiguedad en empleo" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;"/>
+                                </div>
+                                 <div class="field col-12 md:col-6">
+                                <p:outputLabel for="turno" value="Turno"/>
+                                <p:selectOneRadio id="turno" layout="responsive" columns="3">
+                                <f:selectItem itemLabel="Dia" itemValue="1" />
+                                <f:selectItem itemLabel="Tarde" itemValue="2" />
+                                <f:selectItem itemLabel="Noche" itemValue="3" />
+                                </p:selectOneRadio>
+                                </div>
+                                 <div class="field col-12 md:col-6">
+                                <p:outputLabel for="contrato" value="Tipo de contrato"  style="color: black;" class="pt-2"/>
+                                <p:inputText id="contrato" placeholder="Tipo de contrato" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;"/>
+                                </div>
+                                <div class="field col-12 md:col-6">
+                                <p:outputLabel for="experiencia" value="Tiempo de experiencia en trabajo"  style="color: black;" class="pt-2"/>
+                                <p:inputText  id="experiencia" placeholder="Tiempo de experiencia en trabajo" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;"/>
+                                </div>
+                                 <div class="field col-12 md:col-6">
+                                <p:outputLabel for="jornada" value="N° horas trabajadas en jornada laboral(antes del accidente"  style="color: black;" class="pt-2"/>
+                                <p:inputText id="jornada" placeholder="N° horas trabajadas en jornada laboral(antes del accidente" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;"/>
+                                </div>
+                                <div class="col-12 w-2 mt-8" style="margin-left: 120px;">
+                                 <p:button outcome="formAccidente2" value="Agregar trabajador accidentados" styleClass="ui-button-raised ui-button-warning ml-4 mb-3" style="background-color: yellow; color:black; border: 0; width: 200px;" />
+                                 </div>
+                              </div>
+                               <div class="col-12">
+                    <div class="card" style="background-color: #5a5a5a">
+                        <p:dataTable style="background-color: #20212b;" widgetVar="customersDT2" var="customer" value="#{dataTableDemoView.customers2}" selectionMode="single" reflow="true"
+                                    selection="#{dataTableDemoView.selectedCustomer}" rowKey="#{customer.id}" scrollable="true" scrollHeight="500"
+                                    styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines" >
+                            <f:facet name="header" >
+                                <div class="customers-table-header ">
+                                    <span style="font-weight: bold; ">LISTA DE TRABAJADORES INCIDENTADOS</span>                                
+                                </div>
+                            </f:facet>
+                            <p:column headerText="N°">
+                                <p:progressBar  value="#{customer.activity}" displayOnly="true" style="height: .5rem"/>
+                            </p:column>
+                            <p:column headerText="DNI/CE">
+                                <p:progressBar value="#{customer.activity}" displayOnly="true" style="height: .5rem"/>
+                            </p:column>
+                            <p:column headerText="Nombre">
+                                <p:progressBar value="#{customer.activity}" displayOnly="true" style="height: .5rem"/>
+                            </p:column>
+                            <p:column headerText="Apellido paterno">
+                                <p:progressBar value="#{customer.activity}" displayOnly="true" style="height: .5rem"/>
+                            </p:column>
+                            <p:column headerText="Apellido materno">
+                                <p:progressBar value="#{customer.activity}" displayOnly="true" style="height: .5rem"/>
+                            </p:column>
+                            <p:column headerText="Edad">
+                                <p:progressBar value="#{customer.activity}" displayOnly="true" style="height: .5rem"/>
+                            </p:column>
+                            <p:column headerText="sexo">
+                                <p:progressBar value="#{customer.activity}" displayOnly="true" style="height: .5rem"/>
+                            </p:column>
+                            <p:column headerText="Area de Trabajo" >
+                                <p:progressBar value="#{customer.activity}" displayOnly="true" style="height: .5rem"/>
+                            </p:column>
+                            <p:column headerText="Puesto de Trabajo" >
+                                <p:progressBar value="#{customer.activity}" displayOnly="true" style="height: .5rem"/>
+                            </p:column>
+                            <p:column headerText="Turno">
+                                <p:progressBar value="#{customer.activity}" displayOnly="true" style="height: .5rem"/>
+                            </p:column>
+                        </p:dataTable>
+                    </div>
+                                    <div class="col-12 w-2 mt-8 ml-auto">
+                                 <p:button outcome="formIncidente3" value="Siguiente" styleClass="ui-button-raised ui-button-warning" style="background-color: yellow; color:black; border: 0" />
+                                    </div>
+                                    <div class="col-12 w-2 mr-full -mt-5">
+                                 <p:button outcome="formIncidente" value="Anterior" styleClass="ui-button-raised ui-button-warning" style="background-color: yellow; color:black; border: 0" />
+                                 </div>
+                           </div>
+                        </div>
+                    </div>
+                     </div>
+                 </div>
+                </div>
+        </h:form>
+    </ui:define>
+</ui:composition>

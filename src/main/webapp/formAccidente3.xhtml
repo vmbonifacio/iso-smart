@@ -1,15 +1,150 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="title">Consecuencia</ui:define>
+
+    <ui:define name="viewname">
+        <li>4/4</li>
+        <li><i class="pi pi-chevron-right"></i></li>
+        <li>
+            <p:link outcome="/formAccidente">REGISTRO DE ACCIDENTES</p:link>
+        </li>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form >
+                <div class="col-12" >
+           <div class="card m-0 p-5" style="background-color: black; border-radius: 2px;">
+                    <div class="card m-0 p-0" style="background-color: black; border-radius: 10px;">
+                        <h5 class="w-full h-4rem text-center text-4xl c border-round-md p-2" style="background-color: #fff600;">Registros de accidentes</h5>
+                        <div class="ui-fluid formgrid grid border-round-sm w-full ml-0"  style="background-color: #20212b; border: 1px solid #cbcbcb; padding-left: 6px">
+                            <h5 class="pt-2" style="color: white;">INVESTIGACIÓN DEL ACCIDENTE DE TRABAJO</h5>
+                           <div class="ui-fluid formgrid grid border-round-sm"  style="background-color: #5a5a5a; border: 1px solid #cbcbcb; width: 101%;">
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="fecha" value="25. Fecha del accidente ocurrido"  class="pt-2" style="color: white;" />
+                                <p:datePicker id="fecha" placeholder="00/00/00"  showIcon="true" style="color: white;"/>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="hora" value="26. Hora del accidente ocurrido"  style="color: white;" class="pt-2"/>
+                                <p:inputText id="hora" placeholder="Ingrese aquí la hora" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;"/>
+                            </div>    
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="fechaI" value="27. Fecha de la investigacion"  class="pt-2" style="color: white;" />
+                                <p:datePicker id="fechaI" placeholder="00/00/00"  showIcon="true" style="background:transparent; color: white; border: none;"/>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="lugar" value="28. Lugar exacto del accidente"  style="color: white;" />
+                                <p:inputText id="lugar" placeholder="Ingrese aquí el lugar del accidente" style="background:transparent; color: white; border: none;"/>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                               <p:outputLabel for="gravedad" value="29. Marca la gravedad del accidente"  style="color: white;" />
+                               <p:selectOneRadio id="gravedad" layout="responsive" columns="3" style="color:white;">
+                                <f:selectItem itemLabel="        Leve" itemValue="1" />
+                                <f:selectItem itemLabel="Incapacitante" itemValue="2" />
+                                <f:selectItem itemLabel="        Mortal" itemValue="3" />
+                            </p:selectOneRadio>
+                           </div>
+                            <div class="field col-12 md:col-6">
+                               <p:outputLabel for="gravedadI" value="30. Marca la gravedad del accidente incapacitante (de ser el caso)"  style="color: white;" />
+                               <p:selectOneRadio id="gravedadI" layout="responsive" columns="4" style="color:white;">
+                               <f:selectItem itemLabel="Total temporal" itemValue="1" />
+                               <f:selectItem itemLabel="Parcial temporal" itemValue="2" />
+                               <f:selectItem itemLabel="Parcial permanente" itemValue="3" />
+                               <f:selectItem itemLabel="Total permanente" itemValue="4" />
+                            </p:selectOneRadio>
+                           </div>
+                             <div class="field col-12 md:col-6">
+                                <p:outputLabel for="descanso" value="31. N° de días de descanso"  style="color: white;" />
+                                <p:inputText id="descanso" placeholder="Ingrese aquí los dias de descanso" style="background:transparent; color: white; border: none; border-bottom: 3px solid yellow; trabajadores:focus{blackground-color: transparent; border: transparent;}"/>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="afectados" value="32. N° de trabajadores afectados"  style="color: white;" />
+                                <p:inputText id="afectados" placeholder="Ingrese aquí los trabajadores afectados" style="background:transparent; color: white; border: none; border-bottom: 3px solid yellow; trabajadores:focus{blackground-color: transparent; border: transparent;}"/>
+                            </div>
+                        </div>
+                         <div class="ui-fluid formgrid grid border-round-sm w-full m-0"  style="background-color: #20212b; border: 1px solid #cbcbcb; ">
+                            <h5 class="pt-2" style="color: white;">INVESTIGACIÓN DEL ACCIDENTE DE TRABAJO</h5>
+                           <div class="ui-fluid formgrid grid border-round-sm"  style="background-color: #5a5a5a; border: 1px solid #cbcbcb; width: 101%;">
+                            <div class="field col-12">
+                                <p:outputLabel for="descripcion" value="33. Describa solo los hechos, no  información subjetiva que no pueda ser comprobada. Adjuntar: Declaración del afectado sobre el accidente de trabajo, Declaración de testigos (de ser el caso), 
+                                                                                                Procedimientos, planos, registros, entre otros que ayuden a la investigación de ser el caso. 
+                                                                                                Describa el accidente en el cuadro inferior: "  class="pt-2" style="color: white;" />
+                                <p:button value="Subir archivo" styleClass="ui-button-raised ui-button-warning mr-2 mb-2 w-2" style="background-color: #fff600;" />
+                                <p:inputTextarea id="descripcion" class=" h-8rem" placeholder="Escriba aqui la descripcion del accidente"  style="background:transparent; color: white; border: none; border-bottom: 3px solid yellow;"/>
+                                <p:button value="Agregar" styleClass="ui-button-raised ui-button-warning mr-2 mb-2 mt-3 w-2" style="background-color: #fff600;" />
+                            </div>
+                             <p:dataTable style="background-color: #20212b;" widgetVar="customersDT2" var="customer" value="#{dataTableDemoView.customers2}" selectionMode="single" reflow="true"
+                                    selection="#{dataTableDemoView.selectedCustomer}" rowKey="#{customer.id}" scrollable="true" scrollHeight="500"
+                                    styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines" >
+                            <f:facet name="header" >
+                              <div class="customers-table-header ">                            
+                              </div>
+                            </f:facet>
+                            <p:column headerText="N°">
+                                <p:progressBar  value="#{customer.activity}" displayOnly="true" style="height: .5rem"/>
+                            </p:column>
+                            <p:column headerText="Nombre">
+                                <p:progressBar value="#{customer.activity}" displayOnly="true" style="height: .5rem"/>
+                            </p:column>
+                            <p:column headerText="Fecha de modificacion">
+                                <p:progressBar value="#{customer.activity}" displayOnly="true" style="height: .5rem"/>
+                            </p:column>
+                            <p:column headerText="Tipo">
+                                <p:progressBar value="#{customer.activity}" displayOnly="true" style="height: .5rem"/>
+                            </p:column>
+                            <p:column headerText="Tamaño de archivos">
+                                <p:progressBar value="#{customer.activity}" displayOnly="true" style="height: .5rem"/>
+                            </p:column>
+                            </p:dataTable>
+                        </div>
+                         </div><!-- margin-left:87vh -->
+                         <div class="ui-fluid formgrid grid border-round-sm w-full m-0 mt-6"  style="background-color: #20212b; border: 1px solid #cbcbcb; ">
+                            <h5 class="pt-2" style="color: white;">INVESTIGACIÓN DEL ACCIDENTE DE TRABAJO</h5>
+                           <div class="ui-fluid formgrid grid border-round-sm"  style="background-color: #5a5a5a; border: 1px solid #cbcbcb; width: 101%;">
+                            <div class="field col-12">
+                                <p:outputLabel for="descripcion1" value="33. Describa solo los hechos, no  información subjetiva que no pueda ser comprobada. Adjuntar: Declaración del afectado sobre el accidente de trabajo, Declaración de testigos (de ser el caso), 
+                                                                                                Procedimientos, planos, registros, entre otros que ayuden a la investigación de ser el caso. 
+                                                                                                Describa el accidente en el cuadro inferior: "  class="pt-2" style="color: white;" />
+                                <p:button  value="Subir archivo" styleClass="ui-button-raised ui-button-warning mr-2 mb-2 w-2" style="background-color: #fff600;" />
+                                <p:inputTextarea id="descripcion1" class=" h-8rem" placeholder="Escriba aqui la descripcion del accidente"  style="background:transparent; color: white; border: none; border-bottom: 3px solid yellow;"/>
+                                <p:button value="Agregar" styleClass="ui-button-raised ui-button-warning mr-2 mb-2 mt-3 w-2" style="background-color: #fff600;" />
+                            </div>
+                             <p:dataTable style="background-color: #20212b;" widgetVar="customersDT2" var="customer" value="#{dataTableDemoView.customers2}" selectionMode="single" reflow="true"
+                                    selection="#{dataTableDemoView.selectedCustomer}" rowKey="#{customer.id}" scrollable="true" scrollHeight="500"
+                                    styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines" >
+                            <f:facet name="header" >
+                              <div class="customers-table-header ">                            
+                              </div>
+                            </f:facet>
+                            <p:column headerText="N°">
+                                <p:progressBar  value="#{customer.activity}" displayOnly="true" style="height: .5rem"/>
+                            </p:column>
+                            <p:column headerText="Nombre">
+                                <p:progressBar value="#{customer.activity}" displayOnly="true" style="height: .5rem"/>
+                            </p:column>
+                            <p:column headerText="Fecha de modificacion">
+                                <p:progressBar value="#{customer.activity}" displayOnly="true" style="height: .5rem"/>
+                            </p:column>
+                            <p:column headerText="Tipo">
+                                <p:progressBar value="#{customer.activity}" displayOnly="true" style="height: .5rem"/>
+                            </p:column>
+                            <p:column headerText="Tamaño de archivos">
+                                <p:progressBar value="#{customer.activity}" displayOnly="true" style="height: .5rem"/>
+                            </p:column>
+                            </p:dataTable>
+                        </div>
+                         </div>
+                       <div class="col-12 w-2 mt-8">
+                                 <p:button outcome="formAccidente2" value="Anterior" styleClass="ui-button-raised ui-button-warning" style="background-color: yellow; color:black; border: 0 ;" />
+                        </div>
+                </div>            
+             </div>
+           </div>
+           </div>
+        </h:form>
+    </ui:define>
+</ui:composition>
