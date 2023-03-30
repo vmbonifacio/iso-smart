@@ -1,0 +1,109 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+    
+    <ui:define name="title">Jerarquia de Empresa</ui:define>
+
+    <ui:define name="viewname">
+        <li>KIT</li>
+        <li><i class="pi pi-chevron-right"></i></li>
+        <li>
+            <p:link outcome="/E_organizacional">FORMULARIO</p:link>
+        </li>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form>
+            <!--FORMULARIO PARA E REGISTRO!-->
+                <div class="col-12">
+                    <div class="card">
+                        <h5>Estructura Organizacional de Empresa</h5>
+                        <div class="ui-fluid formgrid grid">
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="Rsocial" value="Razon Social"/>
+                                <p:inputText id="Rsocial" />
+                            </div>
+                            
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="AoG" value="Actividad o Giros principales" />
+                                <p:inputText id="AoG" />
+                            </div>
+                            
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="ruc" value="RUC" />
+                                <p:inputText id="ruc" />
+                            </div>
+                            
+                            
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="areas" value="Áreas" />
+                                <p:inputText id="areas" />
+                            </div>
+                            
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="Sweb" value="Url de sitio web" />
+                                <p:inputText id="Sweb" />
+                            </div>
+                            
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="CYP" value="Cargos y Puestos" />
+                                <p:selectOneMenu id="CYP">
+                                    <f:selectItem itemLabel="Selecionar" itemValue=""/>
+                                    <f:selectItem itemLabel="00000" itemValue="1" />
+                                    <f:selectItem itemLabel="00" itemValue="2" />
+                                    <f:selectItem itemLabel="000000000000" itemValue="1" />
+                                    <f:selectItem itemLabel="00" itemValue="2" />
+                                </p:selectOneMenu>
+                            </div>
+                            
+                             <div class="field col-12 md:col-6">
+                                <p:outputLabel for="L_Ar" value="Lista de Áreas" />
+                                <p:selectOneMenu id="L_Ar">
+                                    <f:selectItem itemLabel="Selecionar" itemValue=""/>
+                                    <f:selectItem itemLabel="00" itemValue="1" />
+                                    <f:selectItem itemLabel="000" itemValue="2" />
+                                    <f:selectItem itemLabel="00000" itemValue="4" />
+                                </p:selectOneMenu>
+                            </div>
+                            
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="Coord" value="Jefaturas" />
+                                <p:selectOneMenu id="Coord">
+                                    <f:selectItem itemLabel="Selecionar" itemValue=""/>
+                                    <f:selectItem itemLabel="00000000" itemValue="1" />
+                                    <f:selectItem itemLabel="0000" itemValue="2" />
+                                    <f:selectItem itemLabel="0000" itemValue="3" />
+                                    <f:selectItem itemLabel="0000" itemValue="4" />
+                                </p:selectOneMenu>
+                            </div>
+                            
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="Ubicacion" value="Ubicación" />
+                                <p:inputText id="Ubicacion" />
+                            </div>
+                           
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="NGest" value="Niveles de Gestion" />
+                                <p:selectOneMenu id="NGest">
+                                    <f:selectItem itemLabel="Selecionar" itemValue=""/>
+                                    <f:selectItem itemLabel="Estrategico" itemValue="1" />
+                                    <f:selectItem itemLabel="Tactico" itemValue="2" />
+                                    <f:selectItem itemLabel="Operativos" itemValue="4" />
+                                </p:selectOneMenu>
+                            </div>
+                            
+                             <div class="field col-12">
+                                <p:outputLabel for="PyPro" value="Politicas y Procedimientos" />
+                                <p:inputTextarea id="PyPro" rows="4" />
+                            </div>
+                            
+                             <p:selectBooleanButton onLabel="Registrado" offLabel="Registrarse" style="width:100%" />
+                    </div>
+                </div>
+                </div>
+          </h:form>
+    </ui:define>
+</ui:composition>
