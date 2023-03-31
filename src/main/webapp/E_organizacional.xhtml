@@ -23,45 +23,65 @@
 
     <ui:define name="content">
         <h:form>
-        <div class="card m-0 p-0" style="background-color: black; border-radius: 10px;">
+        <div class="card m-0 p-6" style="background-color: black;">
         <h5 class="w-full h-4rem text-center text-4xl c border-round-md p-2" style="background-color: #fff600;">Estructura Organizacional</h5>
-            <!--FORMULARIO PARA E REGISTRO!-->
+        <div class="card m-0 p-0" style="background-color: black; border-radius: 10px; border:2px solid white;">            <!--FORMULARIO PARA E REGISTRO!-->
                 <div class="col-12" style="background-color: #5a5a5a;">
                     <div class="card" style="background-color: #5a5a5a; color: white;">
                         <h5>Estructura Organizacional de Empresa</h5>
                         <div class="ui-fluid formgrid grid">
-                            <div class="field col-12 md:col-6"><label id="Rsocial" class="ui-outputlabel ui-widget pt-2" style="color: white;" for="Rsocial">Razon social</label><input id="ruc" name="ruc" type="text" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" placeholder="Ingrese razon social"></input>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="razon" value="Razón social" />
+                                <p:inputText id="razon" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;" placeholder="Ingrese aqui la razon social" />
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="actividad" value="Actividad o Giros principales" />
+                                <p:inputText id="actividad" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;" placeholder="Ingrese aqui la razon social" />
                             </div>
                             
-                            <div class="field col-12 md:col-6"><label id="AOG" class="ui-outputlabel ui-widget pt-2" style="color: white;" for="AOG">Actividad o Giros principales</label><input id="AOG" name="AOG" type="text" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" placeholder="actividades o giros principales"></input>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="ruc" value="Ruc" />
+                                <p:inputText id="ruc" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;" placeholder="Ingrese aqui el ruc" />
                             </div>
                             
-                            <div class="field col-12 md:col-6"><label id="ruc" class="ui-outputlabel ui-widget pt-2" style="color: white;" for="ruc">Ruc</label><input id="ruc" name="ruc" type="text" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" placeholder="Ingrese aquí el ruc"></input>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="area" value="Área" />
+                                <p:inputText id="area" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;" placeholder="Ingrese aqui el area" />
                             </div>
                             
-                            <div class="field col-12 md:col-6"><label id="área" class="ui-outputlabel ui-widget pt-2" style="color: white;" for="área">Área</label><input id="área" name="área" type="text" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" placeholder="Ingrese aquí el área"></input>
-                            </div>
-                            
-                           <div class="field col-12 md:col-6"><label id="url" class="ui-outputlabel ui-widget pt-2" style="color: white;" for="url">Url de su empresa</label><input id="url" name="url" type="text" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" placeholder="Ingrese aquí el url de su empresa"></input>
+                           <div class="field col-12 md:col-6">
+                                <p:outputLabel for="url" value="Url de la empresa" />
+                                <p:inputText id="url" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;" placeholder="Ingrese aqui el url" />
                             </div>
                             
                             <div class="field col-12 md:col-6">                                
-                                <p:outputLabel for="CYP" value="Cargos y puestos"  style="color: white;" />
-                                <p:selectOneMenu id="CYP" style="background:transparent; border: none; border-bottom: 3px solid yellow;color: white;">
-                                    <f:selectItem itemLabel="Select" itemValue="" />
-                                    <f:selectItem itemLabel="Option 1" itemValue="1" />
-                                    <f:selectItem itemLabel="Option 2" itemValue="2" />
-                                    <f:selectItem itemLabel="Option 3" itemValue="3" />
+                                <p:outputLabel for="Puestos" value="Puestos"  style="color: white;" />
+                                <p:selectOneMenu id="Puestos" style="background:transparent; border: none; border-bottom: 3px solid yellow;color: white;">
+                                    <f:selectItem itemLabel="Selecionar" itemValue=""/>
+                                    <f:selectItem itemLabel="Director ejecutivo(CEO)" itemValue="1" />
+                                    <f:selectItem itemLabel="Gerente de operaciones" itemValue="2" />
+                                    <f:selectItem itemLabel="Gerente de recursos humanos" itemValue="3" />
+                                    <f:selectItem itemLabel="Gerente de finanzas" itemValue="4" />
+                                    <f:selectItem itemLabel="Gerente de marketing" itemValue="5" />
+                                    <f:selectItem itemLabel="Gerente de ventas" itemValue="6" />
+                                    <f:selectItem itemLabel="Analista financiero" itemValue="7" />
+                                    <f:selectItem itemLabel="Especialista en recursos humanos" itemValue="8" />
+                                    <f:selectItem itemLabel="Especialista en marketing" itemValue="9" />
+                                    <f:selectItem itemLabel="Especialista en tecnología" itemValue="10" />
                                 </p:selectOneMenu>
                             </div>
                             
                             <div class="field col-12 md:col-6" style="color: white"> 
                                 <p:outputLabel for="L_area" value="Lista de Áreas"  style="color: white"/>
                                 <p:selectOneMenu id="L_area" style="background: transparent; border: none; border-bottom: 3px solid yellow; color: white;">
-                                    <f:selectItem itemLabel="Select" itemValue="" />
-                                    <f:selectItem itemLabel="Option 1" itemValue="1" />
-                                    <f:selectItem itemLabel="Option 2" itemValue="2" />
-                                    <f:selectItem itemLabel="Option 3" itemValue="3" />
+                                    <f:selectItem itemLabel="Selecionar" itemValue=""/>
+                                    <f:selectItem itemLabel="área de producción" itemValue="1" />
+                                    <f:selectItem itemLabel="área de finanzas" itemValue="2" />
+                                    <f:selectItem itemLabel="área de recursos humanos" itemValue="3" />
+                                    <f:selectItem itemLabel="área de marketing" itemValue="4" />
+                                    <f:selectItem itemLabel="área de ventas" itemValue="5" />
+                                    <f:selectItem itemLabel="área de tecnología" itemValue="6" />
+                                    <f:selectItem itemLabel="área de servicio al cliente" itemValue="7" />
                                 </p:selectOneMenu>
                             </div>
                             
@@ -69,14 +89,20 @@
                                 <p:outputLabel for="jefaturas" value="Jefaturas"  style="color: white;"/>
                                 <p:selectOneMenu id="jefaturas" style="background:transparent; border: none; border-bottom: 3px solid yellow;">
                                     <f:selectItem itemLabel="Select" itemValue="" />
-                                    <f:selectItem itemLabel="Option 1" itemValue="1" />
-                                    <f:selectItem itemLabel="Option 2" itemValue="2" />
-                                    <f:selectItem itemLabel="Option 3" itemValue="3" />
+                                    <f:selectItem itemLabel="Jefe de departamento" itemValue="1" />
+                                    <f:selectItem itemLabel="Jefe de producción" itemValue="2" />
+                                    <f:selectItem itemLabel="Jefe de ventas" itemValue="3" />
+                                    <f:selectItem itemLabel="Jefe de marketing" itemValue="4" />
+                                    <f:selectItem itemLabel="Jefe de logística" itemValue="5" />
+                                    <f:selectItem itemLabel="Jefe de recursos humanos" itemValue="6" />
+                                    <f:selectItem itemLabel="Jefe de finanzas" itemValue="7" />
+                                    <f:selectItem itemLabel="Jefe de seguridad y salud ocupacional" itemValue="8" />
                                 </p:selectOneMenu>
                             </div>
                             
                             <div class="field col-12 md:col-6">
-                                <label id="ubicacion" class="ui-outputlabel ui-widget pt-2" style="color: white;" for="ubicacion">Ubicacón</label><input id="ruc" name="ruc" type="text" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" placeholder="Ingrese aquí su ubicación"></input>
+                                <p:outputLabel for="ubicacion" value="Ubicación" />
+                                <p:inputText id="ubicacion" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;" placeholder="Ingrese aqui el ruc" />
                             </div>
                            
                             <div class="field col-12 md:col-6 text-white-alpha-90">
@@ -88,15 +114,23 @@
                                     <f:selectItem itemLabel="Operativos" itemValue="4" />
                                 </p:selectOneMenu>
                             </div>
+                            
+                             <!-- Entrada de hora  -->
+                            <div class="field col-12 md:col-4">
+                                <p>2. Hora ocurrencia: </p>
+                                    <p:outputLabel for="timeonly"/>
+                                    <p:datePicker  id="timeonly" value="#{calendarView.date14}" timeOnly="true" pattern="HH:mm"/>
+                            </div> 
          
                              <div class="field col-12">
                                 <p:outputLabel for="PyPro" value="Politicas y Procedimientos" />
                                 <p:inputTextarea id="PyPro" rows="4" style="background-color: transparent; color: white; border: none;  border-bottom: 3px solid yellow;"/>
                             </div>
                             
-                             <p:button value="Guardar" styleClass="ui-button-raised mr-2 mb-2 w-4 text-2xl" style="background-color: #fff600; color: black"/>
+                             <p:button value="Guardar" styleClass="ui-button-raised mr-2 mb-2 w-4 text-2xl" style="background-color: yellow; color: black"/>
                         </div>
                         </div>
+                    </div>
                 </div>
                 </div>
           </h:form>

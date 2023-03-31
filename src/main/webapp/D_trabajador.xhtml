@@ -16,10 +16,10 @@
     </ui:define>
 
     <ui:define name="content">
-        <div class="card m-0 p-0" style="background-color: black; border-radius: 10px;">
-        <h5 class="w-full h-4rem text-center text-4xl c border-round-md p-2" style="background-color: #fff600;">Datos del trabajador</h5>
         <h:form>
-            <!--FORMULARIO PARA E REGISTRO!-->
+         <div class="card m-0 p-4" style="background-color: black;">
+            <h5 class="w-full h-4rem text-center text-4xl c border-round-md p-2" style="background-color: #fff600;">Datos del trabajador</h5>
+        <div class="card m-0 p-0" style="background-color: black; border-radius: 10px; border: 2px solid white">            <!--FORMULARIO PARA E REGISTRO!-->
                 <div class="col-12" style="background-color: #5a5a5a;">
                     <div class="card" style="background-color: #5a5a5a; color: white;">
                         <h5>Datos de trabajador</h5>
@@ -49,20 +49,7 @@
                                         <p:outputLabel value="Fecha de nacimiento" />
                                         <p:datePicker placeholder="00/00/00" showIcon="true"/>
                             </div>
-                            
-                             <div class="field col-12 md:col-6">
-                                 <p:outputLabel class="text-white-alpha-90" for="Nacionalidad" value="Nacionalidad" style="color: white"/>
-                                <p:selectOneMenu class="text-white-alpha-90" id="Nacionalidad" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;">
-                                    <f:selectItem itemLabel="Selecionar" itemValue=""/>
-                                    <f:selectItem itemLabel="00" itemValue="1" />
-                                    <f:selectItem itemLabel="000" itemValue="2" />
-                                    <f:selectItem itemLabel="00000" itemValue="4" />
-                                    <f:selectItem itemLabel="00000" itemValue="5" />
-                                    <f:selectItem itemLabel="000000" itemValue="6" />
-                                    <f:selectItem itemLabel="00000" itemValue="7" />
-                                    <f:selectItem itemLabel="0000" itemValue="8" /> 
-                                </p:selectOneMenu>
-                            </div>
+                           
                             
                             <div class="field col-12 md:col-6">
                                 <label id="dni/ce" class="ui-outputlabel ui-widget pt-2" style="color: white;" for="dni/ce">DNI/CE</label><input id="dni/ce" name="dni/ce" type="text" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" placeholder="Ingrese su dni o ce"></input>
@@ -83,8 +70,16 @@
                                  <p:outputLabel class="text-white-alpha-90" for="Puesto" value="Puesto de trabajo" style="color: white"/>
                                 <p:selectOneMenu class="text-white-alpha-90" id="Puesto" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;">
                                     <f:selectItem itemLabel="Selecionar" itemValue=""/>
-                                    <f:selectItem itemLabel="0" itemValue="1" />
-                                    <f:selectItem itemLabel="00" itemValue="2" />
+                                    <f:selectItem itemLabel="Director ejecutivo(CEO)" itemValue="1" />
+                                    <f:selectItem itemLabel="Gerente de operaciones" itemValue="2" />
+                                    <f:selectItem itemLabel="Gerente de recursos humanos" itemValue="3" />
+                                    <f:selectItem itemLabel="Gerente de finanzas" itemValue="4" />
+                                    <f:selectItem itemLabel="Gerente de marketing" itemValue="5" />
+                                    <f:selectItem itemLabel="Gerente de ventas" itemValue="6" />
+                                    <f:selectItem itemLabel="Analista financiero" itemValue="7" />
+                                    <f:selectItem itemLabel="Especialista en recursos humanos" itemValue="8" />
+                                    <f:selectItem itemLabel="Especialista en marketing" itemValue="9" />
+                                    <f:selectItem itemLabel="Especialista en tecnología" itemValue="10" />
                                 </p:selectOneMenu>
                             </div>
                             
@@ -100,8 +95,13 @@
                                  <p:outputLabel class="text-white-alpha-90" for="Tcon" value="Tipo de contrato" style="color: white"/>
                                 <p:selectOneMenu class="text-white-alpha-90" id="Tcon" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;">
                                     <f:selectItem itemLabel="Selecionar" itemValue=""/>
-                                    <f:selectItem itemLabel="0" itemValue="1" />
-                                    <f:selectItem itemLabel="00" itemValue="2" />
+                                    <f:selectItem itemLabel="Contrato indefinido" itemValue="1" />
+                                    <f:selectItem itemLabel="Contrato temporal" itemValue="2" />
+                                    <f:selectItem itemLabel="Contrato tiempo completo" itemValue="3" />
+                                    <f:selectItem itemLabel="Contrato tiempo parcial" itemValue="4" />
+                                    <f:selectItem itemLabel="Contrato por obra o servicio" itemValue="5" />
+                                    <f:selectItem itemLabel="Contrato por temporadas" itemValue="6" />
+                                    <f:selectItem itemLabel="Contrato en prácticas" itemValue="7" />
                                 </p:selectOneMenu>
                             </div>
                             
@@ -125,8 +125,11 @@
                                  <p:outputLabel class="text-white-alpha-90" for="Nestu" value="Nivel de estudios" style="color: white"/>
                                 <p:selectOneMenu class="text-white-alpha-90" id="Nestu" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;">
                                     <f:selectItem itemLabel="Selecionar" itemValue=""/>
-                                    <f:selectItem itemLabel="00" itemValue="1" />
-                                    <f:selectItem itemLabel="00000" itemValue="2" />
+                                    <f:selectItem itemLabel="Educación primaria" itemValue="1" />
+                                    <f:selectItem itemLabel="Educacion secundaria" itemValue="2" />
+                                    <f:selectItem itemLabel="Educacion técnica o profesional" itemValue="3" />
+                                    <f:selectItem itemLabel="Educacion superior no universitaria" itemValue="4" />
+                                    <f:selectItem itemLabel="Educacion universitaria" itemValue="5" />
                                 </p:selectOneMenu>
                             </div>
                             
@@ -138,8 +141,13 @@
                                  <p:outputLabel class="text-white-alpha-90" for="area" value="Área" style="color: white"/>
                                 <p:selectOneMenu class="text-white-alpha-90" id="area" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;">
                                     <f:selectItem itemLabel="Selecionar" itemValue=""/>
-                                    <f:selectItem itemLabel="00" itemValue="1" />
-                                    <f:selectItem itemLabel="00000" itemValue="2" />
+                                    <f:selectItem itemLabel="área de producción" itemValue="1" />
+                                    <f:selectItem itemLabel="área de finanzas" itemValue="2" />
+                                    <f:selectItem itemLabel="área de recursos humanos" itemValue="3" />
+                                    <f:selectItem itemLabel="área de marketing" itemValue="4" />
+                                    <f:selectItem itemLabel="área de ventas" itemValue="5" />
+                                    <f:selectItem itemLabel="área de tecnología" itemValue="6" />
+                                    <f:selectItem itemLabel="área de servicio al cliente" itemValue="7" />
                                 </p:selectOneMenu>
                             </div>
                             
@@ -155,7 +163,8 @@
                         <p:button value="Guardar" styleClass="ui-button-raised mr-2 mb-2 w-4 text-2xl" style="background-color: #fff600; color: black"/>
                     </div>
                 </div>
+            </div>
+             </div>
           </h:form>
-        </div>
     </ui:define>
 </ui:composition>
