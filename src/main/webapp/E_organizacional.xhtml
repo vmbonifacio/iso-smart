@@ -23,7 +23,7 @@
 
     <ui:define name="content">
         <h:form>
-        <div class="card m-0 p-6" style="background-color: black;">
+        <div class="card m-0 p-6 pb-4" style="background-color: black;">
         <h5 class="w-full h-4rem text-center text-4xl c border-round-md p-2" style="background-color: #fff600;">Estructura Organizacional</h5>
         <div class="card m-0 p-0" style="background-color: black; border-radius: 10px; border:2px solid white;">            <!--FORMULARIO PARA E REGISTRO!-->
                 <div class="col-12" style="background-color: #5a5a5a;">
@@ -117,7 +117,7 @@
                             
                              <!-- Entrada de hora  -->
                             <div class="field col-12 md:col-4">
-                                <p>2. Hora ocurrencia: </p>
+                                <p>Hora ocurrencia </p>
                                     <p:outputLabel for="timeonly"/>
                                     <p:datePicker  id="timeonly" value="#{calendarView.date14}" timeOnly="true" pattern="HH:mm"/>
                             </div> 
@@ -125,13 +125,13 @@
                              <div class="field col-12">
                                 <p:outputLabel for="PyPro" value="Politicas y Procedimientos" />
                                 <p:inputTextarea id="PyPro" rows="4" style="background-color: transparent; color: white; border: none;  border-bottom: 3px solid yellow;"/>
+                                
                             </div>
-                            
-                             <p:button value="Guardar" styleClass="ui-button-raised mr-2 mb-2 w-4 text-2xl" style="background-color: yellow; color: black"/>
                         </div>
                         </div>
                     </div>
                 </div>
+                    <p:button value="Guardar" styleClass="ui-button-raised mr-2 mb-2 w-4 text-2xl mt-4" style="background-color: yellow; color: black"/>
                 </div>
           </h:form>
     </ui:define>
