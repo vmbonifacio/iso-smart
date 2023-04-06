@@ -24,6 +24,7 @@
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
             <version>12.0.0</version>
+            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>org.glassfish</groupId>
@@ -88,6 +89,7 @@
             <artifactId>poi</artifactId>
             <version>${poi.version}</version>
         </dependency>
+        
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
@@ -119,11 +121,20 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        
         <dependency>
             <groupId>com.github.librepdf</groupId>
             <artifactId>openpdf</artifactId>
             <version>${open-pdf.version}</version>
         </dependency>
+        
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-math3</artifactId>
+            <version>3.6.1</version>
+            <type>jar</type>
+        </dependency>
+        
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
