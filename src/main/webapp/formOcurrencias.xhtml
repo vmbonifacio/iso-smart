@@ -1,0 +1,158 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+    
+   <script>
+    PrimeFaces.locales['es'] = {
+        closeText: 'Cerrar',
+        prevText: 'Anterior',
+        nextText: 'Siguiente',
+        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+        dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+        dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+        dayNamesMin: ['D', 'L', 'M', 'X', 'J', 'V', 'S'],
+        weekHeader: 'Semana',
+        firstDay: 1,
+        isRTL: false,
+        showMonthAfterYear: false,
+        yearSuffix: '',
+        timeOnlyTitle: 'Sólo hora',
+        timeText: 'Tiempo',
+        hourText: 'Hora',
+        minuteText: 'Minuto',
+        secondText: 'Segundo',
+        millisecondText: 'Milisegundo',
+        currentText: 'Fecha actual',
+        ampm: false,
+        month: 'Mes',
+        week: 'Semana',
+        day: 'Día',
+        allDayText: 'Todo el día',
+        today: 'Hoy',
+        clear: 'Claro'
+    };
+    PrimeFaces.locales ['de'] = {
+        closeText: 'Schließen',
+        prevText: 'Zurück',
+        nextText: 'Weiter',
+        monthNames: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+        monthNamesShort: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+        dayNames: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+        dayNamesShort: ['Son', 'Mon', 'Die', 'Mit', 'Don', 'Fre', 'Sam'],
+        dayNamesMin: ['S', 'M', 'D', 'M ', 'D', 'F ', 'S'],
+        weekHeader: 'Woche',
+        firstDay: 1,
+        isRTL: false,
+        showMonthAfterYear: false,
+        yearSuffix: '',
+        timeOnlyTitle: 'Nur Zeit',
+        timeText: 'Zeit',
+        hourText: 'Stunde',
+        minuteText: 'Minute',
+        secondText: 'Sekunde',
+        millisecondText: 'Millisekunde',
+        currentText: 'Aktuelles Datum',
+        ampm: false,
+        month: 'Monat',
+        week: 'Woche',
+        day: 'Tag',
+        allDayText: 'Ganzer Tag',
+        today: 'Heute',
+        clear: 'Löschen'
+    };
+</script>
+
+<script>
+    //<![CDATA[
+    function dateTemplateFunc(date) {
+        return '<span style="background-color:' + ((date.day < 21 && date.day > 10) ? '#81C784' : 'inherit') + ';border-radius:50%;width: 2.5rem;height: 2.5rem;line-height: 2.5rem;display: flex;align-items: center;justify-content: center;">' + date.day + '</span>';
+    }
+
+    //]]>
+</script>
+
+<style>
+    .value {
+        font-weight: bold;
+    }
+    
+    .formgrid {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    
+    .p-input-container {
+   margin-right: 20px;
+}
+
+</style>
+    
+    <ui:define name="title">Nueva ocurrencia</ui:define>
+
+   <ui:define name="viewname">
+        <li>OCURRENCIAS</li>
+        <li><i class="pi pi-chevron-right"></i></li>
+        <li>
+            <p:link outcome="/form">NUEVA OCURRENCIA</p:link>
+        </li>
+    </ui:define>
+    
+    <ui:define name="content">
+            <div class="card">
+                
+                 <!-- Nueva línea vertical-->
+                
+                <h4>NUEVA OCURRENCIA </h4> 
+                
+                <h:form>
+                    <div class="formgrid grid">
+                           <div class="field col">    
+
+                       <!-- Entrada de fecha  -->      
+
+                               <h5>1. Fecha ocurrencia:</h5>
+                               <p:datePicker class="mt-3 " showIcon="true" />
+                           </div>    
+
+                        <!-- Entrada de hora  -->
+
+                           <div class="field col">
+                               <h5>2. Hora ocurrencia: </h5>
+                                <div class="field col">
+                                  <p:outputLabel for="timeonly"/>
+                                  <p:datePicker  id="timeonly" value="#{calendarView.date14}" timeOnly="true" pattern="HH:mm"/>
+                               </div>   
+                            </div> 
+
+                        <!-- Entrada de tipos  -->      
+
+                           <div class="field col">
+                               <h5>3. Tipo Ocurrencia:</h5>
+                               <p:selectOneRadio layout="responsive" columns="1">
+                                <f:selectItem itemLabel="Incidente" itemValue="1" />
+                                <f:selectItem itemLabel="Accidente" itemValue="2" />
+                                </p:selectOneRadio>
+                            </div>
+                    </div>
+                    
+                    <!-- Nueva línea vertical-->
+                    
+                    <div class="formgrid grid">
+                           <div class="field col">    
+
+                       <!-- Entrada de lugar  -->      
+
+                               <h5>4. Lugar exacto de ocurrencia:</h5>
+                               <p:inputText id="place"/>
+                           </div>
+                    </div>  
+                </h:form>
+           </div>
+       
+     </ui:define>
+</ui:composition>
