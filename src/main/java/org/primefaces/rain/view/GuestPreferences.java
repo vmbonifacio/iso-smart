@@ -12,15 +12,15 @@ public class GuestPreferences implements Serializable {
 
     private String menuMode = "layout-static layout-static-active";
 
-    private String darkMode = "light";
+    private String darkMode = "dark"; // Cambiar a "dark" para activar el tema oscuro
 
-    private String layoutPrimaryColor = "cyan";
+    private String layoutPrimaryColor = "orange";
 
-    private String componentTheme = "cyan";
+    private String componentTheme = "amber";
     
-    private String topbarTheme = "colored";
+    private String topbarTheme = "dark";
 
-    private String menuTheme = "dim";
+    private String menuTheme = "dark";
 
     private String profileMode = "popup";
 
@@ -28,9 +28,9 @@ public class GuestPreferences implements Serializable {
 
     private boolean lightLogo = true;
 
-    private List<ComponentTheme> componentThemes = new ArrayList<ComponentTheme>();
+    private final List<ComponentTheme> componentThemes = new ArrayList<>();
 
-    private List<LayoutPrimaryColor> layoutPrimaryColors = new ArrayList<LayoutPrimaryColor>();
+    private final List<LayoutPrimaryColor> layoutPrimaryColors = new ArrayList<>();
 
     @PostConstruct
     public void init() {  

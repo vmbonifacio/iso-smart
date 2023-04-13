@@ -3812,7 +3812,7 @@ body .ui-input-icon-right > .ui-inputfield {
   padding-right: 2rem;
 }
 body .ui-inputfield {
-  color: #ffffff;
+  color: rgba(0, 0, 0, 0.54);
   background: #ffffff;
   padding: 0.5rem 0.5rem;
   border: 1px solid #D9DEE6;

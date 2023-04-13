@@ -44,6 +44,13 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>8.2.2.jre8</version>
+        </dependency>
+        
         <!-- CDI required APIs -->
         <dependency>
             <groupId>org.apache.geronimo.specs</groupId>
@@ -198,6 +205,8 @@
             <id>distribute</id>
             <properties>
                 <packaging.type>jar</packaging.type>
+                 <maven.compiler.source>11</maven.compiler.source>
+                 <maven.compiler.target>11</maven.compiler.target>
             </properties>
             <build>
                 <plugins>

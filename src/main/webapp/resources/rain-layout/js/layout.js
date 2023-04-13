@@ -1,3 +1,5 @@
+/* global PrimeFaces, define */
+
 /** 
  * PrimeFaces Rain Layout
  */
@@ -472,7 +474,7 @@ PrimeFaces.widget.Rain = PrimeFaces.widget.BaseWidget.extend({
     },
     
     removeTopbarClassFromAllItems: function(item, className, items) {
-        var activeItems = item != null ? item.siblings('.' + className) : items;
+        var activeItems = item !==  null ? item.siblings('.' + className) : items;
 
         activeItems.removeClass(className);
         activeItems.children('ul').removeClass('fadeInDown');
@@ -849,7 +851,7 @@ if (PrimeFaces.widget.SelectOneMenu) {
                 this.m_panel.addClass('ui-input-overlay-panel');
                 this.jq.addClass('ui-inputwrapper');
 
-                if (this.input.val() != '') {
+                if (this.input.val() !== '') {
                     this.jq.addClass('ui-inputwrapper-filled');
                 }
 
@@ -878,7 +880,7 @@ if (PrimeFaces.widget.SelectOneMenu) {
         },
 
         inputValueControl: function (input) {
-            if (input.val() != '')
+            if (input.val() !==  '')
                 this.jq.addClass('ui-inputwrapper-filled');
             else
                 this.jq.removeClass('ui-inputwrapper-filled');
@@ -912,7 +914,7 @@ if (PrimeFaces.widget.Chips) {
         },
 
         inputValueControl: function () {
-            if (this.jq.find('.ui-chips-token').length !== 0 || this.input.val() != '')
+            if (this.jq.find('.ui-chips-token').length !== 0 || this.input.val() !==  '')
                 this.jq.addClass('ui-inputwrapper-filled');
             else
                 this.jq.removeClass('ui-inputwrapper-filled');
@@ -927,7 +929,7 @@ if (PrimeFaces.widget.DatePicker) {
 
             var $this = this;
             if (this.jq.parent().hasClass('ui-float-label') && !this.cfg.inline) {
-                if (this.input.val() != '') {
+                if (this.input.val() !==  '') {
                     this.jq.addClass('ui-inputwrapper-filled');
                 }
 
@@ -945,7 +947,7 @@ if (PrimeFaces.widget.DatePicker) {
         },
 
         inputValueControl: function (input) {
-            if (input.val() != '')
+            if (input.val() !==  '')
                 this.jq.addClass('ui-inputwrapper-filled');
             else
                 this.jq.removeClass('ui-inputwrapper-filled');

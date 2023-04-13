@@ -5,56 +5,142 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:pr="http://primefaces.org/rain">
 
-<div class="menu-wrapper">
+<style>
+.margin-bottom-20 {
+    margin-bottom: 10px;
+}
+
+.layout-menu-container {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.layout-menu-container p {
+    margin-bottom: 10px;
+}
+</style>
+    
+    <!-- Incluye el archivo JavaScript para el menú -->
+    <script src="resources/js/menu.js"></script>
+    
+<!-- 
+                           BREVE DOCUMENTACIÓN 
+PRIMEFLEX                               /                    CSS
+text-white-alpha-90                         color: rgba(255,255,255,0.9);
+no-underline                                    text-decoration: no-underline;
+ml-4                                                  margin-left: 1.5rem;
+mr-3                                                  margin-right: 1rem;
+mr-2                                                  margin-right: 0.5rem;
+text-sm                                             font-size: .875rem;
+-->    
+    
+<div class="menu-wrapper" id="menuWrapper">
     <div class="layout-menu-container">
-         <br></br><br></br>
-         <div>
-         <p class="font-bold mr-3 w-2" style="color: #1AB2EE ;margin-left: 20px;" >FAVORITOS</p>
+
+        <!-- Categoria Favoritos del SideBar -->
+        
+         <div class="margin-bottom-20">
+             <p class="font-bold mr-3 w-2 text-sm mr-3 w-2 ml-4 mt-5" style="color: #E68422 ;" >FAVORITOS    <!-- CATEGORIA -->
+             </p>
          </div>
-         <br></br> 
-         <p:link outcome="dashboard" style="color: #fff ; text-decoration: none; margin-left: 20px;"><i class="pi pi-home"  style="margin-right: 6px"/>Dashboard</p:link>
-         <br></br> <br></br>
-         <div>
-         <p class="font-bold mr-3 w-2" style="color: #1AB2EE ; margin-left: 20px;">KITS</p>
+
+         <p:link outcome="dashboard" class="text-white-alpha-90 no-underline ml-4">                                   <!-- TITULO -->
+             <i class="pi pi-home text-white-alpha-90 mr-2"/>Cuadro de Mando                                                 <!-- ICONO -->
+         </p:link>
+
+        <!-- Categoria Utilidades del SideBar -->
+        
+         <div class="margin-bottom-20">
+             <p class="font-bold mr-3 w-2 text-sm mr-3 w-2 ml-4 mt-3" style="color: #E68422;">KITS                <!-- CATEGORIA -->
+             </p>
          </div>
-         <br></br> 
-         <p:link outcome="formlayout" style="color: #fff ; text-decoration: none; margin-left: 20px;"><i class="pi pi-id-card" style="margin-right: 6px"/>Formularios</p:link>
-         <br></br><br></br>
-         <p:link outcome="input" style="color: #fff ; text-decoration: none; margin-left:20px;"><i class="pi pi-check-square" style="margin-right: 6px"/>Input</p:link>
-         <br></br><br></br>
-         <p:link outcome="floatlabel" style="color: #fff ; text-decoration: none; margin-left: 20px;"><i class="pi pi-bookmark" style="margin-right: 6px"/>Etiquetas flotantes</p:link>
-         <br></br><br></br>
-         <p:link outcome="invalidstate" style="color: #fff ; text-decoration: none; margin-left: 20px;"><i class="pi pi-exclamation-circle" style="margin-right: 6px"/>Estado invalido</p:link>
-         <br></br><br></br>
-         <p:link outcome="button" style="color: #fff ; text-decoration: none; margin-left: 20px;"><i class="pi pi-mobile" style="margin-right: 6px"/>Botón</p:link>
-         <br></br><br></br>
-         <p:link outcome="table" style="color: #fff ; text-decoration: none; margin-left:20px;"><i class="pi pi-table" style="margin-right: 6px"/>Tabla</p:link>
-         <br></br><br></br>
-         <p:link outcome="list" style="color: #fff ; text-decoration: none; margin-left: 20px;"><i class="pi pi-list" style="margin-right: 6px"/>Lista</p:link>
-         <br></br><br></br>
-         <p:link outcome="tree" style="color: #fff ; text-decoration: none; margin-left:20px;"><i class="pi pi-share-alt" style="margin-right: 6px"/>Arbol</p:link>
-         <br></br><br></br>
-         <p:link outcome="panel" style="color: #fff ; text-decoration: none; margin-left: 20px;"><i class="pi pi-tablet" style="margin-right: 6px"/>Panel</p:link>
-         <br></br><br></br>
-         <p:link outcome="overlay" style="color: #fff ; text-decoration: none; margin-left: 20px;"><i class="pi pi-clone" style="margin-right: 6px"/>Overlay</p:link>
-         <br></br><br></br>
-         <p:link outcome="menu" style="color: #fff ; text-decoration: none; margin-left: 20px;"><i class="pi pi-bars" style="margin-right: 6px"/>Menu</p:link>
-         <br></br><br></br>
-         <p:link outcome="messages" style="color: #fff ; text-decoration: none; margin-left: 20px;"><i class="pi pi-comment" style="margin-right: 6px"/>Mensaje</p:link>
-         <br></br><br></br>
-         <p:link outcome="file" style="color: #fff ; text-decoration: none; margin-left: 20px;"><i class="pi pi-file" style="margin-right: 6px"/>Archivo</p:link>
-         <br></br><br></br>
-         <p:link outcome="charts" style="color: #fff ; text-decoration: none; margin-left: 20px;"><i class="pi pi-chart-bar" style="margin-right: 6px"/>Chart</p:link>
-         <br></br><br></br>
-         <p:link outcome="media" style="color: #fff ; text-decoration: none; margin-left: 20px;"><i class="pi pi-image" style="margin-right: 6px"/>Media</p:link>
-         <br></br><br></br>
-         <p:link outcome="E_organizacional" style="color: #fff ; text-decoration: none; margin-left:20px;"><i class="pi pi-circle-off" style="margin-right: 6px"/>Estructura Organizacional</p:link>
-         <br></br><br></br>
-         <p:link outcome="formConsecuencia" style="color: #fff ; text-decoration: none; margin-left:20px;"><i class="pi pi-book" style="margin-right: 6px"/>Consecuencia</p:link>
-         <br></br><br></br>
-         <p:link outcome="D_trabajador" style="color: #fff ; text-decoration: none; margin-left:20px;"><i class="pi pi-book" style="margin-right: 6px"/>Datos Trabajador</p:link>
-         <br></br><br></br>
-         <p:link outcome="form" style="color: #fff ; text-decoration: none; margin-left:20px;"><i class="pi pi-book" style="margin-right: 6px"/>Ocurrencia</p:link>
+
+        <p:link outcome="formlayout" id="formlayout-link" class="text-white-alpha-90 no-underline ml-4">   <!-- TITULO -->
+             <i class="pi pi-id-card text-white-alpha-90 mr-2"/>Diseño de Formulario                                         <!-- ICONO -->
+         </p:link>  
+
+         <p:link outcome="input" class="text-white-alpha-90 no-underline ml-4 mt-3">                                  <!-- TITULO -->
+             <i class="pi pi-check-square text-white-alpha-90 mr-2"/>Entradas                                                  <!-- ICONO -->
+         </p:link>
+ 
+          <p:link outcome="floatlabel" class="text-white-alpha-90 no-underline ml-4 mt-3">                           <!-- TITULO -->
+             <i class="pi pi-bookmark text-white-alpha-90 mr-2"/>Etiquetas Flotantes                                      <!-- ICONO -->
+         </p:link>
+
+         <p:link outcome="invalidstate" class="text-white-alpha-90 no-underline ml-4 mt-3">                       <!-- TITULO -->
+                <i class="pi pi-exclamation-circle text-white-alpha-90 mr-2"/>Estado Invalido                            <!-- ICONO -->
+         </p:link>
+ 
+              <p:link outcome="button" class="text-white-alpha-90 no-underline ml-4 mt-3">                          <!-- TITULO -->
+             <i class="pi pi-mobile text-white-alpha-90 mr-2"/>Botón                                                                <!-- ICONO -->
+         </p:link>
+
+         <p:link outcome="table" class="text-white-alpha-90 no-underline ml-4 mt-3">
+             <i class="pi pi-table white-alpha-90 mr-2"/>Tabla
+         </p:link>
+
+         <p:link outcome="list" class="text-white-alpha-90 no-underline ml-4 mt-3">
+             <i class="pi pi-list text-white-alpha-90 mr-2"/>Lista
+         </p:link>
+
+         <p:link outcome="tree" class="text-white-alpha-90 no-underline ml-4 mt-3">
+             <i class="pi pi-sitemap text-white-alpha-90 mr-2"/>Arbol
+         </p:link>
+
+             <p:link outcome="panel" class="text-white-alpha-90 no-underline ml-4 mt-3">
+             <i class="pi pi-tablet text-white-alpha-90 mr-2"/>Panel
+         </p:link>
+
+         <p:link outcome="overlay" class="text-white-alpha-90 no-underline ml-4 mt-3">
+             <i class="pi pi-th-large text-white-alpha-90 mr-2"/>Overlay
+         </p:link>
+
+         <p:link outcome="menu" class="text-white-alpha-90 no-underline ml-4 mt-3">
+             <i class="pi pi-bars text-white-alpha-90 mr-2"/>Menu
+         </p:link>
+
+         <p:link outcome="messages" class="text-white-alpha-90 no-underline ml-4 mt-3">
+             <i class="pi pi-comment text-white-alpha-90 mr-2"/>Mensaje
+         </p:link>
+
+         <p:link outcome="file" class="text-white-alpha-90 no-underline ml-4 mt-3">
+             <i class="pi pi-file text-white-alpha-90 mr-2"/>Archivo
+         </p:link>
+
+         <p:link outcome="charts" class="text-white-alpha-90 no-underline ml-4 mt-3">
+             <i class="pi pi-chart-bar text-white-alpha-90 mr-2"/>Chart
+         </p:link>
+
+         <p:link outcome="media" class="text-white-alpha-90 no-underline ml-4 mt-3">
+             <i class="pi pi-image text-white-alpha-90 mr-2"/>Media
+         </p:link>
+
+            <!-- Categoria Formularios del SideBar -->
+         
+         <div class="margin-bottom-20">
+            <p class="font-bold mr-3 w-2 text-sm mr-3 w-2 ml-4 mt-3" style="color: #E68422;">FORMULARIOS</p>   <!-- CATEGORIA -->
+         </div>
+         
+         <p:link outcome="E_organizacional" class="text-white-alpha-90 no-underline ml-4 mt-3">                        <!-- TITULO -->
+             <i class="pi pi-building text-white-alpha-90 mr-2"/>Estructura Organizacional                                        <!-- ICONO -->
+         </p:link>
+
+         <p:link outcome="formConsecuencia" class="text-white-alpha-90 no-underline ml-4 mt-3">                     <!-- TITULO -->
+             <i class="pi pi-exclamation-triangle text-white-alpha-90 mr-2"/>Consecuencia                                      <!-- ICONO -->
+         </p:link>
+  
+         <p:link outcome="D_trabajador" class="text-white-alpha-90 no-underline ml-4 mt-3">                             <!-- TITULO -->
+             <i class="pi pi-users text-white-alpha-90 mr-2"/>Datos Trabajador                                                        <!-- ICONO -->
+         </p:link>
+
+         <p:link outcome="form" class="space text-white-alpha-90 no-underline ml-4 mt-3">
+             <i class="pi pi-info-circle text-white-alpha-90 mr-2 "/>Ocurrencia
+         </p:link>
+            
+        <p:link outcome="pruebaInput" class="space text-white-alpha-90 no-underline ml-4 mt-3">
+             <i class="pi pi-info-circle text-white-alpha-90 mr-2 "/>CRUD
+         </p:link>
         
         <ui:fragment rendered="#{guestPreferences.profileMode == 'popup' ? false : true}">
             <div class="layout-profile">

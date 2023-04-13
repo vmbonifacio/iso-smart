@@ -1,6 +1,9 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
     xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui" xmlns:po="http://primefaces.org/rain">
+    
+        <!-- Incluye el archivo JavaScript para el menú -->
+        <script src="resources/js/menu.js"></script>
 
     <div class="layout-topbar">
         <div class="layout-topbar-wrapper">
@@ -10,7 +13,7 @@
                 </h:link>
             </div>
             <div class="layout-topbar-right">
-                <div class="menu-button-wrapper">
+                <div class="menu-button-wrapper" id="menuButton">
                     <a href="#" class="menu-button">
                         <div class="menu-button-bars">
                             <span></span>
