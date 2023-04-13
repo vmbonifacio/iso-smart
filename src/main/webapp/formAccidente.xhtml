@@ -253,7 +253,7 @@
                                  
                                 <div class="field col-12 md:col-6 mt-2 w-3 text-center ml-1" style=" background-color: yellow; padding:0; border-radius: 8px;">
                                     <p:outputLabel class="pt-2" for="nombrea1" value="Nombre de la aseguradora"  style="color: white; background-color: #20212b; width: 100%;  height: 30px;  border-radius: 6px 0px 0px 0px "/>
-                                    <p:inputText class="mb-1" id="nombrea1" placeholder="Ingrese aquí el nombre" style=" color: black; background:transparent; border: none; width:85%;  height: 40px; border-bottom: 3px solid black;"/> 
+                                    <p:inputText class="mb-1" id="nombrea1" placeholder="Ingrese aquí el nombre" style=" color: black; background:transparent; border: none; width:85%;  height: 35px; border-bottom: 3px solid black;"/> 
                                 </div>
                                   
                                   <!-- BOTON DE AGREGAR A TERCEROS  -->
@@ -266,35 +266,35 @@
                                   
                                   <div class="text-center">
                                     <p:dataTable var="product" style="margin-top: 50px;" value="#{dtBasicView.products}" >
-                                        <p:column headerText="Code">
+                                        <p:column headerText="Code" style="background-color:black;">
                                             <h:outputText value="aaa" />
                                         </p:column>
 
-                                        <p:column headerText="Name">
+                                        <p:column headerText="Name" style="background-color:black;">
                                             <h:outputText value="a" />
                                         </p:column>
 
-                                        <p:column headerText="Category">
+                                        <p:column headerText="Category" style="background-color:black;">
                                             <h:outputText value="#{product.category}" />
                                         </p:column>
 
-                                        <p:column headerText="Quantity">
+                                        <p:column headerText="Quantity" style="background-color:black;">
                                             <h:outputText value="#{product.quantity}" />
                                         </p:column>
                                         
-                                        <p:column headerText="Code">
+                                        <p:column headerText="Code" style="background-color:black;">
                                             <h:outputText value="#{product.code}" />
                                         </p:column>
                                         
-                                        <p:column headerText="Code">
+                                        <p:column headerText="Code" style="background-color:black;">
                                             <h:outputText value="#{product.code}" />
                                         </p:column>
                                         
-                                        <p:column headerText="Code">
+                                        <p:column headerText="Code" style="background-color:black;">
                                             <h:outputText value="#{product.code}" />
                                         </p:column>
                                         
-                                        <p:column headerText="Code">
+                                        <p:column headerText="Code" style="background-color:black;">
                                             <h:outputText value="#{product.code}" />
                                         </p:column>
                                     </p:dataTable>
