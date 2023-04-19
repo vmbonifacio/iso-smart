@@ -17,163 +17,327 @@
 
     <ui:define name="content">
         <h:form>
-                <div class="col-12" >
-           <div class="card m-0 p-5" style="background-color: black; border-radius: 2px;">
+            <div class="col-12" >
+                <div class="card m-0 p-5" style="background-color: black; border-radius: 2px;">
                     <div class="card m-0 p-0" style="background-color: black; border-radius: 10px;">
                         <h5 class="w-full h-4rem text-center text-4xl c border-round-md p-2" style="background-color: #fff600;">Registros de accidentes</h5>
                         <div class="ui-fluid formgrid grid border-round-sm w-full ml-0"  style="background-color: #20212b; border: 1px solid #cbcbcb; padding-left: 6px">
                             <h5 class="pt-2" style="color: white;">Datos del empleador principal</h5>
-                           <div class="ui-fluid formgrid grid border-round-sm"  style="background-color: #5a5a5a; border: 1px solid #cbcbcb; width: 101%;">
-                            <div class="field col-12 md:col-6">
-                                <p:outputLabel for="social" value="Razon social o denominación social"  class="pt-2" style="color: white;" />
-                                <p:inputText id="social" placeholder="Ingrese aquí la razón o denominación social" style="background:transparent; color: white; border: none; border-bottom: 3px solid yellow;"/>
-                            </div>
-                            <div class="field col-12 md:col-6">
-                                <p:outputLabel for="ruc" value="Ruc"  style="color: white;" class="pt-2"/>
-                                <p:inputText id="ruc" placeholder="Ingrese aquí el ruc" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;"/>
-                            </div>
-                               
-                               <div class="ui-fluid formgrid grid border-round-sm w-11 ml-5 border-y-2"  style="background-color: #aaaaaa; border-color: #cbcbcb;">
-                                <div class="pt-2 pl-2 text-lg mb-4" style="color: white; margin-right: 70%">DOMICILIO:</div>
-                                <div class="field col-12 md:col-6">                                
-                                <p:outputLabel for="departamento" value="Departamento"  style="color: white;" />
-                                <p:selectOneMenu id="departamento" style="background:transparent; border: none; border-bottom: 3px solid yellow;color: white;">
-                                    <f:selectItem itemLabel="Select" itemValue="" />
-                                    <f:selectItem itemLabel="Option 1" itemValue="1" />
-                                    <f:selectItem itemLabel="Option 2" itemValue="2" />
-                                    <f:selectItem itemLabel="Option 3" itemValue="3" />
-                                </p:selectOneMenu>
-                            </div>
-                                <div class="field col-12 md:col-6">
-                                <p:outputLabel for="provincia" value="Provincia"  style="color: white;" />
-                                <p:selectOneMenu id="provincia" style="background:transparent; border: none; border-bottom: 3px solid yellow;color: white;">
-                                    <f:selectItem itemLabel="Select" itemValue="" />
-                                    <f:selectItem itemLabel="Option 1" itemValue="1" />
-                                    <f:selectItem itemLabel="Option 2" itemValue="2" />
-                                    <f:selectItem itemLabel="Option 3" itemValue="3" />
-                                </p:selectOneMenu>
-                            </div>
-                                <div class="field col-12 md:col-6">
-                                <p:outputLabel for="distrito" value="Distrito"  style="color: white;" />
-                                <p:selectOneMenu id="distrito" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;">
-                                    <f:selectItem itemLabel="Select" itemValue="" />
-                                    <f:selectItem itemLabel="Option 1" itemValue="1" />
-                                    <f:selectItem itemLabel="Option 2" itemValue="2" />
-                                    <f:selectItem itemLabel="Option 3" itemValue="3" />
-                                </p:selectOneMenu>
-                            </div>
-                                <div class="field col-12 md:col-6">
-                                <p:outputLabel for="direccion" value="Dirección"  style="color: white;" />
-                                <p:inputText id="direccion" placeholder="Ingrese aquí su dirección" style="background:transparent;color: white; border: none; border-bottom: 3px solid yellow; color: white;"/>
-                            </div>
-                              </div>
-                            <div class="field col-12 md:col-6 mt-3">
-                                <p:outputLabel for="economia" value="Tipo de actividad económica"  style="color: white;" />
-                                <p:inputText id="economia" placeholder="Ingrese aquí su actividad económica" style="background:transparent; color: white;border: none; border-bottom: 3px solid yellow;"/>
-                            </div>
-                            <div class="field col-12 md:col-6 mt-3">
-                                <p:outputLabel for="trabajadores" value="Números de trabajadores en el centro laboral"  style="color: white;" />
-                                <p:inputText id="trabajadores" placeholder="Ingrese aquí el número de trabajadores" style="background:transparent; color: white; border: none; border-bottom: 3px solid yellow; trabajadores:focus{blackground-color: transparent; border: transparent;}"/>
-                            </div>
-                           <div class="ui-fluid formgrid grid border-round-sm w-full m-0 border-y-2"  style="background-color: #5a5a5a; border-color: #cbcbcb;">
-                                <div class="pt-2 pl-4 text-lg" style="color: white;">COMPLETAR EN CASO DE QUE LAS ACTIVIDADES DEL EMPLEADOR SEAN CONSIDERADAS DE ALTO RIESGO</div>
-                               <div class="field col-12 md:col-6 mt-4 pl-9 text-center" style="background-color: yellow; padding:0;">
-                                <p:outputLabel class="pt-2" for="afiliado" value="N° de trabajadores afiliados al SCTR"  style="color: white; background-color: #20212b; width: 106%;  height: 36px;" />
-                                <p:inputText  class="mb-1" id="afiliado" placeholder="Ingrese aquí los trabajadores afiliados" style="background:transparent; color: black; border: none; border-bottom: 3px solid black;"/>
+
+                            <!-- RAZON SOCIAL -->
+
+                            <div class="ui-fluid formgrid grid border-round-sm"  style="background-color: #5a5a5a; border: 1px solid #cbcbcb; width: 101%;">
+                                <div class="field col-12 md:col-6 pl-5 pt-5">
+                                    <p:outputLabel value="1. Razon social o denominación social:" class="pt-2" style="color: white;" />
                                 </div>
-                                <div class="field col-12 md:col-6 mt-4 pl-9 text-center" style="background-color: yellow; padding:0;">
-                                <p:outputLabel class="pt-2" for="nafiliado" value="N° de trabajadores NO afiliados al SCTR"  style="color: white; background-color: #20212b; width: 100%; height: 36px;" />
-                                <p:inputText class="mb-1" id="nafiliado" placeholder="Ingrese aquí los trabajdores afiliados" style="background:transparent; color: black; border: none; border-bottom: 3px solid black;"/>
+                                <div class="field col-12 md:col-3 pt-5">
+                                    <p:inputText id="social" placeholder="Ingrese la razón social" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;"/>
                                 </div>
-                                <div class="field col-12 mt-2 mb-4 text-center" style="padding-left: 30%; background-color: yellow; width: 38%; margin-left: 30%; padding:0;">
-                                <p:outputLabel class="pt-2" for="nombrea" value="Nombre de la aseguradora"  style="color: white; background-color: #20212b; width: 100%;  height: 36px;"/>
-                                <p:inputText class="mb-1" id="nombrea" placeholder="Ingrese aquí el nombre" style="margin-right: 80%; color: black; width: 100%; background:transparent; border: none; border-bottom: 3px solid black;"/> 
+
+                                <!-- RUC -->
+
+                                <div class="field col-12 md:col-6 pl-5 pt-5">
+                                    <p:outputLabel value="2. Ruc:" class="pt-2" style="color: white;" />
+                                </div> 
+                                <div class="field col-12 md:col-3 pt-5">
+                                    <p:inputText id="ruc" placeholder="Ingrese Ruc" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;"/>
                                 </div>
-                           </div>
-                           </div>
-                            <div class="card m-0 p-0" style="background-color: black; border-radius: 10px;">
-                        <div class="ui-fluid formgrid grid border-round-sm w-full ml-0"  style="background-color: #20212b; border: 1px solid #cbcbcb; padding-left: 6px">
-                            <h5 class="pt-2 text-center" style="color: white;">DATOS DEL EMPLEADOR DE INTERMEDIACIÓN, TERCERIZACIÓN, CONTRATISTA, SUBCONTRATISTA, OTROS(completar solo si contrata servicios de intermediación o tercerización)</h5>
-                           <div class="ui-fluid formgrid grid border-round-sm"  style="background-color: #5a5a5a; border: 1px solid #cbcbcb; width: 101%;">
-                            <div class="field col-12 md:col-6">
-                                <p:outputLabel for="razon" value="Razon social o denominación social"  class="pt-2" style="color: white;" />
-                                <p:inputText id="razon" placeholder="Razon social o denominación social" style="background:transparent; color: white; border: none; border-bottom: 3px solid yellow;"/>
-                            </div>
-                            <div class="field col-12 md:col-6">
-                                <p:outputLabel for="ruc1" value="Ruc"  style="color: white;" class="pt-2"/>
-                                <p:inputText id="ruc1" placeholder="Ingrese aquí el ruc" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;"/>
-                            </div>
-                               
-                               <div class="ui-fluid formgrid grid border-round-sm w-11 ml-5 border-y-2"  style="background-color: #aaaaaa; border-color: #cbcbcb;">
-                                <div class="pt-2 pl-2 text-lg mb-4" style="color: white; margin-right: 70%">DOMICILIO:</div>
-                                <div class="field col-12 md:col-6">                                
-                                <p:outputLabel for="departamento1" value="Departamento"  style="color: white;" />
-                                <p:selectOneMenu id="departamento1" style="background:transparent; border: none; border-bottom: 3px solid yellow;color: white;">
-                                    <f:selectItem itemLabel="Select" itemValue="" />
-                                    <f:selectItem itemLabel="Option 1" itemValue="1" />
-                                    <f:selectItem itemLabel="Option 2" itemValue="2" />
-                                    <f:selectItem itemLabel="Option 3" itemValue="3" />
-                                </p:selectOneMenu>
-                            </div>
-                                <div class="field col-12 md:col-6">
-                                <p:outputLabel for="provincia1" value="Provincia"  style="color: white;" />
-                                <p:selectOneMenu id="provincia1" style="background:transparent; border: none; border-bottom: 3px solid yellow;color: white;">
-                                    <f:selectItem itemLabel="Select" itemValue="" />
-                                    <f:selectItem itemLabel="Option 1" itemValue="1" />
-                                    <f:selectItem itemLabel="Option 2" itemValue="2" />
-                                    <f:selectItem itemLabel="Option 3" itemValue="3" />
-                                </p:selectOneMenu>
-                            </div>
-                                <div class="field col-12 md:col-6">
-                                <p:outputLabel for="distrito1" value="Distrito"  style="color: white;" />
-                                <p:selectOneMenu id="distrito1" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;">
-                                    <f:selectItem itemLabel="Select" itemValue="" />
-                                    <f:selectItem itemLabel="Option 1" itemValue="1" />
-                                    <f:selectItem itemLabel="Option 2" itemValue="2" />
-                                    <f:selectItem itemLabel="Option 3" itemValue="3" />
-                                </p:selectOneMenu>
-                            </div>
-                                <div class="field col-12 md:col-6">
-                                <p:outputLabel for="direccion1" value="Dirección"  style="color: white;" />
-                                <p:inputText id="direccion1" placeholder="Ingrese aquí su dirección" style="background:transparent;color: white; border: none; border-bottom: 3px solid yellow; color: white;"/>
-                            </div>
-                              </div>
-                            <div class="field col-12 md:col-6 mt-3">
-                                <p:outputLabel for="economia1" value="Tipo de actividad económica"  style="color: white;" />
-                                <p:inputText id="economia1" placeholder="Ingrese aquí su actividad económica" style="background:transparent; color: white;border: none; border-bottom: 3px solid yellow;"/>
-                            </div>
-                            <div class="field col-12 md:col-6 mt-3">
-                                <p:outputLabel for="trabajadores1" value="Números de trabajadores en el centro laboral"  style="color: white;" />
-                                <p:inputText id="trabajadores1" placeholder="Ingrese aquí el número de trabajadores" style="background:transparent; color: white; border: none; border-bottom: 3px solid yellow; trabajadores:focus{blackground-color: transparent; border: transparent;}"/>
-                            </div>
-                           <div class="ui-fluid formgrid grid border-round-sm w-full m-0 border-y-2"  style="background-color: #5a5a5a; border-color: #cbcbcb;">
-                                <div class="pt-2 pl-4 text-lg" style="color: white;">COMPLETAR EN CASO DE QUE LAS ACTIVIDADES DEL EMPLEADOR SEAN CONSIDERADAS DE ALTO RIESGO</div>
-                               <div class="field col-12 md:col-6 mt-4 pl-9 text-center" style="background-color: yellow; padding:0;">
-                                <p:outputLabel class="pt-2" for="afiliado1" value="N° de trabajadores afiliados al SCTR"  style="color: white; background-color: #20212b; width: 106%;  height: 36px;" />
-                                <p:inputText  class="mb-1" id="afiliado1" placeholder="Ingrese aquí los trabajadores afiliados" style="background:transparent; color: black; border: none; border-bottom: 3px solid black;"/>
-                                </div>
-                                <div class="field col-12 md:col-6 mt-4 pl-9 text-center" style="background-color: yellow; padding:0;">
-                                <p:outputLabel class="pt-2" for="nafiliado1" value="N° de trabajadores NO afiliados al SCTR"  style="color: white; background-color: #20212b; width: 100%; height: 36px;" />
-                                <p:inputText class="mb-1" id="nafiliado1" placeholder="Ingrese aquí los trabajdores afiliados" style="background:transparent; color: black; border: none; border-bottom: 3px solid black;"/>
-                                </div>
-                                <div class="field col-12 mt-2 mb-4 text-center" style="padding-left: 30%; background-color: yellow; width: 38%; margin-left: 30%; padding:0;">
-                                <p:outputLabel class="pt-2" for="nombrea1" value="Nombre de la aseguradora"  style="color: white; background-color: #20212b; width: 100%;  height: 36px;"/>
-                                <p:inputText class="mb-1" id="nombrea1" placeholder="Ingrese aquí el nombre" style="margin-right: 80%; color: black; width: 100%; background:transparent; border: none; border-bottom: 3px solid black;"/> 
-                                </div>
-                                <div class="col-12 w-2 mt-8 ml-auto">
-                                 <p:button outcome="formAccidente2" value="Siguiente" styleClass="ui-button-raised ui-button-warning" style="background-color: yellow; color:black; border: 0" />
+
+                                <!-- DOMICILIO -->
+
+                                <div class="ui-fluid formgrid grid border-round-sm w-11 ml-5 border-y-2"  style="background-color: #aaaaaa; border-color: #cbcbcb;">
+                                    <div class="pt-2 pl-2 text-lg mb-4" style="color: white; margin-right: 70%">3. DOMICILIO:</div>
+                                    <div class="field col-12 md:col-3"> 
+                                    
+                                    <div class="field col-12 md:col-6">   
+                                        <p:outputLabel for="departamento" value="Departamento"  style="color: white;" />
+                                        <p:selectOneMenu id="departamento" style="background:transparent; border: none; border-bottom: 3px solid yellow;color: white;">
+                                            <f:selectItem itemLabel="Select" itemValue="" />
+                                            <f:selectItem itemLabel="Option 1" itemValue="1" />
+                                            <f:selectItem itemLabel="Option 2" itemValue="2" />
+                                            <f:selectItem itemLabel="Option 3" itemValue="3" />
+                                        </p:selectOneMenu>
                                     </div>
-                                    <div class="col-12 w-2 mr-full -mt-5">
-                                 <p:button outcome="formConsecuencia" value="Regresar" styleClass="ui-button-raised ui-button-warning" style="background-color: yellow; color:black; border: 0" />
-                                 </div>
-                           </div>
+
+                                    <!-- PROVINCIA -->
+
+                                    <div class="field col-12 md:col-3">
+                                        <p:outputLabel for="provincia" value="Provincia"  style="color: white;" />
+                                        <p:selectOneMenu id="provincia" style="background:transparent; border: none; border-bottom: 3px solid yellow;color: white;">
+                                            <f:selectItem itemLabel="Select" itemValue="" />
+                                            <f:selectItem itemLabel="Option 1" itemValue="1" />
+                                            <f:selectItem itemLabel="Option 2" itemValue="2" />
+                                            <f:selectItem itemLabel="Option 3" itemValue="3" />
+                                        </p:selectOneMenu>
+                                    </div>
+
+                                    <!-- DISTRITO -->
+
+                                    <div class="field col-12 md:col-3">
+                                        <p:outputLabel for="distrito" value="Distrito"  style="color: white;" />
+                                        <p:selectOneMenu id="distrito" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;">
+                                            <f:selectItem itemLabel="Select" itemValue="" />
+                                            <f:selectItem itemLabel="Option 1" itemValue="1" />
+                                            <f:selectItem itemLabel="Option 2" itemValue="2" />
+                                            <f:selectItem itemLabel="Option 3" itemValue="3" />
+                                        </p:selectOneMenu>
+                                    </div>
+
+                                    <!-- DIRECCION -->
+
+                                    <div class="field col-12 md:col-2">
+                                        <p:outputLabel for="direccion" value="Dirección"  style="color: white;" />
+                                        <p:inputText id="direccion" placeholder="Ingrese aquí su dirección" style="background:transparent;color: white; border: none; border-bottom: 3px solid yellow; color: white;"/>
+                                    </div>
+                                </div>
+
+                                <!-- TIPO DE ACTIVIDAD ECONOMICA -->
+
+                                <div class="field col-12 md:col-6 pl-5 pt-5">
+                                    <p:outputLabel value="4. Tipo de actividad economica:" class="pt-2" style="color: white;" />
+                                </div> 
+                                <div class="field col-12 md:col-3 pt-5">
+                                    <p:inputText id="TAE" placeholder="Ingrese el tipo de actividad economica" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;"/>
+                                </div>
+
+                                <!-- NUMEMO DE TRABAJADORES EN EL CENTRO LABORAL -->
+
+                                <div class="field col-12 md:col-6 pl-5 pt-5">
+                                    <p:outputLabel value="5. Numero de trabajadores en el centro laboral:" class="pt-2" style="color: white;" />
+                                </div> 
+                                <div class="field col-12 md:col-3 pt-5">
+                                    <p:inputText id="NTEL" placeholder="Ingrese numero de trabajadores en el centro laboral" style="background: transparent; border: none; border-bottom: 3px solid yellow; color: white;"/>
+                                </div>
+
+                                <!-- SUB TITULO  -->
+
+                                <div class="ui-fluid formgrid grid border-round-sm w-auto m-0 border-y-2 pl-0 pr-6 pb-4 "  style="background-color:gray; border-color: #cbcbcb ;">
+                                    <div class="pt-2 text-lg mt-3 mb-3 m-4" style="color: white;"> 6. COMPLETAR EN CASO DE QUE LAS ACTIVIDADES DEL EMPLEADOR SEAN CONSIDERADAS DE ALTO RIESGO</div>
+
+                                    <!-- NUMERO DE TRABAJADORES AFILIDADOS AL SCTR -->
+
+                                    <div class="field col-12 md:col-6 mt-2 w-3 text-center ml-8" style="background-color: yellow; padding:0; border-radius: 8px;">
+                                        <p:outputLabel class="pt-2" for="afiliado" value="N° de trabajadores afiliados al SCTR"  style="color: white; background-color: #20212b; width: 100%;  height: 30px; border-radius: 6px 0px 0px 0px " />
+                                        <p:inputText  class="mb-1" id="afiliado" placeholder="Ingrese aquí los trabajadores " style="background:transparent; color: black; border: none;width:85%; border-bottom: 3px solid black;"/>
+                                    </div>
+
+                                    <!-- NUMERO DE TRABAJADORES NO AFILIDADOS AL SCTR -->
+
+                                    <div class="field col-12 md:col-6 mt-2 w-3 text-center ml-1" style="background-color: yellow; padding:0; border-radius: 8px;">
+                                        <p:outputLabel class="pt-2" for="nafiliado" value="N° de trabajadores NO afiliados al SCTR"  style="color: white; background-color: #20212b; width: 100%; height: 45px; border-radius: 6px 0px 0px 0px; padding-bottom: 14px; padding-top: 14px;" />
+                                        <p:inputText class="mb-1" id="nafiliado" placeholder="Ingrese aquí los trabajdores " style="background:transparent; color: black; border: none; border-bottom: 3px solid black;"/>
+                                    </div>
+
+                                    <!-- NOMBRE DE LA ASEGURADORA -->
+
+                                    <div class="field col-12 md:col-6 mt-2 w-3 text-center ml-1" style=" background-color: yellow; width: 38%; padding:0; border-radius: 8px;">
+                                        <p:outputLabel class="pt-2" for="nombrea" value="Nombre de la aseguradora"  style="color: white; background-color: #20212b; width: 100%;  height: 30px;  border-radius: 6px 0px 0px 0px "/>
+                                        <p:inputText class="mb-1" id="nombrea" placeholder="Ingrese aquí el nombre" style="margin-right: 80%; color: black; width: 100%; background:transparent; border: none; border-bottom: 3px solid black;"/> 
+                                    </div>
+                                </div>
+
+                                <div class="field col-12 md:col-6 mt-3">
+                                    <p:outputLabel for="economia" value="Tipo de actividad económica"  style="color: white;" />
+                                    <p:inputText id="economia" placeholder="Ingrese aquí su actividad económica" style="background:transparent; color: white;border: none; border-bottom: 3px solid yellow;"/>
+                                </div>
+                                <div class="field col-12 md:col-6 mt-3">
+                                    <p:outputLabel for="trabajadores" value="Números de trabajadores en el centro laboral"  style="color: white;" />
+                                    <p:inputText id="trabajadores" placeholder="Ingrese aquí el número de trabajadores" style="background:transparent; color: white; border: none; border-bottom: 3px solid yellow; trabajadores:focus{
+blackground-color: transparent;
+border: transparent;
+}"/>
+                                </div>
+                                <div class="ui-fluid formgrid grid border-round-sm w-full m-0 border-y-2"  style="background-color: #5a5a5a; border-color: #cbcbcb;">
+                                    <div class="pt-2 pl-4 text-lg" style="color: white;">COMPLETAR EN CASO DE QUE LAS ACTIVIDADES DEL EMPLEADOR SEAN CONSIDERADAS DE ALTO RIESGO</div>
+                                    <div class="field col-12 md:col-6 mt-4 pl-9 text-center" style="background-color: yellow; padding:0;">
+                                        <p:outputLabel class="pt-2" for="afiliado" value="N° de trabajadores afiliados al SCTR"  style="color: white; background-color: #20212b; width: 106%;  height: 36px;" />
+                                        <p:inputText  class="mb-1" id="afiliado" placeholder="Ingrese aquí los trabajadores afiliados" style="background:transparent; color: black; border: none; border-bottom: 3px solid black;"/>
+                                    </div>
+                                    <div class="field col-12 md:col-6 mt-4 pl-9 text-center" style="background-color: yellow; padding:0;">
+                                        <p:outputLabel class="pt-2" for="nafiliado" value="N° de trabajadores NO afiliados al SCTR"  style="color: white; background-color: #20212b; width: 100%; height: 36px;" />
+                                        <p:inputText class="mb-1" id="nafiliado" placeholder="Ingrese aquí los trabajdores afiliados" style="background:transparent; color: black; border: none; border-bottom: 3px solid black;"/>
+                                    </div>
+                                    <div class="field col-12 mt-2 mb-4 text-center" style="padding-left: 30%; background-color: yellow; width: 38%; margin-left: 30%; padding:0;">
+                                        <p:outputLabel class="pt-2" for="nombrea" value="Nombre de la aseguradora"  style="color: white; background-color: #20212b; width: 100%;  height: 36px;"/>
+                                        <p:inputText class="mb-1" id="nombrea" placeholder="Ingrese aquí el nombre" style="margin-right: 80%; color: black; width: 100%; background:transparent; border: none; border-bottom: 3px solid black;"/> 
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        <div class="card m-0 p-0" style="background-color: black; border-radius: 10px;">
+                            <div class="ui-fluid formgrid grid border-round-sm w-full ml-0"  style="background-color: #20212b; border: 1px solid #cbcbcb; padding-left: 6px">
+                                <h5 class="pt-2 text-center" style="color: white;">DATOS DEL EMPLEADOR DE INTERMEDIACIÓN, TERCERIZACIÓN, CONTRATISTA, SUBCONTRATISTA, OTROS(completar solo si contrata servicios de intermediación o tercerización)</h5>
+
+                                <!-- RAZON SOCIAL -->
+
+                                <div class="ui-fluid formgrid grid border-round-sm"  style="background-color: #5a5a5a; border: 1px solid #cbcbcb; width: 101%;">
+                                    <div class="field col-12 md:col-6 pl-5 pt-5">
+                                        <p:outputLabel value="1. Razon social o denominación social:" class="pt-2" style="color: white;" />
+                                    </div>
+                                    <div class="field col-12 md:col-3 pt-5">
+                                        <p:inputText id="social1" placeholder="Ingrese la razón social" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;"/>
+                                    </div>
+
+                                    <!-- RUC -->
+
+                                    <div class="field col-12 md:col-6 pl-5 pt-5">
+                                        <p:outputLabel value="2. Ruc:" class="pt-2" style="color: white;" />
+                                    </div> 
+                                    <div class="field col-12 md:col-3 pt-5">
+                                        <p:inputText id="ruc1" placeholder="Ingrese Ruc" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;"/>
+                                    </div>
+
+                                    <!-- DOMICILIO -->
+
+                                    <div class="ui-fluid formgrid grid border-round-sm w-11 ml-5 border-y-2"  style="background-color: #aaaaaa; border-color: #cbcbcb;">
+                                        <div class="pt-2 pl-2 text-lg mb-4" style="color: white; margin-right: 70%">3. DOMICILIO:</div>
+                                        <div class="field col-12 md:col-3"> 
+
+                                            <!-- DEPARTAMENTO -->    
+
+                                            <p:outputLabel for="departamento1" value="Departamento"  style="color: white;" />
+                                            <p:selectOneMenu id="departamento1" style="background:transparent; border: none; border-bottom: 3px solid yellow;color: white;">
+                                                <f:selectItem itemLabel="Select" itemValue="" />
+                                                <f:selectItem itemLabel="Option 1" itemValue="1" />
+                                                <f:selectItem itemLabel="Option 2" itemValue="2" />
+                                                <f:selectItem itemLabel="Option 3" itemValue="3" />
+                                            </p:selectOneMenu>
+                                        </div>
+
+                                        <!-- PROVINCIA -->
+
+                                        <div class="field col-12 md:col-3">
+                                            <p:outputLabel for="provincia1" value="Provincia"  style="color: white;" />
+                                            <p:selectOneMenu id="provincia1" style="background:transparent; border: none; border-bottom: 3px solid yellow;color: white;">
+                                                <f:selectItem itemLabel="Select" itemValue="" />
+                                                <f:selectItem itemLabel="Option 1" itemValue="1" />
+                                                <f:selectItem itemLabel="Option 2" itemValue="2" />
+                                                <f:selectItem itemLabel="Option 3" itemValue="3" />
+                                            </p:selectOneMenu>
+                                        </div>
+
+                                        <!-- DISTRITO -->
+
+                                        <div class="field col-12 md:col-3">
+                                            <p:outputLabel for="distrito1" value="Distrito"  style="color: white;" />
+                                            <p:selectOneMenu id="distrito1" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;">
+                                                <f:selectItem itemLabel="Select" itemValue="" />
+                                                <f:selectItem itemLabel="Option 1" itemValue="1" />
+                                                <f:selectItem itemLabel="Option 2" itemValue="2" />
+                                                <f:selectItem itemLabel="Option 3" itemValue="3" />
+                                            </p:selectOneMenu>
+                                        </div>
+
+                                        <!-- DIRECCION -->
+
+                                        <div class="field col-12 md:col-2">
+                                            <p:outputLabel for="direccion1" value="Dirección"  style="color: white;" />
+                                            <p:inputText id="direccion1" placeholder="Ingrese aquí su dirección" style="background:transparent;color: white; border: none; border-bottom: 3px solid yellow; color: white;"/>
+                                        </div>
+                                    </div>
+
+                                    <!-- TIPO DE ACTIVIDAD ECONOMICA -->
+
+                                    <div class="field col-12 md:col-6 pl-5 pt-5">
+                                        <p:outputLabel value="4. Tipo de actividad economica:" class="pt-2" style="color: white;" />
+                                    </div> 
+                                    <div class="field col-12 md:col-3 pt-5">
+                                        <p:inputText id="TAE1" placeholder="Ingrese el tipo de actividad economica" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;"/>
+                                    </div>
+
+                                    <!-- NUMEMO DE TRABAJADORES EN EL CENTRO LABORAL -->
+
+                                    <div class="field col-12 md:col-6 pl-5 pt-5">
+                                        <p:outputLabel value="5. Numero de trabajadores en el centro laboral:" class="pt-2" style="color: white;" />
+                                    </div> 
+                                    <div class="field col-12 md:col-3 pt-5">
+                                        <p:inputText id="NTEL1" placeholder="Ingrese numero de trabajadores en el centro laboral" style="background: transparent; border: none; border-bottom: 3px solid yellow; color: white;"/>
+                                    </div>
+
+                                    <!-- SUB TITULO  -->
+
+                                    <div class="ui-fluid formgrid grid border-round-sm w-auto m-0 border-y-2 pl-0 pr-6 pb-4 "  style="background-color:gray; border-color: #cbcbcb ;">
+                                        <div class="pt-2 text-lg mt-3 mb-3 m-4" style="color: white;"> 6. COMPLETAR EN CASO DE QUE LAS ACTIVIDADES DEL EMPLEADOR SEAN CONSIDERADAS DE ALTO RIESGO</div>
+
+                                        <!-- NUMERO DE TRABAJADORES AFILIDADOS AL SCTR -->
+
+                                        <div class="field col-12 md:col-6 mt-2 w-3 text-center ml-8" style="background-color: yellow; padding:0; border-radius: 8px;">
+                                            <p:outputLabel for="afiliado1" value="N° de trabajadores afiliados al SCTR"  style="color: white; background-color: #20212b; width: 100%; height: 30px; border-radius: 6px 0px 0px 0px " />
+                                            <p:inputText  class="mb-1" id="afiliado1" placeholder="Ingrese aquí los trabajadores " style="background:transparent; color: black; border: none;width:85%; border-bottom: 3px solid black;"/>
+                                        </div>
+
+                                        <!-- NUMERO DE TRABAJADORES NO AFILIDADOS AL SCTR -->
+
+                                        <div class="field col-12 md:col-6 mt-2 w-3 text-center ml-1" style="background-color: yellow; padding:0; border-radius: 8px;">
+                                            <p:outputLabel class="pt-2" for="nafiliado1" value="N° de trabajadores NO afiliados al SCTR"  style="color: white; background-color: #20212b; width: 100%; height: 45px; border-radius: 6px 0px 0px 0px padding-bottom: 14px; padding-top: 14px;" />
+                                            <p:inputText class="mb-1" id="nafiliado1" placeholder="Ingrese aquí los trabajdores " style="background:transparent; color: black; border: none; width:85%;  border-bottom: 3px solid black;"/>
+                                        </div> 
+
+                                        <!-- NOMBRE DE LA ASEGURADORA -->
+
+                                        <div class="field col-12 md:col-6 mt-2 w-3 text-center ml-1" style=" background-color: yellow; padding:0; border-radius: 8px;">
+                                            <p:outputLabel class="pt-2" for="nombrea1" value="Nombre de la aseguradora"  style="color: white; background-color: #20212b; width: 100%;  height: 30px;  border-radius: 6px 0px 0px 0px "/>
+                                            <p:inputText class="mb-1" id="nombrea1" placeholder="Ingrese aquí el nombre" style=" color: black; background:transparent; border: none; width:85%;  height: 35px; border-bottom: 3px solid black;"/> 
+                                        </div>
+
+                                        <!-- BOTON DE AGREGAR A TERCEROS  -->
+
+                                        <div class="col-12">
+                                            <p:button value="Agregar empleado de terceros" styleClass="ui-button-raised ui-button-warning" style="background-color: yellow; color:black; border: 0;width: 26%;margin-top: 70px; margin-left: 78%" />
+                                        </div>
+
+                                        <!--TABLA-->
+
+                                        <div class="text-center">
+                                            <p:dataTable var="product" style="margin-top: 50px;" value="#{dtBasicView.products}" >
+                                                <p:column headerText="Code" style="background-color:black;">
+                                                    <h:outputText value="aaa" />
+                                                </p:column>
+
+                                                <p:column headerText="Name" style="background-color:black;">
+                                                    <h:outputText value="a" />
+                                                </p:column>
+
+                                                <p:column headerText="Category" style="background-color:black;">
+                                                    <h:outputText value="#{product.category}" />
+                                                </p:column>
+
+                                                <p:column headerText="Quantity" style="background-color:black;">
+                                                    <h:outputText value="#{product.quantity}" />
+                                                </p:column>
+
+                                                <p:column headerText="Code" style="background-color:black;">
+                                                    <h:outputText value="#{product.code}" />
+                                                </p:column>
+
+                                                <p:column headerText="Code" style="background-color:black;">
+                                                    <h:outputText value="#{product.code}" />
+                                                </p:column>
+
+                                                <p:column headerText="Code" style="background-color:black;">
+                                                    <h:outputText value="#{product.code}" />
+                                                </p:column>
+
+                                                <p:column headerText="Code" style="background-color:black;">
+                                                    <h:outputText value="#{product.code}" />
+                                                </p:column>
+                                            </p:dataTable>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                    </div> 
+                </div>
+                <div class="flex">
+                    <div class="col-12 w-2 mt-8 ml-auto">
+                        <p:button outcome="formAccidente2" value="Siguiente" styleClass="ui-button-raised ui-button-warning" style="background-color: yellow; color:black; border: 0" />
+                    </div>
+                    <div class="col-12 w-2 mr-full -mt-5">
+                        <p:button outcome="formConsecuencia" value="Regresar" styleClass="ui-button-raised ui-button-warning" style="background-color: yellow; color:black; border: 0" />
                     </div>
                 </div>
-             </div>
-           </div>
-           </div>
-           </div>
+            </div>
         </h:form>
     </ui:define>
 </ui:composition>
