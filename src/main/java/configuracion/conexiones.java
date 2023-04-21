@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class conexiones {
     
     public static Connection conectar() throws SQLException{   
-        String url = "jdbc:sqlserver://192.168.1.77:1433;databaseName=SEKUR_IPERC";
+        String url = "jdbc:sqlserver://192.168.1.77:1433;databaseName=SEKUR_IPERC.1";
         String usuario = "sa";
         String contraseña = "sa123";
         Connection conexion = null;
@@ -32,14 +32,16 @@ public class conexiones {
         
         if (conexion != null) {
             try {
-                String consulta = "SELECT * FROM Tab_Severidad";
+                String consulta = "SELECT * FROM Inputs";
                 PreparedStatement ps = conexion.prepareStatement(consulta);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    String id = rs.getString("ID_SEVERIDAD");
-                    String consecuencia = rs.getString("CONSECUENCIA");
-                    int indice = rs.getInt("INDICE_SEVERIDAD");
-                    System.out.println("ID_SEVERIDAD: " + id + ", CONSECUENCIA: " + consecuencia + ", INDICE_SEVERIDAD: " + indice);
+                    String id = rs.getString("ID_user");
+                    String nombre = rs.getString("Nombre");
+                    String apellido = rs.getString("Apellido");
+                    int edad = rs.getInt("Edad");
+                    String correo = rs.getString("Correo");
+                    System.out.println("ID_user: " + id + ", Nombre: " + nombre + ", Apellido: " + apellido +", Edad: " + edad + ", Correo: " + correo);
                 }
             } catch (SQLException e) {
                 System.out.println("Error al ejecutar la consulta: " + e.getMessage());

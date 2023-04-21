@@ -1,0 +1,160 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="title">Consecuencia</ui:define>
+
+    <style>
+   .ui-datepicker-timeonly {
+      border: none;
+   }
+    </style>
+
+    
+    <ui:define name="viewname">
+        <li>FORMULARIOS</li>
+        <li><i class="pi pi-chevron-right"></i></li>
+        <li>INVESTIGACION DE ACCIDENTES</li>
+    </ui:define>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter&amp;wght@600&amp;display=swap');
+    </style>
+
+    <ui:define name="content">
+        <h:form>
+            <!-- REGISTRO DE INVESTIGACION -->  
+            <h5 class="h-5rem text-center text-4xl p-4 text-white-alpha-90" 
+                style="background-color: #2A2A2A; font-family: 'Inter', sans-serif; font-weight: 600;">
+                INVESTIGACIÓN DE ACCIDENTES
+            </h5>
+
+            <div class="card col-12" style="background-color: #2A2A2A"> 
+                <!-- DATOS DEL EMPLEADOR PRINCIPAL -->  
+                <div class="ui-fluid formgrid grid pl-2"
+                     style="border: 1px solid #fff; border-radius: 1rem 1rem 0 0; border-bottom: none; background-color: #F8DA45;">
+                    <h5 class="p-3 text-2xl"
+                        style="font-family: 'Inter', sans-serif; font-weight: 600; color: black;">
+                        INVESTIGACIÓN DE ACCIDENTE DE TRABAJO
+                    </h5>  
+                </div>
+
+                <div class="ui-fluid formgrid grid"  
+                        style="background-color: #EDEDED; border: 1px solid #cbcbcb; border-radius: 0 0 1rem 1rem; margin-bottom: 70px; padding: 60px;">
+
+                    <!-- FECHA DE ACCIDENTE DEL TRABAJO -->  
+
+                    <div class="field col-12 md:col-4">
+                        <p:outputLabel for="fecha" value="1. Fecha del Accidente del Trabajo"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 400;" />    
+                        <p:datePicker id="fecha" placeholder="Seleccione la fecha" showIcon="true" style="background-color: white; color: black; border: 1px solid #F8DA45; border-radius: 7px;"/>
+                    </div>
+                    
+                    <!-- HORA DE ACCIDENTE DEL TRABAJO -->  
+
+                    <div class="field col-12 md:col-4">
+                        <p:outputLabel for="timeonly" value="2. Hora del Accidente Ocurrido"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 400;" />    
+                        <p:datePicker  id="timeonly" value="#{calendarView.date14}" placeholder="Seleccione la hora del accidente" timeOnly="true" pattern="HH:mm" style="background-color: white; color: black; border: 1px solid #F8DA45; border-radius: 7px;"/>
+                    </div>
+
+
+                    <!-- FECHA DE INVESTIGACION -->  
+
+                    <div class="field col-12 md:col-4">
+                        <p:outputLabel for="fechaIn" value="3. Fecha de la Investigación"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 400;" />    
+                        <p:datePicker id="fechaIn" placeholder="Seleccione la fecha" showIcon="true" style="background-color: white; color: black; border: 1px solid #F8DA45; border-radius: 7px;"/>
+                    </div>
+                    
+                    <!-- LUGAR DEL ACCIDENTE -->  
+
+                    <div class="field col-12 md:col-6">
+                        <p:outputLabel for="Lugar" value="4. Lugar exacto del accidente"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 400;" />    
+                         <p:inputText  id="Lugar" placeholder="Ingrese aquí el lugar donde ocurrio el accidente" style="background:transparent; color: black; border: none; border-bottom: 2px solid black; border-radius: 0; outline: none;"/>
+                    </div>
+                    
+                    <!-- CANTIDAD DE AFECTADOS-->  
+
+                    <div class="field col-12 md:col-6">
+                        <p:outputLabel for="Cant" value="5. Nº Trabajadores Afectados"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 400;" />    
+                         <p:inputText  id="Cant" placeholder="Ingrese la cantidad de trabajadores  " style="background:transparent; color: black; border: none; border-bottom: 2px solid black; border-radius: 0; outline: none;"/>
+                    </div>
+
+                    <!-- FECHA DE ACCIDENTE DEL TRABAJO -->  
+
+                    <div class="field col-12 md:col-4">
+                        <p:outputLabel for="CantDir" value="6. Nº de Trabajadores afectados directamente"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 400;" />    
+                        <p:inputText  id="CantDir" placeholder="Ingrese la cantidad de trabajadores  " style="background:transparent; color: black; border: none; border-bottom: 2px solid black; border-radius: 0; outline: none;"/>
+                    </div>
+
+                    <!-- HORA DE ACCIDENTE DEL TRABAJO -->  
+
+                    <div class="field col-12 md:col-4">
+                        <p:outputLabel for="CantIndi" value="7. Nº de Trabajadores afectados Indirectamente"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 400;" />    
+                        <p:inputText  id="CantIndi" placeholder="Ingrese la cantidad de trabajadores  " style="background:transparent; color: black; border: none; border-bottom: 2px solid black; border-radius: 0; outline: none;"/>
+                    </div>
+
+
+                    <!-- FECHA DE INVESTIGACION -->  
+
+                    <div class="field col-12 md:col-4">
+                        <p:button value="Marcar Faltas de Control" styleClass="ui-button-raised mr-2 mb-2" style="width: 200px; height: 50px; color: white; background-color: #172958; font-family: 'Inter', sans-serif; font-weight: 600;"/>
+                    </div>
+                </div>    
+                
+                
+                
+                <!-- CALIFICACION DE RIESGOS -->  
+                <div class="ui-fluid formgrid grid pl-2"
+                     style="border: 1px solid #fff; border-radius: 1rem 1rem 0 0; border-bottom: none; background-color: #F8DA45;">
+                    <h5 class="p-3 text-2xl"
+                        style="font-family: 'Inter', sans-serif; font-weight: 600; color: black;">
+                        CALIFICACION DE RIESGOS DEL ACCIDENTE
+                    </h5>  
+                </div>
+
+                <div class="ui-fluid formgrid grid"  
+                        style="background-color: #EDEDED; border: 1px solid #cbcbcb; border-radius: 0 0 1rem 1rem; margin-bottom: 70px; padding: 60px;">
+
+                    <!-- FECHA DE ACCIDENTE DEL TRABAJO -->  
+
+                    <div class="field col-12 md:col-4">
+                        <p:outputLabel for="fecha" value="PROCEDIMIENTOS EXISTENTES"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 400;" />    
+                        <p:selectOneMenu>
+                            <f:selectItem itemLabel="Select" itemValue="" />
+                            <f:selectItem itemLabel="Existen son satisfactorios y suficientes" itemValue="1" />
+                            <f:selectItem itemLabel="Existen parcialmente y no son satisfactorios o suficientes" itemValue="2" />
+                            <f:selectItem itemLabel="No existen procedimientos" itemValue="3" />
+                        </p:selectOneMenu>
+                    </div>
+                    
+                    <!-- HORA DE ACCIDENTE DEL TRABAJO -->  
+
+                    <div class="field col-12 md:col-4">
+                        <p:outputLabel for="fecha" value="CAPACITACION"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 400; align-content;" />    
+                        <p:selectOneMenu>
+                            <f:selectItem itemLabel="Select" itemValue="" />
+                            <f:selectItem itemLabel="Personal entrenado, conoce el peligro y lo previene" itemValue="1" />
+                            <f:selectItem itemLabel="Personal parcialmente entrenado, conoce el peligro pero no toma acciones de control" itemValue="2" />
+                            <f:selectItem itemLabel="Personal no entrenado, no conoce peligros, no toma acciones de control" itemValue="3" />
+                        </p:selectOneMenu>
+                    </div>
+
+
+                    <!-- FECHA DE INVESTIGACION -->  
+
+                    <div class="field col-12 md:col-4">
+                        <p:outputLabel for="fecha" value="EXPOSICIÓN AL RIESGO"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 400;" />    
+                        <p:selectOneMenu>
+                            <f:selectItem itemLabel="Select" itemValue="" />
+                            <f:selectItem itemLabel="Una vez al año - Espóradicamente   " itemValue="1" />
+                            <f:selectItem itemLabel="Una vez al mes - Eventualmente" itemValue="2" />
+                            <f:selectItem itemLabel="Una vez al día - Permanentemente" itemValue="3" />
+                        </p:selectOneMenu>
+                    </div>
+                </div>     
+            </div>    
+        </h:form>
+    </ui:define>
+</ui:composition>

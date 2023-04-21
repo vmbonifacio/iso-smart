@@ -1,0 +1,163 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+    
+    <ui:define name="title">Jerarquia de Empresa</ui:define>
+
+    <ui:define name="viewname">
+        <li>FORMULARIOS</li>
+        <li><i class="pi pi-chevron-right"></i></li>
+        <li>
+        <li>ESTRUCTURA</li>
+        </li>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form>
+        <div class="card m-0 p-6 pb-4" style="background-color: black;">
+        <h5 class="w-full h-4rem text-center text-4xl c border-round-md p-2" style="background-color: #fff600; color: black;">Estructura Organizacional</h5>
+        <div class="card m-0 p-0" style="background-color: black; border-radius: 10px; border:2px solid white;">            
+            
+            <!--FORMULARIO PARA E REGISTRO!-->
+            
+                <div class="col-12" style="background-color: #5a5a5a;">
+                    <div class="card" style="background-color: #5a5a5a; color: white;">
+                        <h5>Estructura Organizacional de Empresa</h5>
+                        <div class="ui-fluid formgrid grid">
+                            <div class="field col-12 md:col-6">
+                                
+                            <!-- SUPERVISOR -->
+                                
+                                <p:outputLabel for="razon" value="Razón social" />
+                                <p:inputText id="razon" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;" placeholder="Ingrese aqui la razon social" />
+                            </div>
+                            
+                            <!-- ACTIIDAD O GIROS PRINCIPALES -->
+                            
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="actividad" value="Actividad o Giros principales" />
+                                <p:inputText id="actividad" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;" placeholder="Ingrese aqui la razon social" />
+                            </div>
+                            
+                            <!-- RUC -->
+                            
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="ruc" value="Ruc" />
+                                <p:inputText id="ruc" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;" placeholder="Ingrese aqui el ruc" />
+                            </div>
+                            
+                            <!-- AREA -->
+                            
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="area" value="Área" />
+                                <p:inputText id="area" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;" placeholder="Ingrese aqui el area" />
+                            </div>
+                            
+                            <!-- URL DE EMPRESA -->
+                            
+                           <div class="field col-12 md:col-6">
+                                <p:outputLabel for="url" value="Url de la empresa" />
+                                <p:inputText id="url" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;" placeholder="Ingrese aqui el url" />
+                            </div>
+                            
+                            <!-- PUESTOS -->
+                            
+                            <div class="field col-12 md:col-6">                                
+                                <p:outputLabel for="Puestos" value="Puestos"  style="color: white;" />
+                                <p:selectOneMenu id="Puestos" style="background:transparent; border: none; border-bottom: 3px solid yellow;color: white;">
+                                    <f:selectItem itemLabel="Selecionar" itemValue=""/>
+                                    <f:selectItem itemLabel="Director ejecutivo(CEO)" itemValue="1" />
+                                    <f:selectItem itemLabel="Gerente de operaciones" itemValue="2" />
+                                    <f:selectItem itemLabel="Gerente de recursos humanos" itemValue="3" />
+                                    <f:selectItem itemLabel="Gerente de finanzas" itemValue="4" />
+                                    <f:selectItem itemLabel="Gerente de marketing" itemValue="5" />
+                                    <f:selectItem itemLabel="Gerente de ventas" itemValue="6" />
+                                    <f:selectItem itemLabel="Analista financiero" itemValue="7" />
+                                    <f:selectItem itemLabel="Especialista en recursos humanos" itemValue="8" />
+                                    <f:selectItem itemLabel="Especialista en marketing" itemValue="9" />
+                                    <f:selectItem itemLabel="Especialista en tecnología" itemValue="10" />
+                                </p:selectOneMenu>
+                            </div>
+                            
+                            <!-- LISTA DE AREAS -->
+                            
+                            <div class="field col-12 md:col-6" style="color: white"> 
+                                <p:outputLabel for="L_area" value="Lista de Áreas"  style="color: white"/>
+                                <p:selectOneMenu id="L_area" style="background: transparent; border: none; border-bottom: 3px solid yellow; color: white;">
+                                    <f:selectItem itemLabel="Selecionar" itemValue=""/>
+                                    <f:selectItem itemLabel="área de producción" itemValue="1" />
+                                    <f:selectItem itemLabel="área de finanzas" itemValue="2" />
+                                    <f:selectItem itemLabel="área de recursos humanos" itemValue="3" />
+                                    <f:selectItem itemLabel="área de marketing" itemValue="4" />
+                                    <f:selectItem itemLabel="área de ventas" itemValue="5" />
+                                    <f:selectItem itemLabel="área de tecnología" itemValue="6" />
+                                    <f:selectItem itemLabel="área de servicio al cliente" itemValue="7" />
+                                </p:selectOneMenu>
+                            </div>
+                            
+                            <!-- JEFATURAS -->
+                            
+                            <div class="field col-12 md:col-6">                                
+                                <p:outputLabel for="jefaturas" value="Jefaturas"  style="color: white;"/>
+                                <p:selectOneMenu id="jefaturas" style="background:transparent; border: none; border-bottom: 3px solid yellow;">
+                                    <f:selectItem itemLabel="Select" itemValue="" />
+                                    <f:selectItem itemLabel="Jefe de departamento" itemValue="1" />
+                                    <f:selectItem itemLabel="Jefe de producción" itemValue="2" />
+                                    <f:selectItem itemLabel="Jefe de ventas" itemValue="3" />
+                                    <f:selectItem itemLabel="Jefe de marketing" itemValue="4" />
+                                    <f:selectItem itemLabel="Jefe de logística" itemValue="5" />
+                                    <f:selectItem itemLabel="Jefe de recursos humanos" itemValue="6" />
+                                    <f:selectItem itemLabel="Jefe de finanzas" itemValue="7" />
+                                    <f:selectItem itemLabel="Jefe de seguridad y salud ocupacional" itemValue="8" />
+                                </p:selectOneMenu>
+                            </div>
+                            
+                            <!-- UBICACION -->
+                            
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel for="ubicacion" value="Ubicación" />
+                                <p:inputText id="ubicacion" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;" placeholder="Ingrese aqui el ruc" />
+                            </div>
+                            
+                           <!-- NIVEL DE GESTION-->
+                           
+                            <div class="field col-12 md:col-6 text-white-alpha-90">
+                                <p:outputLabel class="text-white-alpha-90" for="Ngest" value="Nivel de gestión" style="color: white"/>
+                                <p:selectOneMenu class="text-white-alpha-90" id="Ngest" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;">
+                                    <f:selectItem itemLabel="Selecionar" itemValue=""/>
+                                    <f:selectItem itemLabel="Estrategico" itemValue="1" />
+                                    <f:selectItem itemLabel="Tactico" itemValue="2" />
+                                    <f:selectItem itemLabel="Operativos" itemValue="4" />
+                                </p:selectOneMenu>
+                            </div>
+                           
+                            <!-- HORA DE OCURRENCIA -->
+                            
+                            <div class="field col-12 md:col-4">
+                                <p>Hora ocurrencia </p>
+                                    <p:outputLabel for="timeonly"/>
+                                    <p:datePicker  id="timeonly" value="#{calendarView.date14}" timeOnly="true" pattern="HH:mm"/>
+                            </div> 
+         
+                            <!-- POLITICAS Y PROCEDIMIENTOS -->
+                            
+                             <div class="field col-12">
+                                <p:outputLabel for="PyPro" value="Politicas y Procedimientos" />
+                                <p:inputTextarea id="PyPro" rows="4" style="background-color: transparent; color: white; border: none;  border-bottom: 3px solid yellow;"/>
+                                
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+        
+                        <!-- BOTON GUARDAR -->
+                        
+                    <p:button value="Guardar" styleClass="ui-button-raised mr-2 mb-2 w-4 text-2xl mt-4" style="background-color: yellow; color: black"/>
+                </div>
+          </h:form>
+    </ui:define>
+</ui:composition>

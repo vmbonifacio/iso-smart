@@ -18,11 +18,11 @@ public class GuestPreferences implements Serializable {
 
     private String componentTheme = "amber";
     
-    private String topbarTheme = "dark";
+    private String topbarTheme = "colored";
 
     private String menuTheme = "dark";
 
-    private String profileMode = "popup";
+    private String profileMode = "inline";
 
     private String inputStyle = "outlined";
 

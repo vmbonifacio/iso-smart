@@ -3687,6 +3687,7 @@ body .ui-calendar .ui-button.ui-button-icon-only .ui-icon-calendar:before {
 body .ui-calendar.ui-trigger-calendar input.hasDatepicker {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+  border: none;
 }
 body .ui-fluid .ui-trigger-calendar input.hasDatepicker {
   width: calc(100% - 2.357rem);
@@ -3749,7 +3750,7 @@ body .ui-inplace .ui-inplace-editor .ui-button-icon-only .ui-button-text {
 }
 
 body ::-webkit-input-placeholder {
-  color: #868686;  <!--CAMBIAR DE COLOR AL PLACEHOLDER-->
+  color: #868686;  // CAMBIAR DE COLOR AL PLACEHOLDER
 }
 body :-moz-placeholder {
   color: #C2C2C2;
@@ -3812,16 +3813,17 @@ body .ui-input-icon-right > .ui-inputfield {
   padding-right: 2rem;
 }
 body .ui-inputfield { <!--Cambiar el color del combobox-->
-  color: #000000;
-  background: #2A2A2A;
+  color: black;
+  background: white;
   padding: 0.5rem 0.5rem;
-  border: 1px solid #4D4D4D;
   outline: 0 none;
   font-size: 1rem;
   border-radius: 4px;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
   -webkit-appearance: none;
   appearance: none;
+  border: none;
+  border-radius: 7px;
 }
 body .ui-inputfield.ui-state-hover {
   border-color: #DB8519;
