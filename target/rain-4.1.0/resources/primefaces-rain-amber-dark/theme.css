@@ -3749,7 +3749,7 @@ body .ui-inplace .ui-inplace-editor .ui-button-icon-only .ui-button-text {
 }
 
 body ::-webkit-input-placeholder {
-  color: #C2C2C2;
+  color: #868686;  <!--CAMBIAR DE COLOR AL PLACEHOLDER-->
 }
 body :-moz-placeholder {
   color: #C2C2C2;
@@ -3811,8 +3811,8 @@ body .ui-input-icon-right > i:last-of-type {
 body .ui-input-icon-right > .ui-inputfield {
   padding-right: 2rem;
 }
-body .ui-inputfield {
-  color: #E9E9E9;
+body .ui-inputfield { <!--Cambiar el color del combobox-->
+  color: #000000;
   background: #2A2A2A;
   padding: 0.5rem 0.5rem;
   border: 1px solid #4D4D4D;

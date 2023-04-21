@@ -25,6 +25,6 @@ Any value defined here will override the pom.xml file value but is only applicab
         <org-netbeans-modules-css-prep.sass_2e_mappings>/scss:/css</org-netbeans-modules-css-prep.sass_2e_mappings>
         <org-netbeans-modules-javascript2-requirejs.enabled>true</org-netbeans-modules-javascript2-requirejs.enabled>
         <org-netbeans-modules-css-prep.sass_2e_configured>true</org-netbeans-modules-css-prep.sass_2e_configured>
-        <netbeans.hint.jdkPlatform>JDK_1.8u361</netbeans.hint.jdkPlatform>
+        <netbeans.hint.jdkPlatform>JDK_1.8</netbeans.hint.jdkPlatform>
     </properties>
 </project-shared-configuration>

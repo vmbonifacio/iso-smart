@@ -5072,13 +5072,15 @@ a {
   margin-top: 3px;
 }
 .layout-config .layout-config-content .layout-config-section.options .layout-config-options .ui-selectoneradio {
-  width: 100%;
-  padding: 0 10px;
+    width: 100%;
+    padding: 0 10px;
+    color: black;
 }
 .layout-config .layout-config-content .layout-config-section.options .layout-config-options .ui-selectoneradio label {
-  font-size: 12px;
-  margin: 0;
-  margin-left: 6px;
+    font-size: 12px;
+    margin: 0;
+    margin-left: 6px;
+    color: black;
 }
 .layout-config .layout-config-content .layout-config-section a {
   display: -ms-flexbox;
