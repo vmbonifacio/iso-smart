@@ -1,6 +1,6 @@
 package modeloDAO;
         
-import configuracion.conexiones;
+import com.perudatarecovery.configuracion.conexiones;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
