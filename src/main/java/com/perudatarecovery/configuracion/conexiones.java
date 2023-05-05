@@ -1,4 +1,4 @@
-package configuracion;
+package com.perudatarecovery.configuracion;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

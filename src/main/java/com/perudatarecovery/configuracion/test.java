@@ -1,4 +1,4 @@
-package configuracion;
+package com.perudatarecovery.configuracion;
 
 public class test {
     public static void main(String[] args){
