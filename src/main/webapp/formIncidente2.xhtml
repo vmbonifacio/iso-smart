@@ -14,7 +14,7 @@
         <li><i class="pi pi-chevron-right"></i></li>
         <li>INCIDENTE</li>
         <li><i class="pi pi-chevron-right"></i></li>
-        <li>DATOS DEL ACCIDENTADO</li>
+        <li>DATOS DEL INCIDENTADO</li>
     </ui:define>
 
     <ui:define name="content">
@@ -32,7 +32,7 @@
                            
                            <h5 class="p-3 text-2xl"
                                style="font-family: 'Inter', sans-serif; font-weight: 600;color:black ">
-                               DATOS DE PERSONA ACCIDENTADA
+                               DATOS DE PERSONA INCIDENTADA
                            </h5>
                            
                            
@@ -40,8 +40,8 @@
                                 style="color: black; background-color: #ededed; border: 1px solid #cbcbcb; border-radius: 1rem 1rem 1rem 1rem; width: 101%; margin-bottom:-5px; padding: 25px;box-shadow: 0px 0px 5px 1px white;">
                      
                             <div class="field col-12 md:col-6 w-8 mr-auto">
-                            <p:outputLabel  value="13. TIPO DE ACCIDENTADO" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;"/>
-                                        <p:selectOneRadio layout="responsive" columns="3">
+                            <p:outputLabel  value="13. TIPO DE INCIDENTADO" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;"/>
+                                        <p:selectOneRadio layout="responsive" columns="3" onchange="handleChange(this)">
                                             <f:selectItem itemLabel="Trabajador de empleador principal" itemValue="1"/>
                                             <f:selectItem itemLabel="Trabajador de empleador de terceros" itemValue="2" />
                                             <f:selectItem itemLabel="Civil" itemValue="3" />
@@ -132,7 +132,7 @@
                             </div>    
                          </div>
                            <div style="margin-left:auto;">
-                               <p:button value="Agregar persona accidentada" styleClass="ui-button-danger" style="background-color:#741818;color: white; font-family: 'Inter', sans-serif; font-weight: 600;border-radius: 10px;height:50px;"/>
+                               <p:button value="Agregar persona Incidentada" styleClass="ui-button-danger" style="background-color:#741818;color: white; font-family: 'Inter', sans-serif; font-weight: 600;border-radius: 10px;height:50px;"/>
                            </div>
                            <!--TABLA-->
                            <div class="w-full mt-2"><h3 style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" >LISTA DE TRABAJADORES ACCIDENTADOS</h3></div>
@@ -211,12 +211,16 @@
                                <div class="p-toolbar-group-left w-3">
                                    <p:button outcome="formIncidente" value="Anterior" styleClass="ui-button-raised ui-button-warning" style="background-color: #f8da45; color:black; font-family: 'Inter', sans-serif; font-weight: 600;border-radius: 10px;width:100%; height:50px;" />
                                </div>
-                               <div class="p-toolbar-group-right w-3">
-                                   <p:button outcome="formIncidente3" value="Siguiente" styleClass="ui-button-raised ui-button-warning" style="background-color: #f8da45; color:black; font-family: 'Inter', sans-serif; font-weight: 600;border-radius: 10px;width:100%; height:50px;" />
-                               </div>
                            </div>
                        </div>
                 </div>
+            <script>
+                function handleChange(radio) {
+                    if (radio.value === '2') {
+                        window.location.href = 'formIncidente3.xhtml';
+                    }
+                }
+            </script>
         </h:form>
     </ui:define>
 </ui:composition>

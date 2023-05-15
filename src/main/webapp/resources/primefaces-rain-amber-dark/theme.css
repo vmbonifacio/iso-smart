@@ -211,17 +211,17 @@ body .ui-resizable-handle {
 }
 
 body .ui-button {
-  background: #DB8519;
+  background: #25a4d4;
   color: #f8fafc;
-  border: 1px solid #DB8519;
+  border: 1px solid #4fb2d7;
   margin: 0;
   outline: 0 none;
   border-radius: 4px;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
 body .ui-button.ui-state-hover {
-  background: #BC6912;
-  border-color: #BC6912;
+  background: #64bee1;
+  border-color: #64bee1;
   color: #f8fafc;
 }
 body .ui-button.ui-state-focus {
@@ -681,15 +681,15 @@ body .ui-button.ui-button-help,
 body .ui-splitbutton.ui-button-help > .ui-button,
 body .ui-menubutton.ui-button-help > .ui-button {
   background: #CA7DCA;
-  color: #121212;
+  color: white;
   border: 1px solid #CA7DCA;
 }
 body .ui-button.ui-button-help.ui-state-hover,
 body .ui-splitbutton.ui-button-help > .ui-button.ui-state-hover,
 body .ui-menubutton.ui-button-help > .ui-button.ui-state-hover {
-  background: #c166c1;
-  color: #121212;
-  border-color: #c166c1;
+  background: #ca8eca;
+  color: #ffffff;
+  border-color: #ca8eca;
 }
 body .ui-button.ui-button-help.ui-state-focus,
 body .ui-splitbutton.ui-button-help > .ui-button.ui-state-focus,
@@ -1173,11 +1173,11 @@ body .ui-datascroller .ui-datascroller-content {
   padding: 1rem;
 }
 
-body .ui-datatable .ui-datatable-header {
-  background: #363636;
-  border: 1px solid #4D4D4D;
+body .ui-datatable .ui-datatable-header { 
+  background: #C8C8C8;
+  border:2px solid #b1b1b1;
   border-width: 0 0 1px 0;
-  color: #C2C2C2;
+  color: black;
   padding: 1rem 1rem;
   font-weight: 600;
   border-top-left-radius: 4px;
@@ -1207,14 +1207,17 @@ body .ui-datatable .ui-paginator.ui-paginator-top {
   border-radius: 0;
 }
 body .ui-datatable .ui-paginator.ui-paginator-bottom {
+  background-color:white;
+  color:black;
   border-width: 0 0 1px 0;
   border-radius: 0;
+  border-bottom: 2px solid #C8C8C8;
 }
 body .ui-datatable thead th {
-  background: #363636;
-  color: #E9E9E9;
+  background: #C8C8C8;
+  color: black;
   padding: 1rem 1rem;
-  border: 1px solid #4D4D4D;
+  border: 1px solid #C8C8C8;
   border-width: 0 0 1px 0;
   text-align: left;
   box-sizing: content-box;
@@ -1293,8 +1296,10 @@ body .ui-datatable .ui-datatable-data > tr {
   transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
 body .ui-datatable .ui-datatable-data > tr > td {
+  background-color:white;
+  color:black;
   padding: 1rem 1rem;
-  border: 1px solid #4D4D4D;
+  border-bottom:2px solid #e0e0e0;
   border-width: 0 0 1px 0;
 }
 body .ui-datatable .ui-datatable-data > tr > td.ui-datatable-subtable-header {
@@ -1869,7 +1874,7 @@ body .ui-paginator .ui-paginator-first.ui-state-hover,
 body .ui-paginator .ui-paginator-prev.ui-state-hover,
 body .ui-paginator .ui-paginator-next.ui-state-hover,
 body .ui-paginator .ui-paginator-last.ui-state-hover {
-  background: #595959;
+  background: #bcbcbc;
   color: #E9E9E9;
   border-color: transparent;
 }
@@ -1894,8 +1899,9 @@ body .ui-paginator .ui-paginator-first {
   font-style: normal;
   font-weight: normal;
   display: inline-block;
-  background: none;
   line-height: 2.286em;
+  background-color:#a8a8a8;
+  color:black;
 }
 body .ui-paginator .ui-paginator-first:before {
   content: "\e92d";
@@ -1908,8 +1914,9 @@ body .ui-paginator .ui-paginator-prev {
   font-style: normal;
   font-weight: normal;
   display: inline-block;
-  background: none;
+  background: #a8a8a8;
   line-height: 2.286em;
+  color:black;
 }
 body .ui-paginator .ui-paginator-prev:before {
   content: "\e931";
@@ -1922,8 +1929,9 @@ body .ui-paginator .ui-paginator-next {
   font-style: normal;
   font-weight: normal;
   display: inline-block;
-  background: none;
   line-height: 2.286em;
+  background-color:#a8a8a8;
+  color:black;
 }
 body .ui-paginator .ui-paginator-next:before {
   content: "\e932";
@@ -1936,8 +1944,9 @@ body .ui-paginator .ui-paginator-last {
   font-style: normal;
   font-weight: normal;
   display: inline-block;
-  background: none;
   line-height: 2.286em;
+  background-color:#a8a8a8;
+  color:black;
 }
 body .ui-paginator .ui-paginator-last:before {
   content: "\e92e";
@@ -1965,8 +1974,8 @@ body .ui-paginator .ui-paginator-pages .ui-paginator-page {
   transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
 body .ui-paginator .ui-paginator-pages .ui-paginator-page.ui-state-active {
-  background: #DB8519;
-  color: #f8fafc;
+  background: #a8a8a8;
+  color: black;
 }
 body .ui-paginator .ui-paginator-pages .ui-paginator-page.ui-state-hover {
   background: #595959;
@@ -7740,7 +7749,7 @@ body .ui-tabs .ui-tabs-navscroller .ui-tabs-navscroller-btn.ui-state-hover {
 }
 
 body .ui-toolbar {
-  border: 1px solid #4D4D4D;
+  border: 3px solid #e0e0e0;
   background: #363636;
   color: #E9E9E9;
   padding: 1rem;

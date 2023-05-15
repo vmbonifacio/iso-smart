@@ -21,26 +21,7 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
     </servlet-mapping>
-<<<<<<< HEAD
-=======
     
-    <navigation-rule>
-        <from-view-id>*</from-view-id>
-        <navigation-case>
-            <from-outcome>/formEstructuraOrg</from-outcome>
-            <to-view-id>/formEstructuraOrg.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
-    
-    <navigation-rule>
-        <from-view-id>*</from-view-id>
-        <navigation-case>
-            <from-outcome>/formDatosTrab</from-outcome>
-            <to-view-id>/formDatosTrab.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
-    
->>>>>>> 4500ace0e28cef42329e5aad6c468d65c0fd3b1b
     <servlet-mapping>
         <servlet-name>Controlador</servlet-name>
         <url-pattern>/Controlador</url-pattern>

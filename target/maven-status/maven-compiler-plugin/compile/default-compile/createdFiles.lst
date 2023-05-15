@@ -3,6 +3,7 @@ org\primefaces\rain\view\FreeBlocksDemoView.class
 org\primefaces\rain\view\FileDemoView.class
 org\primefaces\rain\component\RainMenuRenderer.class
 org\primefaces\rain\filter\CharacterEncodingFilter.class
+com\perudatarecovery\configuracion\test.class
 org\primefaces\rain\domain\Order.class
 org\primefaces\rain\view\FormDemoView.class
 org\primefaces\rain\domain\OrderStatus.class
@@ -11,6 +12,7 @@ org\primefaces\rain\view\ChronolineView$Event.class
 com\mycompany\mavenproject3\JAXRSConfiguration.class
 org\primefaces\rain\view\GuestPreferences$LayoutPrimaryColor.class
 org\primefaces\rain\domain\CustomerStatus.class
+modeloDAO\PersonaDAO.class
 org\primefaces\rain\domain\Representative.class
 org\primefaces\rain\domain\Country.class
 org\primefaces\rain\domain\Product.class
@@ -32,6 +34,7 @@ org\primefaces\rain\view\TreeDemoView.class
 com\mycompany\mavenproject3\resources\JavaEE8Resource.class
 org\primefaces\rain\service\CustomerService.class
 org\primefaces\rain\domain\Customer.class
+controlador\Controlador.class
 org\primefaces\rain\service\PhotoService.class
 org\primefaces\rain\domain\InventoryStatus.class
 org\primefaces\rain\view\PrimeIconsView$Icon.class
@@ -40,7 +43,8 @@ org\primefaces\rain\view\GridDemoView.class
 org\primefaces\rain\domain\Document.class
 org\primefaces\rain\view\GuestPreferences$ComponentTheme.class
 org\primefaces\rain\view\DataTableDemoView.class
+com\perudatarecovery\configuracion\conexiones.class
 org\primefaces\rain\view\ChronolineView.class
-configuracion\conexiones.class
+modelo\Persona.class
 org\primefaces\rain\view\CalendarDemoView.class
 org\primefaces\rain\domain\Photo.class
