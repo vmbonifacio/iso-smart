@@ -1,64 +1,71 @@
 package modelo;
 
 public class Persona {
-    private int id;
-    private String nombre;
-    private String apellido;
-    private int edad;
-    private String correo;
+    private String RazonSocialD;
+    private char ruc;
+    private int domicilio;
+    private String direccion;
+    private int actividad;
+    private int numTrabajadores;
 
-    public Persona(String nombre, String apellido, int edad, String correo) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.edad = edad;
-        this.correo = correo;
+    public Persona(String RazonSocialD, char ruc, int domicilio, String direccion, int actividad, int numTrabajadores) {
+        this.RazonSocialD = RazonSocialD;
+        this.ruc = ruc;
+        this.domicilio = domicilio;
+        this.direccion = direccion;
+        this.actividad = actividad;
+        this.numTrabajadores = numTrabajadores;
     }
 
-    public Persona(int i, String nombre, String apellido, int edad, String correo) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public String getRazonSocialD() {
+        return RazonSocialD;
     }
 
-    public int getId() {
-        return id;
+    public void setRazonSocialD(String RazonSocialD) {
+        this.RazonSocialD = RazonSocialD;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public char getRuc() {
+        return ruc;
     }
 
-    public String getNombre() {
-        return nombre;
+    public void setRuc(char ruc) {
+        this.ruc = ruc;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public int getDomicilio() {
+        return domicilio;
     }
 
-    public String getApellido() {
-        return apellido;
+    public void setDomicilio(int domicilio) {
+        this.domicilio = domicilio;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public int getEdad() {
-        return edad;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
-    public void setEdad(int edad) {
-        this.edad = edad;
+    public int getActividad() {
+        return actividad;
     }
 
-    public String getCorreo() {
-        return correo;
+    public void setActividad(int actividad) {
+        this.actividad = actividad;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public int getNumTrabajadores() {
+        return numTrabajadores;
     }
 
+    public void setNumTrabajadores(int numTrabajadores) {
+        this.numTrabajadores = numTrabajadores;
+    }
     
     
     
 }
+

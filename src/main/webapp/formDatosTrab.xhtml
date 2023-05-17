@@ -19,7 +19,7 @@
             <h5 class="w-full h-4rem text-center text-4xl c border-round-md p-2" style="background-color: #fff600;color:black;">Datos del trabajador</h5>
         <div class="card m-0 p-0" style="background-color: black; border-radius: 10px; border: 2px solid white"> 
             
-            <!--FORMULARIO PARA E REGISTRO!-->
+            <!--FORMULARIO PARA EL REGISTRO!-->
             
                 <div class="col-12" style="background-color: #5a5a5a;">
                     <div class="card" style="background-color: #5a5a5a; color: white;">
@@ -28,35 +28,55 @@
                             
                             <!-- NOMBRE -->
                             
-                             <div class="field col-12 md:col-6">
-                                <label id="nombre" class="ui-outputlabel ui-widget pt-2" style="color: white;" for="nombre">Nombre</label><input id="nombe" name="nombre" type="text" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" placeholder="Ingrese su nombre"></input>
+                            <div class="field col-12 md:col-4">
+                                <label id="nombreo" class="ui-outputlabel ui-widget pt-2" style="color: white;" for="nombre">Nombre</label><input id="nombre" name="nombre" type="text" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" placeholder="Ingrese su nombre"></input>
                             </div>
+                            
                             
                             <!-- APELLIDO PATERNO -->
                             
-                            <div class="field col-12 md:col-6">
+                            <div class="field col-12 md:col-4">
                                 <label id="ap_paterno" class="ui-outputlabel ui-widget pt-2" style="color: white;" for="ap_paterno">Apellido paterno</label><input id="ap_paterno" name="ap_paterno" type="text" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" placeholder="Ingrese su apellido paterno"></input>
                             </div>
                             
                             <!-- APELLIDO MATERNO -->
                             
-                            <div class="field col-12 md:col-6">
+                            <div class="field col-12 md:col-4">
                                 <label id="ap_materno" class="ui-outputlabel ui-widget pt-2" style="color: white;" for="ap_materno">Apellido materno</label><input id="ap_materno" name="ap_materno" type="text" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" placeholder="Ingrese su apellido materno"></input>
                             </div>
                             
                             <!-- DNI O CE -->
                             
-                            <div class="field col-12 md:col-6">
+                            <div class="field col-12 md:col-4">
                                 <label id="dni/ce" class="ui-outputlabel ui-widget pt-2" style="color: white;" for="dni/ce">DNI/CE</label><input id="dni/ce" name="dni/ce" type="text" style="background:transparent; border: none; border-bottom: 3px solid yellow; color: white;" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" placeholder="Ingrese su dni o ce"></input>
                             </div>
                             
-                            <!-- CONTENEDOR BODY -->
+                            <!-- FECHA DE NACIMIENTO-->
+                            
+                            <div class="field col-12 md:col-4 mb-">
+                                        <p:outputLabel value="Fecha de nacimiento" />
+                                        <p:datePicker placeholder="00/00/00" showIcon="true"/>
+                            </div>
+                            
+                            <!-- GENERO -->
+                            
+                            <div class="field col-12 md:col-4">
+                            <p:outputLabel  value="Género" />
+                                        <p:selectOneRadio layout="responsive" columns="2">
+                                            <f:selectItem itemLabel="M" itemValue="1" />
+                                            <f:selectItem itemLabel="F" itemValue="2" />
+                                        </p:selectOneRadio>
+                            </div>
+                            
+                            <!-- CONTENEDOR DOMICILIO -->
                             
                             <div class="ui-fluid formgrid grid border-round-sm m-auto border-y-2 mb-3"  style="background-color: #aaaaaa; border: 1px solid #fff600; width:100%;">
                                 <div class="pt-2 pl-2 text-lg mb-4" style="color: white; margin-right: 70%">DOMICILIO:</div>
                                 <div class="field col-12 md:col-6"> 
                                     
-                                <!-- DEPARTAMENTO -->
+                                    
+                                    
+                            <!-- DEPARTAMENTO -->
                                 
                                 <p:outputLabel for="departamento" value="Departamento"  style="color: white;" />
                                 <p:selectOneMenu id="departamento" style="background:transparent; border: none; border-bottom: 3px solid yellow;color: white;">
@@ -67,7 +87,7 @@
                                 </p:selectOneMenu>
                             </div>
                                 
-                                <!-- PROVINCIA -->
+                            <!-- PROVINCIA -->
                                 
                                 <div class="field col-12 md:col-6">
                                 <p:outputLabel for="provincia" value="Provincia"  style="color: white;" />
@@ -79,7 +99,7 @@
                                 </p:selectOneMenu>
                             </div>
                                 
-                                <!-- DISTRITO -->
+                            <!-- DISTRITO -->
                                 
                                 <div class="field col-12 md:col-6">
                                 <p:outputLabel for="distrito" value="Distrito"  style="color: white;" />
@@ -91,21 +111,14 @@
                                 </p:selectOneMenu>
                             </div>
                                 
-                                <!-- DIRECCION -->
+                            <!-- DIRECCION -->
                                 
                                 <div class="field col-12 md:col-6">
                                 <p:outputLabel for="direccion" value="Dirección"  style="color: white;" />
                                 <p:inputText id="direccion" placeholder="Ingrese aquí su dirección" style="background:transparent;color: white; border: none; border-bottom: 3px solid yellow; color: white;"/>
                             </div>
                             </div>
-                        
-                            <!-- CONTENDOR DE FOOTER-->
-                            
-                            <div class="field col-12 md:col-6 mb-">
-                                        <p:outputLabel value="Fecha de nacimiento" />
-                                        <p:datePicker placeholder="00/00/00" showIcon="true"/>
-                            </div>
-                            
+                      
                             <!-- ESTADO CIVIL -->
                             
                             <div class="field col-12 md:col-6">
@@ -137,17 +150,7 @@
                                     <f:selectItem itemLabel="Especialista en tecnología" itemValue="10" />
                                 </p:selectOneMenu>
                             </div>
-                            
-                            <!-- GENERO -->
-                            
-                            <div class="field col-12 md:col-6">
-                            <p:outputLabel  value="Género" />
-                                        <p:selectOneRadio layout="responsive" columns="2">
-                                            <f:selectItem itemLabel="M" itemValue="1" />
-                                            <f:selectItem itemLabel="F" itemValue="2" />
-                                        </p:selectOneRadio>
-                            </div>
-                            
+                           
                             <!-- TIPO DE CONTRATO -->
                             
                             <div class="field col-12 md:col-6">
