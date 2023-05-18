@@ -15,9 +15,9 @@
 
                   <p:toolbar>
                       <p:toolbarGroup>
-                          <p:commandButton value="Nueva Ocurrencia" type="button" onclick="PF('dlg1').show();" class="mr-2" style="background-color:#3C9462; border:1px solid #3C9462;"/>
+                         <p:commandButton value="Nueva Ocurrencia" type="button" onclick="PF('dlg1').show();" icon="pi pi-plus" class="mr-2" style="background-color:#3C9462; border:1px solid #3C9462;"/>
 
-                          <p:commandButton value="Borrar" type="button" onclick="PF('dlg2').show();" style="background-color:red; border:1px solid red;"/>
+                          <p:commandButton value="Borrar" type="button" onclick="PF('dlg2').show();" icon="pi pi-trash" style="background-color:red; border:1px solid red;"/>
 
                       </p:toolbarGroup>
                       <p:toolbarGroup align="right">
@@ -28,10 +28,16 @@
                       </p:toolbarGroup>
                   </p:toolbar>
                   
-                  <p:dialog widgetVar="dlg1" modal="true" class="h-full">
-                      <h:outputText value="¿Qué ocurrencia desea registrar?" />
+                  <p:dialog widgetVar="dlg1" modal="true" class="h-full w-5" style="background-color:#363636">
+                      <h:outputText value="¿Qué ocurrencia desea registrar?" class="text-5xl text-center"/>
+                      <div class="field col-12 md:col-6 w-full mt-8">
+                      <p:selectOneRadio layout="responsive" columns="2"  class="text-4xl" onchange="handleChange(this)">
+                          <f:selectItem itemLabel="Registro de Accidente" itemValue="1"/>
+                          <f:selectItem itemLabel="Registro de Incidente" itemValue="2"/>
+                      </p:selectOneRadio>
+                      </div>
                   </p:dialog> 
-                  <p:dialog  widgetVar="dlg2" modal="true" height="100">
+                  <p:dialog  widgetVar="dlg2" modal="true" height="100" style="background-color:#363636">
                       <h:outputText value="¿Está seguro que desea eliminar este registro?" />
                   </p:dialog> 
 
@@ -79,7 +85,17 @@
 
                   </p:dataTable>
               </h:form>
-
+              <script>
+                function handleChange(radio) {
+                    if (radio.value === '1') {
+                        window.location.href = 'formAccidente.xhtml';
+                    }else if(radio.value === '2'){
+                        window.location.href = 'formIncidente.xhtml';
+                    }else{
+                        window.location.href = 'princOcurrencia.xhtml';
+                    }
+                }
+              </script>
           </div>
         </h:form>
     </ui:define>

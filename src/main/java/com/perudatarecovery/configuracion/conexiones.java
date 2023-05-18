@@ -8,8 +8,8 @@ import java.sql.SQLException;
 
 public class conexiones {
     
-    public static Connection conectar() throws SQLException{   
-        String url = "jdbc:sqlserver://192.168.1.77:1433;databaseName=SEKUR_IPERC.1";
+    public static void main(String[] args) throws SQLException {
+        String url = "jdbc:sqlserver://192.168.1.77:1433;databaseName=SEKUR_IPERC";
         String usuario = "sa";
         String contraseña = "sa123";
         Connection conexion = null;
@@ -23,11 +23,10 @@ public class conexiones {
         } catch (SQLException e) {
             System.out.println("Error al conectar a SQL Server: " + e.getMessage());
         }
-
-        return conexion;    
+  
     }
     
-    public static void main(String[] args) throws SQLException {
+    /*public static void main(String[] args) throws SQLException {
         Connection conexion = conectar();
         
         if (conexion != null) {
@@ -53,7 +52,7 @@ public class conexiones {
                 }
             }
         }
-    }
+    }*/
 }
 
 
