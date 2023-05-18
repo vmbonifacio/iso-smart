@@ -3,7 +3,14 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
-                template="/WEB-INF/template.xhtml">
+                template="/WEB-INF/template.xhtml"
+                xmlns:webjars="http://webjars.org/ui"
+                webjars:assetLocator="org.webjars.WebJarAssetLocator">
+
+    <ui:define name="head">
+        <h:outputStylesheet library="webjars" name="bootstrap/5.2.3/css/bootstrap.min.css" />
+    </ui:define>
+
 
     <ui:define name="title">Consecuencia</ui:define>
 
@@ -13,15 +20,15 @@
         }
     </style>
 
-
     <ui:define name="viewname">
         <li>FORMULARIOS</li>
         <li><i class="pi pi-chevron-right"></i></li>
         <li>INVESTIGACION DE ACCIDENTES</li>
     </ui:define>
 
-   
+
     <ui:define name="content">
+
         <h:form>
             <!-- REGISTRO DE INVESTIGACION -->  
             <h5 class="h-5rem text-center text-4xl p-4 text-white-alpha-90" 
@@ -32,7 +39,7 @@
             <div class="card col-12" style="background-color: #2A2A2A"> 
                 <!-- DATOS DEL EMPLEADOR PRINCIPAL -->  
                 <div class="ui-fluid formgrid grid pl-2"
-                     style="border: 1px solid #fff; border-radius: 1rem 1rem 0 0; border-bottom: none; background-color: #F8DA45;">
+                     style="border-radius: 1rem 1rem 0 0; border-bottom: none; background-color: #F8DA45; box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);">
                     <h5 class="p-3 text-2xl"
                         style="font-family: 'Inter', sans-serif; font-weight: 600; color: black;">
                         INVESTIGACIÓN DE ACCIDENTE DE TRABAJO
@@ -40,13 +47,14 @@
                 </div>
 
                 <div class="ui-fluid formgrid grid"  
-                     style="background-color: #EDEDED; border: 1px solid #cbcbcb; border-radius: 0 0 1rem 1rem; margin-bottom: 70px; padding: 30px 36px 30px 36px;">
+                     style="background-color: #EDEDED; border: 1px solid #cbcbcb; border-radius: 0 0 1rem 1rem; margin-bottom: 70px; padding: 30px 36px 30px 36px; box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);">
 
                     <!-- FECHA DE ACCIDENTE DEL TRABAJO -->  
 
                     <div class="field col-12 md:col-4">
                         <p:outputLabel for="fecha" value="1. Fecha del Accidente Ocurrido"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 400; margin-bottom: 15px;" />    
-                        <p:datePicker id="fecha" placeholder="Seleccione la fecha" showIcon="true" style="background-color: white; color: black; border: 1px solid #F8DA45; border-radius: 7px; margin-bottom: 30px;"/>
+                        <p:datePicker id="fecha" placeholder="Seleccione la fecha" style="background-color: white; color: black; border: 1px solid #F8DA45; border-radius: 7px; margin-bottom: 30px;"/>
+
                     </div>
 
                     <!-- HORA DE ACCIDENTE DEL TRABAJO -->  
@@ -61,7 +69,7 @@
 
                     <div class="field col-12 md:col-4">
                         <p:outputLabel for="fechaIn" value="3. Fecha de la Investigación"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 400; margin-bottom: 15px;" />    
-                        <p:datePicker id="fechaIn" placeholder="Seleccione la fecha" showIcon="true" style="background-color: white; color: black; border: 1px solid #F8DA45; border-radius: 7px; margin-bottom: 30px;"/>
+                        <p:datePicker id="fechaIn" placeholder="Seleccione la fecha" style="background-color: white; color: black; border: 1px solid #F8DA45; border-radius: 7px; margin-bottom: 30px;"/>
                     </div>
 
                     <!-- LUGAR DEL ACCIDENTE -->  
@@ -96,80 +104,44 @@
                     <!-- BOTON FALTAS DE CONTROL -->  
 
                     <div class="field col-12 md:col-4" style="display: flex; justify-content: center; ">
-                        <p:button value="Marcar Faltas de Control" styleClass="ui-button-raised mr-2 mb-2" style="width: 200px; height: 50px; color: white; background-color: #172958; font-family: 'Inter', sans-serif; font-weight: 600; border: none"/>
+                        <p:button value="Marcar Faltas de Control" styleClass="ui-button-raised mr-2 mb-2" style="width: 200px; height: 50px; color: white; background-color: #172958; font-family: 'Inter', sans-serif; font-weight: 600; border: none; margin-top: 24px;"/>
                     </div>
                 </div>    
 
 
 
                 <!-- CALIFICACION DE RIESGOS -->  
-                
+
                 <div class="ui-fluid formgrid grid pl-2"
-                     style="border: 1px solid #fff; border-radius: 1rem 1rem 0 0; border-bottom: none; background-color: #F8DA45;">
+                     style="box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); border-radius: 1rem 1rem 0 0; border-bottom: none; background-color: #F8DA45;">
                     <h5 class="p-3 text-2xl"
                         style="font-family: 'Inter', sans-serif; font-weight: 600; color: black;">
                         CALIFICACIÓN DE RIESGOS DEL ACCIDENTE
                     </h5>   
                 </div>
 
-                <div class="ui-fluid formgrid grid pl-2"
-                     style="border: 1px solid #fff; border-bottom: none; background-color: #741818;">
-                    <h5 class="p-3"
-                        style="font-family: 'Inter', sans-serif; font-weight: 600; color: white;">
-                        1. ÍNDICE DE PROBABILIDAD DE RIESGOS
-                    </h5>   
-                </div>
-
                 <div class="ui-fluid formgrid grid"  
-                     style="background-color: #EDEDED; margin-bottom: 70px; padding: 30px 36px 30px 36px;">
+                     style="background-color: #EDEDED; margin-bottom: 70px; padding: 30px 36px 30px 36px; box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);">
 
                     <!-- PROCEDIMIENTOS EXISTENTES -->  
 
                     <div class="field col-12 md:col-4">
-                        <p:outputLabel value="1.1. Procedimientos Existentes"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 400;" />    
+                        <p:outputLabel value="1.1. Prodecimientos"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 400;" />    
                         <p:selectOneMenu>
-<<<<<<< HEAD
-                            <f:selectItem itemLabel="Select" itemValue="" />
-                            <f:selectItem itemLabel="Existen son satisfactorios y suficientes" itemValue="1" />
-                            <f:selectItem itemLabel="Existen parcialmente y no son satisfactorios o suficientes" itemValue="2" />
-                            <f:selectItem itemLabel="No existen procedimientos" itemValue="3" />
-                        </p:selectOneMenu>
-                    </div>
-                    
-                    <!-- HORA DE ACCIDENTE DEL TRABAJO -->  
-
-                    <div class="field col-12 md:col-4">
-                        <p:outputLabel for="fecha" value="CAPACITACION"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 400; align-conten" />    
-                        <p:selectOneMenu>
-                            <f:selectItem itemLabel="Select" itemValue="" />
-                            <f:selectItem itemLabel="Personal entrenado, conoce el peligro y lo previene" itemValue="1" />
-                            <f:selectItem itemLabel="Personal parcialmente entrenado, conoce el peligro pero no toma acciones de control" itemValue="2" />
-                            <f:selectItem itemLabel="Personal no entrenado, no conoce peligros, no toma acciones de control" itemValue="3" />
+                            <f:selectItem itemLabel="Ingrese el valor de capacitación" itemValue="" />
+                            <f:selectItem itemLabel="Existen, son satisfactorios" itemValue="1" />
+                            <f:selectItem itemLabel="Existen parcialmente, no son suficientes" itemValue="2" />
+                            <f:selectItem itemLabel="No existen" itemValue="3" />
                         </p:selectOneMenu>
                     </div>
 
-
-                    <!-- FECHA DE INVESTIGACION -->  
-
-                    <div class="field col-12 md:col-4">
-                        <p:outputLabel for="fecha" value="EXPOSICIÓN AL RIESGO"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 400;" />    
-                        <p:selectOneMenu>
-                            <f:selectItem itemLabel="Select" itemValue="" />
-=======
-                            <f:selectItem itemLabel="Ingrese la exposición al riesgo" itemValue="" />
->>>>>>> 4500ace0e28cef42329e5aad6c468d65c0fd3b1b
-                            <f:selectItem itemLabel="Una vez al año - Espóradicamente   " itemValue="1" />
-                            <f:selectItem itemLabel="Una vez al mes - Eventualmente" itemValue="2" />
-                            <f:selectItem itemLabel="Una vez al día - Permanentemente" itemValue="3" />
-                        </p:selectOneMenu>
-                    </div>
 
                     <!-- CAPACITACION -->  
 
                     <div class="field col-12 md:col-4">
-                        <p:outputLabel value="1.2. Capacitaciòn"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 400;" />    
+                        <p:outputLabel value="1.2. Capacitación"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 400;" />    
                         <p:selectOneMenu>
-                            <f:selectItem itemLabel="Ingrese la exposición al riesgo" itemValue="" />
+                            <f:selectItem itemLabel="Ingrese el valor de capacitación" itemValue="" />
                             <f:selectItem itemLabel="Una vez al año - Espóradicamente   " itemValue="1" />
                             <f:selectItem itemLabel="Una vez al mes - Eventualmente" itemValue="2" />
                             <f:selectItem itemLabel="Una vez al día - Permanentemente" itemValue="3" />
@@ -182,18 +154,37 @@
                     <div class="field col-12 md:col-4">
                         <p:outputLabel value="1.3. Exposición al riesgo"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 400;" />    
                         <p:selectOneMenu>
-                            <f:selectItem itemLabel="Ingrese la exposición al riesgo" itemValue="" />
+                            <f:selectItem itemLabel="Ingrese el valor de exposición al riesgo" itemValue="" />
                             <f:selectItem itemLabel="Una vez al año - Espóradicamente   " itemValue="1" />
                             <f:selectItem itemLabel="Una vez al mes - Eventualmente" itemValue="2" />
                             <f:selectItem itemLabel="Una vez al día - Permanentemente" itemValue="3" />
                         </p:selectOneMenu>
                     </div>
-                    
+
                     <div class="field col-12" style="display: flex; justify-content: center; ">
                         <p:button value="Agregar Calificaciòn" styleClass="ui-button-raised mr-2 mb-2" style="width: 200px; height: 50px; color: white; background-color: #741818; font-family: 'Inter', sans-serif; font-weight: 600; border: none"/>
                     </div>
-                </div>     
-            </div>    
+
+                    <div class="container">
+                        <!-- importar imagenes -->
+                        <h:graphicImage library="img" name="prueba.png" alt="Mi imagen" style="width: 200px; height: 150px;" />
+
+                    </div>
+
+
+                </div>    
+
+                <div class="field col-12" style="display: flex; justify-content: center; ">
+                    <button type="button" class="btn btn-outline-primary">Primary</button>
+                    <button type="button" class="btn btn-outline-secondary">Secondary</button>
+                    <button type="button" class="btn btn-outline-success">Success</button>
+                    <button type="button" class="btn btn-outline-danger">Danger</button>
+                    <button type="button" class="btn btn-outline-warning">Warning</button>
+                </div>
+            </div>   
+
         </h:form>
     </ui:define>
+
+
 </ui:composition>

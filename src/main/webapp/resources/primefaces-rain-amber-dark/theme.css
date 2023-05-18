@@ -3692,6 +3692,7 @@ body .ui-calendar .ui-button.ui-button-icon-only .ui-icon-calendar {
 }
 body .ui-calendar .ui-button.ui-button-icon-only .ui-icon-calendar:before {
   content: "\e927";
+  background-color: white;
 }
 body .ui-calendar.ui-trigger-calendar input.hasDatepicker {
   border-top-right-radius: 0;
@@ -3701,6 +3702,9 @@ body .ui-calendar.ui-trigger-calendar input.hasDatepicker {
 body .ui-fluid .ui-trigger-calendar input.hasDatepicker {
   width: calc(100% - 2.357rem);
   padding-right: 0;
+  background-color: transparent;
+  border:none;
+  border-bottom: 2px solid yellow;
 }
 body .ui-fluid .ui-trigger-calendar .ui-datepicker-trigger.ui-button {
   position: absolute;
@@ -3709,9 +3713,11 @@ body .ui-fluid .ui-trigger-calendar .ui-datepicker-trigger.ui-button {
 }
 body .ui-fluid .ui-trigger-calendar .ui-datepicker-trigger.ui-button .ui-button-text {
   padding: 0.5rem;
+  background: yellow;
 }
 body .ui-fluid .p-datepicker .ui-datepicker-trigger.ui-button {
   right: 0;
+  background: gris;
 }
 
 body .ui-inplace .ui-inplace-display {

@@ -57,7 +57,7 @@ public class Controlador extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Obtén los datos ingresados por el usuario desde los parámetros de la solicitud
-        String nombre = request.getParameter("nombre");
+        /*String nombre = request.getParameter("nombre");
         String apellido = request.getParameter("apellido");
         int edad = Integer.parseInt(request.getParameter("edad"));
         String correo = request.getParameter("correo");
@@ -65,7 +65,7 @@ public class Controlador extends HttpServlet {
         Persona persona = new Persona(0, nombre, apellido, edad, correo); // El ID se inicializa en 0 ya que se generará automáticamente en la base de datos
 
         PersonaDAO personaDAO = new PersonaDAO();
-        personaDAO.guardarPersona(persona);
+        personaDAO.guardarPersona(persona);*/
 
         // Envía un mensaje de confirmación al usuario
         PrintWriter out = response.getWriter();

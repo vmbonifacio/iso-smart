@@ -24,6 +24,15 @@
             <artifactId>bootstrap</artifactId>
             <version>5.2.3</version>
         </dependency>
+        
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>webjars-locator-core</artifactId>
+            <version>0.50</version>
+        </dependency>
+
+        <!-- Otras dependencias de tu proyecto -->
+
 
         <dependency>
             <groupId>org.primefaces</groupId>
@@ -47,13 +56,6 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
             <scope>provided</scope>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
-        <dependency>
-            <groupId>com.microsoft.sqlserver</groupId>
-            <artifactId>mssql-jdbc</artifactId>
-            <version>8.2.2.jre8</version>
         </dependency>
         
         <!-- CDI required APIs -->
@@ -157,13 +159,18 @@
             <version>7.0</version>
             <type>jar</type>
         </dependency>
-</dependencies>
+    </dependencies>
 
     <repositories>
         <repository>
             <id>prime-repo</id>
             <name>PrimeFaces Maven Repository</name>
             <url>http://repository.primefaces.org</url>
+        </repository>
+        
+        <repository>
+            <id>webjars</id>
+            <url>https://maven.webjars.org</url>
         </repository>
     </repositories>
 
@@ -214,8 +221,8 @@
             <id>distribute</id>
             <properties>
                 <packaging.type>jar</packaging.type>
-                 <maven.compiler.source>11</maven.compiler.source>
-                 <maven.compiler.target>11</maven.compiler.target>
+                <maven.compiler.source>11</maven.compiler.source>
+                <maven.compiler.target>11</maven.compiler.target>
             </properties>
             <build>
                 <plugins>

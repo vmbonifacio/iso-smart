@@ -14,7 +14,7 @@ public class PersonaDAO {
             Connection conexion = null;
             PreparedStatement pstmt = null;
 
-            try {
+            /*try {
                 // Obtén la conexión a la base de datos
                 conexion = conexiones.conectar();
 
@@ -80,6 +80,6 @@ public class PersonaDAO {
                 System.out.println("Error al obtener las personas de la base de datos: " + ex.getMessage());
             }
 
-            return listaPersonas;
+            return listaPersonas;        }*/
         }
 }

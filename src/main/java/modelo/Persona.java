@@ -64,5 +64,7 @@ public class Persona {
     public void setNumTrabajadores(int NumTrabajadores) {
         this.NumTrabajadores = NumTrabajadores;
     }
+
+    
 }
 
