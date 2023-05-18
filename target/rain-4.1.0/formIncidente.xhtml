@@ -280,37 +280,51 @@
                                      <p:button value="Agregar empleador de terceros" styleClass="ui-button-danger" style="background-color:#741818;color: white; font-family: 'Inter', sans-serif; font-weight: 600;border-radius: 10px;height:50px;"/>
                                  </div>
                                  <!--tabla-->
-                                 <div class="card mt-4" style="background-color:black;">
-                                     <p:dataTable >
-                                         <p:column selectionMode="multiple" style="width:16px;text-align:center; background-color:#20212b;"/>
-                                         <p:column headerText="N°" style="background-color:#20212b;color:white;">
-                                             <h:outputText value="#{product.code}"/>
-                                         </p:column>
-
-                                         <p:column headerText="Razón social" style="background-color:#20212b;color:white;">
-                                             <h:outputText value="#{product.name}" />
-                                         </p:column>
-
-                                         <p:column headerText="RUC" style="background-color:#20212b;color:white;">
-                                             <h:outputText value="#{product.RUC}" />
-                                         </p:column>
-                                         <p:column headerText="Dpto." style="background-color:#20212b;color:white;">
-                                             <h:outputText value="#{product.Dpto}" />
-                                         </p:column>
-                                         <p:column headerText="Provincia" style="background-color:#20212b;color:white;">
-                                             <h:outputText value="#{product.Provincia}" />
-                                         </p:column>
-                                         <p:column headerText="Distrito" style="background-color:#20212b;color:white;">
-                                             <h:outputText value="#{product.Distrito}" />
-                                         </p:column>
-                                         <p:column headerText="T. actividad económica" style="background-color:#20212b;color:white;">
-                                             <h:outputText value="#{product.actividad}" />
-                                         </p:column>
-                                         <p:column headerText="Acción" style="background-color:#20212b;color:white;">
-
-                                         </p:column>
-                                     </p:dataTable>  
-                                 </div>
+                                 <table class="table">
+                                     <thead class="table-dark">
+                                         <tr  class="text-center">
+                                             <th rowspan="2">#</th>
+                                             <th rowspan="2">Razón Social</th>
+                                             <th rowspan="2">RUC</th>
+                                             <th colspan="3">Ubicación </th>
+                                             <th rowspan="2">Tipo de Actividad Económica</th>
+                                             <th rowspan="2">Acciones</th>
+                                         </tr>
+                                         <tr  class="text-center">
+                                             <th>Distrito</th>
+                                             <th>Departamento</th>
+                                             <th>Provincia</th>
+                                         </tr>
+                                     </thead>
+                                     <tbody  class="text-center">
+                                         <tr>
+                                             <td>1</td>
+                                             <td>Empresa A</td>
+                                             <td>123456789</td>
+                                             <td>Miraflores</td>
+                                             <td>Lima</td>
+                                             <td>Lima</td>
+                                             <td>Actividad A</td>
+                                             <td>
+                                                 <button type="button" class="btn btn-primary">Editar</button>
+                                                 <button type="button" class="btn btn-danger">Eliminar</button>
+                                             </td>
+                                         </tr>
+                                         <tr>
+                                             <td>2</td>
+                                             <td>Empresa B</td>
+                                             <td>987654321</td>
+                                             <td>Cayma</td>
+                                             <td>Arequipa</td>
+                                             <td>Arequipa</td>
+                                             <td>Actividad B</td>
+                                             <td>
+                                                 <button type="button" class="btn btn-primary">Editar</button>
+                                                 <button type="button" class="btn btn-danger">Eliminar</button>
+                                             </td>
+                                         </tr>
+                                     </tbody>
+                                 </table>
                             </div>
                         </div>
                        <div class="w-full" style="background-color: transparent;">

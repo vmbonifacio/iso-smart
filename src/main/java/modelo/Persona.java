@@ -7,15 +7,22 @@ public class Persona {
     String Direccion;
     int Actividad;
     int NumTrabajadores;
-
-    public Persona(String RazonSocialD, char Ruc, int Domicilio, String Direccion, int Actividad, int NumTrabajadores) {
+    int NumtrabajadoresSCTR;
+    int NumtrabajadoresnoSCTR;
+    String  Nafiliadora;
+    
+    public Persona(String RazonSocialD, char Ruc, int Domicilio, String Direccion, int Actividad, int NumTrabajadores, int NumtrabajadoresSCTR, int NumtrabajadoresnoSCTR, String Nafiliadora) {
         this.RazonSocialD = RazonSocialD;
         this.Ruc = Ruc;
         this.Domicilio = Domicilio;
         this.Direccion = Direccion;
         this.Actividad = Actividad;
         this.NumTrabajadores = NumTrabajadores;
+        this.NumtrabajadoresSCTR = NumtrabajadoresSCTR;
+        this.NumtrabajadoresnoSCTR = NumtrabajadoresnoSCTR;
+        this.Nafiliadora = Nafiliadora;
     }
+
 
     public String getRazonSocialD() {
         return RazonSocialD;
@@ -65,6 +72,28 @@ public class Persona {
         this.NumTrabajadores = NumTrabajadores;
     }
 
-    
+     public int getNumtrabajadoresSCTR() {
+        return NumtrabajadoresSCTR;
+    }
+
+    public void setNumtrabajadoresSCTR(int NumtrabajadoresSCTR) {
+        this.NumtrabajadoresSCTR = NumtrabajadoresSCTR;
+    }
+
+    public int getNumtrabajadoresnoSCTR() {
+        return NumtrabajadoresnoSCTR;
+    }
+
+    public void setNumtrabajadoresnoSCTR(int NumtrabajadoresnoSCTR) {
+        this.NumtrabajadoresnoSCTR = NumtrabajadoresnoSCTR;
+    }
+
+    public String getNafiliadora() {
+        return Nafiliadora;
+    }
+
+    public void setNafiliadora(String Nafiliadora) {
+        this.Nafiliadora = Nafiliadora;
+    }
 }
 
