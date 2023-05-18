@@ -3,21 +3,22 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
-                template="/WEB-INF/template.xhtml">
-    <head>
-        <link rel="stylesheet" href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css" />
-        <script src="/webjars/bootstrap/5.2.3/js/bootstrap.min.js"></script>
-    </head>
+                template="/WEB-INF/template.xhtml"
+                xmlns:webjars="http://webjars.org/ui"
+                webjars:assetLocator="org.webjars.WebJarAssetLocator">
+
+    <ui:define name="head">
+        <h:outputStylesheet library="webjars" name="bootstrap/5.2.3/css/bootstrap.min.css" />
+    </ui:define>
+
+
     <ui:define name="title">Consecuencia</ui:define>
-
-
 
     <style>
         .ui-datepicker-timeonly {
             border: none;
         }
     </style>
-
 
     <ui:define name="viewname">
         <li>FORMULARIOS</li>
@@ -27,6 +28,7 @@
 
 
     <ui:define name="content">
+
         <h:form>
             <!-- REGISTRO DE INVESTIGACION -->  
             <h5 class="h-5rem text-center text-4xl p-4 text-white-alpha-90" 
@@ -164,12 +166,25 @@
                     </div>
 
                     <div class="container">
-                        <h1>¡Hola, mundo!</h1>
-                        <button class="btn btn-primary">Botón de Bootstrap</button>
+                        <!-- importar imagenes -->
+                        <h:graphicImage library="img" name="prueba.png" alt="Mi imagen" style="width: 200px; height: 150px;" />
+
                     </div>
-                </div>     
-            </div>    
+
+
+                </div>    
+
+                <div class="field col-12" style="display: flex; justify-content: center; ">
+                    <button type="button" class="btn btn-outline-primary">Primary</button>
+                    <button type="button" class="btn btn-outline-secondary">Secondary</button>
+                    <button type="button" class="btn btn-outline-success">Success</button>
+                    <button type="button" class="btn btn-outline-danger">Danger</button>
+                    <button type="button" class="btn btn-outline-warning">Warning</button>
+                </div>
+            </div>   
+
         </h:form>
     </ui:define>
+
 
 </ui:composition>
