@@ -16,7 +16,7 @@ public class conexiones {
 
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            conexion = DriverManager.getConnection(url, usuario, contraseña);
+            conexion = DriverManager.getConnection(url,usuario, contraseña);
             System.out.println("Conexión exitosa a SQL Server");
         } catch (ClassNotFoundException e) {
             System.out.println("No se pudo cargar la clase del controlador: " + e.getMessage());
@@ -35,12 +35,15 @@ public class conexiones {
                 PreparedStatement ps = conexion.prepareStatement(consulta);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    String id = rs.getString("ID_user");
-                    String nombre = rs.getString("Nombre");
-                    String apellido = rs.getString("Apellido");
-                    int edad = rs.getInt("Edad");
-                    String correo = rs.getString("Correo");
-                    System.out.println("ID_user: " + id + ", Nombre: " + nombre + ", Apellido: " + apellido +", Edad: " + edad + ", Correo: " + correo);
+                    char Ruc = rs.getChar("Ruc");
+                    int Domicilio = rs.getInt("Domicilio");
+                    String Direccion = rs.getString("Direccion");
+                    int Actividad = rs.getInt("Actividad");
+                    int  NumTrabajadores = rs.getInt(" NumTrabajadores");
+                    int  NumTrabajadoresSCTR = rs.getInt("NumTrabajadoresSCTR");
+                    int  NumTrabajadoresnoSCTR = rs.getInt(" NumTrabajadoresnoSCTR");
+                    String Nafiliadora = rs.getString("Nafiliadora");
+                    System.out.println("Ruc: " + ruc + ",Domicilio: " + domicilio + ", Direccion: " + direccion +", Actividad: " + actividad + ", NumTrabajadores: " + numTrabajadores +",NumTrabajadoresSCTR" + numTrabajadoresSCTR +",NumTrabajadoresnoSCTR" + numTrabajadoresnoSCTR + ",Nafiliadora" + afiliadora); 
                 }
             } catch (SQLException e) {
                 System.out.println("Error al ejecutar la consulta: " + e.getMessage());
@@ -52,6 +55,10 @@ public class conexiones {
                 }
             }
         }
+    }
+
+    private static Connection conectar() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }*/
 }
 
