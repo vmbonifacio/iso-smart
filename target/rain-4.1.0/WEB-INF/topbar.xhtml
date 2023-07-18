@@ -1,43 +1,46 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:p="http://primefaces.org/ui" xmlns:po="http://primefaces.org/rain">
-    
-        <!-- Incluye el archivo JavaScript para el menú -->
-        <script src="resources/js/menu.js"></script>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core" 
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" 
+                xmlns:po="http://primefaces.org/rain">
 
-    <div class="layout-topbar">
+
+
+    <div class="layout-topbar"> 
         <div class="layout-topbar-wrapper">
-            <div class="layout-topbar-left">
+            <div class="layout-topbar-left"  style="background-color: #ffd713;">
                 <h:link id="logolink" outcome="/dashboard" styleClass="layout-topbar-logo">
-                    <p:graphicImage name="images/#{ guestPreferences.lightLogo ? 'logo-rain-white.svg' : 'logo-rain-black.svg'}"  library="rain-layout" />
+                    <h:graphicImage library="img" name="LOGO ISO SMART.png" alt="Mi imagen" style="width: 60px; height: 52px; border-radius:10px;box-shadow: 12px 6px 39px -7px rgba(0,0,0,1);" class="mt-1" />
                 </h:link>
             </div>
-            <div class="layout-topbar-right">
-                <div class="menu-button-wrapper" id="menuButton">
+            <div class="layout-topbar-right" style="background-color: #ffd713;">
+                <div class="menu-button-wrapper" id="menuButton" >
                     <a href="#" class="menu-button">
                         <div class="menu-button-bars">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                          </div>
-                          <div class="menu-button-times">
-                            <span></span>
-                            <span></span>
-                          </div>
+                            <span style="color:black;"></span>
+                            <span style="color:black;"></span>
+                            <span style="color:black;"></span>
+                        </div>
+                        <div class="menu-button-times">
+                            <span style="color:black;"></span>
+                            <span style="color:black;"></span>
+                        </div>
                     </a>
                 </div>
                 <ul class="layout-topbar-actions">
                     <li class="search-item topbar-item">
                         <h:form onsubmit="return false;">
-                            <h:panelGroup styleClass="md-inputfield search-input-wrapper">
-                                <p:inputText placeholder="Buscar..." />
-                                <i class="pi pi-search"></i>
+                            <h:panelGroup styleClass="md-inputfield search-input-wrapper"> 
+                                <p:inputText style="background-color: #ffd713; color:black; border: 2px solid black;"
+                                             placeholder="Buscar... "/>
+                                <i class="pi pi-search" style="color:black;"></i>
                             </h:panelGroup>
                         </h:form>
                     </li>
                     <li class="topbar-item notifications">
                         <a href="#">
-                            <i class="topbar-icon pi pi-bell"></i>
+                            <i class="topbar-icon pi pi-bell" style="color:black;"></i>
                         </a>
                         <ul>
                             <li class="layout-submenu-header">
@@ -92,7 +95,7 @@
                     </li>
                     <li class="topbar-item messages">
                         <a href="#">
-                            <i class="topbar-icon pi pi-comment"></i>
+                            <i class="topbar-icon pi pi-comment" style="color:black;"></i>
                         </a>
                         <ul >
                             <li class="layout-submenu-header">
@@ -147,7 +150,7 @@
                     </li>
                     <li class="topbar-item sales">
                         <a href="#">
-                            <i class="topbar-icon pi pi-tag"></i>
+                            <i class="topbar-icon pi pi-tag" style="color:black;"></i>
                         </a>
                         <ul >
                             <li class="layout-submenu-header">
@@ -233,14 +236,21 @@
                             </ul>
                         </li>
                     </ui:fragment>
-                 
+
                 </ul>
                 <a href="#" class="layout-rightpanel-button">
-                    <i class="pi pi-ellipsis-v"></i>
+                    <i class="pi pi-ellipsis-v" style="color:black;"></i>
                 </a>
             </div>
         </div>
-       
-    </div>
+        <script src="resources/js/menu.js"></script>
+        <script>
+                            $(document).ready(function () {
+                                $('#menuButton').on('click', function () {
+                                    $('.menu-wrapper').toggleClass('menu-wrapper-open');
+                                });
+                            });
 
+        </script>
+    </div>
 </ui:composition>

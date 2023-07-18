@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>CRUD Básico</title>
+        <h:outputStylesheet library="webjars" name="bootstrap/5.2.3/css/bootstrap.min.css" />
+
+        <script>
+        </script>
+
+        <style>
+            .texto-destacado {
+                font-size: 19px;
+            }
+
+            .input-estilo {
+                border: 1px solid black;
+                padding: 5px;
+                border-radius: 5px;
+            }
+
+            .navbar {
+                background-color: #f8f9fa;
+                padding: 10px;
+            }
+
+            .navbar-title {
+                font-size: 24px;
+                font-weight: bold;
+                margin: 0;
+            }
+        </style>
+    </h:head>
+
+    <h:body>
+        <div class="navbar">
+            <h2 class="navbar-title">Soporte Base de Datos</h2>
+        </div>
+
+        <div style="width: 400px; margin: 0 auto;">
+            <h:form>
+                <h:outputText value="Razon Social:" styleClass="texto-destacado" /><br></br><br></br>
+                <h:inputText value="#{tercerosManagedBean.tercero.razon_social}" styleClass="input-estilo"></h:inputText><br></br><br></br>
+                <h:outputText value="RUC:" styleClass="texto-destacado"/><br></br><br></br>
+                <h:inputText value="#{tercerosManagedBean.tercero.ruc}" styleClass="input-estilo"></h:inputText><br></br><br></br>
+                <!-- NO TOCAR -->
+                <p:commandButton value="Agregar" 
+                                 action="#{tercerosManagedBean.agregarRegistro}"
+                                 styleClass="ui-button-primary" 
+                                 icon="pi pi-user-plus">
+                    <f:ajax execute="@form" render="tablaTerceros" />
+                </p:commandButton>
+            </h:form>
+        </div>
+
+        <!-- comment --><h3>Tabla Empresas Terceros</h3>
+        <p:dataTable id="tablaTerceros" value="#{tercerosManagedBean.obtenerRegistrosTerceros()}" var="ter" rowKey="#{ter.id_empresa_tp}" emptyMessage="No se encontraron registros" reflow="true" rows="6" paginator="true">
+            <p:column headerText="ID">
+                <h:outputText value="#{ter.id_empresa_tp}" />
+            </p:column>
+
+            <p:column headerText="Razon Social">
+                <h:outputText value="#{ter.razon_social}" />
+            </p:column>
+            
+            <p:column headerText="Ruc">
+                <h:outputText value="#{ter.razon_social}" />
+            </p:column>
+        
+            <p:column headerText="Acciones">
+                <p:commandButton value="Editar" 
+                                 update=":modalEditar" 
+                                 oncomplete="PF('dlgEditar').show()" 
+                                 process="@this"
+                                 icon="pi pi-pencil">
+                    <f:setPropertyActionListener target="#{tercerosManagedBean.selectedTercero}" value="#{ter}" />
+                </p:commandButton>
+
+                <p:commandButton value="Eliminar" 
+                                 action="#{tercerosManagedBean.eliminarRegistro(ter.id_empresa_tp)}"
+                                 update="tablaTerceros" 
+                                 process="@this" 
+                                 icon="pi pi-trash" 
+                                 styleClass="ui-button-danger" />      
+            </p:column>
+        </p:dataTable>
+
+        <!-- Modal -->
+        <p:dialog id="modalEditar" widgetVar="dlgEditar" modal="true" resizable="true">
+            <h:form>
+                <p:panelGrid id="panelEditar" columns="2" layout="grid">
+                    <h:outputLabel value="Razón Social:" />
+                    <p:inputText id="inputRazonSocial" value="#{tercerosManagedBean.selectedTercero.razon_social}" />
+
+                    <h:outputLabel value="RUC:" />
+                    <p:inputText id="inputRuc" value="#{tercerosManagedBean.selectedTercero.ruc}" />
+
+                    <h:outputLabel value="Departamento:" />
+                    <p:inputText id="inputDepartamento" value="#{tercerosManagedBean.selectedTercero.departamento}" />
+
+                    <h:outputLabel value="Distrito:" />
+                    <p:inputText id="inputDistrito" value="#{tercerosManagedBean.selectedTercero.distrito}" />
+
+                    <p:commandButton value="Guardar" 
+                                     action="#{tercerosManagedBean.guardarCambios(tercerosManagedBean.selectedTercero)}" 
+                                     icon="pi pi-pencil"
+                                     oncomplete="PF('dlgEditar').hide();" 
+                                     process="@form" 
+                                     update="tablaTerceros">
+                    </p:commandButton>
+
+
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
+
+        
+    </h:body>
+</html>
+

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee"
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd"
+              version="2.3">
     
     <name>primefaces_rain</name>
     
@@ -9,7 +10,70 @@
         <component-type>org.primefaces.component.RainMenu</component-type>
         <component-class>org.primefaces.rain.component.RainMenu</component-class>
     </component>
+
+    <managed-bean>
+        <managed-bean-name>tercerosManagedBean</managed-bean-name>
+        <managed-bean-class>com.perudatarecovery.configuracion.TercerosManagedBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
     
+    <managed-bean>
+        <managed-bean-name>personaManagedBean</managed-bean-name>
+        <managed-bean-class>com.perudatarecovery.configuracion.PersonaManagedBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>personaTManagedBean</managed-bean-name>
+        <managed-bean-class>com.perudatarecovery.configuracion.PersonaTManagedBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>personaCManagedBean</managed-bean-name>
+        <managed-bean-class>com.perudatarecovery.configuracion.PersonaCManagedBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>tercerosIncManagedBean</managed-bean-name>
+        <managed-bean-class>com.perudatarecovery.configuracion.TercerosIncManagedBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>empresaPManagedBean</managed-bean-name>
+        <managed-bean-class>com.perudatarecovery.configuracion.EmpresaPManagedBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <!-- INCIDENTE -->
+    
+    <managed-bean>
+        <managed-bean-name>personaTIncManagedBean</managed-bean-name>
+        <managed-bean-class>com.perudatarecovery.configuracion.PersonaTIncManagedBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>personaPIncManagedBean</managed-bean-name>
+        <managed-bean-class>com.perudatarecovery.configuracion.PersonaPIncManagedBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>personaCIncManagedBean</managed-bean-name>
+        <managed-bean-class>com.perudatarecovery.configuracion.PersonaCIncManagedBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>organigramView</managed-bean-name>
+        <managed-bean-class>com.perudatarecovery.configuracion.OrganigramView</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+
+
     <render-kit>
         <renderer>
             <component-family>org.primefaces.component</component-family>
@@ -17,5 +81,4 @@
             <renderer-class>org.primefaces.rain.component.RainMenuRenderer</renderer-class>
         </renderer>
     </render-kit>
-    
 </faces-config>

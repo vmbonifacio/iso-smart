@@ -1216,6 +1216,7 @@ body .ui-datatable .ui-paginator.ui-paginator-bottom {
 body .ui-datatable thead th {
   background: #C8C8C8;
   color: black;
+  width: 20px;
   padding: 1rem 1rem;
   border: 1px solid #C8C8C8;
   border-width: 0 0 1px 0;
@@ -6611,7 +6612,7 @@ body .ui-dialog {
   border-radius: 4px;
 }
 body .ui-dialog .ui-dialog-titlebar {
-  background: #363636;
+  background: #1E1E2A;
   color: #E9E9E9;
   font-weight: 700;
   border-bottom: 0 none;
@@ -6699,11 +6700,12 @@ body .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-icon .ui-icon-newwin:bef
   content: "\e93a";
 }
 body .ui-dialog .ui-dialog-content {
-  background: #363636;
+  background: #1E1E2A;
   color: #E9E9E9;
   border: 0 none;
   padding: 0 1.5rem 2rem 1.5rem;
   border: 0 none;
+
 }
 body .ui-dialog .ui-dialog-footer {
   border-top: 0 none;
@@ -7314,6 +7316,7 @@ body .ui-notificationbar {
 
 body .ui-panel {
   padding: 0;
+  width: 110px;
 }
 body .ui-panel .ui-panel-title {
   margin: 0;
@@ -7399,11 +7402,14 @@ body .ui-panel .ui-panel-titlebar + .ui-panel-content {
   border-top: 0 none;
 }
 body .ui-panel .ui-panel-content {
-  border: 1px solid #4D4D4D;
-  background: #363636;
   color: #E9E9E9;
   padding: 1rem;
+  width: 110px;
+  min-height: 20px;
+  margin-bottom: 2px;
+  text-align: center;
 }
+
 body .ui-panel .ui-panel-footer {
   border: 1px solid #4D4D4D;
   background: #363636;
@@ -7415,6 +7421,7 @@ body .ui-panel .ui-panel-footer {
 body .ui-panel > div:last-of-type {
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
+  height: 56px;
 }
 body .ui-panel.ui-panel-collapsed .ui-panel-titlebar {
   border-bottom-left-radius: 4px;

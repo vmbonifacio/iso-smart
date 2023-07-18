@@ -32,6 +32,10 @@
             <div class="layout-main"> 
                 <ui:include src="./breadcrumb.xhtml" />    
                 <div class="layout-content">
+
+                    <h:panelGroup layout="block" styleClass="card1">
+                        <ui:insert name="menuPanel" />
+                    </h:panelGroup>
                     <ui:insert name="content"/>
                 </div>
                 <ui:include src="./footer.xhtml"/>
