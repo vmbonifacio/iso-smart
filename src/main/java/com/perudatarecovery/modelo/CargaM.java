@@ -25,11 +25,11 @@ public class CargaM {
 	private String nivelE;
 	private String tiempoE;
 	private String salario;
-	private String aeguradora;
+	private String aseguradora;
 	private String sucursales;
 	private String tipoS;
     
-    public CargaM(int id_cargam, String nombre, String ap_m, String ap_p, String tipoDoc, Date fechaN, String estadoC, String genero, String departamento, String provincia, String distrito, String direccion, String tipoC, Date fechaI, String turno, String area, String puesto, String nivelE, String tiempoE, String salario, String aeguradora, String sucursales, String tipoS) {
+    public CargaM(int id_cargam, String nombre, String ap_m, String ap_p, String tipoDoc, Date fechaN, String estadoC, String genero, String departamento, String provincia, String distrito, String direccion, String tipoC, Date fechaI, String turno, String area, String puesto, String nivelE, String tiempoE, String salario, String aseguradora, String sucursales, String tipoS) {
         this.id_cargam = id_cargam;
         this.nombre = nombre;
         this.ap_m = ap_m;
@@ -50,7 +50,7 @@ public class CargaM {
         this.nivelE = nivelE;
         this.tiempoE = tiempoE;
         this.salario = salario;
-        this.aeguradora = aeguradora;
+        this.aseguradora = aseguradora;
         this.sucursales = sucursales;
         this.tipoS = tipoS;
     }
@@ -222,12 +222,12 @@ public class CargaM {
         this.salario = salario;
     }
 
-    public String getAeguradora() {
-        return aeguradora;
+    public String getAseguradora() {
+        return aseguradora;
     }
 
-    public void setAeguradora(String aeguradora) {
-        this.aeguradora = aeguradora;
+    public void setAseguradora(String aseguradora) {
+        this.aseguradora = aseguradora;
     }
 
     public String getSucursales() {

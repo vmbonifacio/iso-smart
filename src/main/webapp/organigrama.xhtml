@@ -1,134 +1,288 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:pr="http://primefaces.org/ui"
-                template="/WEB-INF/template.xhtml"
-                xmlns:webjars="http://webjars.org/ui"
-                webjars:assetLocator="org.webjars.WebJarAssetLocator">
-    
-   <ui:define name="head">
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="head">
         <style>
-            .ui-organigram .ui-organigram-node.division {
-                background: #EF9A36;
+            /* Estilos del organigrama */
+            .organigram-wrapper {
+                display: flex;
+                flex-direction: row-reverse;
             }
 
-            .ui-organigram .ui-organigram-node.employee {
-                background: #f8da45;
-                background: -moz-linear-gradient(top, yellow 0%, #D7D413 100%);
-                background: -webkit-linear-gradient(top, #93e7ff 0%, #D7D413 100%);
-                background: linear-gradient(to bottom, yellow 0%, #D7D413 100%);
+            /* Estilos de la barra lateral */
+            .organigram-sidebar {
+                width: 14%;
+                background-color: #f2f2f2;
+                padding: 0;
+                box-sizing: border-box;
+                color: black;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                border-radius: 11px;
+            }
+
+            .organigram-sidebar .sidebar-item {
+                margin-bottom: 5px;
+                margin-top: 5px;
+                cursor: grabbing;
+            }
+
+            /* Estilos del contenedor del organigrama */
+            .organigram-content {
+                flex: 1;
+                padding: 10px;
+                box-sizing: border-box;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center; /* Centrar los nodos horizontalmente */
+            }
+
+            /* Estilos generales del nodo */
+            .ui-organigram-node {
+                position: relative;
+                padding: 10px;
+                cursor: move;
+                margin: 10px;
+                width: 150px; /* Ancho fijo para los nodos */
+                text-align: center; /* Centrar el texto horizontalmente */
+            }
+
+            /* Estilos del nodo "Gerencia General" */
+            .gerencia-general-node {
+                background-color: #FFCD29;
+                width: 120px;
+                border-radius: 10px;
+            }
+
+            /* Estilos del nodo "Marketing" */
+            .marketing-node {
+                background-color: #9747FF;
+                height: 60px;
+                width: 120px;
+                border-radius: 10px;
+                padding-top: 17px;
+            }
+
+            /* Estilos del nodo "Contabilidad" */
+            .contabilidad-node {
+                background-color: #14AE5C;
+                height: 60px;
+                width: 120px;
+                border-radius: 10px;
+                padding-top: 17px;
+            }
+
+            /* Estilos del nodo "Administración" */
+            .administracion-node {
+                background-color: #006EBE;
+                height: 60px;
+                width: 120px;
+                border-radius: 10px;
+                padding-top: 17px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            /* Estilos de la conexión vertical */
+            .connection-vertical {
+                position: absolute;
+                background-color: black;
+                width: 2px;
+                transform-origin: top center; /* Cambiar el origen de la transformación */
+            }
+
+            /* Estilos de la conexión horizontal */
+            .connection-horizontal {
+                position: absolute;
+                background-color: black;
+                height: 2px;
+                transform-origin: center left; /* Cambiar el origen de la transformación */
+            }
+
+            /* Estilos para el título de la barra lateral */
+            .titulo {
+                background-color: #F8DA45;
+                width: 100%;
+                border-top-right-radius: 11px;
+                border-top-left-radius: 11px;
+                text-align: center;
+                padding-top: 7px;
             }
         </style>
     </ui:define>
-    
+
     <ui:define name="viewname">
         <li>FORMULARIO</li>
         <li><i class="pi pi-chevron-right"></i></li>
         <li>ORGANIGRAMA</li>
-
     </ui:define>
-    
+
     <ui:define name="content">
         <div class="card">
-            <h:form id="form">
-                <p:growl id="growl"/>
+            <div class="organigram-wrapper">
+                <div class="organigram-sidebar">
+                    <div class="titulo">
+                        <h4>Formas</h4>
+                    </div>
+                    <div class="sidebar-item" draggable="true" ondragstart="dragStart(event);">
+                        <div id="gerenciaGeneralNode" class="ui-organigram-node gerencia-general-node" draggable="true">
+                            Gerencia General
+                        </div>
+                    </div>
 
-                <p:organigram id="organigram"
-                              widgetVar="organigram"
-                              value="#{organigramView.rootNode}"
-                              var="node"
-                              leafNodeConnectorHeight="#{organigramView.leafNodeConnectorHeight}"
-                              autoScrollToSelection="#{organigramView.autoScrollToSelection}"
-                              zoom="#{organigramView.zoom}"
-                              selection="#{organigramView.selection}"
-                              style="#{organigramView.style}">
+                    <div class="sidebar-item" draggable="true" ondragstart="dragStart(event);">
+                        <div id="administracionNode" class="ui-organigram-node administracion-node" draggable="true">
+                            Administración
+                        </div>
+                    </div>
 
-                    <p:ajax event="dragdrop" process="@this" update="@form:growl"
-                            listener="#{organigramView.nodeDragDropListener}"/>
-                    <p:ajax event="select" process="@this" update="@form:growl"
-                            listener="#{organigramView.nodeSelectListener}"/>
-                    <p:ajax event="contextmenu" process="@this"/>
-                    <p:ajax event="collapse" process="@this" update="@form:growl"
-                            listener="#{organigramView.nodeCollapseListener}"/>
-                    <p:ajax event="expand" process="@this" update="@form:growl"
-                            listener="#{organigramView.nodeExpandListener}"/>
+                    <div class="sidebar-item" draggable="true" ondragstart="dragStart(event);">
+                        <div id="marketingNode" class="ui-organigram-node marketing-node" draggable="true">
+                            Marketing
+                        </div>
+                    </div>
 
-                    <p:organigramNode>
-                        <h:outputText value="#{node.data}"/>
-                    </p:organigramNode>
+                    <div class="sidebar-item" draggable="true" ondragstart="dragStart(event);">
+                        <div id="contabilidadNode" class="ui-organigram-node contabilidad-node" draggable="true">
+                            Contabilidad
+                        </div>
+                    </div>
+                </div>
 
-                    <p:organigramNode type="root"
-                                      style="border-radius: 10px;">
-                        <h:outputText value="#{node.data}"/>
-                    </p:organigramNode>
-
-                    <p:organigramNode type="division"
-                                      styleClass="division"
-                                      icon="pi pi-briefcase"
-                                      iconPos="left">
-                        <h:outputText value="#{node.data}"/>
-                    </p:organigramNode>
-
-                    <p:organigramNode type="employee"
-                                      styleClass="employee"
-                                      icon="pi pi-user"
-                                      style="color: black;">
-                        <h:outputText value="#{node.data}"/>
-                    </p:organigramNode>
-                </p:organigram>
-
-                <p:contextMenu for="organigram" nodeType="employee">
-                    <p:menuitem value="fire employee"
-                                update="organigram"
-                                icon="pi pi-times"
-                                action="#{organigramView.removeEmployee()}"/>
-                </p:contextMenu>
-
-                <p:contextMenu for="organigram" nodeType="division">
-                    <p:menuitem value="Add employee"
-                                ajax="false"
-                                icon="pi pi-plus"
-                                onclick="PF('addEmployeeDialog').show(); return false;"/>
-                    <p:menuitem value="Remove division"
-                                update="organigram @form:growl"
-                                icon="pi pi-times"
-                                action="#{organigramView.removeDivision()}"/>
-                </p:contextMenu>
-
-                <p:dialog id="addEmployeeDialog"
-                          widgetVar="addEmployeeDialog"
-                          header="Add employee">
-
-                    <p:inputText value="#{organigramView.employeeName}"/>
-
-                    <p:commandButton process="@parent"
-                                     update=":form:organigram"
-                                     value="Add"
-                                     action="#{organigramView.addEmployee()}"
-                                     oncomplete="PF('addEmployeeDialog').hide();"/>
-
-                </p:dialog>
-            </h:form>
+                <div class="organigram-content" id="organigramContainer" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <div id="gerenciaGeneralContainer" class="gerencia-general-node-container"></div>
+                    <div id="administracionContainer" class="administracion-nodes-container"></div>
+                </div>
+                <svg id="connectionsContainer" class="connections-container"></svg>
+            </div>
         </div>
-        
-        <div class="card">
-            <p:organigramNode>
-                <h:outputText value="#{node.data}"/>
-            </p:organigramNode>
 
-            <p:organigramNode type="root"
-                              style="border-radius: 10px;">
-                <h:outputText value="#{node.data}"/>
-            </p:organigramNode>
+        <script>
+            let gerenciaGeneralAdded = false;
+            let administracionNodes = [];
 
-            <p:organigramNode type="division"
-                              styleClass="division"
-                              icon="pi pi-briefcase"
-                              iconPos="left">
-                <h:outputText value="#{node.data}"/>
-            </p:organigramNode>
-        </div>
+            function allowDrop(event) {
+                event.preventDefault();
+            }
+
+            function dragStart(event) {
+                event.dataTransfer.setData("text/plain", event.target.id);
+                event.dataTransfer.effectAllowed = "move";
+            }
+
+            function getNodePosition(node) {
+                const container = document.getElementById("organigramContainer");
+                const offsetX = node.offsetLeft - container.offsetLeft;
+                const offsetY = node.offsetTop - container.offsetTop;
+                return {x: offsetX, y: offsetY};
+            }
+
+            function drop(event) {
+                event.preventDefault();
+                const nodeId = event.dataTransfer.getData("text/plain");
+                const draggedNode = document.getElementById(nodeId);
+                const container = document.getElementById("organigramContainer");
+
+                // Verificar si el nodo ya existe en el organigramContainer
+                const existingNode = container.querySelector(".gerencia-general-node");
+
+                // Evitar agregar el nodo "Gerencia General" si ya existe
+                if (nodeId === "gerenciaGeneralNode") {
+                    if (existingNode || gerenciaGeneralAdded) {
+                        return;
+                    }
+                    gerenciaGeneralAdded = true; // Establecer la variable de control como verdadera
+
+                    // Crear un nuevo nodo clonado
+                    const newNode = draggedNode.cloneNode(true);
+                    newNode.classList.add("added");
+
+                    const offsetX = event.clientX - container.getBoundingClientRect().left - newNode.offsetWidth / 2;
+                    const offsetY = event.clientY - container.getBoundingClientRect().top - newNode.offsetHeight / 2;
+
+                    newNode.style.left = `${offsetX}px`;
+                    newNode.style.top = `${offsetY}px`;
+
+                    newNode.addEventListener("dragstart", dragStart);
+
+                    // Copiar los estilos del nodo original al nodo clonado
+                    const originalStyles = window.getComputedStyle(draggedNode);
+                    Array.from(originalStyles).forEach((property) => {
+                        newNode.style[property] = originalStyles[property];
+                    });
+
+                    const gerenciaGeneralContainer = document.getElementById("gerenciaGeneralContainer");
+                    gerenciaGeneralContainer.appendChild(newNode);
+                } else if (nodeId === "administracionNode") {
+                    // Si el nodo es de "Administración", agregarlo al contenedor de nodos de "Administración"
+                    administracionNodes.push(draggedNode);
+                    const administracionContainer = document.getElementById("administracionContainer");
+                    administracionContainer.innerHTML = ""; // Limpiar el contenedor antes de agregar los nodos nuevamente
+
+                    // Agregar los nodos de "Administración" al contenedor en el orden correcto
+                    for (const node of administracionNodes) {
+                        const cloneNode = node.cloneNode(true);
+                        cloneNode.classList.add("added");
+                        administracionContainer.appendChild(cloneNode);
+                    }
+
+                    // Aplicar la clase adicional para poner los nodos de "Administración" en fila
+                    administracionContainer.classList.add("administracion-node-row");
+
+                    // Verificar si el nodo Gerencia General ya existe
+                    const gerenciaGeneralContainer = document.getElementById("gerenciaGeneralContainer");
+                    const gerenciaGeneralExists = gerenciaGeneralContainer.querySelector(".gerencia-general-node");
+                    if (gerenciaGeneralExists) {
+                        const gerenciaGeneralNode = gerenciaGeneralContainer.querySelector(".gerencia-general-node");
+                        const positionGerenciaGeneral = getNodePosition(gerenciaGeneralNode);
+                        const positionNewNode = getNodePosition(administracionNodes[0]); // Primer nodo de Administración
+                        const verticalStartX = positionGerenciaGeneral.x + gerenciaGeneralNode.offsetWidth / 2;
+                        const verticalStartY = positionGerenciaGeneral.y + gerenciaGeneralNode.offsetHeight;
+                        const verticalEndX = positionNewNode.x + administracionNodes[0].offsetWidth / 2;
+                        const verticalEndY = positionNewNode.y;
+                        createVerticalConnection(verticalStartX, verticalStartY, verticalEndX, verticalEndY);
+                    }
+                } else {
+                    // Si no es un nodo de "Administración" ni de "Gerencia General", simplemente agregarlo al contenedor principal
+                    container.appendChild(draggedNode);
+                }
+            }
+
+            function createVerticalConnection(startX, startY, endX, endY) {
+                const container = document.getElementById("connectionsContainer");
+
+                const verticalLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+                verticalLine.setAttribute("class", "connection-vertical");
+                verticalLine.setAttribute("x1", startX);
+                verticalLine.setAttribute("y1", startY);
+                verticalLine.setAttribute("x2", endX);
+                verticalLine.setAttribute("y2", endY);
+                container.appendChild(verticalLine);
+            }
+
+            function createHorizontalConnection(startNode, endNode) {
+                const container = document.getElementById("connectionsContainer");
+
+                const startX = startNode.offsetLeft + startNode.offsetWidth / 2;
+                const startY = startNode.offsetTop + startNode.offsetHeight;
+                const endX = endNode.offsetLeft + endNode.offsetWidth / 2;
+                const endY = startNode.offsetTop + startNode.offsetHeight;
+
+                const connection = document.createElementNS("http://www.w3.org/2000/svg", "line");
+                connection.setAttribute("class", "connection-horizontal");
+                connection.setAttribute("x1", startX);
+                connection.setAttribute("y1", startY);
+                connection.setAttribute("x2", endX);
+                connection.setAttribute("y2", endY);
+                container.appendChild(connection);
+            }
+        </script>
     </ui:define>
 </ui:composition>

@@ -10,9 +10,6 @@
         <title>CRUD Básico</title>
         <h:outputStylesheet library="webjars" name="bootstrap/5.2.3/css/bootstrap.min.css" />
 
-        <script>
-        </script>
-
         <style>
             .texto-destacado {
                 font-size: 19px;
@@ -58,7 +55,7 @@
             </h:form>
         </div>
 
-        <!-- comment --><h3>Tabla Empresas Terceros</h3>
+        <h3>Tabla Empresas Terceros</h3>
         <p:dataTable id="tablaTerceros" value="#{tercerosManagedBean.obtenerRegistrosTerceros()}" var="ter" rowKey="#{ter.id_empresa_tp}" emptyMessage="No se encontraron registros" reflow="true" rows="6" paginator="true">
             <p:column headerText="ID">
                 <h:outputText value="#{ter.id_empresa_tp}" />
@@ -67,11 +64,11 @@
             <p:column headerText="Razon Social">
                 <h:outputText value="#{ter.razon_social}" />
             </p:column>
-            
+
             <p:column headerText="Ruc">
                 <h:outputText value="#{ter.razon_social}" />
             </p:column>
-        
+
             <p:column headerText="Acciones">
                 <p:commandButton value="Editar" 
                                  update=":modalEditar" 
@@ -119,7 +116,7 @@
             </h:form>
         </p:dialog>
 
-        
+
     </h:body>
 </html>
 

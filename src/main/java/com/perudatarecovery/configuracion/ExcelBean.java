@@ -2,31 +2,44 @@ package com.perudatarecovery.configuracion;
 
 import com.perudatarecovery.configuracion.Conexion;
 import com.perudatarecovery.modelo.CargaM;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import org.primefaces.PrimeFaces;
-import org.primefaces.event.FileUploadEvent;
-import org.primefaces.event.FilesUploadEvent;
 import org.primefaces.model.file.UploadedFile;
-import org.primefaces.model.file.UploadedFiles;
-import org.primefaces.util.EscapeUtils;
 
 @ManagedBean
 @ViewScoped
 public class ExcelBean {
 
     private List<CargaM> registros;
+    private UploadedFile file;
+
+    public UploadedFile getFile() {
+        return file;
+    }
+
+    public void setFile(UploadedFile file) {
+        this.file = file;
+    }
+
+    public List<CargaM> getRegistros() {
+        return registros;
+    }
+
+    public void setRegistros(List<CargaM> registros) {
+        this.registros = registros;
+    }
 
     @PostConstruct
     public void init() {
@@ -67,7 +80,7 @@ public class ExcelBean {
                 registro.setNivelE(rs.getString("nivelE"));
                 registro.setTiempoE(rs.getString("tiempoE"));
                 registro.setSalario(rs.getString("salario"));
-                registro.setAeguradora(rs.getString("aeguradora"));
+                registro.setAseguradora(rs.getString("aseguradora"));
                 registro.setSucursales(rs.getString("sucursales"));
                 registro.setTipoS(rs.getString("tipoS"));
 
@@ -83,33 +96,57 @@ public class ExcelBean {
         }
     }
 
-    public List<CargaM> getRegistros() {
-        return registros;
+    public void importarDatos() {
+        if (file != null) {
+            try {
+                // Guardar el archivo temporalmente en el servidor
+                String rutaArchivoTemporal = guardarArchivoTemporal(file);
+
+                // Ejecutar el procedimiento almacenado para importar datos desde el archivo
+                Connection con = Conexion.obtenerConexion();
+                String sql = "EXEC ImportarRegistrosDesdeExcel @rutaArchivo = ?";
+                PreparedStatement stmt = con.prepareStatement(sql);
+                stmt.setString(1, rutaArchivoTemporal);
+                stmt.executeUpdate();
+                stmt.close();
+                con.close();
+
+                // Actualizar la lista de registros después de la importación
+                obtenerRegistrosCargaM();
+
+                // Mostrar mensaje de éxito
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Importación completada", null));
+            } catch (Exception e) {
+                // Manejar cualquier error durante la importación
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al importar los datos", null));
+                e.printStackTrace();
+            }
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Seleccione un archivo Excel", null));
+        }
     }
 
-    public void setRegistros(List<CargaM> registros) {
-        this.registros = registros;
-    }
-
-//    PARA LA IMPORTACIÓN
-    public static void importDataFromExcel(String filePath) {
+    private String guardarArchivoTemporal(UploadedFile file) {
+        String rutaArchivoTemporal = null;
         try {
-            // Establecer la conexión con la base de datos
-            Connection conn = Conexion.obtenerConexion();
+            // Obtener la ruta temporal para guardar el archivo
+            String rutaTemporal = System.getProperty("java.io.tmpdir");
+            String nombreArchivoTemporal = "temp_" + System.currentTimeMillis() + ".xlsx";
+            rutaArchivoTemporal = rutaTemporal + nombreArchivoTemporal;
 
-            // Llamar al procedimiento almacenado
-            String sql = "EXEC ImportarRegistrosDesdeExcel ?";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, filePath);
-            stmt.execute();
-
-            // Cerrar la conexión y liberar recursos
-            stmt.close();
-            conn.close();
-        } catch (SQLException e) {
-            // Manejar cualquier error de la base de datos
+            // Guardar el archivo en la ruta temporal
+            try (InputStream inputStream = file.getInputStream(); FileOutputStream outputStream = new FileOutputStream(rutaArchivoTemporal)) {
+                int bytesRead;
+                byte[] buffer = new byte[8192];
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+            }
+        } catch (IOException e) {
+            // Manejar cualquier error al guardar el archivo temporal
             e.printStackTrace();
         }
+        return rutaArchivoTemporal;
     }
 
 }

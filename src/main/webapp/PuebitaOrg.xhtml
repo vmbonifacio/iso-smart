@@ -34,8 +34,8 @@
                 box-sizing: border-box;
                 position: relative;
                 display: flex;
-                flex-direction: column; /* Cambiar la dirección de los nodos a vertical */
-                align-items: center; /* Centrar los nodos horizontalmente */
+                justify-content: center;
+                align-items: center;
             }
 
             .ui-organigram-node {
@@ -45,18 +45,13 @@
                 cursor: move;
                 margin: 10px;
                 width: 150px; /* Ancho fijo para los nodos */
-                text-align: center; /* Centrar el texto horizontalmente */
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
 
             .ui-organigram-node.added {
                 background-color: inherit;
-            }
-
-            .connection {
-                position: absolute;
-                background-color: black;
-                width: 2px;
-                transform-origin: top center; /* Cambiar el origen de la transformación */
             }
         </style>
     </ui:define>
@@ -149,24 +144,23 @@
             }
 
             function createConnection(startNode, endNode) {
-                const container = document.getElementById("organigramContainer");
-
                 const startX = startNode.offsetLeft + startNode.offsetWidth / 2;
-                const startY = startNode.offsetTop + startNode.offsetHeight;
+                const startY = startNode.offsetTop + startNode.offsetHeight / 2;
                 const endX = endNode.offsetLeft + endNode.offsetWidth / 2;
-                const endY = endNode.offsetTop;
+                const endY = endNode.offsetTop + endNode.offsetHeight / 2;
 
                 const connection = document.createElement("div");
                 connection.classList.add("connection");
                 connection.style.position = "absolute";
-                connection.style.width = "2px";
-                connection.style.height = Math.abs(endY - startY) + "px";
+                connection.style.width = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2)) + "px";
+                connection.style.height = "2px";
+                connection.style.background = "black";
                 connection.style.left = Math.min(startX, endX) + "px";
                 connection.style.top = Math.min(startY, endY) + "px";
-                connection.style.transform = `translate(-50%, 0)`; /* Ajustar la posición vertical de la línea */
-                
-                container.appendChild(connection);
+
+                document.getElementById("organigramContainer").appendChild(connection);
             }
         </script>
+
     </ui:define>
 </ui:composition>

@@ -17,20 +17,19 @@ import java.util.List;
 
 @Named(value = "tercerosManagedBean")
 @RequestScoped
-public class TercerosManagedBean  {
+public class TercerosManagedBean {
 
     private Tercero selectedTercero;
     private List<Tercero> listaTerceros;
     private String departamentoSeleccionado;
     private String provinciaSeleccionada;
     private String distritoSeleccionado;
-    
+
     private boolean mostrarCampos;
-    
 
     public TercerosManagedBean() {
         selectedTercero = new Tercero();
-        
+
 //        
         listaTerceros = new ArrayList();
 //        
@@ -40,7 +39,7 @@ public class TercerosManagedBean  {
     public void inicializar() {
         listaTerceros = obtenerRegistrosTerceros();
     }
-    
+
     public List<Tercero> getListaTerceros() {
         return listaTerceros;
     }
@@ -62,6 +61,7 @@ public class TercerosManagedBean  {
         return mostrarCampos;
     }
 //
+
     public void setMostrarCampos(boolean mostrarCampos) {
         this.mostrarCampos = mostrarCampos;
     }
@@ -74,8 +74,7 @@ public class TercerosManagedBean  {
 
     public void eliminarRegistro(int idEmpresa) {
         try (
-            Connection conn = Conexion.obtenerConexion();
-            Statement sql = conn.createStatement()) {
+                 Connection conn = Conexion.obtenerConexion();  Statement sql = conn.createStatement()) {
 
             String query = "DELETE FROM empresa_tp WHERE id_empresa_tp = ?";
             PreparedStatement pst = conn.prepareStatement(query);
@@ -84,7 +83,7 @@ public class TercerosManagedBean  {
 
             // Actualizar la lista de registros después de eliminar uno
             obtenerRegistrosTerceros();
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -94,9 +93,7 @@ public class TercerosManagedBean  {
         listaTerceros.clear();
 
         try (
-            Connection con = Conexion.obtenerConexion();
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM empresa_tp")) {
+                 Connection con = Conexion.obtenerConexion();  Statement stmt = con.createStatement();  ResultSet rs = stmt.executeQuery("SELECT * FROM empresa_tp")) {
 
             while (rs.next()) {
                 int id = rs.getInt("id_empresa_tp");
@@ -118,9 +115,8 @@ public class TercerosManagedBean  {
             }
 
             Collections.sort(listaTerceros, Comparator.comparingInt(Tercero::getId_empresa_tp));
-            
+
 //            
-            
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Error al obtener los registros: " + e.toString());
@@ -131,12 +127,11 @@ public class TercerosManagedBean  {
 
     public void agregarRegistro() {
         try (
-            Connection con = Conexion.obtenerConexion();
-            PreparedStatement pst = con.prepareStatement(
+                 Connection con = Conexion.obtenerConexion();  PreparedStatement pst = con.prepareStatement(
                 "INSERT INTO empresa_tp (razon_social, ruc, departamento,"
-                    + "provincia, distrito, direccion, a_economica, n_trabajadores,"
-                    + "n_trabajadores_sctr, n_trabajadores_nosctr, n_aseguradora)"
-                        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+                + "provincia, distrito, direccion, a_economica, n_trabajadores,"
+                + "n_trabajadores_sctr, n_trabajadores_nosctr, n_aseguradora)"
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
 
             pst.setString(1, tercero.getRazon_social());
             pst.setInt(2, tercero.getRuc());
@@ -154,11 +149,11 @@ public class TercerosManagedBean  {
 
             if (rowsAffected > 0) {
                 // Actualizar la lista de registros después de eliminar uno
-                
-                listaTerceros=obtenerRegistrosTerceros();
-                
+
+                listaTerceros = obtenerRegistrosTerceros();
+
             }
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Error al agregar el registro: " + e.toString());

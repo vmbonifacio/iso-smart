@@ -1,0 +1,276 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml"
+                xmlns:webjars="http://webjars.org/ui"
+                webjars:assetLocator="org.webjars.WebJarAssetLocator">
+
+    <ui:define name="head">
+        <h:outputStylesheet library="webjars" name="bootstrap/5.2.3/css/bootstrap.min.css" />
+
+        <style>
+            .table-black {
+                color: black;
+                border-collapse: separate;
+                border-spacing: 0;
+            }
+
+            .table-black th,
+            .table-black td {
+                border: 1px solid black;
+                padding: 5px;
+            }
+
+            .table-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+            }
+        </style>
+
+    </ui:define>
+
+    <ui:define name="title">Investigación</ui:define>
+
+    <ui:define name="viewname">
+        <li>REGISTRO DE INVESTIGACION</li>
+        <li><i class="pi pi-chevron-right"></i></li>
+        <li>INVESTIGACION DE ACCIDENTES</li>
+        <li><i class="pi pi-chevron-right"></i></li>
+        <li>DESCRIPCION DE INVESTIGACION</li>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form>
+            <!-- REGISTRO DE INVESTIGACION -->  
+            <h5 class="h-5rem text-center text-4xl p-4 text-white-alpha-90" 
+                style="background-color: #2A2A2A;
+                font-family: 'Inter', sans-serif;
+                font-weight: 600;">
+                INVESTIGACIÓN DE ACCIDENTES
+            </h5>
+
+            <!-- <div class="field col-12" style="display: flex; justify-content: center; ">-->
+            <!--    <button type="button" class="btn btn-outline-primary">Primary</button>-->
+            <!--    <button type="button" class="btn btn-outline-secondary">Secondary</button>-->
+            <!--    <button type="button" class="btn btn-outline-success">Success</button>-->
+            <!--     <button type="button" class="btn btn-outline-danger">Danger</button>-->
+            <!--     <button type="button" class="btn btn-outline-warning">Warning</button>-->
+            <!--  </div>-->
+
+            <div class="ui-fluid formgrid grid pl-2" style="box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+                 border-radius: 1rem 1rem 0 0;
+                 border-bottom: none;
+                 background-color: #F8DA45;">
+                <h5 class="p-3 text-2xl" style="font-family: 'Inter', sans-serif;
+                    font-weight: 600;
+                    color: black;">
+                    DESCRIPCIÓN DEL ACCIDENTE DE TRABAJO
+                </h5>    
+            </div>
+
+            <div class="ui-fluid formgrid grid"   
+                 style="border-radius: 0 0 1rem 1rem;
+                 background-color: #EDEDED;
+                 margin-bottom: 70px;
+                 padding: 30px 36px 30px 36px;
+                 box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);">
+                <h6 class="pl-3 text-base" style="font-family: 'Inter', sans-serif;
+                    color: black;">
+                    8. Describa solo los hechos, no  información subjetiva que no pueda ser comprobada. 
+                    Adjuntar: Declaración del afectado sobre el accidente de trabajo, Declaración de 
+                    testigos (de ser el caso), Procedimientos, planos, registros, entre otros que ayuden
+                    a la investigación de ser el caso. Describa el accidente en el cuadro inferior: 
+                </h6>
+
+                <div class="ui-g-12">
+                    <p:toolbarGroup align="right" styleClass="ml-auto">
+                        <p:fileUpload mode="simple" skinSimple="true" label="Subir Archivo" chooseIcon="pi pi-angle-up"/>
+                    </p:toolbarGroup>
+                </div>
+
+                <div class="ui-g-12">
+                    <p:inputTextarea rows="5" cols="30" maxlength="250" autoResize="false" placeholder="Ingrese aquí la descripción del accidente"/>
+                </div>
+
+                <div class="ui-g-12 text-right">
+                    <p:button value="Agregar" styleClass="ui-button-raised mr-2 mb-2" style="width: 200px;
+                              height: 50px;
+                              color: white;
+                              background-color: #741818;
+                              font-family: 'Inter', sans-serif;
+                              font-weight: 600;
+                              border: none"/>
+                </div>
+
+                <div class="field col-12 pt-6" >
+                    <h:form>
+                        <p:dataTable value="#{tablaBean.data}" var="fila" editable="true" emptyMessage="Registro de investigación en desarrollo."  style="border-radius: 10px;
+                                     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+                                     border-radius: 1rem 1rem 0 0;
+                                     border-bottom: none;" >
+                            <p:columnGroup type="header">
+                                <p:row>
+                                    <p:column headerText="Nº" style="text-align: center;
+                                              background-color: #20212B;
+                                              color: white;
+                                              border: 1px solid white; "/>
+                                    <p:column headerText="Nombre" style="text-align: center;
+                                              background-color: #20212B;
+                                              color: white;
+                                              border: 1px solid white;"/>
+                                    <p:column headerText="Fecha Modificación" style="text-align: center;
+                                              background-color: #20212B;
+                                              color: white;
+                                              border: 1px solid white;"/>
+                                    <p:column headerText="Tipo de Archivo" style="text-align: center;
+                                              background-color: #20212B;
+                                              color: white;
+                                              border: 1px solid white;"/>
+                                    <p:column headerText="Tamaño de Archivo" style="text-align: center;
+                                              background-color: #20212B;
+                                              color: white;
+                                              border: 1px solid white;"/>
+                                    <p:column headerText="Acción" style="text-align: center;
+                                              background-color: #20212B;
+                                              color: white;
+                                              border: 1px solid white;"/>
+                                </p:row>
+                            </p:columnGroup>
+
+                            <!-- Resto de las columnas y registros -->
+                            <p:column>
+                                <p:inputText value="#{fila.descripcion}"/>
+                            </p:column>
+                            <p:column>
+                                <p:inputText value="#{fila.personasExpuestas}"/>
+                            </p:column>
+                            <p:column>
+                                <p:inputText value="#{fila.procedimientosExistentes}"/>
+                            </p:column>
+                            <p:column>
+                                <p:inputText value="#{fila.capacitacion}"/>
+                            </p:column>
+                            <p:column>
+                                <p:inputText value="#{fila.exposicionRiesgo}"/>
+                            </p:column>
+                        </p:dataTable>      
+                    </h:form>
+                </div>
+            </div>
+
+            <div class="ui-fluid formgrid grid pl-2" style="box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+                 border-radius: 1rem 1rem 0 0;
+                 border-bottom: none;
+                 background-color: #F8DA45;">
+                <h5 class="p-3 text-2xl" style="font-family: 'Inter', sans-serif;
+                    font-weight: 600;
+                    color: black;">
+                    DESCRIPCIÓN DE CAUSAS DEL ACCIDENTE DE TRABAJO
+                </h5>    
+            </div>
+
+            <div class="ui-fluid formgrid grid"   
+                 style="border-radius: 0 0 1rem 1rem;
+                 background-color: #EDEDED;
+                 margin-bottom: 70px;
+                 padding: 30px 36px 30px 36px;
+                 box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);">
+                <h6 class="pl-3 text-base" style="font-family: 'Inter', sans-serif;
+                    color: black;">
+                    9. Cada empresa o entidad pública o privada, puede adoptar el modelo de determinación
+                    de causas, que mejor se adapte a sus características y debe adjuntar al presente formato
+                    el desarrollo de la misma.  Describa el accidente en el cuadro inferior:
+                </h6>
+
+                <div class="ui-g-12">
+                    <p:toolbarGroup align="right" styleClass="ml-auto">
+                        <p:fileUpload mode="simple" skinSimple="true" label="Subir Archivo" chooseIcon="pi pi-angle-up"/>
+                    </p:toolbarGroup>
+                </div>
+
+                <div class="ui-g-12">
+                    <p:inputTextarea rows="5" cols="30" maxlength="250" autoResize="false" placeholder="Ingrese aquí la descripción del accidente"/>
+                </div>
+
+                <div class="ui-g-12 text-right">
+                    <p:button value="Agregar" styleClass="ui-button-raised mr-2 mb-2" style="width: 200px;
+                              height: 50px;
+                              color: white;
+                              background-color: #741818;
+                              font-family: 'Inter', sans-serif;
+                              font-weight: 600;
+                              border: none"/>
+                </div>
+
+                <div class="field col-12 pt-6" >
+                    <h:form>
+                        <p:dataTable value="#{tablaBean.data}" var="fila" editable="true" emptyMessage="Registro de investigación en desarrollo."  style="border-radius: 10px;
+                                     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+                                     border-radius: 1rem 1rem 0 0;
+                                     border-bottom: none;" >
+                            <p:columnGroup type="header">
+                                <p:row>
+                                    <p:column headerText="Nº" style="text-align: center;
+                                              background-color: #20212B;
+                                              color: white;
+                                              border: 1px solid white; "/>
+                                    <p:column headerText="Nombre" style="text-align: center;
+                                              background-color: #20212B;
+                                              color: white;
+                                              border: 1px solid white;"/>
+                                    <p:column headerText="Fecha Modificación" style="text-align: center;
+                                              background-color: #20212B;
+                                              color: white;
+                                              border: 1px solid white;"/>
+                                    <p:column headerText="Tipo de Archivo" style="text-align: center;
+                                              background-color: #20212B;
+                                              color: white;
+                                              border: 1px solid white;"/>
+                                    <p:column headerText="Tamaño de Archivo" style="text-align: center;
+                                              background-color: #20212B;
+                                              color: white;
+                                              border: 1px solid white;"/>
+                                    <p:column headerText="Acción" style="text-align: center;
+                                              background-color: #20212B;
+                                              color: white;
+                                              border: 1px solid white;"/>
+                                </p:row>
+                            </p:columnGroup>
+
+                            <!-- Resto de las columnas y registros -->
+                            <p:column>
+                                <p:inputText value="#{fila.descripcion}"/>
+                            </p:column>
+                            <p:column>
+                                <p:inputText value="#{fila.personasExpuestas}"/>
+                            </p:column>
+                            <p:column>
+                                <p:inputText value="#{fila.procedimientosExistentes}"/>
+                            </p:column>
+                            <p:column>
+                                <p:inputText value="#{fila.capacitacion}"/>
+                            </p:column>
+                            <p:column>
+                                <p:inputText value="#{fila.exposicionRiesgo}"/>
+                            </p:column>
+                        </p:dataTable>      
+                    </h:form>
+                </div>
+            </div>
+
+            <div class="w-full" style="background-color: transparent;">
+                <div class="p-toolbar" style="display: flex; justify-content: flex-end; align-items: center;">
+                    <div style="margin-left: auto;">
+                        <p:button outcome="formInvestigacion" value="Regresar" styleClass="ui-button-raised ui-button-warning"
+                                  style="background-color: #2A2A2A; color: #FFF600; font-family: 'Inter', sans-serif; font-weight: 600; border-radius: 10px; width: 210px; height: 50px; border-color: #2A2A2A;" />
+                        <p:button outcome="formPrincipalInvestigacion" value="Siguiente" styleClass="ui-button-raised ui-button-warning"
+                                  style="background-color: #FFF600; color: black; font-family: 'Inter', sans-serif; font-weight: 600; border-radius: 10px; width: 210px; height: 50px; margin-left: 10px; border-color:  #FFF600;" />
+                    </div>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>

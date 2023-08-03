@@ -7,147 +7,236 @@
 
     <ui:define name="title">Ocurrencia</ui:define>
 
+    
+    
     <ui:define name="content">
-        <h:form id="mainForm">
-            <div class="card crud-demo">
+        <!-- REGISTRO DE INVESTIGACION -->  
+        <h5 class="h-5rem text-center text-5xl p-4 text-white-alpha-90" 
+            style="background-color: #2A2A2A;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;">
+            Registro de Ocurrencias
+        </h5>
+        <div class="card crud-demo">
+            <h:form id="mainForm">
                 <p:growl id="messages" showDetail="true" />
 
                 <p:toolbar>
                     <p:toolbarGroup>
-                        <p:commandButton value="Nueva Ocurrencia" onclick="showDialog(); return false;" icon="pi pi-plus" class="mr-2" style="background-color:#3C9462; border:1px solid #3C9462;" />
+                        <!-- BOTONES AGREGAR Y ELIMINAR-->
+                        <p:commandButton value="Nueva Ocurrencia" icon="pi pi-plus" 
+                                         onclick="mostrarModal(); return false;" class="mr-2" 
+                                         style="background-color:#3C9462; border:1px solid #3C9462;" />
 
-                        <p:commandButton value="Borrar" type="button" onclick="PF('dlg2').show();" icon="pi pi-trash" style="background-color:red; border:1px solid red;"/>
-
+                        <p:commandButton id="boton-eliminar-ocurrencias" value="#{ocurrenciaManagedBean.getDeleteButtonMessage()}" 
+                                         icon="pi pi-trash" 
+                                         disabled="#{not ocurrenciaManagedBean.hasSelectedOcurrencias()}" update="@this" 
+                                         style="background-color:red; border:1px solid red;">  
+                            <p:confirm header="Confirmación" message="¿Eliminar las ocurrencias seleccionadas?"
+                                       icon="pi pi-exclamation-triangle" />
+                        </p:commandButton>
                     </p:toolbarGroup>
+
+
                     <p:toolbarGroup align="right">
-                        <p:fileUpload mode="simple" skinSimple="true" label="Import" chooseIcon="pi pi-download" />
-                        <p:commandButton value="Export" icon="pi pi-upload" styleClass="ui-button-help" ajax="false">
-                            <p:dataExporter type="pdf" target="dt-products" fileName="products" />
+                        <!-- BOTON IMPORTAR-->
+                        <p:fileUpload mode="simple" skinSimple="true" label="Importar" chooseIcon="pi pi-download" />
+
+                        <!-- BOTON EXPORTAR-->
+                        <p:commandButton value="Exportar" icon="pi pi-upload" styleClass="ui-button-help" ajax="false">
+                            <p:dataExporter type="pdf" target="tablaPrincipal" fileName="products" />
                         </p:commandButton>
                     </p:toolbarGroup>
                 </p:toolbar>
 
-                <!-- BOTON ELIMINAR-->
+                <!-- TABLA DE DATOS - CRUD (CREATE, READ, UPDATE & DELETE-->
 
-                <p:dialog  widgetVar="dlg2" modal="true" style="background-color:#363636">
-                    <h:outputText value="¿Está seguro que desea eliminar este registro?" />
-                </p:dialog> 
+                <p:dataTable id="tablaPrincipal" widgetVar="dtOcurrencias" var="dashboard" value="#{ocurrenciaManagedBean.obtenerRegistroOcurrencia()}" 
+                             reflow="true" styleClass="products-table"  selection="#{ocurrenciaManagedBean.listaOcurrencia}"  
+                             rowKey="#{dashboard.codigo}" paginator="true" rows="10" rowSelectMode="add" paginatorPosition="bottom">
 
-                <p:dataTable id="tablaPrincipal" value="" var="dashboard" 
-                             reflow="true" styleClass="products-table"  
-                             paginator="true" rows="10" rowSelectMode="add" paginatorPosition="bottom">
 
+                    <!-- ENTRADA PARA REALIZAR BÚSQUEDAS -->
                     <f:facet name="header">
                         <div class="products-table-header">
                             <span style="font-weight: bold">Ocurrencias Registradas</span>
                             <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
-                                <p:inputText id="globalFilter" placeholder="Search" />
+                                <p:inputText id="globalFilter" onkeyup="PF('dtOcurrencias').filter()" placeholder="Buscar" />
                             </span>
                         </div>
                     </f:facet>
 
-                    <p:ajax event="rowSelect" update="" />
-                    <p:ajax event="rowUnselect" update="" />
-                    <p:ajax event="rowSelectCheckbox" update="" />
-                    <p:ajax event="rowUnselectCheckbox" update="" />
-                    <p:ajax event="toggleSelect" update="" />
+                    <p:ajax event="rowSelect" update=":mainForm:boton-eliminar-ocurrencias" />
+                    <p:ajax event="rowUnselect" update=":mainForm:boton-eliminar-ocurrencias" />
+                    <p:ajax event="rowSelectCheckbox" update=":mainForm:boton-eliminar-ocurrencias" />
+                    <p:ajax event="rowUnselectCheckbox" update=":mainForm:boton-eliminar-ocurrencias" />
+                    <p:ajax event="toggleSelect" update=":mainForm:boton-eliminar-ocurrencias" />
 
-                    <p:column headerText="Codigo" style="text-align:center">
-                        <h:outputText value="" />
+                    <p:column selectionMode="multiple" exportable="false" style="text-align: center; padding-left: 1px; padding-right: 0px; width: 15px;"></p:column>
+
+                    <p:column headerText="Codigo" sortBy="#{dashboard.codigo}" filterBy="#{dashboard.codigo}">
+                        <h:outputText value="#{dashboard.codigo}" />
                     </p:column>
 
-                    <p:column headerText="Nombre" style="text-align:center">
-                        <h:outputText value="" />
+                    <p:column headerText="Nombre" sortBy="#{dashboard.nombre}" filterBy="#{dashboard.nombre}">
+                        <h:outputText value="#{dashboard.nombre}" />
                     </p:column>
 
-                    <p:column headerText="Tipo de ocurrencia" style="text-align:center">
-                        <h:outputText value="" />
-                    </p:column>
-                    
-                    <p:column headerText="Fecha de ocurrencia" style="text-align:center">
-                        <h:outputText value="" />
+                    <p:column headerText="Tipo de ocurrencia" sortBy="#{dashboard.tipoOcurrencia}" filterBy="#{dashboard.tipoOcurrencia}">
+                        <h:outputText value="#{dashboard.tipoOcurrencia}" />
                     </p:column>
 
-                    <p:column headerText="Fecha de registro" style="text-align:center">
-                        <h:outputText value="" />
+                    <p:column headerText="Fecha de registro" sortBy="#{dashboard.fechaOcurrencia}" filterBy="#{dashboard.fechaOcurrencia}">
+                        <h:outputText value="#{dashboard.fechaOcurrencia}" />
                     </p:column>
 
-                    <p:column headerText="N° de personas afectadas" style="text-align:center">
-                        <h:outputText value="" />
+                    <p:column headerText="N° de personas afectadas" sortBy="#{dashboard.numPersonasAfectadas}" filterBy="#{dashboard.numPersonasAfectadas}">
+                        <h:outputText value="#{dashboard.numPersonasAfectadas}" />
                     </p:column>
 
-                    <p:column headerText="Accion" style="text-align:center">
-                        <p:commandButton icon="pi pi-pencil" update=""
-                                         oncomplete=""
-                                         styleClass="edit-button rounded-button ui-button-success" process="@this">
+                    <p:column exportable="false">
+                        <!-- BOTÓN PARA EDITAR FILAS INDIVIDUALMENTE -->
+                        <p:commandButton icon="pi pi-pencil" 
+                                         styleClass="edit-button rounded-button ui-button-success" process="@this" >
+                            <f:setPropertyActionListener value="#{dashboard}" target="#{ocurrenciaManagedBean.selectedOcurrencia}" />
+
                         </p:commandButton>
+
+                        <!-- BOTÓN PARA ELIMINAR FILAS INDIVIDUALMENTE -->
                         <p:commandButton class="ui-button-warning rounded-button" icon="pi pi-trash"
-                                         process="@this" >
+                                         process="@this" 
+                                         oncomplete="PF('deleteProductDialog').show()">
+                            <f:setPropertyActionListener value="#{dashboard}" target="#{ocurrenciaManagedBean.selectedOcurrencia}" />
                         </p:commandButton>
-                    </p:column>
 
+                    </p:column>
                 </p:dataTable>
-                <!-- 1ERA VENTANA EMERGENTE EN LA OCURRENCIA PRINCIPAL -->
-                <p:dialog id="myDialog" widgetVar="myDialog" modal="true" style="box-shadow:0px 0px 31px -4px rgba(255,246,0,1);border-radius:20px;">
+
+
+                <!-- VENTANA EMERGENTE: TIPO DE OCURRENCIA -->
+
+                <p:dialog id="modalOcurrencia" widgetVar="modalOcurrencia" modal="true" style="box-shadow:0px 0px 31px -4px rgba(255,246,0,1);border-radius:20px;">
                     <div>
                         <p:outputLabel value="¿Que ocurrencia desea registrar?" class="text-5xl" style="color: white; font-family: 'Inter', sans-serif; font-weight: 500;" />    
                     </div>
-                    <p:selectOneRadio layout="responsive" columns="1" class="text-4xl mb-6 mt-6" id="myRadio" >
-                        <f:selectItem itemLabel="Registrar un Accidente" itemValue="1" />
-                        <f:selectItem itemLabel="Registrar un Incidente" itemValue="2" />
+
+                    <p:selectOneRadio layout="responsive" columns="1" class="text-4xl mb-6 mt-6" 
+                                      id="radioOcurrencia" value="#{ocurrenciaManagedBean.selectedOcurrencia.tipoOcurrencia}" onchange="updateSelectedOcurrenciaNombre()">
+                        <f:selectItem itemLabel="Accidente Laboral" itemValue="Accidente" />
+                        <f:selectItem itemLabel="Incidente Laboral" itemValue="Incidente" />
                     </p:selectOneRadio>
+
                     <div class="text-center">
-                    <p:commandButton value="Aceptar" styleClass="ui-button-raised ui-button-warning ui-button w-3 h-3rem mt-8 mb-8" style="background-color:#FFF600; border:2px solid #ffffff;font-weight: 600" onclick="openDialog();" />
-                    </div>
-                </p:dialog>
-                <!-- VENTANAS EMERGENTES PARA REGISTRAR LA DESCRIPCION -->
-                <!-- para accidente -->
-                
-                <p:dialog id="dialogoAccidente" widgetVar="dialogoAccidente" modal="true" resizable="false" style="box-shadow:0px 0px 31px -4px rgba(255,246,0,1);border-radius:20px;">
-                    <div>
-                        <p:outputLabel value="Ingrese breve descripción del Accidente" class="text-5xl" style="color: white; font-family: 'Inter', sans-serif; font-weight: 500;" />
-                    </div>
-                    <div class="mt-8">
-                        <p:outputLabel value="Nombre:" class="text-xl mr-8" style="color: white; font-family: 'Inter', sans-serif; font-weight: 300;" />
-                        <p:inputText class="w-28rem mb-6" placeholder="Ingrese aquí" style="background:transparent; color: white; border: none; border-bottom: 3px solid #FFF600;" />
-                    </div>
-                    <div class="text-center">
-                        <p:button value="Aceptar" outcome="formAccidente" styleClass="ui-button-raised ui-button-warning ui-button w-3 h-3rem mt-8 mb-8" style="background-color:#FFF600; border:2px solid #ffffff;font-weight: 600" />
+                        <p:commandButton value="Aceptar" 
+                                         styleClass="ui-button-raised ui-button-warning ui-button w-3 h-3rem mt-8 mb-8" 
+                                         style="background-color:#FFF600; border:2px solid #ffffff;font-weight: 600" 
+                                         onclick="openDialog();"/>
                     </div>
                 </p:dialog>
 
-                <!-- para incidente -->
-                
-                <p:dialog id="dialogoIncidente" widgetVar="dialogoIncidente" modal="true" resizable="false" style="box-shadow:0px 0px 31px -4px rgba(255,246,0,1);border-radius:20px;">
+
+                <!-- VENTANAS EMERGENTES PARA REGISTRAR LA DESCRIPCION -->
+                <!-- CASO 1: ACCIDENTE-->
+
+                <p:dialog id="dialogoAccidente" widgetVar="dialogoAccidente" modal="true" resizable="false" style="box-shadow:0px 0px 31px -4px rgba(255,246,0,1);border-radius:20px;">
                     <div>
-                    <p:outputLabel value="Ingrese breve descripción del Incidente" class="text-5xl" style="color: white; font-family: 'Inter', sans-serif; font-weight: 500;" />    
+                        <p:outputLabel value="Ingrese breve descripción del Accidente" class="text-5xl" style="color: white; font-family: 'Inter', sans-serif; font-weight: 500;" />    
                     </div>
                     <div class="mt-8">
                         <p:outputLabel value="Nombre:" class="text-xl mr-8" style="color: white; font-family: 'Inter', sans-serif; font-weight: 300;" />    
-                        <p:inputText class="w-28rem mb-6" placeholder="Ingrese aquí" style="background:transparent; color: white; border: none; border-bottom: 3px solid  #FFF600;"/>
+                        <p:inputText class="w-full mb-6 mt-3" placeholder="Ingrese aquí" value="#{ocurrenciaManagedBean.accidenteNombre}" 
+                                     style="background:transparent; color: white; border: none; border-bottom: 3px solid  #FFF600;"/>
                     </div>
+
                     <div class="text-center">
-                    <p:button value="Aceptar" outcome="formIncidente" styleClass="ui-button-raised ui-button-warning ui-button w-3 h-3rem mt-8 mb-8" style="background-color:#FFF600; border:2px solid #ffffff;font-weight: 600"/>
+                        <p:commandButton value="Aceptar" 
+                                         onclick="redirectToAnotherPage();"
+                                         styleClass="ui-button-raised ui-button-warning ui-button w-3 h-3rem mt-8 mb-8" 
+                                         style="background-color:#FFF600; border:2px solid #ffffff;font-weight: 600"
+                                         action="#{ocurrenciaManagedBean.agregarRegistroTipoOcurrencia}"/>
                     </div>
                 </p:dialog>
-                <!-- FUNCIONALIDAD DE LAS VENTANAS EMERGENTES -->
+
+                <!-- CASO 2: INCIDENTE -->
+
+                <p:dialog id="dialogoIncidente" widgetVar="dialogoIncidente" modal="true" resizable="false" style="box-shadow:0px 0px 31px -4px rgba(255,246,0,1);border-radius:20px;">
+                    <div>
+                        <p:outputLabel value="Ingrese breve descripción del Incidente" class="text-5xl" style="color: white; font-family: 'Inter', sans-serif; font-weight: 500;" />    
+                    </div>
+                    <div class="mt-8">
+                        <p:outputLabel value="Nombre:" class="text-xl mr-8" style="color: white; font-family: 'Inter', sans-serif; font-weight: 300;" />    
+                        <p:inputText class="w-full mb-6 mt-3" placeholder="Ingrese aquí" value="#{ocurrenciaManagedBean.selectedOcurrencia.nombre}" style="background:transparent; color: white; border: none; border-bottom: 3px solid  #FFF600;"/>
+                    </div>
+
+                    <div class="text-center">
+                        <p:commandButton value="Aceptar" 
+                                         onclick="redirectToAnotherPage();"
+                                         styleClass="ui-button-raised ui-button-warning ui-button w-3 h-3rem mt-8 mb-8" 
+                                         style="background-color:#FFF600; border:2px solid #ffffff;font-weight: 600"
+                                         action="#{ocurrenciaManagedBean.agregarRegistroTipoOcurrencia}"/>
+                    </div>
+                </p:dialog>
+
+                <h:form id="dialogs">
+                    <!-- VENTANA EMERGENTE PARA EDITAR REGISTRO -->
+
+
+                    <!-- VENTANA EMERGENTE PARA ELIMINAR REGISTRO -->
+                    <p:confirmDialog widgetVar="deleteProductDialog" showEffect="fade" width="300"
+                                     message="¿Desea eliminar el producto?" header="Confirmar" severity="warn">
+
+                        <p:commandButton value="Sí" icon="pi pi-check"
+                                         actionListener="#{ocurrenciaManagedBean.eliminarRegistro(ocurrenciaManagedBean.selectedOcurrencia.codigo)}"
+                                         process="@this" update=":mainForm:boton-eliminar-ocurrencias"
+                                         oncomplete="PF('deleteProductDialog').hide()" />
+
+                        <p:commandButton value="No" type="button" styleClass="ui-button-secondary" icon="pi pi-times"
+                                         onclick="PF('deleteProductDialog').hide()" />
+                    </p:confirmDialog>
+
+
+                    <!-- CONFIGURACIÓN PARA FORMATO DE LAS VENTANAS EMERGENTES -->
+                    <p:confirmDialog global="true" showEffect="fade" width="300">
+                        <p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-secondary"
+                                         icon="pi pi-times" />
+                    </p:confirmDialog>
+                </h:form>
+
+
+                <!-- JAVASCRIPT: FUNCIONALIDAD PARA LAS VENTANAS EMERGENTES & VARIOS -->
                 <script>
-                    function showDialog() {
-                        PF('myDialog').show();
+                    function mostrarModal() {
+                        PF('modalOcurrencia').show();
                     }
 
                     function openDialog() {
-                        var selectedOption = $("input[name='mainForm:myRadio']:checked").val();
+                        var selectedOption = $("input[name='mainForm:radioOcurrencia']:checked").val();
 
-                        if (selectedOption === '1') {
+                        if (selectedOption === 'Accidente') {
                             PF('dialogoAccidente').show();
-                        } else if (selectedOption === '2') {
+                        } else if (selectedOption === 'Incidente') {
                             PF('dialogoIncidente').show();
                         }
                     }
+
+                    function redirectToAnotherPage() {
+                        // Redirige a la página deseada
+                        window.location.href = "formAccidente.xhtml";
+                    }
+
+                    function updateSelectedOcurrenciaNombre() {
+                        var tipoOcurrencia = $("input[name='mainForm:radioOcurrencia']:checked").val();
+                        ocurrenciaManagedBean.selectedOcurrencia.tipoOcurrencia = tipoOcurrencia;
+                        // Si necesitas obtener el nombre del incidente o accidente desde el servidor,
+                        // podrías hacer una petición AJAX aquí para obtener el nombre y actualizarlo en el formulario.
+
+                        var nombreInput = $("input[name='mainForm:nombreInput']").val();
+                        ocurrenciaManagedBean.selectedOcurrencia.nombre = nombreInput;
+                    }
                 </script>
 
-            </div>
-        </h:form>
+            </h:form>
+        </div>
     </ui:define>
 </ui:composition>

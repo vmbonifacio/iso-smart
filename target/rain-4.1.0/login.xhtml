@@ -1,48 +1,95 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
 
     <h:head>
-        <f:facet name="first">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-            <meta name="apple-mobile-web-app-capable" content="yes" />
-        </f:facet>
-        <title>PrimeFaces Rain - Login</title>
-        <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+        <style>
+            /* Estilo para el fondo de la imagen */
+            body {
+                background-image: url("#{resource['img/FormLogin.png']}");
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center center;
+                margin: 0;
+                padding: 0;
+                height: 100vh; /* Aseguramos que el fondo del body ocupe toda la pantalla */
+            }
+
+            .container {
+                display: flex;
+                justify-content: center; /* Centrar horizontalmente */
+                align-items: center;
+                flex-direction: column; /* Alineamos los elementos en columna */
+                height: 100vh; /* Ajustamos la altura al 80% del viewport (pantalla) */
+                max-width: 1200px; /* Ajustamos el ancho máximo del container */
+                margin: 0 auto; /* Para centrar el container horizontalmente en la pantalla */
+            }
+
+            .login-card {
+                width: 80%; /* Ajustamos el ancho del login-card al 80% del container */
+                max-width: 600px; /* Limitamos el ancho máximo del login-card */
+                display: flex; /* Agregamos el display flex para alinear los divs internos */
+                justify-content: center; /* Centrar horizontalmente */
+                align-items: center; /* Centrar verticalmente */
+            }
+
+            .login-card-left {
+                background-color: yellow;
+                flex: 0 0 30%; /* Reducimos el ancho del login-card-left al 30% */
+                display: flex;
+                justify-content: center; /* Centrar horizontalmente */
+                align-items: center; /* Centrar verticalmente */
+                padding: 20px;
+                height: 400px;
+                width:550px;
+            }
+
+            .login-card-right {
+                flex-grow: 1; /* Permite que el login-card-right ocupe todo el espacio restante */
+                padding: 20px;
+                background-color: #1E1E2A;
+                color: white;
+                height: 400px;
+            }
+
+            .login-title {
+                text-align: center;
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+
+            .login-card-left img {
+                max-width: 100%; /* Para asegurar que la imagen no supere el tamaño del login-card-left */
+                max-height: 80%; /* Ajustamos el alto de la imagen */
+            }
+        </style>
     </h:head>
 
-    <h:body styleClass="login-body">
-        <div class="login-image">
-            <p:graphicImage name="images/pages/bg-header-login.png" library="rain-layout" />
-        </div>
-        <div class="login-card">
-            <h1>RAIN<span>LOGIN</span></h1>
-            <span>Welcome, please use the form to sign-in <br/>Rain network</span>
-            <div class="form-group">
-                <span>Email</span>
-                <p:inputText placeholder="name@example.com" />
-            </div>
-            <div class="form-group">
-                <span>Password</span>
-                <p:password placeholder="write your password..." />
-            </div>
-            <div class="form-footer">
-                <div class="checkbox">
-                    <span>Remember Me</span>
-                    <p:selectBooleanCheckbox />
+    <h:body>
+        <div class="container">
+            <div class="login-card">
+                <div class="login-card-left">
+                    <!-- Contenido del div izquierdo -->
+                    <p:graphicImage library="img" name="LOGO ISO SMART.png" alt="Logo" style="width: 80%; height: 64%;"/>
+                    <!-- Puedes agregar aquí cualquier otro contenido que desees en la parte izquierda -->
                 </div>
-                <a href="#">Forget Password?</a>
+                <div class="login-card-right">
+                    <!-- Contenido del div derecho -->
+                    <h1>RAIN<span>LOGIN</span></h1>
+                    <span>Welcome, please use the form to sign-in <br/>Rain network</span>
+                    <div class="form-group">
+                        <span>Email</span>
+                        <p:inputText placeholder="name@example.com" />
+                    </div>
+                    <div class="form-group">
+                        <span>Password</span>
+                        <p:password placeholder="write your password..." />
+                    </div>
+                    <p:commandButton value="LOGIN" action="#{authBean.login}" />
+                </div>
             </div>
-
-            <p:linkButton outcome="/dashboard" value="LOGIN" />
-         
         </div>
-        <h:outputStylesheet name="css/#{guestPreferences.layout}.css" library="rain-layout" />
     </h:body>
 
 </html>

@@ -3,8 +3,8 @@
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
         <Node id="formAccidente2.xhtml" x="150" y="1350" zoom="true"/>
-        <Node id="chronoline.xhtml" x="900" y="900" zoom="true"/>
         <Node id="list.xhtml" x="1900" y="300" zoom="true"/>
+        <Node id="chronoline.xhtml" x="900" y="900" zoom="true"/>
         <Node id="floatlabel.xhtml" x="650" y="150" zoom="true"/>
         <Node id="formEstructuraOrg.xhtml" x="150" y="1200" zoom="true"/>
         <Node id="messages.xhtml" x="1150" y="750" zoom="true"/>
@@ -32,22 +32,22 @@
         <Node id="formIncidente.xhtml" x="400" y="600" zoom="true"/>
         <Node id="formConsecuencia.xhtml" x="2400" y="150" zoom="true"/>
         <Node id="notfound.xhtml" x="400" y="1050" zoom="true"/>
-        <Node id="documentation.xhtml" x="150" y="600" zoom="true"/>
         <Node id="dashboard.xhtml" x="2150" y="150" zoom="true"/>
+        <Node id="documentation.xhtml" x="150" y="600" zoom="true"/>
         <Node id="setup.xhtml" x="650" y="300" zoom="true"/>
         <Node id="empty.xhtml" x="150" y="300" zoom="true"/>
         <Node id="menu.xhtml" x="1650" y="150" zoom="true"/>
         <Node id="formInvestigacion.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="formDatosTrab.xhtml" x="1400" y="150" zoom="true"/>
         <Node id="error.xhtml" x="1150" y="450" zoom="true"/>
         <Node id="formIncidente3.xhtml" x="1400" y="600" zoom="true"/>
-        <Node id="formDatosTrab.xhtml" x="1400" y="150" zoom="true"/>
         <Node id="charts.xhtml" x="150" y="900" zoom="true"/>
         <Node id="tree.xhtml" x="1150" y="600" zoom="true"/>
         <Node id="overlay.xhtml" x="400" y="750" zoom="true"/>
         <Node id="media.xhtml" x="150" y="450" zoom="true"/>
         <Node id="help.xhtml" x="1400" y="450" zoom="true"/>
-        <Node id="misc.xhtml" x="900" y="750" zoom="true"/>
         <Node id="crud.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="misc.xhtml" x="900" y="750" zoom="true"/>
         <Node id="formlayout.xhtml" x="150" y="750" zoom="true"/>
         <Node id="calendar.xhtml" x="650" y="1050" zoom="true"/>
     </Scope>

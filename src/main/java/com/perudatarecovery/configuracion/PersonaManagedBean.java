@@ -13,14 +13,24 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import javax.annotation.PostConstruct;
+import org.primefaces.PrimeFaces;
 
 @Named(value = "personaManagedBean")
 @RequestScoped
 public class PersonaManagedBean {
 
-    // Otros atributos y métodos de la clase
     private Persona selectedPersona;
     private List<Persona> listaPersona;
+    private List<Persona> registrosNuevos; // Nueva lista para los registros recién insertados
+    private boolean mostrarTabla;
+
+    @PostConstruct
+    public void init() {
+        listaPersona = new ArrayList<>();
+        registrosNuevos = new ArrayList<>(); // Inicializar la lista de registros nuevos
+        mostrarTabla = true;
+    }
 
     public PersonaManagedBean() {
         selectedPersona = new Persona();
@@ -45,11 +55,18 @@ public class PersonaManagedBean {
     public void setListaPersona(List<Persona> listaPersona) {
         this.listaPersona = listaPersona;
     }
-    
+
+    public List<Persona> getRegistrosNuevos() {
+        return registrosNuevos;
+    }
+
+    public boolean isMostrarTabla() {
+        return mostrarTabla;
+    }
+
     public void eliminarRegistro(int idPersonaa) {
         try (
-            Connection conn = Conexion.obtenerConexion();  
-            Statement sql = conn.createStatement()) {
+                 Connection conn = Conexion.obtenerConexion();  Statement sql = conn.createStatement()) {
 
             String query = "DELETE FROM persona_accipp WHERE id_personaa = ?";
             PreparedStatement pst = conn.prepareStatement(query);
@@ -62,51 +79,19 @@ public class PersonaManagedBean {
     }
 
     public List<Persona> obtenerRegistrosPersona() {
-        List<Persona> data = new ArrayList<>();
+        List<Persona> data = new ArrayList<>(listaPersona);
 
-        try (
-            Connection con = Conexion.obtenerConexion();  
-            Statement sql = con.createStatement();  
-            ResultSet rs = sql.executeQuery("select * from persona_accipp")) {
+        data.addAll(registrosNuevos); // Agregar registros nuevos a la lista
 
-            while (rs.next()) {
-                Persona persona = new Persona(
-                        rs.getInt("id_personaa"),
-                        rs.getString("tipo_acci"),
-                        rs.getString("nombres_c"),
-                        rs.getString("apellido_p"),
-                        rs.getString("apellido_m"),
-                        rs.getInt("dni_ce"),
-                        rs.getInt("edad"),
-                        rs.getString("genero"),
-                        rs.getString("area_trabajo"),
-                        rs.getString("puesto_trabajo"),
-                        rs.getString("antiguedad_empleo"),
-                        rs.getString("turno"),
-                        rs.getString("tipo_contrato"),
-                        rs.getString("tiempo_experiencia"),
-                        rs.getInt("h_trabajadas_antes_acci")
-                );
-
-                data.add(persona);
-            }
-
-            Collections.sort(data, Comparator.comparingInt(Persona::getId_personaa));
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Collections.sort(data, Comparator.comparingInt(Persona::getId_personaa));
 
         return data;
     }
 
-    // Botón para registrar
     public void agregarRegistro() {
-        try (
-                 Connection con = Conexion.obtenerConexion();  
-                PreparedStatement pst = con.prepareStatement("INSERT INTO persona_accipp (tipo_acci, nombres_c, apellido_p, apellido_m, dni_ce, edad, genero, area_trabajo, puesto_trabajo, antiguedad_empleo, turno, tipo_contrato, tiempo_experiencia, h_trabajadas_antes_acci) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+        try ( Connection con = Conexion.obtenerConexion();  PreparedStatement pst = con.prepareStatement("INSERT INTO persona_accipp (tipo_acci, nombres_c, apellido_p, apellido_m, dni_ce, edad, genero, area_trabajo, puesto_trabajo, antiguedad_empleo, turno, tipo_contrato, tiempo_experiencia, h_trabajadas_antes_acci) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
 
-            pst.setString(1, persona.getTipo_acci());
+            pst.setString(1, selectedPersona.getTipo_acci());
             pst.setString(2, selectedPersona.getNombres_c());
             pst.setString(3, selectedPersona.getApellido_p());
             pst.setString(4, selectedPersona.getApellido_m());
@@ -123,15 +108,62 @@ public class PersonaManagedBean {
 
             pst.executeUpdate();
 
-            listaPersona = obtenerRegistrosPersona();
+            try ( ResultSet generatedKeys = pst.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    int nuevoID = generatedKeys.getInt(1);
 
+                    // Crear una nueva instancia de Persona para el nuevo registro
+                    Persona nuevoRegistro = new Persona();
+                    nuevoRegistro.setId_personaa(nuevoID);
+                    nuevoRegistro.setTipo_acci(selectedPersona.getTipo_acci());
+                    nuevoRegistro.setNombres_c(selectedPersona.getNombres_c());
+                    nuevoRegistro.setApellido_p(selectedPersona.getApellido_p());
+                    nuevoRegistro.setApellido_m(selectedPersona.getApellido_m());
+                    nuevoRegistro.setDni_ce(selectedPersona.getDni_ce());
+                    nuevoRegistro.setEdad(selectedPersona.getEdad());
+                    nuevoRegistro.setGenero(selectedPersona.getGenero());
+                    nuevoRegistro.setArea_trabajo(selectedPersona.getArea_trabajo());
+                    nuevoRegistro.setPuesto_trabajo(selectedPersona.getPuesto_trabajo());
+                    nuevoRegistro.setAntiguedad_empleo(selectedPersona.getAntiguedad_empleo());
+                    nuevoRegistro.setTurno(selectedPersona.getTurno());
+                    nuevoRegistro.setTipo_contrato(selectedPersona.getTipo_contrato());
+                    nuevoRegistro.setTiempo_experiencia(selectedPersona.getTiempo_experiencia());
+                    nuevoRegistro.setH_trabajadas_antes_acci(selectedPersona.getH_trabajadas_antes_acci());
+
+                    // Agregar el registro a la lista de registros nuevos
+                    registrosNuevos.add(nuevoRegistro);
+
+                    // Refrescar la lista de registros en la tabla
+                    mostrarTabla = true;
+                    PrimeFaces.current().ajax().update("tablaPersonas"); // Asegúrate de que "tablaPersonas" sea el ID correcto de la tabla en tu página
+
+                    // Crear una nueva instancia de Persona para el siguiente registro
+                    selectedPersona = new Persona();
+
+                    // Ejecutar un script de JavaScript para agregar la fila a la tabla
+                    PrimeFaces.current().executeScript("agregarFilaATabla(" + nuevoRegistro.getId_personaa() + ");");   
+                }
+            }
+
+            PrimeFaces.current().executeScript("window.scrollTo(0,document.body.scrollHeight);");
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Error al agregar el registro: " + e.getMessage());
         }
     }
-    
-     //Boton para realizar actualizanción
+
+    public String obtenerRegistrosNuevosJS() {
+        StringBuilder script = new StringBuilder();
+
+        for (Persona registro : registrosNuevos) {
+            script.append("var newRow = document.createElement('tr');");
+
+            // Agregar más código para crear las celdas y establecer los valores de las columnas en newRow
+            script.append("table.appendChild(newRow);");
+        }
+
+        return script.toString();
+    }
+
     public void prepararEdicion(Persona persona) {
         selectedPersona = persona;
     }
@@ -145,8 +177,10 @@ public class PersonaManagedBean {
     public void setPersona(Persona persona) {
         this.persona = persona;
     }
-    
-    
+
+    // Método para limpiar la lista de registros nuevos y ocultar la tabla
+    public void showTable() {
+        registrosNuevos.clear();
+        mostrarTabla = false;
+    }
 }
-
-

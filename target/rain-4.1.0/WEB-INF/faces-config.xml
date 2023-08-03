@@ -81,4 +81,11 @@
             <renderer-class>org.primefaces.rain.component.RainMenuRenderer</renderer-class>
         </renderer>
     </render-kit>
+    
+    <managed-bean>
+        <managed-bean-name>ocurrenciaManagedBean</managed-bean-name>
+        <managed-bean-class>com.perudatarecovery.configuracion.OcurrenciaManagedBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
 </faces-config>

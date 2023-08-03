@@ -9,17 +9,20 @@
         <style>
             .organigram-wrapper {
                 display: flex;
+                flex-direction: row-reverse;
             }
+
 
             .organigram-wrapper .organigram-sidebar {
                 width: 14%;
                 background-color: #f2f2f2;
-                padding: 10px;
+                padding: 0;
                 box-sizing: border-box;
                 color: black;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                border-radius: 11px;
             }
 
             .organigram-wrapper .organigram-sidebar .sidebar-item {
@@ -40,7 +43,6 @@
 
             .ui-organigram-node {
                 position: relative;
-                background-color: lightblue;
                 padding: 10px;
                 cursor: move;
                 margin: 10px;
@@ -52,11 +54,49 @@
                 background-color: inherit;
             }
 
+            .gerencia-general-node {
+                background-color: #FFCD29;
+                width: 120px;
+                border-radius: 10px;
+            }
+
+            .marketing-node {
+                background-color: #9747FF;
+                height: 60px;
+                width: 120px;
+                border-radius: 10px;
+                padding-top: 17px;
+            }
+
+            .contabilidad-node {
+                background-color: #14AE5C;
+                height: 60px;
+                width: 120px;
+                border-radius: 10px;
+                padding-top: 17px;
+            }
+
+            .administracion-node {
+                background-color: #006EBE;
+                height: 60px;
+                width: 120px;
+                border-radius: 10px;
+                padding-top: 17px;
+            }
+
             .connection {
                 position: absolute;
                 background-color: black;
                 width: 2px;
                 transform-origin: top center; /* Cambiar el origen de la transformación */
+            }
+            .titulo{
+                background-color:#F8DA45;
+                width: 100%;
+                border-top-right-radius:11px;
+                border-top-left-radius:11px;
+                text-align: center;
+                padding-top: 7px;
             }
         </style>
     </ui:define>
@@ -71,15 +111,30 @@
         <div class="card">
             <div class="organigram-wrapper">
                 <div class="organigram-sidebar">
+                    <div class="titulo">
+                        <h4>Formas</h4>
+                    </div>
                     <div class="sidebar-item" draggable="true" ondragstart="dragStart(event);">
-                        <div id="gerenciaGeneralNode" class="ui-organigram-node" style="background-color: orange;" draggable="true">
+                        <div id="gerenciaGeneralNode" class="ui-organigram-node gerencia-general-node" draggable="true">
                             Gerencia General
                         </div>
                     </div>
 
                     <div class="sidebar-item" draggable="true" ondragstart="dragStart(event);">
-                        <div id="administracionNode" class="ui-organigram-node" style="background-color: lightblue;" draggable="true">
+                        <div id="administracionNode" class="ui-organigram-node administracion-node" draggable="true">
                             Administración
+                        </div>
+                    </div>
+
+                    <div class="sidebar-item" draggable="true" ondragstart="dragStart(event);">
+                        <div id="marketingNode" class="ui-organigram-node marketing-node" draggable="true">
+                            Marketing
+                        </div>
+                    </div>
+
+                    <div class="sidebar-item" draggable="true" ondragstart="dragStart(event);">
+                        <div id="contabilidadNode" class="ui-organigram-node contabilidad-node" draggable="true">
+                            Contabilidad
                         </div>
                     </div>
                 </div>
@@ -90,6 +145,8 @@
         </div>
 
         <script>
+            let gerenciaGeneralAdded = false; // Variable de control para verificar si el nodo "Gerencia General" ha sido agregado
+
             function allowDrop(event) {
                 event.preventDefault();
             }
@@ -104,50 +161,47 @@
                 const nodeId = event.dataTransfer.getData("text/plain");
                 const draggedNode = document.getElementById(nodeId);
 
-                const container = event.currentTarget;
+                const container = document.getElementById("organigramContainer");
 
-                // Evitar la conexión si el nodo se está soltando en el mismo organigramContainer
-                if (nodeId !== container.id) {
-                    // Verificar si el nodo ya existe en el organigramContainer
-                    let existingNode = null;
-                    const nodes = container.getElementsByClassName("ui-organigram-node");
-                    let i = 0;
-                    while (i in nodes) {
-                        const currentNode = nodes[i];
-                        const isNodeValid = Boolean(currentNode) ? currentNode === draggedNode : false;
+                // Verificar si el nodo ya existe en el organigramContainer
+                const existingNode = container.querySelector(".gerencia-general-node");
 
-                        if (isNodeValid) {
-                            existingNode = currentNode;
-                            break;
-                        }
-
-                        i = String(Number(i) + 1);
+                // Evitar agregar el nodo "Gerencia General" si ya existe
+                if (nodeId === "gerenciaGeneralNode") {
+                    if (existingNode || gerenciaGeneralAdded) {
+                        return;
                     }
+                    gerenciaGeneralAdded = true; // Establecer la variable de control como verdadera
+                }
 
-                    if (!existingNode) {
-                        const newNode = draggedNode.cloneNode(true);
-                        newNode.classList.add("ui-organigram-node", "added");
+                const newNode = draggedNode.cloneNode(true);
+                newNode.classList.add("ui-organigram-node", "added");
 
-                        const offsetX = event.clientX - container.getBoundingClientRect().left - newNode.offsetWidth / 2;
-                        const offsetY = event.clientY - container.getBoundingClientRect().top - newNode.offsetHeight / 2;
+                const offsetX = event.clientX - container.getBoundingClientRect().left - newNode.offsetWidth / 2;
+                const offsetY = event.clientY - container.getBoundingClientRect().top - newNode.offsetHeight / 2;
 
-                        newNode.style.left = `${offsetX}px`;
-                        newNode.style.top = `${offsetY}px`;
+                newNode.style.left = `${offsetX}px`;
+                newNode.style.top = `${offsetY}px`;
 
-                        newNode.addEventListener("dragstart", dragStart);
+                newNode.addEventListener("dragstart", dragStart);
 
-                        container.appendChild(newNode);
+                // Copiar los estilos del nodo original al nodo clonado
+                const originalStyles = window.getComputedStyle(draggedNode);
+                Array.from(originalStyles).forEach((property) => {
+                    newNode.style[property] = originalStyles[property];
+                });
 
-                        // Conectar los nodos automáticamente si no son el mismo nodo
-                        if (nodes.length > 1) {
-                            const previousNode = nodes[nodes.length - 2];
-                            const currentNode = newNode;
-                            createConnection(previousNode, currentNode);
-                        }
-                    }
+                container.appendChild(newNode);
+
+                // Conectar los nodos automáticamente si no son el mismo nodo
+                const nodes = container.getElementsByClassName("ui-organigram-node");
+                if (nodes.length > 1) {
+                    const previousNode = nodes[nodes.length - 2];
+                    const currentNode = newNode;
+                    createConnection(previousNode, currentNode);
                 }
             }
-
+            //LINEA DE CONEXION
             function createConnection(startNode, endNode) {
                 const container = document.getElementById("organigramContainer");
 
@@ -164,7 +218,7 @@
                 connection.style.left = Math.min(startX, endX) + "px";
                 connection.style.top = Math.min(startY, endY) + "px";
                 connection.style.transform = `translate(-50%, 0)`; /* Ajustar la posición vertical de la línea */
-                
+
                 container.appendChild(connection);
             }
         </script>

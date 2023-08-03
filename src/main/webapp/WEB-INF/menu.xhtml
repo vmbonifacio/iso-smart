@@ -5,8 +5,8 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:pr="http://primefaces.org/rain">
 
-        <script src="resources/js/menu.js"></script>
-    
+    <script src="resources/js/menu.js"></script>
+
     <style>
         .margin-bottom-20 {
             margin-bottom: 10px;
@@ -80,7 +80,7 @@
             <h:form id="menuform">
                 <pr:menu widgetVar="RainMenuWidget">
 
-                     <div class="layout-menu-container menu-wrapper">
+                    <div class="layout-menu-container menu-wrapper">
 
                         <!-- Categoria Utilidades del SideBar -->
                         <!-- GESTION DE EMPRESA -->
@@ -107,14 +107,14 @@
                         <p:link outcome="PuebitaOrg" class="text-white-alpha-90 no-underline ml-4 mt-3">                                  
                             Datos de Trabajadores                                                 
                         </p:link> 
-                        
+
                         <p:link outcome="formCargaM" class="text-white-alpha-90 no-underline ml-4 mt-3">                                  
                             Carga Masiva                                                 
                         </p:link> 
                         <!-- MAPA DE PROCESOS -->
 
                         <div class="margin-bottom-20">
-                            <p class="font-bold ml-4 mt-6" style="color: #ffd713;"><i class="pi pi-map mr-2" style="color: #ffd713;" />Mapa de Procesos</p> 
+                            <p class="font-bold ml-4 mt-6" style="color: #ffd713;"><i class="pi pi-map mr-2" style="color: #ffd713;" />Mapa de Riesgos</p> 
                         </div>
 
                         <p:link class="text-white-alpha-90 no-underline ml-4 mt-3">                                  
@@ -139,7 +139,7 @@
                             <p:link outcome="formPrincipalOcurrencia"><p class="font-bold ml-4 mt-6" style="color: #ffd713;"><i class="pi pi-book mr-2" style="color: #ffd713;" />Registro de Ocurrencias</p></p:link>
                         </div>
 
-                        <p:link class="text-white-alpha-90 no-underline ml-4 mt-3">                               
+                        <p:link outcome="formAccidente2" class="text-white-alpha-90 no-underline ml-4 mt-3">                               
                             Registro de Accidentes                                                 
                         </p:link>
 
@@ -197,12 +197,11 @@
                             Creación de Usuarios                                                  <!-- ICONO -->
                         </p:link>
 
-                        <p:link class="text-white-alpha-90 no-underline ml-4 mt-3">                                  <!-- TITULO -->
+                        <p:link outcome="inicio" class="text-white-alpha-90 no-underline ml-4 mt-3">                                  <!-- TITULO -->
                             Gestión de Roles y Accesibilidad                                                  <!-- ICONO -->
                         </p:link>
 
                         <!-- Categoria Formularios del SideBar -->
-
                         <div class="margin-bottom-20">
                             <p class="font-bold mr-3 w-2 text-sm mr-3 w-2 ml-4 mt-3" style="color: #ffd713;">FORMULARIOS</p>   <!-- CATEGORIA -->
                         </div>
@@ -210,6 +209,7 @@
                         <p:link outcome="index" class="text-white-alpha-90 no-underline ml-4 mt-3">                  
                             <i class="pi pi-building text-white-alpha-90 mr-2"/>  CRUD                           
                         </p:link>
+
 
 
 

@@ -9,6 +9,28 @@
 
     <ui:define name="head">
         <h:outputStylesheet library="webjars" name="bootstrap/5.2.3/css/bootstrap.min.css" />
+
+        <style>
+            .table-black {
+                color: black;
+                border-collapse: separate;
+                border-spacing: 0;
+            }
+
+            .table-black th,
+            .table-black td {
+                border: 1px solid black;
+                padding: 5px;
+            }
+
+            .table-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+            }
+
+        </style>
+
     </ui:define>
 
     <ui:define name="title">Investigación</ui:define>
@@ -23,98 +45,784 @@
         <h:form>
             <!-- REGISTRO DE INVESTIGACION -->  
             <h5 class="h-5rem text-center text-4xl p-4 text-white-alpha-90" 
-                style="background-color: #2A2A2A; font-family: 'Inter', sans-serif; font-weight: 600;">
+                style="background-color: #2A2A2A;
+                font-family: 'Inter', sans-serif;
+                font-weight: 600;">
                 INVESTIGACIÓN DE ACCIDENTES
             </h5>
 
             <div class="card col-12" style="background-color: #2A2A2A"> 
                 <!-- DATOS DEL EMPLEADOR PRINCIPAL -->  
                 <div class="ui-fluid formgrid grid pl-2"
-                     style="border-radius: 1rem 1rem 0 0; border-bottom: none; background-color: #F8DA45; box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);">
+                     style="border-radius: 1rem 1rem 0 0;
+                     border-bottom: none;
+                     background-color: #F8DA45;
+                     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);">
                     <h5 class="p-3 text-2xl"
-                        style="font-family: 'Inter', sans-serif; font-weight: 600; color: black;">
+                        style="font-family: 'Inter', sans-serif;
+                        font-weight: 600;
+                        color: black;">
                         INVESTIGACIÓN DE ACCIDENTE DE TRABAJO
                     </h5>  
                 </div>
 
                 <div class="ui-fluid formgrid grid"  
-                     style="background-color: #EDEDED; border: 1px solid #cbcbcb; border-radius: 0 0 1rem 1rem; margin-bottom: 70px; padding: 30px 36px 30px 36px; box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);">
+                     style="background-color: #EDEDED;
+                     border: 1px solid #cbcbcb;
+                     border-radius: 0 0 1rem 1rem;
+                     margin-bottom: 70px;
+                     padding: 30px 36px 30px 36px;
+                     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);">
 
                     <!-- FECHA DE ACCIDENTE DEL TRABAJO -->  
 
                     <div class="field col-12 md:col-4">
-                        <p:outputLabel for="fecha" value="1. Fecha del Accidente Ocurrido"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 400; margin-bottom: 15px;" />    
-                        <p:datePicker id="fecha" placeholder="Seleccione la fecha" style="background-color: white; color: black; border: 1px solid #F8DA45; border-radius: 7px; margin-bottom: 30px;"/>
-
+                        <p:outputLabel for="fecha" value="1. Fecha del Accidente Ocurrido"  class="pt-2" style="color: black;
+                                       font-family: 'Inter', sans-serif;
+                                       font-weight: 400;
+                                       margin-bottom: 15px;" />    
+                        <p:datePicker id="fecha" placeholder="Seleccione la fecha" style="background-color: white;
+                                      color: black;
+                                      border: 1px solid #F8DA45;
+                                      border-radius: 7px;
+                                      margin-bottom: 30px;"/>
                     </div>
 
                     <!-- HORA DE ACCIDENTE DEL TRABAJO -->  
 
                     <div class="field col-12 md:col-4">
-                        <p:outputLabel for="timeonly" value="2. Hora del Accidente Ocurrido"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 400; margin-bottom: 15px;" />    
-                        <p:datePicker id="timeonly" placeholder="Seleccione la hora del accidente" timeOnly="true" pattern="HH:mm" style="background-color: white; color: black; border: 1px solid #F8DA45; border-radius: 7px; margin-bottom: 30px;"/>
+                        <p:outputLabel for="timeonly" value="2. Hora del Accidente Ocurrido"  class="pt-2" style="color: black;
+                                       font-family: 'Inter', sans-serif;
+                                       font-weight: 400;
+                                       margin-bottom: 15px;" />    
+                        <p:datePicker id="timeonly" placeholder="Seleccione la hora del accidente" timeOnly="true" pattern="HH:mm" style="background-color: white;
+                                      color: black;
+                                      border: 1px solid #F8DA45;
+                                      border-radius: 7px;
+                                      margin-bottom: 30px;"/>
                     </div>
 
 
                     <!-- FECHA DE INVESTIGACION -->  
 
                     <div class="field col-12 md:col-4">
-                        <p:outputLabel for="fechaIn" value="3. Fecha de la Investigación"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 400; margin-bottom: 15px;" />    
-                        <p:datePicker id="fechaIn" placeholder="Seleccione la fecha" style="background-color: white; color: black; border: 1px solid #F8DA45; border-radius: 7px; margin-bottom: 30px;"/>
+                        <p:outputLabel for="fechaIn" value="3. Fecha de la Investigación"  class="pt-2" style="color: black;
+                                       font-family: 'Inter', sans-serif;
+                                       font-weight: 400;
+                                       margin-bottom: 15px;" />    
+                        <p:datePicker id="fechaIn" placeholder="Seleccione la fecha" style="background-color: white;
+                                      color: black;
+                                      border: 1px solid #F8DA45;
+                                      border-radius: 7px;
+                                      margin-bottom: 30px;"/>
                     </div>
 
                     <!-- LUGAR DEL ACCIDENTE -->  
 
                     <div class="field col-12 md:col-6">
-                        <p:outputLabel for="Lugar" value="4. Lugar exacto del accidente"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 400;  margin-bottom: 15px;" />    
-                        <p:inputText  id="Lugar" value="#{investigacionAcciManagedBean.selectedInvestigacion.lugar_acci}"  placeholder="Ingrese aquí el lugar donde ocurrio el accidente" style="background:transparent; color: black; border: none; border-bottom: 2px solid #F8DA45; border-radius: 0; outline: none; margin-bottom: 30px;"/>
+                        <p:outputLabel for="Lugar" value="4. Lugar exacto del accidente"  class="pt-2" style="color: black;
+                                       font-family: 'Inter', sans-serif;
+                                       font-weight: 400;
+                                       margin-bottom: 15px;" />    
+                        <p:inputText  id="Lugar" value="#{investigacionAcciManagedBean.selectedInvestigacion.lugar_acci}"  placeholder="Ingrese aquí el lugar donde ocurrio el accidente" style="background:transparent;
+                                      color: black;
+                                      border: none;
+                                      border-bottom: 2px solid #F8DA45;
+                                      border-radius: 0;
+                                      outline: none;
+                                      margin-bottom: 30px;"/>
                     </div>
 
                     <!-- CANTIDAD DE AFECTADOS-->  
 
                     <div class="field col-12 md:col-6">
-                        <p:outputLabel for="Cant" value="5. Nº Trabajadores Afectados"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 400;  margin-bottom: 15px;" />    
-                        <p:inputText  id="Cant" value="#{investigacionAcciManagedBean.selectedInvestigacion.num_trab_afec}"  placeholder="Ingrese la cantidad de trabajadores  " style="background:transparent; color: black; border: none; border-bottom: 2px solid #F8DA45; border-radius: 0; outline: none; margin-bottom: 30px;"/>
+                        <p:outputLabel for="Cant" value="5. Nº Trabajadores Afectados"  class="pt-2" style="color: black;
+                                       font-family: 'Inter', sans-serif;
+                                       font-weight: 400;
+                                       margin-bottom: 15px;" />    
+                        <p:inputText  id="Cant" value="#{investigacionAcciManagedBean.selectedInvestigacion.num_trab_afec}"  placeholder="Ingrese la cantidad de trabajadores  " style="background:transparent;
+                                      color: black;
+                                      border: none;
+                                      border-bottom: 2px solid #F8DA45;
+                                      border-radius: 0;
+                                      outline: none;
+                                      margin-bottom: 30px;"/>
                     </div>
 
                     <!-- AFECTADOS DIRECTAMENTE -->  
 
                     <div class="field col-12 md:col-4">
-                        <p:outputLabel for="CantDir" value="6. Nº de Trabajadores afectados directamente"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 400;  margin-bottom: 15px;" />    
-                        <p:inputText  id="CantDir" value="#{investigacionAcciManagedBean.selectedInvestigacion.num_trab_afec_direc}" placeholder="Ingrese la cantidad de trabajadores  " style="background:transparent; color: black; border: none; border-bottom: 2px solid #F8DA45; border-radius: 0; outline: none; margin-bottom: 30px;"/>
+                        <p:outputLabel for="CantDir" value="6. Nº de Trabajadores afectados directamente"  class="pt-2" style="color: black;
+                                       font-family: 'Inter', sans-serif;
+                                       font-weight: 400;
+                                       margin-bottom: 15px;" />    
+                        <p:inputText  id="CantDir" value="#{investigacionAcciManagedBean.selectedInvestigacion.num_trab_afec_direc}" placeholder="Ingrese la cantidad de trabajadores  " style="background:transparent;
+                                      color: black;
+                                      border: none;
+                                      border-bottom: 2px solid #F8DA45;
+                                      border-radius: 0;
+                                      outline: none;
+                                      margin-bottom: 30px;"/>
                     </div>
 
                     <!-- AFECTADOS INDIRECTAMENTE -->  
 
                     <div class="field col-12 md:col-4">
-                        <p:outputLabel for="CantIndi" value="7. Nº de Trabajadores afectados Indirectamente"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 400;  margin-bottom: 15px;" />    
-                        <p:inputText  id="CantIndi"  value="#{investigacionAcciManagedBean.selectedInvestigacion.num_trab_afec_indirec}" placeholder="Ingrese la cantidad de trabajadores  " style="background:transparent; color: black; border: none; border-bottom: 2px solid #F8DA45; border-radius: 0; outline: none; margin-bottom: 30px;"/>
+                        <p:outputLabel for="CantIndi" value="7. Nº de Trabajadores afectados Indirectamente"  class="pt-2" style="color: black;
+                                       font-family: 'Inter', sans-serif;
+                                       font-weight: 400;
+                                       margin-bottom: 15px;" />    
+                        <p:inputText  id="CantIndi"  value="#{investigacionAcciManagedBean.selectedInvestigacion.num_trab_afec_indirec}" placeholder="Ingrese la cantidad de trabajadores  " style="background:transparent;
+                                      color: black;
+                                      border: none;
+                                      border-bottom: 2px solid #F8DA45;
+                                      border-radius: 0;
+                                      outline: none;
+                                      margin-bottom: 30px;"/>
                     </div>
 
                     <!-- BOTON FALTAS DE CONTROL -->  
 
-                    <div class="field col-12 md:col-4" style="display: flex; justify-content: center; ">
-                        <p:button value="Marcar Faltas de Control" styleClass="ui-button-raised mr-2 mb-2" style="width: 200px; height: 50px; color: white; background-color: #172958; font-family: 'Inter', sans-serif; font-weight: 600; border: none; margin-top: 24px;"/>
+                    <div class="field col-12 md:col-4" style="display: flex; justify-content: center;">
+                        <p:commandButton id="faltasButton"
+                                         value="Marcar Faltas de Control" 
+                                         styleClass="ui-button-raised mr-2 mb-2" 
+                                         style="width: 200px; height: 50px; color: white; background-color: #172958; font-family: 'Inter', sans-serif; font-weight: 600; border: none; margin-top: 24px;" 
+                                         onclick="alternarTabla()" />
                     </div>
+
+                    <!-- MOSTRAR Y OCULTAR CONTENIDO FALTAS DE CONTROL -->  
+
+                    <div id="contenidoAdicional" class="ui-fluid formgrid grid" style="margin-bottom: 70px; padding: 30px 36px 30px 36px; box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); display: none;">
+                        <div class="table-container p-d-flex p-flex-row">
+
+                            <div class="field col-12 ">
+                                <h5 class="h-5rem text-center text-4xl p-4 text-black-alpha-90" 
+                                    style="font-family: 'Inter', sans-serif;
+                                    font-weight: 600;">
+                                    FALTA DE CONTROL - SGSST INADECUADO
+                                </h5>
+                            </div>
+                        </div>
+
+                        <div class="table-container p-d-flex p-flex-row">
+                            <div class="field col-12 md:col-6 ">
+                                <table id="tabla" class="table-black">
+                                    <!-- Tabla 1 -->
+                                    <tr style="background-color: #1E1E2A;
+                                        color: white;">
+                                        <th style="border-top-left-radius: 8px;">En el procedimiento IPER porque:</th>
+                                        <td>SI</td>
+                                        <td style="border-top-right-radius: 8px;">NO</td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>1. No existen procedimientos</td>
+                                        <td>
+                                            <input type="radio" id="radio1SI" name="radio1" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio1NO" name="radio1" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>2. No se aplican los procedimientos</td>
+                                        <td>
+                                            <input type="radio" id="radio2SI" name="radio2" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio2NO" name="radio2" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>3. No se incluyen en las actividades rutinarias de todo el personal</td>
+                                        <td>
+                                            <input type="radio" id="radio3SI" name="radio3" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio3NO" name="radio3" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>4. No se incluyen a contratistas, proveedores y/o visitantes</td>
+                                        <td>
+                                            <input type="radio" id="radio4SI" name="radio4" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio4NO" name="radio4" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>5. No se incluye infraestructura, equipos y/o materiales provistos por la empresa o terceros </td>
+                                        <td>
+                                            <input type="radio" id="radio5SI" name="radio5" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio5NO" name="radio5" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>6. No se incluye los riesgos de entorno originados por la proximidad  </td>
+                                        <td>
+                                            <input type="radio" id="radio6SI" name="radio6" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio6NO" name="radio6" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td style="border-bottom-left-radius: 8px;">7. Otras causas</td>
+                                        <td>
+                                            <input type="radio" id="radio8SI" name="radio8" value="SI" />
+                                        </td>
+                                        <td style="border-bottom-right-radius: 8px;">
+                                            <input type="radio" id="radio8NO" name="radio8" value="NO" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <!-- FALTAS DE CONTROL EN LA PLANIFICACIÓN DE TRABAJO -->
+
+                            <div class="field col-12 md:col-6">
+                                <table id="tabla2" class="table-black">
+                                    <tr style="background-color: #1E1E2A;
+                                        color: white;">
+                                        <th style="border-top-left-radius: 8px;">En la Planificación del Trabajo porque:</th>
+                                        <td>SI</td>
+                                        <td style="border-top-right-radius: 8px;">NO</td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>1. No se capacita al personal en la tarea u operación a ejecutar o la capacitación es inadecuada</td>
+                                        <td>
+                                            <input type="radio" id="radio1SI" name="radio1" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio1NO" name="radio1" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>2. No se capacita al personal para la prevención de los riesgos relacionados con la tarea u operación que va a ejecutar</td>
+                                        <td>
+                                            <input type="radio" id="radio2SI" name="radio2" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio2NO" name="radio2" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>3. No se efectúa el Análisis de Seguridad del Trabajo </td>
+                                        <td>
+                                            <input type="radio" id="radio3SI" name="radio3" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio3NO" name="radio3" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>4.  No se evalúa si el personal tiene la aptitud física o mental requerida para la tarea u operación </td>
+                                        <td>
+                                            <input type="radio" id="radio4SI" name="radio4" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio4NO" name="radio4" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>5.  No se evalúa si el estado psicosomático del personal es adecuado para ejecutar la tarea u operación </td>
+                                        <td>
+                                            <input type="radio" id="radio5SI" name="radio5" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio5NO" name="radio5" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td style="border-bottom-left-radius: 8px;">6. Otras causas</td>
+                                        <td>
+                                            <input type="radio" id="radio8SI" name="radio8" value="SI" />
+                                        </td>
+                                        <td style="border-bottom-right-radius: 8px;">
+                                            <input type="radio" id="radio8NO" name="radio8" value="NO" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                        </div>
+
+                        <!-- FALTAS DE CONTROL EN LAS MEDIDAS DE CONTROL DE RIESGOS -->
+
+                        <div class="table-container p-d-flex p-flex-row">
+                            <div class="field col-12 md:col-6">
+                                <table class="table-black">
+
+                                    <tr style="background-color: #1E1E2A;
+                                        color: white;">
+                                        <th style="border-top-left-radius: 8px;">En las Medidas de Control de Riesgos porque:</th>
+                                        <td>SI</td>
+                                        <td style="border-top-right-radius: 8px;">NO</td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>1.  No se implementan las medidas de control de riesgos</td>
+                                        <td>
+                                            <input type="radio" id="radio1SI" name="radio1" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio1NO" name="radio1" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>2. En las medidas de control de riesgos no se prioriza</td>
+                                        <td>
+                                            <input type="radio" id="radio2SI" name="radio2" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio2NO" name="radio2" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>2.1  La eliminación del peligro que origina el riesgo </td>
+                                        <td>
+                                            <input type="radio" id="radio3SI" name="radio3" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio3NO" name="radio3" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>2.2 La sustitución del peligro </td>
+                                        <td>
+                                            <input type="radio" id="radio4SI" name="radio4" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio4NO" name="radio4" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>2.3 El tratamiento, control o aislamiento de los peligros adoptando medidas técnicas o administrativas</td>
+                                        <td>
+                                            <input type="radio" id="radio5SI" name="radio5" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio5NO" name="radio5" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>2.4 La señalización, alertas, supervisión, instructivos de trabajo</td>
+                                        <td>
+                                            <input type="radio" id="radio5SI" name="radio5" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio5NO" name="radio5" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>2.5. Los equipos de protección personal adecuados asegurando que los trabajadores los usen y conserven correctamente</td>
+                                        <td>
+                                            <input type="radio" id="radio5SI" name="radio5" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio5NO" name="radio5" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>3. Las medidas de control de riesgos no se implementan oportunamente </td>
+                                        <td>
+                                            <input type="radio" id="radio5SI" name="radio5" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio5NO" name="radio5" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>4. Las medidas de control de riesgos no son eficaces   </td>
+                                        <td>
+                                            <input type="radio" id="radio5SI" name="radio5" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio5NO" name="radio5" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td style="border-bottom-left-radius: 8px;">5. Otras causas</td>
+                                        <td>
+                                            <input type="radio" id="radio8SI" name="radio8" value="SI" />
+                                        </td>
+                                        <td style="border-bottom-right-radius: 8px;">
+                                            <input type="radio" id="radio8NO" name="radio8" value="NO" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <!-- FALTAS DE CONTROL EN LA PREPARACIÓN Y RESPUESTA ANTE EMERGENCIAS -->
+
+                            <div class="field col-12 md:col-6">
+                                <table class="table-black">
+                                    <!-- Tabla 1 -->
+                                    <tr style="background-color: #1E1E2A;
+                                        color: white;">
+                                        <th style="border-top-left-radius: 8px;">En la Preparación y Respuesta ante Emergencias</th>
+                                        <td>SI</td>
+                                        <td style="border-top-right-radius: 8px;">NO</td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>1. No se cuenta con extintores</td>
+                                        <td>
+                                            <input type="radio" id="radio1SI" name="radio1" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio1NO" name="radio1" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>2. Los extintores no son suficientes</td>
+                                        <td>
+                                            <input type="radio" id="radio2SI" name="radio2" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio2NO" name="radio2" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>3. La sustancia extintora es inadecuada para el fuego a extinguir </td>
+                                        <td>
+                                            <input type="radio" id="radio3SI" name="radio3" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio3NO" name="radio3" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>4.  Los extintores no se encuentran señalizados / ubicados adecuadamente</td>
+                                        <td>
+                                            <input type="radio" id="radio4SI" name="radio4" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio4NO" name="radio4" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>5.  No se capacita en el manejo de extintores </td>
+                                        <td>
+                                            <input type="radio" id="radio5SI" name="radio5" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio5NO" name="radio5" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>6. No se cuenta con botiquin de primeros auxilios</td>
+                                        <td>
+                                            <input type="radio" id="radio5SI" name="radio5" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio5NO" name="radio5" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>7. El botiquín de primeros auxilios es incompleto / inadecuado  </td>
+                                        <td>
+                                            <input type="radio" id="radio5SI" name="radio5" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio5NO" name="radio5" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>8. El personal no tiene capacitación en primeros auxilios </td>
+                                        <td>
+                                            <input type="radio" id="radio5SI" name="radio5" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio5NO" name="radio5" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>9.  No se conocen los teléfonos para solicitar ayuda en emergencias</td>
+                                        <td>
+                                            <input type="radio" id="radio5SI" name="radio5" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio5NO" name="radio5" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>10. No se cuenta con equipos de comunicación para casos de emergencia </td>
+                                        <td>
+                                            <input type="radio" id="radio5SI" name="radio5" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio5NO" name="radio5" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>11. No se efectúan simulacros de emergencias </td>
+                                        <td>
+                                            <input type="radio" id="radio5SI" name="radio5" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio5NO" name="radio5" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td style="border-bottom-left-radius: 8px;">12. Otras causas</td>
+                                        <td>
+                                            <input type="radio" id="radio8SI" name="radio8" value="SI" />
+                                        </td>
+                                        <td style="border-bottom-right-radius: 8px;">
+                                            <input type="radio" id="radio8NO" name="radio8" value="NO" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- FALTAS DE CONTROL EN LA VERIFICACION Y ACCION CORRECTIVA -->
+
+                        <div class="table-container p-d-flex p-flex-row">
+                            <div class="field col-12 md:col-6">
+                                <table class="table-black">
+                                    <!-- Tabla 1 -->
+                                    <tr style="background-color: #1E1E2A;
+                                        color: white;">
+                                        <th style="border-top-left-radius: 8px;">En la verificación y acción correctiva porque:</th>
+                                        <td>SI</td>
+                                        <td style="border-top-right-radius: 8px;">NO</td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>1. No se tiene un programa de inspecciones </td>
+                                        <td>
+                                            <input type="radio" id="radio1SI" name="radio1" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio1NO" name="radio1" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>2. El programa de inspecciones es inadecuado </td>
+                                        <td>
+                                            <input type="radio" id="radio2SI" name="radio2" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio2NO" name="radio2" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>3. No se definen acciones correctivas como resultado de las inspecciones o las acciones correctivas que se especifican no son eficaces </td>
+                                        <td>
+                                            <input type="radio" id="radio3SI" name="radio3" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio3NO" name="radio3" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>4. Las acciones correctivas producto de las inspecciones no se implementan en el plazo establecido</td>
+                                        <td>
+                                            <input type="radio" id="radio4SI" name="radio4" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio4NO" name="radio4" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>5. No se investigan los accidentes, casi accidentes y /o emergencias</td>
+                                        <td>
+                                            <input type="radio" id="radio5SI" name="radio5" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio5NO" name="radio5" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>5.1. O si se investigan, no se concluye en la determinación de acciones correctivas </td>
+                                        <td>
+                                            <input type="radio" id="radio5SI" name="radio5" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio5NO" name="radio5" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>6. Las acciones correctivas no son eficaces, no se implementan o se implementan tardíamente  </td>
+                                        <td>
+                                            <input type="radio" id="radio5SI" name="radio5" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio5NO" name="radio5" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td style="border-bottom-left-radius: 8px;">7. Otras causas</td>
+                                        <td>
+                                            <input type="radio" id="radio8SI" name="radio8" value="SI" />
+                                        </td>
+                                        <td style="border-bottom-right-radius: 8px;">
+                                            <input type="radio" id="radio8NO" name="radio8" value="NO" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <!-- FALTAS DE CONTROL EN EL CONTROL OPERACIONAL -->
+
+                            <div class="field col-12 md:col-6">
+                                <table class="table-black">
+                                    <!-- Tabla 1 -->
+                                    <tr style="background-color: #1E1E2A;
+                                        color: white;">
+                                        <th style="border-top-left-radius: 8px;">En el control operacional porque:</th>
+                                        <td>SI</td>
+                                        <td style="border-top-right-radius: 8px;">NO</td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>1. No se efectúa monitoreo de agentes físicos, químicos, biológicos y de factores de riesgo ergonómico </td>
+                                        <td>
+                                            <input type="radio" id="radio1SI" name="radio1" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio1NO" name="radio1" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>2. No se utilizan permisos de trabajo para actividades críticas</td>
+                                        <td>
+                                            <input type="radio" id="radio2SI" name="radio2" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio2NO" name="radio2" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>3. No se controlan los bienes, equipos y servicios adquiridos  </td>
+                                        <td>
+                                            <input type="radio" id="radio3SI" name="radio3" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio3NO" name="radio3" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>4.  No se controla a los contratistas, proveedores y/o visitantes que ingresan al lugar de trabajo  </td>
+                                        <td>
+                                            <input type="radio" id="radio4SI" name="radio4" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio4NO" name="radio4" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td>5.  No se cuenta con supervisión del trabajo u operación </td>
+                                        <td>
+                                            <input type="radio" id="radio5SI" name="radio5" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio5NO" name="radio5" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td style="border-bottom-left-radius: 8px;">6. Otras causas</td>
+                                        <td>
+                                            <input type="radio" id="radio8SI" name="radio8" value="SI" />
+                                        </td>
+                                        <td style="border-bottom-right-radius: 8px;">
+                                            <input type="radio" id="radio8NO" name="radio8" value="NO" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <script>
+                        function alternarTabla() {
+                            const contenidoAdicional = document.getElementById('contenidoAdicional');
+                            contenidoAdicional.style.display = contenidoAdicional.style.display === 'none' ? 'block' : 'none';
+                        }
+                    </script>
                 </div>    
 
                 <!-- CALIFICACION DE RIESGOS -->  
 
                 <div class="ui-fluid formgrid grid pl-2 "
-                     style="box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); border-radius: 1rem 1rem 0 0; border-bottom: none; background-color: #F8DA45;">
+                     style="box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+                     border-radius: 1rem 1rem 0 0;
+                     border-bottom: none;
+                     background-color: #F8DA45;">
                     <h5 class="p-3 text-2xl"
-                        style="font-family: 'Inter', sans-serif; font-weight: 600; color: black;">
+                        style="font-family: 'Inter', sans-serif;
+                        font-weight: 600;
+                        color: black;">
                         CALIFICACIÓN DE RIESGOS DEL ACCIDENTE
                     </h5>   
                 </div>
 
                 <div class="ui-fluid formgrid grid"   
-                     style="border-radius: 0 0 1rem 1rem; background-color: #EDEDED; margin-bottom: 70px; padding: 30px 36px 30px 36px; box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);">
+                     style="border-radius: 0 0 1rem 1rem;
+                     background-color: #EDEDED;
+                     margin-bottom: 70px;
+                     padding: 30px 36px 30px 36px;
+                     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);">
 
                     <!-- PROCEDIMIENTOS EXISTENTES -->  
 
                     <div class="field col-12 md:col-4">
-                        <p:outputLabel value="1.1. Procedimientos Existentes"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 400;" />    
+                        <p:outputLabel value="1.1. Procedimientos Existentes"  class="pt-2" style="color: black;
+                                       font-family: 'Inter', sans-serif;
+                                       font-weight: 400;" />    
                         <p:selectOneMenu>
                             <f:selectItem itemLabel="Ingrese el valor de los procedimientos" itemValue="" />    
                             <f:selectItem itemLabel="Existen, son satisfactorios" itemValue="1" />
@@ -126,7 +834,9 @@
                     <!-- CAPACITACION -->  
 
                     <div class="field col-12 md:col-4">
-                        <p:outputLabel value="1.2. Capacitación"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 400;" />    
+                        <p:outputLabel value="1.2. Capacitación"  class="pt-2" style="color: black;
+                                       font-family: 'Inter', sans-serif;
+                                       font-weight: 400;" />    
                         <p:selectOneMenu>
                             <f:selectItem itemLabel="Ingrese el valor de capacitación" itemValue="" />
                             <f:selectItem itemLabel="Personal entrenado, lo previene   " itemValue="1" />
@@ -139,7 +849,9 @@
                     <!-- EXPOSICION AL RIESGO -->  
 
                     <div class="field col-12 md:col-4">
-                        <p:outputLabel value="1.3. Exposición al riesgo"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 400;" />    
+                        <p:outputLabel value="1.3. Exposición al riesgo"  class="pt-2" style="color: black;
+                                       font-family: 'Inter', sans-serif;
+                                       font-weight: 400;" />    
                         <p:selectOneMenu>
                             <f:selectItem itemLabel="Ingrese el valor de exposición al riesgo" itemValue="" />
                             <f:selectItem itemLabel="Una vez al año - Espóradicamente   " itemValue="1" />
@@ -148,8 +860,15 @@
                         </p:selectOneMenu>
                     </div>
 
-                    <div class="field col-12" style="display: flex; justify-content: center; ">
-                        <p:button value="Agregar Calificaciòn" styleClass="ui-button-raised mr-2 mb-2" style="width: 200px; height: 50px; color: white; background-color: #741818; font-family: 'Inter', sans-serif; font-weight: 600; border: none"/>
+                    <div class="field col-12" style="display: flex;
+                         justify-content: center; ">
+                        <p:button value="Agregar Calificaciòn" styleClass="ui-button-raised mr-2 mb-2" style="width: 200px;
+                                  height: 50px;
+                                  color: white;
+                                  background-color: #741818;
+                                  font-family: 'Inter', sans-serif;
+                                  font-weight: 600;
+                                  border: none"/>
                     </div>
                     <!--<div class="container">-->
                     <!-- importar imagenes -->
@@ -159,24 +878,55 @@
                     <!-- Código XHTML para crear la tabla con componentes PrimeFaces -->
                     <div class="field col-12 pt-6" >
                         <h:form>
-                            <p:dataTable id="tablaCalificacion" value="#{investigacionAcciManagedBean}" var="InvestAcci" editable="true" emptyMessage="Registro de investigación en desarrollo."  style=" border-radius: 10px; box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); border-radius: 1rem 1rem 0 0; border-bottom: none;" >
+                            <p:dataTable id="tablaCalificacion" value="#{investigacionAcciManagedBean}" var="InvestAcci" editable="true" emptyMessage="Registro de investigación en desarrollo."  style=" border-radius: 10px;
+                                         box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+                                         border-radius: 1rem 1rem 0 0;
+                                         border-bottom: none;" >
                                 <p:columnGroup type="header">
                                     <p:row>
-                                        <p:column colspan="6" headerText="ÍNDICE DE PROBABILIDAD" style="text-align: center; background-color: #20212B; color: white; box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); border-radius: 1rem 1rem 0 0; border-bottom: none; font-family: 'Inter', sans-serif; font-weight: 800;"/>
+                                        <p:column colspan="6" headerText="ÍNDICE DE PROBABILIDAD" style="text-align: center;
+                                                  background-color: #20212B;
+                                                  color: white;
+                                                  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+                                                  border-radius: 1rem 1rem 0 0;
+                                                  border-bottom: none;
+                                                  font-family: 'Inter', sans-serif;
+                                                  font-weight: 800;"/>
                                     </p:row>
                                     <p:row>
-                                        <p:column style="text-align: center; background-color: #20212B; color: white; border: 1px solid white;"/>
-                                        <p:column headerText="Personas Expuestas" style="text-align: center; background-color: #20212B; color: white; border: 1px solid white;"/>
-                                        <p:column headerText="Procedimientos existentes" style="text-align: center; background-color: #20212B; color: white; border: 1px solid white;"/>
-                                        <p:column headerText="Capacitacion" style="text-align: center; background-color: #20212B; color: white; border: 1px solid white;"/>
-                                        <p:column headerText="Exposicion al riesgo" style="text-align: center; background-color: #20212B; color: white; border: 1px solid white;"/>
-                                        <p:column headerText="Puntaje" style="text-align: center; background-color: #0F204E; color: white; border: 1px solid white;"/>
+                                        <p:column style="text-align: center;
+                                                  background-color: #20212B;
+                                                  color: white;
+                                                  border: 1px solid white;"/>
+                                        <p:column headerText="Personas Expuestas" style="text-align: center;
+                                                  background-color: #20212B;
+                                                  color: white;
+                                                  border: 1px solid white;"/>
+                                        <p:column headerText="Procedimientos existentes" style="text-align: center;
+                                                  background-color: #20212B;
+                                                  color: white;
+                                                  border: 1px solid white;"/>
+                                        <p:column headerText="Capacitacion" style="text-align: center;
+                                                  background-color: #20212B;
+                                                  color: white;
+                                                  border: 1px solid white;"/>
+                                        <p:column headerText="Exposicion al riesgo" style="text-align: center;
+                                                  background-color: #20212B;
+                                                  color: white;
+                                                  border: 1px solid white;"/>
+                                        <p:column headerText="Puntaje" style="text-align: center;
+                                                  background-color: #0F204E;
+                                                  color: white;
+                                                  border: 1px solid white;"/>
                                     </p:row>
                                 </p:columnGroup>
 
                                 <!-- Resto de las columnas y registros -->
                                 <p:column>
                                     <h:outputText value=""/>
+                                </p:column>
+                                <p:column>
+                                    <h:outputText  value=""/>
                                 </p:column>
                                 <p:column>
                                     <h:outputText  value=""/>
@@ -201,133 +951,17 @@
                 <!--     <button type="button" class="btn btn-outline-danger">Danger</button>-->
                 <!--     <button type="button" class="btn btn-outline-warning">Warning</button>-->
                 <!--  </div>-->
-                <div class="ui-fluid formgrid grid pl-2" style="box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); border-radius: 1rem 1rem 0 0; border-bottom: none; background-color: #F8DA45;">
-                    <h5 class="p-3 text-2xl" style="font-family: 'Inter', sans-serif; font-weight: 600; color: black;">
-                        DESCRIPCIÓN DEL ACCIDENTE DE TRABAJO
-                    </h5>    
-                </div>
 
-                <div class="ui-fluid formgrid grid"   
-                     style="border-radius: 0 0 1rem 1rem; background-color: #EDEDED; margin-bottom: 70px; padding: 30px 36px 30px 36px; box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);">
-                    <h6 class="pl-3 text-base" style="font-family: 'Inter', sans-serif; color: black;">
-                        8. Describa solo los hechos, no  información subjetiva que no pueda ser comprobada. 
-                        Adjuntar: Declaración del afectado sobre el accidente de trabajo, Declaración de 
-                        testigos (de ser el caso), Procedimientos, planos, registros, entre otros que ayuden
-                        a la investigación de ser el caso. Describa el accidente en el cuadro inferior: 
-                    </h6>
-
-                    <div class="ui-g-12">
-                        <p:toolbarGroup align="right" styleClass="ml-auto">
-                            <p:fileUpload mode="simple" skinSimple="true" label="Subir Archivo" chooseIcon="pi pi-angle-up"/>
-                        </p:toolbarGroup>
-                    </div>
-
-                    <div class="ui-g-12">
-                        <p:inputTextarea rows="5" cols="30" maxlength="250" autoResize="false" placeholder="Ingrese aquí la descripción del accidente"/>
-                    </div>
-
-                    <div class="ui-g-12 text-right">
-                        <p:button value="Agregar" styleClass="ui-button-raised mr-2 mb-2" style="width: 200px; height: 50px; color: white; background-color: #741818; font-family: 'Inter', sans-serif; font-weight: 600; border: none"/>
-                    </div>
-
-                    <div class="field col-12 pt-6" >
-                        <h:form>
-                            <p:dataTable value="#{tablaBean.data}" var="fila" editable="true" emptyMessage="Registro de investigación en desarrollo."  style="border-radius: 10px; box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); border-radius: 1rem 1rem 0 0; border-bottom: none;" >
-                                <p:columnGroup type="header">
-                                    <p:row>
-                                        <p:column headerText="Nº" style="text-align: center; background-color: #20212B; color: white; border: 1px solid white; "/>
-                                        <p:column headerText="Nombre" style="text-align: center; background-color: #20212B; color: white; border: 1px solid white;"/>
-                                        <p:column headerText="Fecha Modificación" style="text-align: center; background-color: #20212B; color: white; border: 1px solid white;"/>
-                                        <p:column headerText="Tipo de Archivo" style="text-align: center; background-color: #20212B; color: white; border: 1px solid white;"/>
-                                        <p:column headerText="Tamaño de Archivo" style="text-align: center; background-color: #20212B; color: white; border: 1px solid white;"/>
-                                        <p:column headerText="Acción" style="text-align: center; background-color: #20212B; color: white; border: 1px solid white;"/>
-                                    </p:row>
-                                </p:columnGroup>
-
-                                <!-- Resto de las columnas y registros -->
-                                <p:column>
-                                    <p:inputText value="#{fila.descripcion}"/>
-                                </p:column>
-                                <p:column>
-                                    <p:inputText value="#{fila.personasExpuestas}"/>
-                                </p:column>
-                                <p:column>
-                                    <p:inputText value="#{fila.procedimientosExistentes}"/>
-                                </p:column>
-                                <p:column>
-                                    <p:inputText value="#{fila.capacitacion}"/>
-                                </p:column>
-                                <p:column>
-                                    <p:inputText value="#{fila.exposicionRiesgo}"/>
-                                </p:column>
-                            </p:dataTable>      
-                        </h:form>
+                <div class="w-full" style="background-color: transparent;">
+                    <div class="p-toolbar" style="display: flex; justify-content: flex-end; align-items: center;">
+                        <div style="margin-left: auto;">
+                            <p:button outcome="formPrincipalInvestigacion" value="Regresar" styleClass="ui-button-raised ui-button-warning"
+                                      style="background-color: #2A2A2A; color: #FFF600; font-family: 'Inter', sans-serif; font-weight: 600; border-radius: 10px; width: 210px; height: 50px; border-color: #2A2A2A;" />
+                            <p:button outcome="formInvestigacionTwo" value="Siguiente" styleClass="ui-button-raised ui-button-warning"
+                                      style="background-color: #FFF600; color: black; font-family: 'Inter', sans-serif; font-weight: 600; border-radius: 10px; width: 210px; height: 50px; margin-left: 10px; border-color:  #FFF600;" />
+                        </div>
                     </div>
                 </div>
-
-                <div class="ui-fluid formgrid grid pl-2" style="box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); border-radius: 1rem 1rem 0 0; border-bottom: none; background-color: #F8DA45;">
-                    <h5 class="p-3 text-2xl" style="font-family: 'Inter', sans-serif; font-weight: 600; color: black;">
-                        DESCRIPCIÓN DE CAUSAS DEL ACCIDENTE DE TRABAJO
-                    </h5>    
-                </div>
-
-                <div class="ui-fluid formgrid grid"   
-                     style="border-radius: 0 0 1rem 1rem; background-color: #EDEDED; margin-bottom: 70px; padding: 30px 36px 30px 36px; box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);">
-                    <h6 class="pl-3 text-base" style="font-family: 'Inter', sans-serif; color: black;">
-                        9. Cada empresa o entidad pública o privada, puede adoptar el modelo de determinación
-                        de causas, que mejor se adapte a sus características y debe adjuntar al presente formato
-                        el desarrollo de la misma.  Describa el accidente en el cuadro inferior:
-                    </h6>
-
-                    <div class="ui-g-12">
-                        <p:toolbarGroup align="right" styleClass="ml-auto">
-                            <p:fileUpload mode="simple" skinSimple="true" label="Subir Archivo" chooseIcon="pi pi-angle-up"/>
-                        </p:toolbarGroup>
-                    </div>
-
-                    <div class="ui-g-12">
-                        <p:inputTextarea rows="5" cols="30" maxlength="250" autoResize="false" placeholder="Ingrese aquí la descripción del accidente"/>
-                    </div>
-
-                    <div class="ui-g-12 text-right">
-                        <p:button value="Agregar" styleClass="ui-button-raised mr-2 mb-2" style="width: 200px; height: 50px; color: white; background-color: #741818; font-family: 'Inter', sans-serif; font-weight: 600; border: none"/>
-                    </div>
-
-                    <div class="field col-12 pt-6" >
-                        <h:form>
-                            <p:dataTable value="#{tablaBean.data}" var="fila" editable="true" emptyMessage="Registro de investigación en desarrollo."  style="border-radius: 10px; box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); border-radius: 1rem 1rem 0 0; border-bottom: none;" >
-                                <p:columnGroup type="header">
-                                    <p:row>
-                                        <p:column headerText="Nº" style="text-align: center; background-color: #20212B; color: white; border: 1px solid white; "/>
-                                        <p:column headerText="Nombre" style="text-align: center; background-color: #20212B; color: white; border: 1px solid white;"/>
-                                        <p:column headerText="Fecha Modificación" style="text-align: center; background-color: #20212B; color: white; border: 1px solid white;"/>
-                                        <p:column headerText="Tipo de Archivo" style="text-align: center; background-color: #20212B; color: white; border: 1px solid white;"/>
-                                        <p:column headerText="Tamaño de Archivo" style="text-align: center; background-color: #20212B; color: white; border: 1px solid white;"/>
-                                        <p:column headerText="Acción" style="text-align: center; background-color: #20212B; color: white; border: 1px solid white;"/>
-                                    </p:row>
-                                </p:columnGroup>
-
-                                <!-- Resto de las columnas y registros -->
-                                <p:column>
-                                    <p:inputText value="#{fila.descripcion}"/>
-                                </p:column>
-                                <p:column>
-                                    <p:inputText value="#{fila.personasExpuestas}"/>
-                                </p:column>
-                                <p:column>
-                                    <p:inputText value="#{fila.procedimientosExistentes}"/>
-                                </p:column>
-                                <p:column>
-                                    <p:inputText value="#{fila.capacitacion}"/>
-                                </p:column>
-                                <p:column>
-                                    <p:inputText value="#{fila.exposicionRiesgo}"/>
-                                </p:column>
-                            </p:dataTable>      
-                        </h:form>
-                    </div>
-                </div>
-
             </div>   
         </h:form>
     </ui:define>
