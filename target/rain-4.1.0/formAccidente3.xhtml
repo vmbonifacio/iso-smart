@@ -93,10 +93,10 @@
                         <div class="ui-fluid formgrid grid p-4 w-full shadow-6" style="background-color: #f8da45; border-radius: 15px; margin: auto;">
                             <div class="col-12 mb-2 lg:col-4 mb-lg-0 -ml-2 mb-3">
                                 <p:outputLabel for="empresa" value="Empresa tercera a la que pertenece:"  class="pt-3 mb-4" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600; margin-top:20px; margin-bottom:20px; " />    
-                                <p:selectOneMenu id="empresa" value="#{personaTManagedBean.selectedPersonaT.empresa_p}" class="mb-4" style="background:white; border: none; border: 2px solid black; color: black; margin-top:20px;">
+                                <p:selectOneMenu id="empresa" value="#{personaTManagedBean.selectedPersonaT.empresa_p}" class="mb-4" style="background:white; border: none; border: 2px solid black; color: black; margin-top:20px; border-radius: 10px;">
                                     <f:selectItem itemLabel="Selecciona la empresa" itemValue="" />
-                                    <f:selectItems value="#{tercerosManagedBean.selectedTercero.razon_social}" var="empresa" />//
-                                </p:selectOneMenu>                               
+                                    <f:selectItems value="#{personaTManagedBean.listaRazonSocial}" var="empresa" />
+                                </p:selectOneMenu>
                             </div>
 
                             <div class="grid formgrid w-full">
@@ -133,80 +133,61 @@
                             </div>    
                         </div>
                         <!--****************************************************************************-->
-                        <div style="margin-left:auto;">
-                            <p:commandButton action="#{personaTManagedBean.agregarRegistroT}" update="@form" value="Agregar persona accidentada"  style="background-color: #751d1d; border:none;" class="w-12 h-3rem"/>
+                        
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-4 mt-4">
+                            <p:commandButton style="color: white; font-family: 'Inter', sans-serif; font-weight: 600; background-color: #741818; height: 50px; border-color: #000; border-radius: 14px;" action="#{personaTManagedBean.agregarRegistroT}" update="tablaPersonasT" value="Registrar persona accidentada"/>
                         </div>
                         <!--TABLA-->
-                        <div class="w-full mt-2"><h3 style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" >LISTA DE TRABAJADORES ACCIDENTADOS</h3></div>
-                        <p:dataTable id="tablaPersonasT" value="#{personaTManagedBean.obtenerRegistrosPersonaT()}" style="box-shadow: 0px 3px 15px 3px rgba(43,43,43,1);" var="pert" rowKey="#{pert.id_personaa_t}" emptyMessage="No se encontraron registros" reflow="true" rows="4" paginator="true">
-                            <p:column headerText="ID">
+                        <div class="w-full mt-2"><h3 style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" >LISTA DE TRABAJADORES TERCEROS ACCIDENTADOS</h3></div>
+                        <p:dataTable id="tablaPersonasT" value="#{personaTManagedBean.obtenerRegistrosPersonaT()}" style="box-shadow: 0px 3px 15px 3px rgba(43,43,43,1);display: #{personaTManagedBean.mostrarTabla ? 'table' : 'none'}" var="pert" rowKey="#{pert.id_personaa_t}" emptyMessage="No se encontraron registros" reflow="true" rows="4" paginator="true">
+                            <p:column headerText="ID" style="border: 1px solid white;">
                                 <h:outputText value="#{pert.id_personaa_t}" />
                             </p:column>
 
-                            <p:column headerText="Tipo">
-                                <h:outputText value="#{pert.tipo_acci}" />
-                            </p:column>
-
-                            <p:column headerText="Nombres">
-                                <h:outputText value="#{pert.nombres_c}" />
-                            </p:column>
-
-                            <p:column headerText="Apellido paterno">
-                                <h:outputText value="#{pert.apellido_p}" />
-                            </p:column>
-
-                            <p:column headerText="Apellido materno">
-                                <h:outputText value="#{pert.apellido_m}" />
-                            </p:column>
-
-                            <p:column headerText="Dni/Ce">
+                            <p:column headerText="Dni/Ce" style="border: 1px solid white;">
                                 <h:outputText value="#{pert.dni_ce}" />
                             </p:column>
 
-                            <p:column headerText="Edad">
+                            <p:column headerText="Nombres" style="border: 1px solid white;">
+                                <h:outputText value="#{pert.nombres_c}" />
+                            </p:column>
+
+                            <p:column headerText="Apellido paterno" style="border: 1px solid white;">
+                                <h:outputText value="#{pert.apellido_p}" />
+                            </p:column>
+
+                            <p:column headerText="Apellido materno" style="border: 1px solid white;">
+                                <h:outputText value="#{pert.apellido_m}" />
+                            </p:column>
+
+                            <p:column headerText="Edad" style="border: 1px solid white;">
                                 <h:outputText value="#{pert.edad}" />
                             </p:column>
 
-                            <p:column headerText="Genero">
+                            <p:column headerText="Genero" style="border: 1px solid white;">
                                 <h:outputText value="#{pert.genero}" />
                             </p:column>
 
-                            <p:column headerText="Empresa perteneciente">
-                                <h:outputText value="#{pert.empresa_p}" />
-                            </p:column>
-
-                            <p:column headerText="Area de Trabajo">
+                            <p:column headerText="Area de Trabajo" style="border: 1px solid white;">
                                 <h:outputText value="#{pert.area_trabajo}" />
                             </p:column>
 
-                            <p:column headerText="Puesto">
+                            <p:column headerText="Puesto" style="border: 1px solid white;">
                                 <h:outputText value="#{pert.puesto_trabajo}" />
                             </p:column>
 
-                            <p:column headerText="Antiguedad">
-                                <h:outputText value="#{pert.antiguedad_empleo}" />
-                            </p:column>
-
-                            <p:column headerText="Puesto">
-                                <h:outputText value="#{pert.puesto_trabajo}" />
-                            </p:column>
-
-                            <p:column headerText="Turno">
+                            <p:column headerText="Turno" style="border: 1px solid white;">
                                 <h:outputText value="#{pert.turno}" />
                             </p:column>
 
-                            <p:column headerText="Horas trabajadas">
-                                <h:outputText value="#{pert.h_trabajadas_antes_acci}" />
-                            </p:column>
-
-                            <p:column headerText="Acción">
+                            <p:column headerText="Acción" style="border: 1px solid white;">
                                 <p:commandButton 
                                     value="Editar"
                                     oncomplete="PF('dlgEditar').show()" 
                                     process="@this"
                                     styleClass="rounded-button ui-button-info mb-2" >
 
-                                    <f:setPropertyActionListener target="#{personaManagedBean.persona}" value="#{per}" />
+                                    <f:setPropertyActionListener target="#{personaManagedBean.personaT}" value="#{per}" />
                                 </p:commandButton>
 
                                 <p:commandButton 
@@ -214,67 +195,6 @@
                                     styleClass="rounded-button ui-button-danger mb-2" 
                                     action="#{personaTManagedBean.eliminarRegistroT(pert.id_personaa_t)}"                
                                     update="@form" />
-                            </p:column>
-                        </p:dataTable>    
-                        <!--TABLA 2-->
-                        <div class="w-full mt-4 mb-2"><h3 style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" >LISTA DE CIVILES ACCIDENTADOS</h3></div>
-                        <p:dataTable id="tablaPersonasC" value="#{personaCManagedBean.obtenerRegistrosPersonaC()}" style="box-shadow: 0px 3px 15px 3px rgba(43,43,43,1);" var="perc" rowKey="#{perc.id_personaa_c}" emptyMessage="No se encontraron registros, watafac" reflow="true" rows="4" paginator="true">
-                            <p:column headerText="ID">
-                                <h:outputText value="#{perc.id_personaa_c}" />
-                            </p:column>
-
-                            <p:column headerText="Tipo">
-                                <h:outputText value="#{perc.tipo_acci}" />
-                            </p:column>
-
-                            <p:column headerText="Nombres">
-                                <h:outputText value="#{perc.nombres_c}" />
-                            </p:column>
-
-                            <p:column headerText="Apellido paterno">
-                                <h:outputText value="#{perc.apellido_p}" />
-                            </p:column>
-
-                            <p:column headerText="Apellido materno">
-                                <h:outputText value="#{perc.apellido_m}" />
-                            </p:column>
-
-                            <p:column headerText="Dni/Ce">
-                                <h:outputText value="#{perc.dni_ce}" />
-                            </p:column>
-
-                            <p:column headerText="Edad">
-                                <h:outputText value="#{perc.edad}" />
-                            </p:column>
-
-                            <p:column headerText="Genero">
-                                <h:outputText value="#{perc.genero}" />
-                            </p:column>
-
-                            <p:column headerText="Acción">
-                                <p:commandButton oncomplete="PF('dlgEditar').show()" 
-                                                 process="@this"
-                                                 value="Editar"
-                                                 styleClass="rounded-button ui-button-info mb-2" >
-
-                                    <f:setPropertyActionListener target="#{personaManagedBean.persona}" value="#{perc}" />
-                                </p:commandButton>
-
-                                <p:commandButton 
-                                    value="Borrar"
-                                    styleClass="rounded-button ui-button-danger mb-2"
-                                    action="#{personaCManagedBean.eliminarRegistroC(perc.id_personaa_c)}" 
-                                    update="@form" />
-
-                                <p:commandButton value="Gravedad" 
-                                                 update=":modalGravedadC"
-                                                 oncomplete="PF('dlgGravedadC').show()" 
-                                                 process="@this" 
-                                                 styleClass="rounded-button ui-button-secondary" >
-                                    <f:setPropertyActionListener target="#{personaCManagedBean.selectedPersonaC}" value="#{perc}" />
-                                    <!-- Actualiza el formulario del diálogo con los datos de la fila seleccionada -->
-
-                                </p:commandButton>
                             </p:column>
                         </p:dataTable>    
                     </div>  
@@ -301,64 +221,61 @@
                         window.location.href = 'formAccidente4.xhtml';
                     }
                 }
+                function agregarFilaATabla(id) {
+                    var table = document.getElementById("tablaPersonasT");
+                    var newRow = table.insertRow();
 
+                    // Agregar celdas con los valores del registro
+                    var registro = obtenerRegistroPorId(id);
+
+                    var celdaId = newRow.insertCell();
+                    celdaId.textContent = registro.id_personaa_t;
+
+                    var celdaTipo = newRow.insertCell();
+                    celdaTipo.textContent = registro.tipo_acci;
+
+                    var celdaNombres = newRow.insertCell();
+                    celdaNombres.textContent = registro.nombres_c;
+
+                    var celdaApellidoPaterno = newRow.insertCell();
+                    celdaApellidoPaterno.textContent = registro.apellido_p;
+
+                    var celdaApellidoMaterno = newRow.insertCell();
+                    celdaApellidoMaterno.textContent = registro.apellido_m;
+
+                    var celdaDniCe = newRow.insertCell();
+                    celdaDniCe.textContent = registro.dni_ce;
+
+                    var celdaEdad = newRow.insertCell();
+                    celdaEdad.textContent = registro.edad;
+
+                    var celdaGenero = newRow.insertCell();
+                    celdaGenero.textContent = registro.genero;
+
+                    var celdaEmpresa = newRow.insertCell();
+                    celdaEmpresa.textContent = registro.empresa_p;
+
+                    var celdaAreaTrabajo = newRow.insertCell();
+                    celdaAreaTrabajo.textContent = registro.area_trabajo;
+
+                    var celdaPuesto = newRow.insertCell();
+                    celdaPuesto.textContent = registro.puesto_trabajo;
+
+                    var celdaAntiguedad = newRow.insertCell();
+                    celdaAntiguedad.textContent = registro.antiguedad_empleo;
+
+                    var celdaTurno = newRow.insertCell();
+                    celdaTurno.textContent = registro.turno;
+
+                    var celdaHorasTrabajadas = newRow.insertCell();
+                    celdaHorasTrabajadas.textContent = registro.h_trabajadas_antes_acci;
+
+                    // Asegúrate de agregar todas las celdas restantes de acuerdo con la estructura de tu tabla
+
+                    // Asegurarse de que "tablaPersonasT" sea el ID correcto de la tabla en tu página
+                    PrimeFaces.current().ajax().update("tablaPersonasT");
+                }
             </script>
         </h:form>
-
-        <p:dialog id="modalGravedadC" widgetVar="dlgGravedadC" modal="true" resizable="false" style="background-color:red;box-shadow: 0px 0px 22px 8px rgba(148,60,60,0.83);border-radius:20px;">
-            <div>
-                <p:outputLabel value="Gravedad de Civil Accidentado" class="text-3xl mb-3" style="color: white; font-family: 'Inter', sans-serif; font-weight: 500; text-align: center" />
-            </div>
-            <h:form id="formGravedadC" class="mb-4">
-                <!-- Campos de entrada para editar la gravedad -->
-                <h:outputLabel value="Nombres Completo:" class="mr-6"/>
-                <p:inputText id="inputNombre" value="#{personaCManagedBean.selectedPersonaC.nombres_c}" class="mb-3" style="width:23rem; background:transparent; color: white; border: none; border-bottom: 3px solid  #f8da45"/>
-
-                <h:outputLabel value="Apellido Paterno:" class="mr-7"/>
-                <p:inputText id="inputApellidoP" value="#{personaCManagedBean.selectedPersonaC.apellido_p}" class="mb-3" style="width:23rem; background:transparent; color: white; border: none; border-bottom: 3px solid  #f8da45"/>
-
-                <h:outputLabel value="Apellido Materno:" class="" style="margin-right:3.6rem"/>
-                <p:inputText id="inputApellidoM" value="#{personaCManagedBean.selectedPersonaC.apellido_m}" class="mb-3" style="width:23rem; background:transparent; color: white; border: none; border-bottom: 3px solid  #f8da45"/>
-
-                <h:outputLabel value="Edad:" class="" style="margin-right:9.1rem;"/>
-                <p:inputText id="inputEdad" value="#{personaCManagedBean.selectedPersonaC.edad}" class="mb-3" style="width:23rem; background:transparent; color: white; border: none; border-bottom: 3px solid  #f8da45"/>
-
-                <h:outputLabel value="DNI:" class="" style="margin-right:9.6rem"/>
-                <p:inputText id="inputArea" value="#{personaCManagedBean.selectedPersonaC.dni_ce}" class="mb-3" style="width:23rem; background:transparent; color: white; border: none; border-bottom: 3px solid  #f8da45"/>
-
-            </h:form>
-
-            <div>
-                <p:outputLabel value="MARQUE LA GRAVEDAD DEL ACCIDENTE" class="text-lg mb-2" style="color: white; font-family: 'Inter', sans-serif; font-weight: 500; text-align: center" />
-            </div>
-
-            <div class="field col-12 md:col-6 w-auto mr-auto">
-                <p:selectOneRadio layout="responsive" columns="3" immediate="true">
-                    <f:selectItem itemLabel="Leve" itemValue="1"/>
-                    <f:selectItem itemLabel="Incapacitante" itemValue="2"/>
-                    <f:selectItem itemLabel="Mortal" itemValue="3" />
-                </p:selectOneRadio>
-            </div>
-
-            <div>
-                <p:outputLabel value="MARQUE LA GRAVEDAD DEL ACCIDENTE INCAPACITANTE (DE SER EL CASO):" class="text-lg mb-2" style="color: white; font-family: 'Inter', sans-serif; font-weight: 500;" />
-            </div>
-
-            <div class="field col-12 md:col-6 w-auto mr-auto">
-                <p:selectOneRadio layout="responsive" columns="2" immediate="true">
-                    <f:selectItem itemLabel="Parcial permanente" itemValue="1" />
-                    <f:selectItem itemLabel="Total permanente" itemValue="2" />
-                </p:selectOneRadio>
-            </div>
-
-            <div class="col-12 mb-2 lg:col-10 mb-3">
-                <p:outputLabel for="cafec1" value="DESCRIBIR PARTE DEL CUERPO AFECTADA (DE SER EL CASO):"  class="pt-2 w-full" style="color: white; font-family: 'Inter', sans-serif; font-weight: 600;" />    
-                <p:inputText id="cafec1" class="w-30rem" placeholder="Ingresa la parte del cuerpo afectada" style="background:transparent; color: white; border: none; border-bottom: 3px solid  #f8da45;"/>
-            </div>
-
-            <div class="text-center">
-                <p:button value="Guardar"  styleClass="ui-button-raised ui-button-warning ui-button" style="background-color:transparent; border:2px solid #ffffff; border-radius: 6px; color:white"/>
-            </div>
-        </p:dialog>
     </ui:define>
 </ui:composition>

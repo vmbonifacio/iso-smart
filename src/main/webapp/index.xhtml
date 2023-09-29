@@ -41,6 +41,24 @@
 
         <div style="width: 400px; margin: 0 auto;">
             <h:form>
+
+                <p:selectOneMenu value="#{pruebaManagedBean.ubigeo.departamentoSeleccionado}" class="mb-4" style="background:white; border: none; border: 2px solid black; color: black; margin-top:20px;">
+                    <f:selectItem itemLabel="Selecciona" itemValue="" />
+                    <f:selectItems value="#{pruebaManagedBean.ubigeo.listaDepartamentos}" />
+                </p:selectOneMenu>
+
+                <p:selectOneMenu value="#{pruebaManagedBean.ubigeo.provinciaSeleccionada}" class="mb-4" style="background:white; border: none; border: 2px solid black; color: black; margin-top:20px;">
+                    <f:selectItem itemLabel="Selecciona" itemValue="" />
+                    <f:selectItems value="#{pruebaManagedBean.ubigeo.listaProvincias}" />
+                </p:selectOneMenu>
+
+                <p:selectOneMenu value="#{pruebaManagedBean.ubigeo.distritoSeleccionado}" class="mb-4" style="background:white; border: none; border: 2px solid black; color: black; margin-top:20px;">
+                    <f:selectItem itemLabel="Selecciona " itemValue="" />
+                    <f:selectItems value="#{pruebaManagedBean.ubigeo.listaDistritos}" />
+                </p:selectOneMenu>
+
+
+
                 <h:outputText value="Razon Social:" styleClass="texto-destacado" /><br></br><br></br>
                 <h:inputText value="#{tercerosManagedBean.tercero.razon_social}" styleClass="input-estilo"></h:inputText><br></br><br></br>
                 <h:outputText value="RUC:" styleClass="texto-destacado"/><br></br><br></br>

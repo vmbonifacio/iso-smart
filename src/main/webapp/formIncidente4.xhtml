@@ -6,7 +6,7 @@
                 template="/WEB-INF/template.xhtml"
                 xmlns:webjars="http://webjars.org/ui"
                 webjars:assetLocator="org.webjars.WebJarAssetLocator">
-    
+
     <ui:define name="head">
         <h:outputStylesheet library="webjars" name="bootstrap/5.2.3/css/bootstrap.min.css" />
     </ui:define>
@@ -53,7 +53,7 @@
                                 <f:selectItem itemLabel="Civil" itemValue="Civil" />
                             </p:selectOneRadio>
                         </div>
-                        
+
                         <!--NOMBRES Y APELLIDOS-->
                         <div class="grid formgrid w-full mt-4">
                             <div class="col-12 mb-2 lg:col-4 mb-lg-0">
@@ -88,237 +88,82 @@
                                     <f:selectItem itemLabel="F" itemValue="F" />
                                 </p:selectOneRadio>
                             </div>
-                        </div>
-                        <!-- DATOS TRABAJADOR PRINCIPAL-->
-                        <div class="ui-fluid formgrid grid p-4 w-full shadow-6" style="background-color: #f8da45; border-radius: 5px; margin: auto;margin-top:10px;margin-bottom:20px;">
-                            <div class="grid formgrid w-full">
-                                <div class="col-12 mb-2 lg:col-4 mb-lg-0">
-                                    <p:outputLabel for="areatb" value="Área de trabajo"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />    
-                                    <p:inputText id="areatb" class="w-full" value="#{personaCIncManagedBean.selectedPersonaCI.area_trabajo}" placeholder="Ingrese aqui su area de trabajo" style="background:transparent; color: black; border: none; border-bottom: 3px solid black;"/>
-                                </div>
 
-                                <div class="col-12 mb-2 lg:col-4 mb-lg-0">
-                                    <p:outputLabel for="ptrabajo" value="Puesto de trabajo"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />    
-                                    <p:inputText id="ptrabajo" class="w-full" value="#{personaCIncManagedBean.selectedPersonaCI.puesto_trabajo}" placeholder="Ingrese aqui su puesto de trabajo" style="background:transparent; color: black; border: none; border-bottom: 3px solid black;"/>
-                                </div>
-
-                                <div class="col-12 mb-2 lg:col-4 mb-lg-0">
-                                    <p:outputLabel for="aempleo" value="Antiguedad de empleo"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />    
-                                    <p:inputText id="aempleo" class="w-full" value="#{personaCIncManagedBean.selectedPersonaCI.antiguedad_empleo}" placeholder="Ingrese aqui su antiguedad" style="background:transparent; color: black; border: none; border-bottom: 3px solid black;"/>
-                                </div>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3 mt-2">
+                                <p:commandButton style="color: white; font-family: 'Inter', sans-serif; font-weight: 600; background-color: #741818; height: 50px; border-color: #000; border-radius: 14px;" action="#{personaCIncManagedBean.agregarRegistroC}" update="tablaPersonasCI" value="Registrar trabajador afectado"/>
                             </div>
-                            <div class="grid formgrid w-full mt-4 mb-2">
-                                <div class="field col-12 md:col-6 w-4 mr-auto">
-                                    <p:outputLabel  value="Turno" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;"/>
-                                    <p:selectOneRadio layout="responsive" value="#{personaCIncManagedBean.selectedPersonaCI.turno}" columns="3">
-                                        <f:selectItem itemLabel="Mañana" itemValue="Mañana"/>
-                                        <f:selectItem itemLabel="Tarde" itemValue="Tarde"/>
-                                        <f:selectItem itemLabel="Noche" itemValue="Noche"/>
-                                    </p:selectOneRadio>
-                                </div>
-
-                                <div class="col-12 mb-2 lg:col-4 mb-lg-0">
-                                    <p:outputLabel for="contrato" value="Tipo de contrato"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />    
-                                    <p:inputText id="contrato" class="w-full" value="#{personaCIncManagedBean.selectedPersonaCI.tipo_inci}" placeholder="Ingrese aqui el tipo de contrato" style="background:transparent; color: black; border: none; border-bottom: 3px solid black;"/>
-                                </div>
-
-                                <div class="col-12 mb-2 lg:col-4 mb-lg-0">
-                                    <p:outputLabel for="texpe" value="Tiempo de experiencia en el trabajo"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />    
-                                    <p:inputText id="texpe" class="w-full" value="#{personaCIncManagedBean.selectedPersonaCI.tiempo_experiencia}" placeholder="Ingrese aqui el tiempo de exp." style="background:transparent; color: black; border: none; border-bottom: 3px solid black;"/>
-                                </div>
-                                <div class="col-12 mb-2 lg:col-4 mb-lg-0 mt-3">
-                                    <p:outputLabel for="jlaboral" value="N° horas trabajadas en jornada laboral (antes del accidente)"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />    
-                                    <p:inputText id="jlaboral" class="w-6" value="#{personaCIncManagedBean.selectedPersonaCI.h_trabajadas_antes_inci}" placeholder="Ingrese aqui las horas" style="background:transparent; color: black; border: none; border-bottom: 3px solid black;"/>
-                                </div>
-                            </div>    
                         </div>
 
-                        <!-- BOTON -->
-                        <div style="margin-left:auto;">
-                            <p:commandButton style="background-color: #751d1d; border:none;" class="w-12 h-3rem" action="#{personaCIncManagedBean.agregarRegistroC}" update="@form" value="Registrar trabajador afectado"/>
-                        </div>
-
-                        <!--TABLA-->
-                        <div class="w-full mt-2 mb-2"><h3 style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" >LISTA DE TRABAJADORES TERCEROS AFECTADOS</h3></div>
-                        <p:dataTable id="tablaPersonasTI" value="#{personaTIncManagedBean.obtenerRegistrosPersonaTI()}" var="perti" rowKey="#{perti.id_personai_t}" emptyMessage="No se encontraron registros" reflow="true" rows="4" paginator="true">
-                            <p:column headerText="ID">
-                                <h:outputText value="#{perti.id_personai_t}" />
+                        <!-- TABLA 2-->
+                        <div class="w-full mt-4 mb-2"><h3 style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" >LISTA DE CIVILES AFECTADOS</h3></div>
+                        <p:dataTable id="tablaPersonasCI" value="#{personaCIncManagedBean.obtenerRegistrosPersonaCI()}" style="box-shadow: 0px 3px 15px 3px rgba(43,43,43,1);" var="percc" rowKey="#{percc.id_personac}" emptyMessage="No se encontraron registros" reflow="true" rows="4" paginator="true">
+                            <p:column headerText="ID" style="border: 1px solid white;">
+                                <h:outputText value="#{percc.id_personac}" />
+                            </p:column>
+                            
+                            <p:column headerText="Dni/Ce" style="border: 1px solid white;">
+                                <h:outputText value="#{percc.dni_ce}" />
                             </p:column>
 
-                            <p:column headerText="Tipo">
-                                <h:outputText value="#{perti.tipo_inci}" />
+                            <p:column headerText="Nombres" style="border: 1px solid white;">
+                                <h:outputText value="#{percc.nombres_c}" />
                             </p:column>
 
-                            <p:column headerText="Nombres">
-                                <h:outputText value="#{perti.nombres_c}" />
+                            <p:column headerText="Apellido paterno" style="border: 1px solid white;">
+                                <h:outputText value="#{percc.apellido_p}" />
                             </p:column>
 
-                            <p:column headerText="Apellido paterno">
-                                <h:outputText value="#{perti.apellido_p}" />
+                            <p:column headerText="Apellido materno" style="border: 1px solid white;">
+                                <h:outputText value="#{percc.apellido_m}" />
                             </p:column>
 
-                            <p:column headerText="Apellido materno">
-                                <h:outputText value="#{perti.apellido_m}" />
+                            <p:column headerText="Edad" style="border: 1px solid white;">
+                                <h:outputText value="#{percc.edad}" />
                             </p:column>
 
-                            <p:column headerText="Dni/Ce">
-                                <h:outputText value="#{perti.dni_ce}" />
+                            <p:column headerText="Genero" style="border: 1px solid white;">
+                                <h:outputText value="#{percc.genero}" />
                             </p:column>
 
-                            <p:column headerText="Edad">
-                                <h:outputText value="#{perti.edad}" />
-                            </p:column>
-
-                            <p:column headerText="Genero">
-                                <h:outputText value="#{perti.genero}" />
-                            </p:column>
-
-                            <p:column headerText="Empresa perteneciente">
-                                <h:outputText value="#{perti.empresa_p}" />
-                            </p:column>
-
-                            <p:column headerText="Area de Trabajo">
-                                <h:outputText value="#{perti.area_trabajo}" />
-                            </p:column>
-
-                            <p:column headerText="Puesto">
-                                <h:outputText value="#{perti.puesto_trabajo}" />
-                            </p:column>
-
-                            <p:column headerText="Antiguedad">
-                                <h:outputText value="#{perti.antiguedad_empleo}" />
-                            </p:column>
-
-                            <p:column headerText="Puesto">
-                                <h:outputText value="#{perti.puesto_trabajo}" />
-                            </p:column>
-
-                            <p:column headerText="Turno">
-                                <h:outputText value="#{perti.turno}" />
-                            </p:column>
-
-                            <p:column headerText="Horas trabajadas">
-                                <h:outputText value="#{perti.h_trabajadas_antes_inci}" />
-                            </p:column>
-
-                            <p:column headerText="Acción">
+                            <p:column headerText="Acción" style="border: 1px solid white;">
                                 <p:commandButton oncomplete="PF('dlgEditar').show()" 
                                                  process="@this"
                                                  icon="pi pi-pencil"
                                                  styleClass="rounded-button ui-button-success" >
 
-                                    <f:setPropertyActionListener target="#{personaManagedBean.persona}" value="#{per}" />
+                                    <f:setPropertyActionListener target="#{personaManagedBean.persona}" value="#{perc}" />
                                 </p:commandButton>
 
                                 <p:commandButton icon="pi pi-times" 
                                                  styleClass="rounded-button ui-button-danger" 
-                                                 action="#{personaTIncManagedBean.eliminarRegistroTI(perti.id_personai_t)}"                
+                                                 action="#{personaCIncManagedBean.eliminarRegistroC(percc.id_personac)}" 
                                                  update="@form" />
                             </p:column>
                         </p:dataTable> 
-                        <!-- TABLA 2-->
-                         <div class="w-full mt-4 mb-2"><h3 style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" >LISTA DE CIVILES AFECTADOS</h3></div>
-                         <p:dataTable id="tablaPersonasCI" value="#{personaCIncManagedBean.obtenerRegistrosPersonaCI()}" var="percc" rowKey="#{percc.id_personac}" emptyMessage="No se encontraron registros, watafac" reflow="true" rows="4" paginator="true">
-                                <p:column headerText="ID">
-                                    <h:outputText value="#{percc.id_personac}" />
-                                </p:column>
-
-                                <p:column headerText="Tipo">
-                                    <h:outputText value="#{percc.tipo_inci}" />
-                                </p:column>
-
-                                <p:column headerText="Nombres">
-                                    <h:outputText value="#{percc.nombres_c}" />
-                                </p:column>
-
-                                <p:column headerText="Apellido paterno">
-                                    <h:outputText value="#{percc.apellido_p}" />
-                                </p:column>
-
-                                <p:column headerText="Apellido materno">
-                                    <h:outputText value="#{percc.apellido_m}" />
-                                </p:column>
-
-                                <p:column headerText="Dni/Ce">
-                                    <h:outputText value="#{percc.dni_ce}" />
-                                </p:column>
-
-                                <p:column headerText="Edad">
-                                    <h:outputText value="#{percc.edad}" />
-                                </p:column>
-
-                                <p:column headerText="Genero">
-                                    <h:outputText value="#{percc.genero}" />
-                                </p:column>
-
-                                <p:column headerText="Area de Trabajo">
-                                    <h:outputText value="#{percc.area_trabajo}" />
-                                </p:column>
-
-                                <p:column headerText="Puesto">
-                                    <h:outputText value="#{percc.puesto_trabajo}" />
-                                </p:column>
-
-                                <p:column headerText="Antiguedad">
-                                    <h:outputText value="#{percc.antiguedad_empleo}" />
-                                </p:column>
-
-                                <p:column headerText="Puesto">
-                                    <h:outputText value="#{percc.puesto_trabajo}" />
-                                </p:column>
-
-                                <p:column headerText="Turno">
-                                    <h:outputText value="#{percc.turno}" />
-                                </p:column>
-
-                                <p:column headerText="Tipo de Contrato">
-                                    <h:outputText value="#{percc.tipo_contrato}" />
-                                </p:column>
-
-                                <p:column headerText="Experiencia">
-                                    <h:outputText value="#{percc.tiempo_experiencia}" />
-                                </p:column>
-
-                                <p:column headerText="Horas trabajadas">
-                                    <h:outputText value="#{percc.h_trabajadas_antes_inci}" />
-                                </p:column>
-
-                                <p:column headerText="Acción">
-                                    <p:commandButton oncomplete="PF('dlgEditar').show()" 
-                                                     process="@this"
-                                                     icon="pi pi-pencil"
-                                                     styleClass="rounded-button ui-button-success" >
-
-                                        <f:setPropertyActionListener target="#{personaManagedBean.persona}" value="#{perc}" />
-                                    </p:commandButton>
-
-                                    <p:commandButton icon="pi pi-times" 
-                                                     styleClass="rounded-button ui-button-danger" 
-                                                     action="#{personaCIncManagedBean.eliminarRegistroC(percc.id_personac)}" 
-                                                     update="@form" />
-                                </p:column>
-                            </p:dataTable> 
 
                     </div> 
-                  </div>
                 </div>
-                <!--BOTONES-->
-                <div class="w-full" style="background-color: transparent;">
-                    <div class="p-toolbar" style="display: flex;justify-content: space-between;align-items: center;">
-                        <div class="p-toolbar-group-left w-3">
-                            <p:button outcome="formAccidente" value="Anterior" styleClass="ui-button-raised ui-button-warning" style="background-color: #f8da45; color:black; font-family: 'Inter', sans-serif; font-weight: 600;border-radius: 10px;width:100%; height:50px;" />
-                        </div>
+            </div>
+            <!--BOTONES-->
+            <div class="w-full" style="background-color: transparent;">
+                <div class="p-toolbar" style="display: flex; justify-content: flex-end; align-items: center;">
+                    <div style="margin-left: auto;">
+                        <p:button outcome="formIncidente" value="Regresar" styleClass="ui-button-raised ui-button-warning"
+                                  style="background-color: #2A2A2A; color: #FFF600; font-family: 'Inter', sans-serif; font-weight: 600; border-radius: 10px; width: 210px; height: 50px; border-color: #2A2A2A;" />
+                        <p:button outcome="formPrincipalOcurrencia" value="Guardar Cambios" styleClass="ui-button-raised ui-button-warning"
+                                  style="background-color: #FFF600; color: black; font-family: 'Inter', sans-serif; font-weight: 600; border-radius: 10px; width: 210px; height: 50px; margin-left: 10px; border-color:  #FFF600;" />
                     </div>
                 </div>
+            </div>
 
             <script>
-                 function handleChange(radio) {
-    if (radio.value === '1') {
-        window.location.href = 'formIncidente2.xhtml';
-    } else if (radio.value === '2') {
-        window.location.href = 'formIncidente3.xhtml';
-    }
-}
+                function handleChange(radio) {
+                    if (radio.value === '1') {
+                        window.location.href = 'formIncidente2.xhtml';
+                    } else if (radio.value === '2') {
+                        window.location.href = 'formIncidente3.xhtml';
+                    }
+                }
             </script>
 
         </h:form>

@@ -11,8 +11,13 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import org.primefaces.component.datatable.DataTable;
+import org.primefaces.event.CellEditEvent;
 
 @Named(value = "ocurrenciaManagedBean")
 @RequestScoped
@@ -28,6 +33,7 @@ public class OcurrenciaManagedBean {
         listaOcurrencia = new ArrayList();
     }
 
+    @PostConstruct
     public void init() {
         listaOcurrencia = obtenerRegistroOcurrencia();
     }
@@ -56,20 +62,44 @@ public class OcurrenciaManagedBean {
         this.listaOcurrencia = listaOcurrencia;
     }
 
-    public boolean hasSelectedOcurrencias() {
-        return this.listaOcurrencia != null && !this.listaOcurrencia.isEmpty();
-    }
+    public void onCellEdit(CellEditEvent event) {
+        DataTable dataTable = (DataTable) event.getSource();
+        Ocurrencia ocurrencia = (Ocurrencia) dataTable.getRowData();
 
-    public String getDeleteButtonMessage() {
-        if (hasSelectedOcurrencias()) {
-            int size = this.listaOcurrencia.size();
-            return size > 1 ? size + " ocurrencias seleccionadas" : "1 ocurrencia seleccionada";
+        if (ocurrencia != null) {
+            try {
+                OcurrenciaManagedBean.actualizarInformacion(ocurrencia);
+                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Cell updated successfully");
+                FacesContext.getCurrentInstance().addMessage(null, msg);
+            } catch (Exception e) {
+                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "An error occurred while updating cell");
+                FacesContext.getCurrentInstance().addMessage(null, msg);
+                e.printStackTrace();
+            }
         }
-
-        return "Borrar";
     }
-    
-    
+
+    public static void actualizarInformacion(Ocurrencia ocurrencia) {
+        try (
+                 Connection con = Conexion.obtenerConexion();  PreparedStatement pstmt = con.prepareStatement("UPDATE ocurrencia SET nombre = ?, tipoOcurrencia = ?, fechaOcurrencia = ?, numPersonas = ? WHERE idOcurrencia = ?")) {
+
+            pstmt.setString(1, ocurrencia.getNombre());
+            pstmt.setString(2, ocurrencia.getTipoOcurrencia());
+            pstmt.setDate(3, new java.sql.Date(ocurrencia.getFechaOcurrencia().getTime()));
+            pstmt.setInt(4, ocurrencia.getNumPersonasAfectadas());
+            pstmt.setInt(5, ocurrencia.getCodigo());
+
+            pstmt.executeUpdate();
+
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Actualización exitosa", "La información se ha actualizado correctamente");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Hubo un error al actualizar la información: " + e.toString());
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
+    }
 
     public List<Ocurrencia> obtenerRegistroOcurrencia() {
         listaOcurrencia.clear();
@@ -137,21 +167,22 @@ public class OcurrenciaManagedBean {
             System.out.println("Error al guardar información adicional: " + e.toString());
         }
     }
+    
 
-    public void eliminarRegistro(int codigo) {
-        try (
-                 Connection conn = Conexion.obtenerConexion();  Statement sql = conn.createStatement()) {
+    public void eliminarRegistro() {
+        if (selectedOcurrencia != null) {
+            try ( Connection conn = Conexion.obtenerConexion();  Statement sql = conn.createStatement()) {
+                String query = "DELETE FROM ocurrencia WHERE idOcurrencia = ?";
+                PreparedStatement pst = conn.prepareStatement(query);
+                pst.setInt(1, selectedOcurrencia.getCodigo());
+                pst.executeUpdate();
 
-            String query = "DELETE FROM ocurrencia WHERE idOcurrencia = ?";
-            PreparedStatement pst = conn.prepareStatement(query);
-            pst.setInt(1, codigo);
-            pst.executeUpdate();
+                // Actualizar la lista de registros después de eliminar uno
+                listaOcurrencia = obtenerRegistroOcurrencia();
 
-            // Actualizar la lista de registros después de eliminar uno
-            obtenerRegistroOcurrencia();
-
-        } catch (Exception e) {
-            e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

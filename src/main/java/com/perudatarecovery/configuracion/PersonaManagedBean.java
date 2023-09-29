@@ -167,6 +167,10 @@ public class PersonaManagedBean {
     public void prepararEdicion(Persona persona) {
         selectedPersona = persona;
     }
+    
+    public void prepararGravedad(Persona persona) {
+        selectedPersona = persona;
+    }
 
     private Persona persona = new Persona();
 

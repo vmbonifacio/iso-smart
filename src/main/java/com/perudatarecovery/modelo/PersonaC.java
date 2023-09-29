@@ -38,9 +38,6 @@ public class PersonaC {
     public PersonaC() {
     }
 
-    //   public PersonaC(int aInt, String string, String string0, String string1, String string2, int aInt0, int aInt1, String string3, String string4, String string5, String string6, String string7, String string8, int aInt2) {
-    //       throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    //   }
     public int getId_personaa_c() {
         return id_personaa_c;
     }

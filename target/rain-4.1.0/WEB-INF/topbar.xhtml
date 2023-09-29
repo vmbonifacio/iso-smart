@@ -6,6 +6,93 @@
                 xmlns:po="http://primefaces.org/rain">
 
 
+    <ui:define name="head">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <style>
+            /* Estilo para el menú cerrado */
+            .menu-wrapper {
+                display: none; /* Oculta el menú al cargar la página */
+                transform: translateX(-100%); /* Desliza el menú hacia la izquierda para ocultarlo */
+            }
+
+            /* Estilo para el menú abierto */
+            .menu-open {
+                display: block; /* Muestra el menú cuando se aplica la clase menu-open */
+                animation: fadeinleft 0.40s linear; /* Aplica la animación al abrir */
+            }
+
+            /* Define la animación */
+            @keyframes fadeinleft {
+                0%   {
+                    opacity: 0;
+                    transform: translateX(-100%);
+                    transition: transform .40s cubic-bezier(0, 0, 0.2, 1), opacity .12s cubic-bezier(0, 0, 0.2, 1);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateX(0%);
+                }
+            }
+
+            /* Asegúrate de que los íconos de hamburguesa y aspa tengan las clases correctas */
+            .menu-button-bars span,
+            .menu-button-times span {
+                /* Estilos para las líneas de la hamburguesa */
+            }
+
+            /* Agrega estilos para ocultar las líneas de la hamburguesa y mostrar las de aspa */
+            .menu-button-times span {
+                display: none; /* Oculta las líneas de la hamburguesa */
+            }
+
+            /* Puedes ajustar el estilo de la clase .hide según tus necesidades */
+            .hide {
+                display: none;
+            }
+
+            ::-webkit-scrollbar {
+                width: 6px; /* Ancho del scrollbar vertical */
+                background-color: #000000; /* Color de fondo del scrollbar */
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: rgb(74,73,57);
+                background: linear-gradient(0deg, rgba(74,73,57,1) 0%, rgba(255,235,0,1) 100%);
+                height: 10px;
+                border-radius: 4px;
+            }
+
+            /* Estilo para el submenu oculto */
+            .layout-rightpanel-submenu {
+                display: none;
+                position: absolute;
+                top: 100%; /* Coloca el submenu justo debajo del botón */
+                left: 0;
+                width: 100%;
+                background-color: #fff;
+                padding: 10px;
+                border-top: 1px solid #ddd;
+                transition: top 0.4s ease; /* Añade una transición para la posición */
+                z-index: 100; /* Ajusta el z-index según sea necesario */
+            }
+
+            /* Estilo para el botón Cerrar Sesión */
+            .close-session-button {
+                background-color: #ff0000; /* Cambia el color de fondo según tus preferencias */
+                color: #fff;
+                padding: 10px 20px;
+                border: none;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+
+            /* Cambia el color de fondo del botón al pasar el mouse por encima */
+            .close-session-button:hover {
+                background-color: #cc0000; /* Cambia el color de fondo al pasar el mouse */
+            }
+        </style>
+
+    </ui:define>
 
     <div class="layout-topbar"> 
         <div class="layout-topbar-wrapper">
@@ -15,8 +102,8 @@
                 </h:link>
             </div>
             <div class="layout-topbar-right" style="background-color: #ffd713;">
-                <div class="menu-button-wrapper" id="menuButton" >
-                    <a href="#" class="menu-button">
+                <div class="menu-button-wrapper" id="menuButton">
+                    <a href="#" class="menu-button" id="toggleMenuButton">
                         <div class="menu-button-bars">
                             <span style="color:black;"></span>
                             <span style="color:black;"></span>
@@ -238,19 +325,63 @@
                     </ui:fragment>
 
                 </ul>
-                <a href="#" class="layout-rightpanel-button">
+                <a href="#" class="layout-rightpanel-button" id="toggleSubmenuButton">
                     <i class="pi pi-ellipsis-v" style="color:black;"></i>
                 </a>
+
+                <p:menu id="submenu" style="display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); transition: top 0.4s ease;">
+                    <p:menuitem value="Cerrar Sesión" outcome="login.xhtml" icon="pi pi-sign-out"/>
+                </p:menu>
+
+
+
             </div>
         </div>
-        <script src="resources/js/menu.js"></script>
         <script>
-                            $(document).ready(function () {
-                                $('#menuButton').on('click', function () {
-                                    $('.menu-wrapper').toggleClass('menu-wrapper-open');
-                                });
-                            });
+            $(document).ready(function () {
+                const toggleMenuButton = document.getElementById("toggleMenuButton");
+                const menuWrapper = document.querySelector(".menu-wrapper");
 
+                toggleMenuButton.addEventListener("click", () => {
+                    menuWrapper.classList.toggle("menu-open");
+                });
+            });
+
+            $(document).ready(function () {
+                const toggleSubmenuButton = document.getElementById("toggleSubmenuButton");
+                const submenu = document.getElementById("submenu");
+                let isOpen = false; // Variable para rastrear si el menú está abierto o cerrado
+
+                toggleSubmenuButton.addEventListener("click", () => {
+                    if (isOpen) {
+                        // Si el menú está abierto, ciérralo
+                        submenu.style.display = "none";
+                    } else {
+                        // Si el menú está cerrado, ábrelo y calcula la posición
+                        const buttonRect = toggleSubmenuButton.getBoundingClientRect();
+                        const buttonWidth = toggleSubmenuButton.offsetWidth;
+                        const left = buttonRect.left;
+                        const top = buttonRect.bottom;
+
+                        // Ajusta la posición del menú para que aparezca correctamente
+                        const windowWidth = window.innerWidth;
+                        const menuWidth = submenu.offsetWidth;
+                        const maxLeft = windowWidth - menuWidth;
+
+                        if (left > maxLeft) {
+                            submenu.style.left = maxLeft + "px";
+                        } else {
+                            submenu.style.left = left + "px";
+                        }
+
+                        submenu.style.top = top + "px";
+                        submenu.style.display = "block";
+                    }
+
+                    // Cambia el estado de isOpen
+                    isOpen = !isOpen;
+                });
+            });
         </script>
     </div>
 </ui:composition>

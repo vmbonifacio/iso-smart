@@ -3216,12 +3216,12 @@ body .ui-chkbox .ui-chkbox-box.ui-state-focus {
   outline: 0 none;
 }
 body .ui-chkbox .ui-chkbox-box.ui-state-active {
-  border-color: #DB8519;
-  background: #DB8519;
-  color: #f8fafc;
+  border-color: #ffd400;
+  background: #ffd500;
+  color: #ffffff;
 }
 body .ui-chkbox .ui-chkbox-box.ui-state-active.ui-state-hover {
-  background: #BC6912;
+  background: #f9e479;
 }
 body .ui-chkbox .ui-chkbox-box.ui-state-error {
   border-color: #ef9a9a;
@@ -6478,18 +6478,18 @@ body .ui-log .ui-log-content {
 body .ui-progressbar {
   border: 0 none;
   height: 1rem;
-  background: #4D4D4D;
+  background: #FFD71380;
   border-radius: 4px;
 }
 body .ui-progressbar .ui-progressbar-value {
   border: 0 none;
   margin: 0;
-  background: #DB8519;
+  background: #FFD713;
   border-radius: 4px;
 }
 body .ui-progressbar .ui-progressbar-label {
   margin-top: 0;
-  color: #E9E9E9;
+  color: #FFD713;
   line-height: 1rem;
 }
 
@@ -6612,7 +6612,7 @@ body .ui-dialog {
   border-radius: 4px;
 }
 body .ui-dialog .ui-dialog-titlebar {
-  background: #1E1E2A;
+  background: #000000;
   color: #E9E9E9;
   font-weight: 700;
   border-bottom: 0 none;
@@ -6700,7 +6700,7 @@ body .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-icon .ui-icon-newwin:bef
   content: "\e93a";
 }
 body .ui-dialog .ui-dialog-content {
-  background: #1E1E2A;
+  background: #000000;
   color: #E9E9E9;
   border: 0 none;
   padding: 0 1.5rem 2rem 1.5rem;
@@ -6769,6 +6769,7 @@ body .ui-dialog.ui-confirm-dialog .ui-dialog-content > span.ui-icon.ui-icon-erro
 }
 body .ui-dialog.ui-resizable .ui-dialog-content {
   box-sizing: content-box;
+  width:630px;
 }
 body .ui-dialog.ui-message-dialog .ui-dialog-content {
   padding: 0 1.5rem 2rem 1.5rem;
@@ -7471,7 +7472,7 @@ body .ui-scrollpanel .ui-scrollpanel-corner {
 }
 
 body .ui-splitter {
-  border: 1px solid #4D4D4D;
+  /* border: 1px solid #4D4D4D; */
   background: #363636;
   border-radius: 4px;
   color: #E9E9E9;

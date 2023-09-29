@@ -10,8 +10,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
+import org.primefaces.PrimeFaces;
 
 @Named(value = "personaCManagedBean")
 @RequestScoped
@@ -19,6 +21,15 @@ public class PersonaCManagedBean {
 
     private PersonaC selectedPersonaC;
     private List<PersonaC> listaPersonaC;
+    private List<PersonaC> registrosNuevos; // Nueva lista para los registros recién insertados
+    private boolean mostrarTabla;
+
+    @PostConstruct
+    public void init() {
+        listaPersonaC = new ArrayList<>();
+        registrosNuevos = new ArrayList<>(); // Inicializar la lista de registros nuevos
+        mostrarTabla = true;
+    }
 
     public PersonaCManagedBean() {
         selectedPersonaC = new PersonaC();
@@ -44,49 +55,41 @@ public class PersonaCManagedBean {
         this.listaPersonaC = listaPersonaC;
     }
 
-    //    METODO OBTENER REGISTRO PERSONA
-    public List<PersonaC> obtenerRegistrosPersonaC() {
-        List<PersonaC> data = new ArrayList<>();
+    public List<PersonaC> getRegistrosNuevos() {
+        return registrosNuevos;
+    }
 
+    public boolean isMostrarTabla() {
+        return mostrarTabla;
+    }
+
+    //METODO PARA BOTON ELIMINAR
+
+    public void eliminarRegistroC(int id_personaa_c) {
         try (
-                 Connection con = Conexion.obtenerConexion(); 
-                Statement sql = con.createStatement();  
-                ResultSet rs = sql.executeQuery("select * from persona_acci_cp")) {
-            while (rs.next()) {
-                PersonaC personaC = new PersonaC(
-                        rs.getInt("id_personaa_c"),
-                        rs.getString("tipo_acci"),
-                        rs.getString("nombres_c"),
-                        rs.getString("apellido_p"),
-                        rs.getString("apellido_m"),
-                        rs.getInt("dni_ce"),
-                        rs.getInt("edad"),
-                        rs.getString("genero"),
-                        rs.getString("area_trabajo"),
-                        rs.getString("puesto_trabajo"),
-                        rs.getString("antiguedad_empleo"),
-                        rs.getString("turno"),
-                        rs.getString("tipo_contrato"),
-                        rs.getString("tiempo_experiencia"),
-                        rs.getInt("h_trabajadas_antes_acci")
-                );
-
-                data.add(personaC);
-            }
-
-            Collections.sort(data, Comparator.comparingInt(PersonaC::getId_personaa_c));
-
+                 Connection conn = Conexion.obtenerConexion();  PreparedStatement pst = conn.prepareStatement("DELETE FROM persona_acci_cp WHERE id_personaa_c = ?")) {
+            pst.setInt(1, id_personaa_c);
+            pst.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    
+    //    METODO OBTENER REGISTRO PERSONA CIVIL
+    public List<PersonaC> obtenerRegistrosPersonaC() {
+        List<PersonaC> data = new ArrayList<>(listaPersonaC);
+
+        data.addAll(registrosNuevos); // Agregar registros nuevos a la lista
+
+        Collections.sort(data, Comparator.comparingInt(PersonaC::getId_personaa_c));
 
         return data;
     }
 
     public void agregarRegistroC() {
         try (
-                 Connection con = Conexion.obtenerConexion();  
-                 PreparedStatement pst = con.prepareStatement("INSERT INTO persona_acci_cp (tipo_acci, nombres_c, apellido_p, apellido_m, dni_ce, edad, genero, area_trabajo, puesto_trabajo, antiguedad_empleo, turno, tipo_contrato, tiempo_experiencia, h_trabajadas_antes_acci) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+                 Connection con = Conexion.obtenerConexion();  PreparedStatement pst = con.prepareStatement("INSERT INTO persona_acci_cp (tipo_acci, nombres_c, apellido_p, apellido_m, dni_ce, edad, genero, area_trabajo, puesto_trabajo, antiguedad_empleo, turno, tipo_contrato, tiempo_experiencia, h_trabajadas_antes_acci) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
 
             pst.setString(1, selectedPersonaC.getTipo_acci());
             pst.setString(2, selectedPersonaC.getNombres_c());
@@ -105,15 +108,62 @@ public class PersonaCManagedBean {
 
             pst.executeUpdate();
 
-            listaPersonaC = obtenerRegistrosPersonaC();
+            try ( ResultSet generatedKeys = pst.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    int nuevoID = generatedKeys.getInt(1);
 
+                    PersonaC nuevoRegistro = new PersonaC();
+                    nuevoRegistro.setId_personaa_c(nuevoID);
+                    nuevoRegistro.setTipo_acci(selectedPersonaC.getTipo_acci());
+                    nuevoRegistro.setNombres_c(selectedPersonaC.getNombres_c());
+                    nuevoRegistro.setApellido_p(selectedPersonaC.getApellido_p());
+                    nuevoRegistro.setApellido_m(selectedPersonaC.getApellido_m());
+                    nuevoRegistro.setDni_ce(selectedPersonaC.getDni_ce());
+                    nuevoRegistro.setEdad(selectedPersonaC.getEdad());
+                    nuevoRegistro.setGenero(selectedPersonaC.getGenero());
+                    nuevoRegistro.setArea_trabajo(selectedPersonaC.getArea_trabajo());
+                    nuevoRegistro.setPuesto_trabajo(selectedPersonaC.getPuesto_trabajo());
+                    nuevoRegistro.setAntiguedad_empleo(selectedPersonaC.getAntiguedad_empleo());
+                    nuevoRegistro.setTurno(selectedPersonaC.getTurno());
+                    nuevoRegistro.setTipo_contrato(selectedPersonaC.getTipo_contrato());
+                    nuevoRegistro.setTiempo_experiencia(selectedPersonaC.getTiempo_experiencia());
+                    nuevoRegistro.setTipo_contrato(selectedPersonaC.getTipo_contrato());
+                    nuevoRegistro.setH_trabajadas_antes_acci(selectedPersonaC.getH_trabajadas_antes_acci());
+
+                    // Agregar el registro a la lista de registros nuevos
+                    registrosNuevos.add(nuevoRegistro);
+
+                    // Refrescar la lista de registros en la tabla
+                    mostrarTabla = true;
+                    PrimeFaces.current().ajax().update("tablaPersonasC"); // Asegúrate de que "tablaPersonasT" sea el ID correcto de la tabla en tu página
+
+                    // Limpiar la instancia para el siguiente registro
+                    selectedPersonaC = new PersonaC();
+
+                    // Ejecutar un script de JavaScript para agregar la fila a la tabla
+                    PrimeFaces.current().executeScript("agregarFilaATabla(" + nuevoRegistro.getId_personaa_c() + ");");
+                }
+            }
+
+            PrimeFaces.current().executeScript("window.scrollTo(0,document.body.scrollHeight);");
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Error al agregar el registro: " + e.getMessage());
         }
     }
-    
-    
+
+    public String obtenerRegistrosNuevosJS() {
+        StringBuilder script = new StringBuilder();
+
+        for (PersonaC registro : registrosNuevos) {
+            script.append("var newRow = document.createElement('tr');");
+
+            // Agregar más código para crear las celdas y establecer los valores de las columnas en newRow
+            script.append("table.appendChild(newRow);");
+        }
+
+        return script.toString();
+    }
+
     private PersonaC personac = new PersonaC();
 
     public PersonaC getPersonaC() {
@@ -124,18 +174,8 @@ public class PersonaCManagedBean {
         this.personac = personac;
     }
 
-//METODO PARA BOTON ELIMINAR
-    public void eliminarRegistroC(int id_personaa_c) {
-            try (
-                Connection conn = Conexion.obtenerConexion();
-                PreparedStatement pst = conn.prepareStatement("DELETE FROM persona_acci_cp WHERE id_personaa_c = ?")
-            ) {
-                pst.setInt(1, id_personaa_c);
-                pst.executeUpdate();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+    public void showTable() {
+        registrosNuevos.clear();
+        mostrarTabla = false;
     }
-
-
 }

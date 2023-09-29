@@ -21,6 +21,7 @@ public class EmpresaPManagedBean {
 
     public EmpresaPManagedBean() {
         selectedEmpresaP = new EmpresaP();
+        inicializar();
     }
 
     public void inicializar() {
@@ -43,11 +44,30 @@ public class EmpresaPManagedBean {
         this.listaEmpresaP = listaEmpresaP;
     }
 
+    public List<String> obtenerCampoEmpresaP(String nombreCampo) {
+        List<String> data = new ArrayList<>();
+
+        try ( Connection con = Conexion.obtenerConexion();  
+                PreparedStatement stmt = con.prepareStatement("SELECT " + nombreCampo + " FROM empresa_principal");  
+                ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                String valorCampo = rs.getString(1);  // Obtener el campo en la posición 1 (primer campo)
+                data.add(valorCampo);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return data;
+    }
+
     public List<EmpresaP> obtenerRegistrosEmpresaP() {
         List<EmpresaP> data = new ArrayList<>();
 
-        try (Connection con = Conexion.obtenerConexion();
-                Statement sql = con.createStatement();
+        try ( Connection con = Conexion.obtenerConexion();  
+                Statement sql = con.createStatement();  
                 ResultSet rs = sql.executeQuery("SELECT * FROM empresa_principal")) {
 
             while (rs.next()) {
@@ -72,7 +92,7 @@ public class EmpresaPManagedBean {
                 data.add(empresap);
             }
 
-        Collections.sort(data, Comparator.comparingInt(EmpresaP::getId_empresa_p));
+            Collections.sort(data, Comparator.comparingInt(EmpresaP::getId_empresa_p));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -82,16 +102,16 @@ public class EmpresaPManagedBean {
     }
 
     public void agregarRegistroEmpresaP() {
-        try (Connection con = Conexion.obtenerConexion();
+        try ( Connection con = Conexion.obtenerConexion();  
                 PreparedStatement pst = con.prepareStatement("INSERT INTO empresa_principal (ruc, razon_s, nombre_c, actividad, departamento, provincia, distrito, direccion, telefono, correo, num_licencia, fecha_fundacion, fecha_operacion, numero_s) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
 
             pst.setInt(1, selectedEmpresaP.getRuc());
             pst.setString(2, selectedEmpresaP.getRazon_s());
             pst.setString(3, selectedEmpresaP.getNombre_c());
             pst.setString(4, selectedEmpresaP.getActividad());
-            pst.setString(5, selectedEmpresaP.getDepartamento());
-            pst.setString(6, selectedEmpresaP.getProvincia());
-            pst.setString(7, selectedEmpresaP.getDistrito());
+            pst.setString(5, empresaP.getDepartamento());
+            pst.setString(6, empresaP.getProvincia());
+            pst.setString(7, empresaP.getDistrito());
             pst.setString(8, selectedEmpresaP.getDireccion());
             pst.setInt(9, selectedEmpresaP.getTelefono());
             pst.setString(10, selectedEmpresaP.getCorreo());
@@ -99,9 +119,6 @@ public class EmpresaPManagedBean {
             pst.setDate(12, new java.sql.Date(selectedEmpresaP.getFecha_fundacion().getTime()));
             pst.setDate(13, new java.sql.Date(selectedEmpresaP.getFecha_operacion().getTime()));
             pst.setInt(14, selectedEmpresaP.getNumero_s());
-            
-            System.out.println("Fecha Fundación: " + selectedEmpresaP.getFecha_fundacion());
-        System.out.println("Fecha Operación: " + selectedEmpresaP.getFecha_operacion());
 
 
             pst.executeUpdate();
@@ -113,18 +130,18 @@ public class EmpresaPManagedBean {
             System.out.println("Error al agregar el registro: " + e.toString());
         }
     }
-   
-    private EmpresaP empresap = new EmpresaP();
+
+    private EmpresaP empresaP = new EmpresaP();
 
     public EmpresaP getEmpresaP() {
-        return empresap;
-    }  
-    
-     public void setEmpresaP(EmpresaP empresap) {
-        this.empresap = empresap;
+        return empresaP;
     }
-    
- private String departamentoSeleccionado;
+
+    public void setEmpresaP(EmpresaP empresaP) {
+        this.empresaP = empresaP;
+    }
+
+    private String departamentoSeleccionado;
     private String provinciaSeleccionada;
     private String distritoSeleccionado;
 
@@ -152,6 +169,15 @@ public class EmpresaPManagedBean {
         this.distritoSeleccionado = distritoSeleccionado;
     }
 
-}
-    
+    public void eliminarRegistroEmp(int id_empresa_p) {
+        try (
+            Connection conn = Conexion.obtenerConexion();  
+                PreparedStatement pst = conn.prepareStatement("DELETE FROM empresa_principal WHERE id_empresa_p = ?")) {
+            pst.setInt(1, id_empresa_p);
+            pst.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
+}

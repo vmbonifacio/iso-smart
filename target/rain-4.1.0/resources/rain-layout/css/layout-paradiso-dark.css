@@ -2161,7 +2161,7 @@ a {
     transform: translate3d(0px, 0px, 0px);
   }
   .layout-static.layout-static-active .layout-main {
-    margin-left: 240px;
+    margin-left:auto;
   }
   .layout-static.layout-static-active .layout-topbar .layout-topbar-wrapper .layout-topbar-right .menu-button-wrapper .menu-button .menu-button-bars span {
     width: 0%;

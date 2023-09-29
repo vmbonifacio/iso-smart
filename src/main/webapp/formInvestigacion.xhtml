@@ -209,15 +209,14 @@
                             <div class="field col-12 md:col-6 ">
                                 <table id="tabla" class="table-black">
                                     <!-- Tabla 1 -->
-                                    <tr style="background-color: #1E1E2A;
-                                        color: white;">
-                                        <th style="border-top-left-radius: 8px;">En el procedimiento IPER porque:</th>
+                                    <tr style="background-color: #1E1E2A;color: white;">
+                                        <td style="border-top-left-radius: 8px; font-weight: bold">#{faltasControlManagedBean.listaComponentes[0]}</td>
                                         <td>SI</td>
                                         <td style="border-top-right-radius: 8px;">NO</td>
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>1. No existen procedimientos</td>
+                                        <td>#{faltasControlManagedBean.listaIndicadores[0]}</td>
                                         <td>
                                             <input type="radio" id="radio1SI" name="radio1" value="SI" />
                                         </td>
@@ -227,7 +226,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>2. No se aplican los procedimientos</td>
+                                        <td>#{faltasControlManagedBean.listaIndicadores[1]}</td>
                                         <td>
                                             <input type="radio" id="radio2SI" name="radio2" value="SI" />
                                         </td>
@@ -237,7 +236,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>3. No se incluyen en las actividades rutinarias de todo el personal</td>
+                                        <td>#{faltasControlManagedBean.listaIndicadores[2]}</td>
                                         <td>
                                             <input type="radio" id="radio3SI" name="radio3" value="SI" />
                                         </td>
@@ -247,7 +246,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>4. No se incluyen a contratistas, proveedores y/o visitantes</td>
+                                        <td>#{faltasControlManagedBean.listaIndicadores[3]}</td>
                                         <td>
                                             <input type="radio" id="radio4SI" name="radio4" value="SI" />
                                         </td>
@@ -257,7 +256,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>5. No se incluye infraestructura, equipos y/o materiales provistos por la empresa o terceros </td>
+                                        <td>#{faltasControlManagedBean.listaIndicadores[4]}</td>
                                         <td>
                                             <input type="radio" id="radio5SI" name="radio5" value="SI" />
                                         </td>
@@ -267,7 +266,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>6. No se incluye los riesgos de entorno originados por la proximidad  </td>
+                                        <td>#{faltasControlManagedBean.listaIndicadores[5]}</td>
                                         <td>
                                             <input type="radio" id="radio6SI" name="radio6" value="SI" />
                                         </td>
@@ -277,7 +276,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td style="border-bottom-left-radius: 8px;">7. Otras causas</td>
+                                        <td style="border-bottom-left-radius: 8px;">#{faltasControlManagedBean.listaIndicadores[6]}</td>
                                         <td>
                                             <input type="radio" id="radio8SI" name="radio8" value="SI" />
                                         </td>
@@ -294,13 +293,13 @@
                                 <table id="tabla2" class="table-black">
                                     <tr style="background-color: #1E1E2A;
                                         color: white;">
-                                        <th style="border-top-left-radius: 8px;">En la Planificación del Trabajo porque:</th>
+                                        <td style="border-top-left-radius: 8px; font-weight: bold">#{faltasControlManagedBean.listaComponentesPlanificacion[0]}</td>
                                         <td>SI</td>
                                         <td style="border-top-right-radius: 8px;">NO</td>
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>1. No se capacita al personal en la tarea u operación a ejecutar o la capacitación es inadecuada</td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresPlanificacion[0]}</td>
                                         <td>
                                             <input type="radio" id="radio1SI" name="radio1" value="SI" />
                                         </td>
@@ -310,7 +309,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>2. No se capacita al personal para la prevención de los riesgos relacionados con la tarea u operación que va a ejecutar</td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresPlanificacion[1]}</td>
                                         <td>
                                             <input type="radio" id="radio2SI" name="radio2" value="SI" />
                                         </td>
@@ -320,7 +319,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>3. No se efectúa el Análisis de Seguridad del Trabajo </td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresPlanificacion[2]}</td>
                                         <td>
                                             <input type="radio" id="radio3SI" name="radio3" value="SI" />
                                         </td>
@@ -330,7 +329,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>4.  No se evalúa si el personal tiene la aptitud física o mental requerida para la tarea u operación </td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresPlanificacion[3]}</td>
                                         <td>
                                             <input type="radio" id="radio4SI" name="radio4" value="SI" />
                                         </td>
@@ -340,7 +339,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>5.  No se evalúa si el estado psicosomático del personal es adecuado para ejecutar la tarea u operación </td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresPlanificacion[4]}</td>
                                         <td>
                                             <input type="radio" id="radio5SI" name="radio5" value="SI" />
                                         </td>
@@ -350,7 +349,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td style="border-bottom-left-radius: 8px;">6. Otras causas</td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresPlanificacion[5]}</td>
                                         <td>
                                             <input type="radio" id="radio8SI" name="radio8" value="SI" />
                                         </td>
@@ -371,13 +370,13 @@
 
                                     <tr style="background-color: #1E1E2A;
                                         color: white;">
-                                        <th style="border-top-left-radius: 8px;">En las Medidas de Control de Riesgos porque:</th>
+                                        <td style="border-top-left-radius: 8px; font-weight: bold">#{faltasControlManagedBean.listaComponentesMedidas[0]}</td>
                                         <td>SI</td>
                                         <td style="border-top-right-radius: 8px;">NO</td>
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>1.  No se implementan las medidas de control de riesgos</td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresMedidas[0]}</td>
                                         <td>
                                             <input type="radio" id="radio1SI" name="radio1" value="SI" />
                                         </td>
@@ -387,7 +386,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>2. En las medidas de control de riesgos no se prioriza</td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresMedidas[1]}</td>
                                         <td>
                                             <input type="radio" id="radio2SI" name="radio2" value="SI" />
                                         </td>
@@ -397,7 +396,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>2.1  La eliminación del peligro que origina el riesgo </td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresMedidas[2]}</td>
                                         <td>
                                             <input type="radio" id="radio3SI" name="radio3" value="SI" />
                                         </td>
@@ -407,7 +406,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>2.2 La sustitución del peligro </td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresMedidas[3]}</td>
                                         <td>
                                             <input type="radio" id="radio4SI" name="radio4" value="SI" />
                                         </td>
@@ -417,7 +416,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>2.3 El tratamiento, control o aislamiento de los peligros adoptando medidas técnicas o administrativas</td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresMedidas[4]}</td>
                                         <td>
                                             <input type="radio" id="radio5SI" name="radio5" value="SI" />
                                         </td>
@@ -427,7 +426,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>2.4 La señalización, alertas, supervisión, instructivos de trabajo</td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresMedidas[5]}</td>
                                         <td>
                                             <input type="radio" id="radio5SI" name="radio5" value="SI" />
                                         </td>
@@ -437,7 +436,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>2.5. Los equipos de protección personal adecuados asegurando que los trabajadores los usen y conserven correctamente</td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresMedidas[6]}</td>
                                         <td>
                                             <input type="radio" id="radio5SI" name="radio5" value="SI" />
                                         </td>
@@ -447,7 +446,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>3. Las medidas de control de riesgos no se implementan oportunamente </td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresMedidas[7]}</td>
                                         <td>
                                             <input type="radio" id="radio5SI" name="radio5" value="SI" />
                                         </td>
@@ -457,24 +456,14 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>4. Las medidas de control de riesgos no son eficaces   </td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresMedidas[8]}</td>
                                         <td>
                                             <input type="radio" id="radio5SI" name="radio5" value="SI" />
                                         </td>
                                         <td>
                                             <input type="radio" id="radio5NO" name="radio5" value="NO" />
                                         </td>
-                                    </tr>
-
-                                    <tr style="background-color: #F8DA45;">
-                                        <td style="border-bottom-left-radius: 8px;">5. Otras causas</td>
-                                        <td>
-                                            <input type="radio" id="radio8SI" name="radio8" value="SI" />
-                                        </td>
-                                        <td style="border-bottom-right-radius: 8px;">
-                                            <input type="radio" id="radio8NO" name="radio8" value="NO" />
-                                        </td>
-                                    </tr>
+                                    </tr>            
                                 </table>
                             </div>
 
@@ -485,13 +474,13 @@
                                     <!-- Tabla 1 -->
                                     <tr style="background-color: #1E1E2A;
                                         color: white;">
-                                        <th style="border-top-left-radius: 8px;">En la Preparación y Respuesta ante Emergencias</th>
+                                        <td style="border-top-left-radius: 8px; font-weight: bold">#{faltasControlManagedBean.listaComponentesPreparacion[0]}</td>
                                         <td>SI</td>
                                         <td style="border-top-right-radius: 8px;">NO</td>
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>1. No se cuenta con extintores</td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresPreparacion[0]}</td>
                                         <td>
                                             <input type="radio" id="radio1SI" name="radio1" value="SI" />
                                         </td>
@@ -501,7 +490,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>2. Los extintores no son suficientes</td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresPreparacion[1]}</td>
                                         <td>
                                             <input type="radio" id="radio2SI" name="radio2" value="SI" />
                                         </td>
@@ -511,7 +500,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>3. La sustancia extintora es inadecuada para el fuego a extinguir </td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresPreparacion[2]}</td>
                                         <td>
                                             <input type="radio" id="radio3SI" name="radio3" value="SI" />
                                         </td>
@@ -521,7 +510,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>4.  Los extintores no se encuentran señalizados / ubicados adecuadamente</td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresPreparacion[3]}</td>
                                         <td>
                                             <input type="radio" id="radio4SI" name="radio4" value="SI" />
                                         </td>
@@ -531,7 +520,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>5.  No se capacita en el manejo de extintores </td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresPreparacion[4]}</td>
                                         <td>
                                             <input type="radio" id="radio5SI" name="radio5" value="SI" />
                                         </td>
@@ -541,7 +530,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>6. No se cuenta con botiquin de primeros auxilios</td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresPreparacion[5]}</td>
                                         <td>
                                             <input type="radio" id="radio5SI" name="radio5" value="SI" />
                                         </td>
@@ -551,7 +540,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>7. El botiquín de primeros auxilios es incompleto / inadecuado  </td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresPreparacion[6]}</td>
                                         <td>
                                             <input type="radio" id="radio5SI" name="radio5" value="SI" />
                                         </td>
@@ -561,7 +550,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>8. El personal no tiene capacitación en primeros auxilios </td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresPreparacion[7]}</td>
                                         <td>
                                             <input type="radio" id="radio5SI" name="radio5" value="SI" />
                                         </td>
@@ -571,7 +560,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>9.  No se conocen los teléfonos para solicitar ayuda en emergencias</td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresPreparacion[8]}</td>
                                         <td>
                                             <input type="radio" id="radio5SI" name="radio5" value="SI" />
                                         </td>
@@ -581,7 +570,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>10. No se cuenta con equipos de comunicación para casos de emergencia </td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresPreparacion[9]}</td>
                                         <td>
                                             <input type="radio" id="radio5SI" name="radio5" value="SI" />
                                         </td>
@@ -591,7 +580,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>11. No se efectúan simulacros de emergencias </td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresPreparacion[10]}</td>
                                         <td>
                                             <input type="radio" id="radio5SI" name="radio5" value="SI" />
                                         </td>
@@ -601,7 +590,17 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td style="border-bottom-left-radius: 8px;">12. Otras causas</td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresPreparacion[11]}</td>
+                                        <td>
+                                            <input type="radio" id="radio8SI" name="radio8" value="SI" />
+                                        </td>
+                                        <td>
+                                            <input type="radio" id="radio8NO" name="radio8" value="NO" />
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #F8DA45;">
+                                        <td style="border-bottom-left-radius: 8px;">#{faltasControlManagedBean.listaIndicadoresPreparacion[12]}</td>
                                         <td>
                                             <input type="radio" id="radio8SI" name="radio8" value="SI" />
                                         </td>
@@ -621,13 +620,13 @@
                                     <!-- Tabla 1 -->
                                     <tr style="background-color: #1E1E2A;
                                         color: white;">
-                                        <th style="border-top-left-radius: 8px;">En la verificación y acción correctiva porque:</th>
+                                        <td style="border-top-left-radius: 8px; font-weight: bold">#{faltasControlManagedBean.listaComponentesVerificacion[0]}</td>
                                         <td>SI</td>
                                         <td style="border-top-right-radius: 8px;">NO</td>
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>1. No se tiene un programa de inspecciones </td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresVerificacion[0]}</td>
                                         <td>
                                             <input type="radio" id="radio1SI" name="radio1" value="SI" />
                                         </td>
@@ -637,7 +636,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>2. El programa de inspecciones es inadecuado </td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresVerificacion[1]}</td>
                                         <td>
                                             <input type="radio" id="radio2SI" name="radio2" value="SI" />
                                         </td>
@@ -647,7 +646,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>3. No se definen acciones correctivas como resultado de las inspecciones o las acciones correctivas que se especifican no son eficaces </td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresVerificacion[2]}</td>
                                         <td>
                                             <input type="radio" id="radio3SI" name="radio3" value="SI" />
                                         </td>
@@ -657,7 +656,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>4. Las acciones correctivas producto de las inspecciones no se implementan en el plazo establecido</td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresVerificacion[3]}</td>
                                         <td>
                                             <input type="radio" id="radio4SI" name="radio4" value="SI" />
                                         </td>
@@ -667,7 +666,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>5. No se investigan los accidentes, casi accidentes y /o emergencias</td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresVerificacion[4]}</td>
                                         <td>
                                             <input type="radio" id="radio5SI" name="radio5" value="SI" />
                                         </td>
@@ -677,7 +676,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>5.1. O si se investigan, no se concluye en la determinación de acciones correctivas </td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresVerificacion[5]}</td>
                                         <td>
                                             <input type="radio" id="radio5SI" name="radio5" value="SI" />
                                         </td>
@@ -687,7 +686,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>6. Las acciones correctivas no son eficaces, no se implementan o se implementan tardíamente  </td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresVerificacion[6]}</td>
                                         <td>
                                             <input type="radio" id="radio5SI" name="radio5" value="SI" />
                                         </td>
@@ -697,7 +696,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td style="border-bottom-left-radius: 8px;">7. Otras causas</td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresVerificacion[7]}</td>
                                         <td>
                                             <input type="radio" id="radio8SI" name="radio8" value="SI" />
                                         </td>
@@ -715,13 +714,13 @@
                                     <!-- Tabla 1 -->
                                     <tr style="background-color: #1E1E2A;
                                         color: white;">
-                                        <th style="border-top-left-radius: 8px;">En el control operacional porque:</th>
+                                        <td style="border-top-left-radius: 8px; font-weight: bold">#{faltasControlManagedBean.listaComponentesControlOperacional[0]}</td>
                                         <td>SI</td>
                                         <td style="border-top-right-radius: 8px;">NO</td>
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>1. No se efectúa monitoreo de agentes físicos, químicos, biológicos y de factores de riesgo ergonómico </td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresControlOperacional[0]}</td>
                                         <td>
                                             <input type="radio" id="radio1SI" name="radio1" value="SI" />
                                         </td>
@@ -731,7 +730,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>2. No se utilizan permisos de trabajo para actividades críticas</td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresControlOperacional[1]}</td>
                                         <td>
                                             <input type="radio" id="radio2SI" name="radio2" value="SI" />
                                         </td>
@@ -741,7 +740,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>3. No se controlan los bienes, equipos y servicios adquiridos  </td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresControlOperacional[2]}</td>
                                         <td>
                                             <input type="radio" id="radio3SI" name="radio3" value="SI" />
                                         </td>
@@ -751,7 +750,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>4.  No se controla a los contratistas, proveedores y/o visitantes que ingresan al lugar de trabajo  </td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresControlOperacional[3]}</td>
                                         <td>
                                             <input type="radio" id="radio4SI" name="radio4" value="SI" />
                                         </td>
@@ -761,7 +760,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td>5.  No se cuenta con supervisión del trabajo u operación </td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresControlOperacional[4]}</td>
                                         <td>
                                             <input type="radio" id="radio5SI" name="radio5" value="SI" />
                                         </td>
@@ -771,7 +770,7 @@
                                     </tr>
 
                                     <tr style="background-color: #F8DA45;">
-                                        <td style="border-bottom-left-radius: 8px;">6. Otras causas</td>
+                                        <td>#{faltasControlManagedBean.listaIndicadoresControlOperacional[5]}</td>
                                         <td>
                                             <input type="radio" id="radio8SI" name="radio8" value="SI" />
                                         </td>
@@ -782,9 +781,6 @@
                                 </table>
                             </div>
                         </div>
-
-
-
                     </div>
 
                     <script>
@@ -823,11 +819,9 @@
                         <p:outputLabel value="1.1. Procedimientos Existentes"  class="pt-2" style="color: black;
                                        font-family: 'Inter', sans-serif;
                                        font-weight: 400;" />    
-                        <p:selectOneMenu>
-                            <f:selectItem itemLabel="Ingrese el valor de los procedimientos" itemValue="" />    
-                            <f:selectItem itemLabel="Existen, son satisfactorios" itemValue="1" />
-                            <f:selectItem itemLabel="Existen parcialmente, no son suficientes" itemValue="2" />
-                            <f:selectItem itemLabel="No existen" itemValue="3" />
+                        <p:selectOneMenu id="Procedimiento">
+                            <f:selectItem itemLabel="Ingrese el valor de los procedimientos" noSelectionOption="true"/>
+                            <f:selectItems value="#{investigacionAManagedBean.obtenerListaProcedimiento()}" var="proc" itemValue="#{proc}" itemLabel="#{proc}"/>
                         </p:selectOneMenu>
                     </div>
 
@@ -837,11 +831,9 @@
                         <p:outputLabel value="1.2. Capacitación"  class="pt-2" style="color: black;
                                        font-family: 'Inter', sans-serif;
                                        font-weight: 400;" />    
-                        <p:selectOneMenu>
-                            <f:selectItem itemLabel="Ingrese el valor de capacitación" itemValue="" />
-                            <f:selectItem itemLabel="Personal entrenado, lo previene   " itemValue="1" />
-                            <f:selectItem itemLabel="Personal parcialmente entrenado" itemValue="2" />
-                            <f:selectItem itemLabel="Personal no entrenado, no toma acción" itemValue="3" />
+                        <p:selectOneMenu id="Capacitacion">
+                            <f:selectItem itemLabel="Ingrese el valor de los procedimientos" noSelectionOption="true"/>    
+                            <f:selectItems value="#{investigacionAManagedBean.obtenerListaCapacitacion()}" var="capa" itemValue="#{capa}" itemLabel="#{capa}"/>
                         </p:selectOneMenu>
                     </div>
 
@@ -852,11 +844,9 @@
                         <p:outputLabel value="1.3. Exposición al riesgo"  class="pt-2" style="color: black;
                                        font-family: 'Inter', sans-serif;
                                        font-weight: 400;" />    
-                        <p:selectOneMenu>
-                            <f:selectItem itemLabel="Ingrese el valor de exposición al riesgo" itemValue="" />
-                            <f:selectItem itemLabel="Una vez al año - Espóradicamente   " itemValue="1" />
-                            <f:selectItem itemLabel="Una vez al mes - Eventualmente" itemValue="2" />
-                            <f:selectItem itemLabel="Una vez al día - Permanentemente" itemValue="3" />
+                        <p:selectOneMenu id="Exposicion">
+                            <f:selectItem itemLabel="Ingrese el valor de exposición al riesgo" noSelectionOption="true"/>
+                            <f:selectItems value="#{investigacionAManagedBean.obtenerListaExposicion()}" var="expo" itemValue="#{expo}" itemLabel="#{expo}"/>
                         </p:selectOneMenu>
                     </div>
 

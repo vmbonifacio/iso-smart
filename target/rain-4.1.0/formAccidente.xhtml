@@ -280,98 +280,60 @@
                         </div>
                         <!--**************BOTON REGISTRAR***************-->
 
-                        <div style="margin-left:auto;">
-                            <p:commandButton style="background-color: #751d1d; border:none;" class="w-12 h-3rem mb-4" styleClass="p-button p-button-danger" action="#{tercerosManagedBean.agregarRegistro}" update="tablaTerceros" value="Registrar empresa tercero"/>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3 mt-2">
+                            <p:commandButton style="color: white; font-family: 'Inter', sans-serif; font-weight: 600; background-color: #741818; height: 50px; border-color: #000; border-radius: 14px;" action="#{tercerosManagedBean.agregarRegistro}" update="tablaTerceros" value="Registrar empresa tercero"/>
                         </div>
 
                         <!--**************TABLA***************-->
 
-                        <f:metadata>
-                            <f:event listener="#{tercerosManagedBean.inicializar()}" type="preRenderView" />
-                        </f:metadata>
-                        <p:outputPanel rendered="#{tercerosManagedBean.mostrarCampos}">
-                            <p:dataTable id="tablaTerceros" value="#{tercerosManagedBean.obtenerRegistrosTerceros()}" var="ter" rowKey="#{ter.id_empresa_tp}" emptyMessage="No se encontraron registros" paginator="false" >
-                                <p:columnGroup>
-                                    <p:row>
-                                        <p:column headerText="ID"/>
-                                        <p:column headerText="Razón Social"/>
-                                        <p:column headerText="RUC"/>
-                                        <p:column headerText="Departamento"/>
-                                        <p:column headerText="Provincia"/>
-                                        <p:column headerText="Distrito"/>
-                                        <p:column headerText="Direccion"/>
-                                        <p:column headerText="Actividad económica"/>
-                                        <p:column headerText="N° Trabajadores"/>
-                                        <p:column headerText="N° Trabajadores con SCTR"/>    
-                                        <p:column headerText="N° Trabajadores con SCTR"/>
-                                        <p:column headerText="Nombre de aseguradora"/>        
-                                    </p:row>
-                                </p:columnGroup>
+                        <p:dataTable id="tablaTerceros" value="#{tercerosManagedBean.obtenerRegistrosTerceros()}" var="ter"  style="box-shadow: 0px 3px 15px 3px rgba(43,43,43,1); margin-top: 24px;" rowKey="#{ter.id_empresa_tp}" emptyMessage="No se encontraron registros" reflow="true" rows="4" paginator="true" >
+                            <p:column headerText="ID" style="border: 1px solid white;">
+                                <h:outputText value="#{ter.id_empresa_tp}"/>
+                            </p:column>
 
-                                <p:column>
-                                    <h:outputText value="#{ter.id_empresa_tp}" />
-                                </p:column>
+                            <p:column headerText="Razón Social" style="border: 1px solid white;">
+                                <h:outputText value="#{ter.razon_social}" />
+                            </p:column>
 
-                                <p:column>
-                                    <h:outputText value="#{ter.razon_social}" />
-                                </p:column>
+                            <p:column headerText="RUC" style="border: 1px solid white;">
+                                <h:outputText value="#{ter.ruc}" />
+                            </p:column>
 
-                                <p:column>
-                                    <h:outputText value="#{ter.ruc}" />
-                                </p:column>
+                            <p:column headerText="Departamento" style="border: 1px solid white;">
+                                <h:outputText value="#{ter.departamento}" />
+                            </p:column>
 
-                                <p:column>
-                                    <h:outputText value="#{ter.departamento}" />
-                                </p:column>
+                            <p:column headerText="Provincia" style="border: 1px solid white;">
+                                <h:outputText value="#{ter.provincia}" />
+                            </p:column>
 
-                                <p:column>
-                                    <h:outputText value="#{ter.provincia}" />
-                                </p:column>
+                            <p:column headerText="Distrito" style="border: 1px solid white;">
+                                <h:outputText value="#{ter.distrito}" />
+                            </p:column>
 
-                                <p:column>
-                                    <h:outputText value="#{ter.distrito}" />
-                                </p:column>
+                            <p:column headerText="Direccion" style="border: 1px solid white;">
+                                <h:outputText value="#{ter.direccion}" />
+                            </p:column>
 
-                                <p:column>
-                                    <h:outputText value="#{ter.direccion}" />
-                                </p:column>
+                            <p:column headerText="Actividad económica" style="border: 1px solid white;">
+                                <h:outputText value="#{ter.a_economica}" />
+                            </p:column>
 
-                                <p:column>
-                                    <h:outputText value="#{ter.a_economica}" />
-                                </p:column>
+                            <p:column headerText="Acción" style="border: 1px solid white;">
+                                <p:commandButton oncomplete="PF('dlgEditar').show()" 
+                                                 process="@this"
+                                                 icon="pi pi-pencil"
+                                                 styleClass="rounded-button ui-button-success" >
 
-                                <p:column>
-                                    <h:outputText value="#{ter.n_trabajadores}" />
-                                </p:column>
+                                    <f:setPropertyActionListener target="#{tercerosManagedBean.selectedTercero}" value="#{ter}" />
+                                </p:commandButton>
 
-                                <p:column>
-                                    <h:outputText value="#{ter.n_trabajadores_sctr}" />
-                                </p:column>
-
-                                <p:column>
-                                    <h:outputText value="#{ter.n_trabajadores_nosctr}" />
-                                </p:column>
-
-                                <p:column>
-                                    <h:outputText value="#{ter.n_aseguradora}" />
-                                </p:column>
-
-                                <p:column headerText="Acción">
-                                    <p:commandButton oncomplete="PF('dlgEditar').show()" 
-                                                     process="@this"
-                                                     icon="pi pi-pencil"
-                                                     styleClass="rounded-button ui-button-success" >
-
-                                        <f:setPropertyActionListener target="#{tercerosManagedBean.selectedTercero}" value="#{ter}" />
-                                    </p:commandButton>
-
-                                    <p:commandButton icon="pi pi-times" 
-                                                     styleClass="rounded-button ui-button-danger"
-                                                     action="#{tercerosManagedBean.eliminarRegistro(ter.id_empresa_tp)}" 
-                                                     update="@form" />
-                                </p:column>
-                            </p:dataTable>
-                        </p:outputPanel>
+                                <p:commandButton icon="pi pi-times" 
+                                                 styleClass="rounded-button ui-button-danger"
+                                                 action="#{tercerosManagedBean.eliminarRegistro(ter.id_empresa_tp)}" 
+                                                 update="@form" />
+                            </p:column>
+                        </p:dataTable>
                     </div>
 
                     <!-- Modal -->

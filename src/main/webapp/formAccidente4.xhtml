@@ -98,111 +98,51 @@
                             </div>
 
                             <!-- BOTON -->
-                            <div style="text-align: left;">
-                                <p:commandButton style="background-color: #751d1d; border:none;" class="w-12 h-3rem" action="#{personaCManagedBean.agregarRegistroC()}" update="@form" value="Agregar persona accidentada"/>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3 mt-2">
+                                <p:commandButton style="color: white; font-family: 'Inter', sans-serif; font-weight: 600; background-color: #741818; height: 50px; border-color: #000; border-radius: 14px;" action="#{personaCManagedBean.agregarRegistroC}" update="tablaPersonasC" value="Registrar trabajador civil"/>
                             </div>
                         </div>
 
-                        <!--TABLA-->
-                        <div class="w-full mt-2 mb-2"><h3 style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" >LISTA DE TRABAJADORES ACCIDENTADOS</h3></div>
-                        <p:dataTable id="tablaPersonas" value="#{personaManagedBean.obtenerRegistrosPersona()}" var="per" style="box-shadow: 0px 3px 15px 3px rgba(43,43,43,1);" rowKey="#{per.id_personaa}" emptyMessage="No se encontraron registros" reflow="true" rows="4" paginator="true">
-                            <p:column headerText="ID">
-                                <h:outputText value="#{per.id_personaa}" />
-                            </p:column>
+                        <!-- TABLA CIVILES -->
 
-                            <p:column headerText="Dni/Ce">
-                                <h:outputText value="#{per.dni_ce}" />
-                            </p:column>
-
-                            <p:column headerText="Nombres">
-                                <h:outputText value="#{per.nombres_c}" />
-                            </p:column>
-
-                            <p:column headerText="Apellido paterno">
-                                <h:outputText value="#{per.apellido_p}" />
-                            </p:column>
-
-                            <p:column headerText="Apellido materno">
-                                <h:outputText value="#{per.apellido_m}" />
-                            </p:column>
-
-                            <p:column headerText="Edad">
-                                <h:outputText value="#{per.edad}" />
-                            </p:column>
-
-                            <p:column headerText="Genero">
-                                <h:outputText value="#{per.genero}" />
-                            </p:column>
-
-                            <p:column headerText="Area de Trabajo">
-                                <h:outputText value="#{per.area_trabajo}" />
-                            </p:column>
-
-                            <p:column headerText="Puesto">
-                                <h:outputText value="#{per.puesto_trabajo}" />
-                            </p:column>
-
-                            <p:column headerText="Turno">
-                                <h:outputText value="#{per.turno}" />
-                            </p:column>
-
-                            <p:column headerText="Acción">
-                                <p:commandButton oncomplete="PF('dlgEditar').show()" 
-                                                 process="@this"
-                                                 value="Editar"
-                                                 styleClass="rounded-button ui-button-info mb-2" >
-
-                                    <f:setPropertyActionListener target="#{personaManagedBean.persona}" value="#{per}" />
-                                </p:commandButton>
-
-                                <p:commandButton value="Borrar" 
-                                                 styleClass="rounded-button ui-button-danger mb-2"  
-                                                 action="#{personaManagedBean.eliminarRegistro(per.id_personaa)}" 
-                                                 update="@form" />
-                            </p:column>
-                        </p:dataTable>   
                         <div class="w-full mt-4 mb-2"><h3 style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" >LISTA DE CIVILES ACCIDENTADOS</h3></div>
-                        <p:dataTable id="tablaPersonasC" value="#{personaCManagedBean.obtenerRegistrosPersonaC()}" style="box-shadow: 0px 3px 15px 3px rgba(43,43,43,1);" var="perc" rowKey="#{perc.id_personaa_c}" emptyMessage="No se encontraron registros, watafac" reflow="true" rows="4" paginator="true">
-                            <p:column headerText="ID">
+                        <p:dataTable id="tablaPersonasC" value="#{personaCManagedBean.obtenerRegistrosPersonaC()}" style="box-shadow: 0px 3px 15px 3px rgba(43,43,43,1);display: #{personaTManagedBean.mostrarTabla ? 'table' : 'none'}" var="perc" rowKey="#{perc.id_personaa_c}" emptyMessage="No se encontraron registros" reflow="true" rows="4" paginator="true">
+                            <p:column headerText="ID" style="border: 1px solid white;">
                                 <h:outputText value="#{perc.id_personaa_c}" />
                             </p:column>
 
-                            <p:column headerText="Dni/Ce">
+                            <p:column headerText="Dni/Ce" style="border: 1px solid white;">
                                 <h:outputText value="#{perc.dni_ce}" />
                             </p:column>
 
-                            <p:column headerText="Nombres">
+                            <p:column headerText="Nombres" style="border: 1px solid white;">
                                 <h:outputText value="#{perc.nombres_c}" />
                             </p:column>
 
-                            <p:column headerText="Apellido paterno">
+                            <p:column headerText="Apellido paterno" style="border: 1px solid white;">
                                 <h:outputText value="#{perc.apellido_p}" />
                             </p:column>
 
-                            <p:column headerText="Apellido materno">
+                            <p:column headerText="Apellido materno" style="border: 1px solid white;">
                                 <h:outputText value="#{perc.apellido_m}" />
                             </p:column>
 
-                            <p:column headerText="Edad">
+                            <p:column headerText="Edad" style="border: 1px solid white;">
                                 <h:outputText value="#{perc.edad}" />
                             </p:column>
 
-                            <p:column headerText="Genero">
+                            <p:column headerText="Genero" style="border: 1px solid white;">
                                 <h:outputText value="#{perc.genero}" />
                             </p:column>
 
-                            <p:column headerText="Genero">
-                                <h:outputText value="#{perc.genero}" />
-                            </p:column>
-
-                            <p:column headerText="Acción">
-                                <p:commandButton oncomplete="PF('dlgEditar').show()" 
+                            <p:column headerText="Acción" style="border: 1px solid white;">
+                              <!--  <p:commandButton oncomplete="PF('dlgEditar').show()" 
                                                  process="@this"
                                                  value="Editar"
                                                  styleClass="rounded-button ui-button-info mb-2" >
 
                                     <f:setPropertyActionListener target="#{personaManagedBean.persona}" value="#{perc}" />
-                                </p:commandButton>
+                                </p:commandButton>-->
 
                                 <p:commandButton 
                                     value="Borrar"
@@ -210,15 +150,15 @@
                                     action="#{personaCManagedBean.eliminarRegistroC(perc.id_personaa_c)}" 
                                     update="@form" />
 
-                                <p:commandButton value="Gravedad" 
+                                <!-- <p:commandButton value="Gravedad" 
                                                  update=":modalGravedadC"
                                                  oncomplete="PF('dlgGravedadC').show()" 
                                                  process="@this" 
                                                  styleClass="rounded-button ui-button-secondary" >
-                                    <f:setPropertyActionListener target="#{personaCManagedBean.selectedPersonaC}" value="#{perc}" />
+                                    <f:setPropertyActionListener target="#{personaCManagedBean.selectedPersonaC}" value="#{perc}" />-->
                                     <!-- Actualiza el formulario del diálogo con los datos de la fila seleccionada -->
 
-                                </p:commandButton>
+                               <!--  </p:commandButton>-->
                             </p:column>
                         </p:dataTable> 
 
@@ -245,6 +185,41 @@
                     } else if (radio.value === '2') {
                         window.location.href = 'formAccidente3.xhtml';
                     }
+                }
+
+                function agregarFilaATabla(id) {
+                    var table = document.getElementById("tablaPersonasC");
+                    var newRow = table.insertRow();
+
+                    // Agregar celdas con los valores del registro
+                    var registro = obtenerRegistroPorId(id);
+
+                    var celdaId = newRow.insertCell();
+                    celdaId.textContent = registro.id_personaa_c;
+
+                    var celdaTipo = newRow.insertCell();
+                    celdaTipo.textContent = registro.tipo_acci;
+
+                    var celdaNombres = newRow.insertCell();
+                    celdaNombres.textContent = registro.nombres_c;
+
+                    var celdaApellidoPaterno = newRow.insertCell();
+                    celdaApellidoPaterno.textContent = registro.apellido_p;
+
+                    var celdaApellidoMaterno = newRow.insertCell();
+                    celdaApellidoMaterno.textContent = registro.apellido_m;
+
+                    var celdaDniCe = newRow.insertCell();
+                    celdaDniCe.textContent = registro.dni_ce;
+
+                    var celdaEdad = newRow.insertCell();
+                    celdaEdad.textContent = registro.edad;
+
+                    var celdaGenero = newRow.insertCell();
+                    celdaGenero.textContent = registro.genero;
+
+                    // Asegurarse de que "tablaPersonasT" sea el ID correcto de la tabla en tu página
+                    PrimeFaces.current().ajax().update("tablaPersonasC");
                 }
             </script>
         </h:form>

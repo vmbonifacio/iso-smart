@@ -141,62 +141,61 @@
                         </div>
 
                         <!-- BOTON -->
-                        <div style="margin-left:auto;">
-                            <p:commandButton style="background-color: #751d1d; border:none;" class="w-12 h-3rem" action="#{personaManagedBean.agregarRegistro}" update="@form" value="Registrar trabajador accidentado"/>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3 mt-2">
+                            <p:commandButton style="color: white; font-family: 'Inter', sans-serif; font-weight: 600; background-color: #741818; height: 50px; border-color: #000; border-radius: 14px;" action="#{personaManagedBean.agregarRegistro}" update="tablaPersonas" value="Registrar trabajador accidentado"/>
                         </div>
-
                         <!--TABLA-->
                         <div class="w-full mt-2"><h3 style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" >LISTA DE TRABAJADORES ACCIDENTADOS</h3></div>
 
                         <p:dataTable id="tablaPersonas" value="#{personaManagedBean.obtenerRegistrosPersona()}" style="box-shadow: 0px 3px 15px 3px rgba(43,43,43,1); display: #{personaManagedBean.mostrarTabla ? 'table' : 'none'}" var="per" rowKey="#{per.id_personaa}" emptyMessage="No se encontraron registros" reflow="true" rows="4" paginator="true">
-                            <p:column headerText="ID">
+                            <p:column rowspan="2" headerText="ID" style="border: 1px solid white;">
                                 <h:outputText value="#{per.id_personaa}" />
                             </p:column>
 
-                            <p:column headerText="Dni/Ce">
+                            <p:column headerText="Dni/Ce" style="border: 1px solid white;">
                                 <h:outputText value="#{per.dni_ce}" />
                             </p:column>
 
-                            <p:column headerText="Nombres">
+                            <p:column headerText="Nombres" style="border: 1px solid white;">
                                 <h:outputText value="#{per.nombres_c}" />
                             </p:column>
 
-                            <p:column headerText="Apellido paterno">
+                            <p:column headerText="Apellido paterno" style="border: 1px solid white;">
                                 <h:outputText value="#{per.apellido_p}" />
                             </p:column>
 
-                            <p:column headerText="Apellido materno">
+                            <p:column headerText="Apellido materno" style="border: 1px solid white;">
                                 <h:outputText value="#{per.apellido_m}" />
                             </p:column>
 
-                            <p:column headerText="Edad">
+                            <p:column headerText="Edad" style="border: 1px solid white;">
                                 <h:outputText value="#{per.edad}" />
                             </p:column>
 
-                            <p:column headerText="Genero">
+                            <p:column headerText="Genero" style="border: 1px solid white;">
                                 <h:outputText value="#{per.genero}" />
                             </p:column>
 
-                            <p:column headerText="Area de Trabajo">
+                            <p:column headerText="Area de Trabajo" style="border: 1px solid white;">
                                 <h:outputText value="#{per.area_trabajo}" />
                             </p:column>
 
-                            <p:column headerText="Puesto">
+                            <p:column headerText="Puesto" style="border: 1px solid white;">
                                 <h:outputText value="#{per.puesto_trabajo}" />
                             </p:column>
 
-                            <p:column headerText="Turno">
+                            <p:column headerText="Turno" style="border: 1px solid white;">
                                 <h:outputText value="#{per.turno}" />
                             </p:column>
 
-                            <p:column headerText="Acción">
-                                <p:commandButton oncomplete="PF('dlgEditar').show()" 
+                            <p:column headerText="Acción" style="border: 1px solid white;">
+                                <!-- <p:commandButton oncomplete="PF('dlgEditar').show()" 
                                                  process="@this"
                                                  styleClass="rounded-button ui-button-info mb-2"
                                                  value="Editar">
 
-                                    <f:setPropertyActionListener target="#{personaManagedBean.persona}" value="#{per}" />
-                                </p:commandButton>
+                                    <f:setPropertyActionListener target="#{personaManagedBean.persona}" value="#{per}" /> 
+                                </p:commandButton>-->
 
                                 <p:commandButton styleClass="rounded-button ui-button-danger mb-2" 
                                                  action="#{personaManagedBean.eliminarRegistro(per.id_personaa)}" 
@@ -204,15 +203,13 @@
                                                  value="Borrar"/>
 
                                 <!-- Botón Gravedad -->
-                                <p:commandButton value="Gravedad" 
+                               <!--  <p:commandButton value="Gravedad" 
                                                  update=":modalGravedad"
                                                  oncomplete="PF('dlgGravedad').show()" 
                                                  process="@this" 
                                                  styleClass="rounded-button ui-button-secondary" >
                                     <f:setPropertyActionListener target="#{personaManagedBean.selectedPersona}" value="#{per}" />
-                                    <!-- Actualiza el formulario del diálogo con los datos de la fila seleccionada -->
-
-                                </p:commandButton>
+                                </p:commandButton>-->
                             </p:column>
 
                         </p:dataTable>     
@@ -287,13 +284,13 @@
         </h:form>
 
         <!-- Panel Gravedad -->
-        <p:dialog id="modalGravedad" widgetVar="dlgGravedad" modal="true" resizable="false" style="background-color:red;box-shadow: 0px 0px 22px 8px rgba(148,60,60,0.83);border-radius:20px;">
+        <p:dialog id="modalGravedad" widgetVar="dlgGravedad" modal="true" style="background-color:red;box-shadow: 0px 0px 22px 8px rgba(148,60,60,0.83);border-radius:20px;">
             <div>
                 <p:outputLabel value="Gravedad de Trabajador Accidentado" class="text-3xl mb-3" style="color: white; font-family: 'Inter', sans-serif; font-weight: 500; text-align: center" />
             </div>
             <h:form id="formGravedad" class="mb-4">
                 <!-- Campos de entrada para editar la gravedad -->
-                <h:outputLabel value="Nombres Completo:" class="mr-6"/>
+                <h:outputLabel value="Nombres Completos:" class="mr-6"/>
                 <p:inputText id="inputNombre" value="#{personaManagedBean.selectedPersona.nombres_c}" class="mb-3" style="width:23rem; background:transparent; color: white; border: none; border-bottom: 3px solid  #f8da45"/>
 
                 <h:outputLabel value="Apellido Paterno:" class="mr-7"/>
@@ -318,9 +315,9 @@
 
             <div class="field col-12 md:col-6 w-auto mr-auto">
                 <p:selectOneRadio layout="responsive" columns="3" immediate="true">
-                    <f:selectItem itemLabel="Leve" itemValue="1"/>
-                    <f:selectItem itemLabel="Incapacitante" itemValue="2"/>
-                    <f:selectItem itemLabel="Mortal" itemValue="3" />
+                    <f:selectItem itemLabel="Leve" itemValue="Leve"/>
+                    <f:selectItem itemLabel="Incapacitante" itemValue="Incapacitante"/>
+                    <f:selectItem itemLabel="Mortal" itemValue="Mortal" />
                 </p:selectOneRadio>
             </div>
 
@@ -330,10 +327,10 @@
 
             <div class="field col-12 md:col-6 w-auto mr-auto">
                 <p:selectOneRadio layout="responsive" columns="4" immediate="true">
-                    <f:selectItem itemLabel="Total temporal" itemValue="1"/>
-                    <f:selectItem itemLabel="Parcial temporal" itemValue="2"/>
-                    <f:selectItem itemLabel="Parcial permanente" itemValue="3" />
-                    <f:selectItem itemLabel="Total permanente" itemValue="4" />
+                    <f:selectItem itemLabel="Total temporal" itemValue="Total temporal"/>
+                    <f:selectItem itemLabel="Parcial temporal" itemValue="Parcial temporal"/>
+                    <f:selectItem itemLabel="Parcial permanente" itemValue="Parcial permanente" />
+                    <f:selectItem itemLabel="Total permanente" itemValue="Total permanente" />
                 </p:selectOneRadio>
             </div>
 
@@ -343,67 +340,8 @@
             </div>
 
             <div class="col-12 mb-2 lg:col-10 mb-3">
-                <p:outputLabel for="cafec" value="DESCRIBIR PARTE DEL CUERPO AFECTADA (DE SER EL CASO):"  class="pt-2 w-full" style="color: white; font-family: 'Inter', sans-serif; font-weight: 600;" />    
+                <p:outputLabel for="cafec" value="DESCRIBIR PARTE DEL CUERPO AFECTADO (DE SER EL CASO):"  class="pt-2 w-full" style="color: white; font-family: 'Inter', sans-serif; font-weight: 600;" />    
                 <p:inputText id="cafec" class="w-30rem" placeholder="Ingresa la parte del cuerpo afectada" style="background:transparent; color: white; border: none; border-bottom: 3px solid  #f8da45;"/>
-            </div>
-
-            <div class="text-center">
-                <p:button value="Guardar"  styleClass="ui-button-raised ui-button-warning ui-button" style="background-color:transparent; border:2px solid #ffffff; border-radius: 6px; color:white"/>
-            </div>
-        </p:dialog>
-
-
-        <!-- VENTANA EMERGENTE DE GRAVEDAD DE CIVILES -->
-
-        <p:dialog id="modalGravedadC" widgetVar="dlgGravedadC" modal="true" resizable="false" style="background-color:red;box-shadow: 0px 0px 22px 8px rgba(148,60,60,0.83);border-radius:20px;">
-            <div>
-                <p:outputLabel value="Gravedad de Civil Accidentado" class="text-3xl mb-3" style="color: white; font-family: 'Inter', sans-serif; font-weight: 500; text-align: center" />
-            </div>
-            <h:form id="formGravedadC" class="mb-4">
-                <!-- Campos de entrada para editar la gravedad -->
-                <h:outputLabel value="Nombres Completo:" class="mr-6"/>
-                <p:inputText id="inputNombre" value="#{personaCManagedBean.selectedPersonaC.nombres_c}" class="mb-3" style="width:23rem; background:transparent; color: white; border: none; border-bottom: 3px solid  #f8da45"/>
-
-                <h:outputLabel value="Apellido Paterno:" class="mr-7"/>
-                <p:inputText id="inputApellidoP" value="#{personaCManagedBean.selectedPersonaC.apellido_p}" class="mb-3" style="width:23rem; background:transparent; color: white; border: none; border-bottom: 3px solid  #f8da45"/>
-
-                <h:outputLabel value="Apellido Materno:" class="" style="margin-right:3.6rem"/>
-                <p:inputText id="inputApellidoM" value="#{personaCManagedBean.selectedPersonaC.apellido_m}" class="mb-3" style="width:23rem; background:transparent; color: white; border: none; border-bottom: 3px solid  #f8da45"/>
-
-                <h:outputLabel value="Edad:" class="" style="margin-right:9.1rem;"/>
-                <p:inputText id="inputEdad" value="#{personaCManagedBean.selectedPersonaC.edad}" class="mb-3" style="width:23rem; background:transparent; color: white; border: none; border-bottom: 3px solid  #f8da45"/>
-
-                <h:outputLabel value="DNI:" class="" style="margin-right:9.6rem"/>
-                <p:inputText id="inputArea" value="#{personaCManagedBean.selectedPersonaC.dni_ce}" class="mb-3" style="width:23rem; background:transparent; color: white; border: none; border-bottom: 3px solid  #f8da45"/>
-
-            </h:form>
-
-            <div>
-                <p:outputLabel value="MARQUE LA GRAVEDAD DEL ACCIDENTE" class="text-lg mb-2" style="color: white; font-family: 'Inter', sans-serif; font-weight: 500; text-align: center" />
-            </div>
-
-            <div class="field col-12 md:col-6 w-auto mr-auto">
-                <p:selectOneRadio layout="responsive" columns="3" immediate="true">
-                    <f:selectItem itemLabel="Leve" itemValue="1"/>
-                    <f:selectItem itemLabel="Incapacitante" itemValue="2"/>
-                    <f:selectItem itemLabel="Mortal" itemValue="3" />
-                </p:selectOneRadio>
-            </div>
-
-            <div>
-                <p:outputLabel value="MARQUE LA GRAVEDAD DEL ACCIDENTE INCAPACITANTE (DE SER EL CASO):" class="text-lg mb-2" style="color: white; font-family: 'Inter', sans-serif; font-weight: 500;" />
-            </div>
-
-            <div class="field col-12 md:col-6 w-auto mr-auto">
-                <p:selectOneRadio layout="responsive" columns="2" immediate="true">
-                    <f:selectItem itemLabel="Parcial permanente" itemValue="1" />
-                    <f:selectItem itemLabel="Total permanente" itemValue="2" />
-                </p:selectOneRadio>
-            </div>
-
-            <div class="col-12 mb-2 lg:col-10 mb-3">
-                <p:outputLabel for="cafec1" value="DESCRIBIR PARTE DEL CUERPO AFECTADA (DE SER EL CASO):"  class="pt-2 w-full" style="color: white; font-family: 'Inter', sans-serif; font-weight: 600;" />    
-                <p:inputText id="cafec1" class="w-30rem" placeholder="Ingresa la parte del cuerpo afectada" style="background:transparent; color: white; border: none; border-bottom: 3px solid  #f8da45;"/>
             </div>
 
             <div class="text-center">

@@ -16,163 +16,271 @@
     </ui:define>
 
     <ui:define name="content">
-        <h:form>
-                <div class="col-12">
-                    <div class="card">
-                        <h5>Datos de la empresa</h5>
-                        <div class="ui-fluid formgrid grid">
-                            <div class="field col-12 md:col-6">
-                                <p:outputLabel for="firstname" value="Ruc" />
-                                <p:inputText value="#{empresaPManagedBean.selectedEmpresaP.ruc}" id="firstname" />
-                            </div>
-                            <div class="field col-12 md:col-6">
-                                <p:outputLabel for="razonsocial" value="Razón social" />
-                                <p:inputText value="#{empresaPManagedBean.selectedEmpresaP.razon_s}" id="razonsocial" />
-                            </div>
-                            <div class="field col-12 md:col-6">
-                                <p:outputLabel for="contribuyente" value="Nombre Comercial" />
-                                <p:inputText value="#{empresaPManagedBean.selectedEmpresaP.nombre_c}"  id="contribuyente" />
-                            </div>
-                            <div class="field col-12 md:col-6">
-                                <p:outputLabel for="represent1" value="Actividad Economica" />
-                                <p:inputText  value="#{empresaPManagedBean.selectedEmpresaP.actividad}" id="represent1" />
-                            </div>
-                            <p:outputLabel  value="9. Domicilio"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />    
-                        </div>
+        <h:form> 
+            <h5 class="h-4 text-center text-4xl w-full" 
+                style="background-color: transparent; font-family: 'Inter', sans-serif; font-weight: 600; border-radius: 5px; color: white;">
+                DATOS DE LA EMPRESA
+            </h5>
 
-                        <div class="field col-12 md:col-2">                                
-                            <p:outputLabel for="departamento" value="Departamento"  style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
-                            <p:selectOneMenu id="departamento" value="#{empresaPManagedBean.empresaP.departamento}" style="background:transparent; border: none; border-bottom: 3px solid black; color: black;">
-                                <f:selectItem itemLabel="Seleccione un departamento" noSelectionOption="departamentotrue" />
-                                <f:selectItems value="#{ubigeo.listaDepartamentos}" var="departamento"
-                                               itemValue="#{departamento}" itemLabel="#{departamento}" />
-                                <f:ajax listener="#{ubigeo.obtenerListaProvincias(empresaPManagedBean.empresaP.departamento)}" render="provincia distrito" />
-                            </p:selectOneMenu>
+            <div class="card col-12 p-3" > 
+                <!-- DATOS DEL EMPLEADOR PRINCIPAL -->
+                <div class="ui-fluid formgrid grid"
+                     style="border: 1px solid #fff; border-radius: 1rem 1rem 0 0; border-bottom: none;background-color: #f8da45;box-shadow: 0px 0px 5px 1px white;">
+                    <h5 class="p-3 text-2xl"
+                        style="font-family: 'Inter', sans-serif; font-weight: 600;color:black ">
+                        DATOS DE LA EMPRESA
+                    </h5>  
+                </div>
+                    <div class="ui-fluid formgrid grid" style="background-color: #ededed; border: 1px solid #cbcbcb; border-radius: 0 0 1rem 1rem; width: 101%; margin-bottom: 70px; padding: 25px;box-shadow: 0px 0px 5px 1px white;" >
+                       
+                        <!-- RUC -->
+                        
+                        <div class="field col-12 md:col-4">
+                            <p:outputLabel value="1. Ruc"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
+                        </div>    
+                        <div class="field col-12 md:col-6">    
+                            <p:inputText value="#{empresaPManagedBean.selectedEmpresaP.ruc}" id="firstname"   style="background:transparent; color: black; border: none; border-bottom: 3px solid  #f8da45;"/> 
                         </div>
                         
-                        <div class="field col-12 md:col-2">
-                            <p:outputLabel for="provincia" value="Provincia"  style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
-                            <p:selectOneMenu id="provincia" value="#{empresaPManagedBean.empresaP.provincia}" style="background:transparent; border: none; border-bottom: 3px solid black; color: black;">
-                                <f:selectItem itemLabel="Seleccione una provincia" noSelectionOption="true" />
-                                <f:selectItems value="#{ubigeo.listaProvincias}" var="provincia"
-                                               itemValue="#{provincia}" itemLabel="#{provincia}" />
-                                <f:ajax listener="#{ubigeo.obtenerListaDistritos(empresaPManagedBean.empresaP.provincia)}" render="distrito" />
-                            </p:selectOneMenu>
+                        <!-- RAZON SOCIAL -->
+                        
+                        <div class="field col-12 md:col-4">
+                            <p:outputLabel value="2. Razon Social"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
                         </div>
-
-                        <div class="field col-12 md:col-2">
-                            <p:outputLabel for="distrito" value="Distrito"  style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
-                            <p:selectOneMenu id="distrito" value="#{empresaPManagedBean.empresaP.distrito}" style="background:transparent; border: none; border-bottom: 3px solid black; color: black;">
-                                <f:selectItem itemLabel="Seleccione un distrito" noSelectionOption="true" />
-                                <f:selectItems value="#{ubigeo.listaDistritos}" var="distrito"
-                                               itemValue="#{distrito}" itemLabel="#{distrito}" />
-                            </p:selectOneMenu>
+                        <div class="field col-12 md:col-6">    
+                            <p:inputText value="#{empresaPManagedBean.selectedEmpresaP.razon_s}" id="razonsocial" placeholder="Ingrese razon social" style="background:transparent; color: black; border: none; border-bottom: 3px solid  #f8da45;"/> 
                         </div>
-                        <div class="field col-12 md:col-6">
-                                <p:outputLabel for="direccion" value="Direccion" />
-                                <p:inputText value="#{empresaPManagedBean.selectedEmpresaP.direccion}" id="direccion" />
-                            </div>
-                            <div class="field col-12 md:col-6">
-                                <p:outputLabel for="dependencia" value="Telefono" />
-                                <p:inputText value="#{empresaPManagedBean.selectedEmpresaP.telefono}" id="dependencia" />
-                            </div>
-                             <div class="field col-12 md:col-6">
-                                <p:outputLabel for="condicion" value="Correo" />
-                                <p:inputText value="#{empresaPManagedBean.selectedEmpresaP.correo}" id="condicion" />
-                            </div>
-                               <div class="field col-12 md:col-6">
-                                <p:outputLabel for="actividad" value="Número de Licencia" />
-                                <p:inputText value="#{empresaPManagedBean.selectedEmpresaP.num_licencia}" id="actividad" />
-                            </div>
-                        <!-- FECHAS-->
-                               <div class="field col-12 md:col-6">
-                                <p:outputLabel for="emision" value="Fecha de Fundación" />
-                                </div>
-                         <div class="field col-12 md:col-6">
-                                <p:datePicker value="#{empresaPManagedBean.selectedEmpresaP.fecha_fundacion}" id="emision"/>
-                            </div>
-                            <div class="field col-12 md:col-6">
-                                <p:outputLabel for="actividad1" value="Fecha de Operación" />
-                                <p:datePicker value="#{empresaPManagedBean.selectedEmpresaP.fecha_operacion}" id="actividad1"/>
-                            </div>
-                        <!-- ++++++++++++++++++++++++++++ -->
-                            <div class="field col-12 md:col-6">
-                                <p:outputLabel for="telf" value="Número de Sucursales" />
-                                <p:inputText value="#{empresaPManagedBean.selectedEmpresaP.numero_s}" id="telf" />
-                            </div>
-                      
-                            <!--BOTON-->
-                             <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
-                                 <p:commandButton class="btn btn-danger" action="#{empresaPManagedBean.agregarRegistroEmpresaP}" update="@form" value="Registrar empresa tercero"/>
-                             </div>
-                            <!--TABLA-->     
-                            <p:dataTable id="tablaEmpresaP" value="#{empresaPManagedBean.obtenerRegistrosEmpresaP()}" var="emp" rowKey="#{emp.id_empresa_p}" emptyMessage="No se encontraron registros" reflow="true" rows="4" paginator="true">
-                            <p:column headerText="ID">
-                                <h:outputText value="#{emp.id_empresa_p}" />
-                            </p:column>
-
-                            <p:column headerText="Ruc">
-                                <h:outputText value="#{emp.ruc}" />
-                            </p:column>
-
-                            <p:column headerText="Razon Social">
-                                <h:outputText value="#{emp.razon_s}" />
-                            </p:column>
-                                
-                           <p:column headerText="Nombre Comercial">
-                               <h:outputText value="#{emp.nombre_c}" />
-                            </p:column>
-                                
-                           <p:column headerText="Actividad Economica">
-                               <h:outputText value="#{emp.actividad}" />
-                            </p:column>
-
-                            <p:column headerText="Departamento">
-                                <h:outputText value="#{emp.departamento}" />
-                            </p:column>
-
-                            <p:column headerText="Provincia">
-                                <h:outputText value="#{emp.provincia}" />
-                            </p:column>
-
-                            <p:column headerText="Distrito">
-                                <h:outputText value="#{emp.distrito}" />
-                            </p:column>
-
-                            <p:column headerText="Direccion">
-                                <h:outputText value="#{emp.direccion}" />
-                            </p:column>
-
-                            <p:column headerText="Telefono">
-                                <h:outputText value="#{emp.telefono}" />
-                            </p:column>
-
-                            <p:column headerText="Correo">
-                                <h:outputText value="#{emp.correo}" />
-                            </p:column>
-
-                            <p:column headerText="Numero de Licencia">
-                                <h:outputText value="#{emp.num_licencia}" />
-                            </p:column>
-
-                            <p:column headerText="Fecha de Fundación">
-                                <h:outputText value="#{emp.fecha_fundacion}" />
-                            </p:column>
-                                
-                           <p:column headerText="Fecha de Operación">
-                               <h:outputText value="#{emp.fecha_operacion}" />
-                            </p:column>
-
-                            <p:column headerText="Numero de Sucursales">
-                                <h:outputText value="#{emp.numero_s}" />
-                            </p:column>
-                                      
-                               </p:dataTable> 
-
+                        
+                        <!-- NOMBRE COMERCIAL -->
+                        
+                        <div class="field col-12 md:col-4">
+                            <p:outputLabel value="3. Nombre Comercial"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
+                        </div>    
+                        <div class="field col-12 md:col-6">   
+                            <p:inputText value="#{empresaPManagedBean.selectedEmpresaP.nombre_c}"  id="contribuyente" placeholder="Ingrese nombre comercial" style="background:transparent; color: black; border: none; border-bottom: 3px solid  #f8da45;"/> 
                         </div>
+                        
+                        <!-- ACTIVIDAD ECONOMICA -->
+                        
+                        <div class="field col-12 md:col-4">
+                            <p:outputLabel value="4.  Actividad Economica"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
+                        </div>   
+                        <div class="field col-12 md:col-6"> 
+                            <p:inputText  value="#{empresaPManagedBean.selectedEmpresaP.actividad}" id="represent1" placeholder="Ingrese razon social" style="background:transparent; color: black; border: none; border-bottom: 3px solid  #f8da45;"/> 
+                        </div>
+                        
+                        <!-- DOMICILIO -->
+                        <div class="ui-fluid formgrid grid p-4 w-full shadow-5" style="background-color: #f8da45; border-radius: 5px; margin: auto;margin-top:10px;margin-bottom:20px;">
+                            <div class="field col-12 md:col-4">
+                                <p:outputLabel  value="5. Domicilio"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;"/>    
+                            </div>
+                    <!-- DEPARTAMENTO -->
+                        
+                    <div class="field col-12 md:col-2">                                
+                        <p:outputLabel for="departamento" value="Departamento"  style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
+                        <p:selectOneMenu id="departamento" value="#{empresaPManagedBean.empresaP.departamento}" style="background:transparent; border: none; border-bottom: 3px solid black; color: black;">
+                            <f:selectItem itemLabel="Seleccione un departamento" noSelectionOption="departamentotrue" />
+                            <f:selectItems value="#{ubigeo.listaDepartamentos}" var="departamento"
+                                           itemValue="#{departamento}" itemLabel="#{departamento}" />
+                            <f:ajax listener="#{ubigeo.obtenerListaProvincias(empresaPManagedBean.empresaP.departamento)}" render="provincia distrito" />
+                        </p:selectOneMenu>
                     </div>
-     
-     </h:form>
-</ui:define>
+
+                    <!-- PROVINCIA -->
+                        
+                    <div class="field col-12 md:col-2">
+                        <p:outputLabel for="provincia" value="Provincia"  style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
+                        <p:selectOneMenu id="provincia" value="#{empresaPManagedBean.empresaP.provincia}" style="background:transparent; border: none; border-bottom: 3px solid black; color: black;">
+                            <f:selectItem itemLabel="Seleccione una provincia" noSelectionOption="true" />
+                            <f:selectItems value="#{ubigeo.listaProvincias}" var="provincia"
+                                           itemValue="#{provincia}" itemLabel="#{provincia}" />
+                            <f:ajax listener="#{ubigeo.obtenerListaDistritos(empresaPManagedBean.empresaP.provincia)}" render="distrito" />
+                        </p:selectOneMenu>
+                    </div>
+
+                    <!-- DISTRITO -->
+                    
+                    <div class="field col-12 md:col-2">
+                        <p:outputLabel for="distrito" value="Distrito"  style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
+                        <p:selectOneMenu id="distrito" value="#{empresaPManagedBean.empresaP.distrito}" style="background:transparent; border: none; border-bottom: 3px solid black; color: black;">
+                            <f:selectItem itemLabel="Seleccione un distrito" noSelectionOption="true" />
+                            <f:selectItems value="#{ubigeo.listaDistritos}" var="distrito"
+                                           itemValue="#{distrito}" itemLabel="#{distrito}" />
+                        </p:selectOneMenu>
+                    </div>
+                    
+                    <!-- DIRECCION -->
+                    
+                    <div class="field col-12 md:col-4">
+                        <p:outputLabel value=" Direccion"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
+                    </div>
+                    <div class="field col-12 md:col-6">    
+                        <p:inputText value="#{empresaPManagedBean.selectedEmpresaP.direccion}" id="direccion" placeholder="Ingrese aquí su dirección" style="background:transparent;border:none; border-bottom:3px solid black; color: black;"/>
+                    </div>
+                        </div>
+                        
+                    <!-- TELEFONO -->
+                    
+                    <div class="field col-12 md:col-4">
+                        <p:outputLabel value="6. Telefono"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
+                    </div>    
+                    <div class="field col-12 md:col-6">    
+                        <p:inputText value="#{empresaPManagedBean.selectedEmpresaP.telefono}" id="dependencia" placeholder="Ingrese teléfono" style="background:transparent; color: black; border: none; border-bottom: 3px solid  #f8da45;"/> 
+                    </div>
+                    
+                    <!-- CORREO -->
+                    
+                    <div class="field col-12 md:col-4">
+                        <p:outputLabel value="7. Correo"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
+                    </div>
+                    <div class="field col-12 md:col-6">   
+                        <p:inputText value="#{empresaPManagedBean.selectedEmpresaP.correo}" id="condicion" placeholder="Ingrese correo" style="background:transparent; color: black; border: none; border-bottom: 3px solid  #f8da45;"/> 
+                    </div>
+                    
+                    <!-- NUMERO DE LICENCIAS -->
+                    
+                    <div class="field col-12 md:col-4">
+                        <p:outputLabel value="8. Numero de Licencias"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
+                    </div>   
+                    <div class="field col-12 md:col-6">    
+                        <p:inputText value="#{empresaPManagedBean.selectedEmpresaP.num_licencia}" id="actividad" placeholder="Ingrese elnumero de licencias" style="background:transparent; color: black; border: none; border-bottom: 3px solid  #f8da45;"/> 
+                    </div>
+                    
+                    <!-- FECHAS -->
+                    
+                    <div class="field col-12 md:col-4">
+                        <p:outputLabel value="9. Fecha de Fundacion"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <p:datePicker value="#{empresaPManagedBean.selectedEmpresaP.fecha_fundacion}" id="emision"  placeholder="Ingrese fecha de fundacion" style="background:transparent; color: black; border: none; border-bottom: 3px solid  #f8da45;"/> 
+                    </div>
+                    
+                    <!-- FECHA DE OPERACION -->
+                    
+                    <div class="field col-12 md:col-4">
+                        <p:outputLabel value="10. Fecha de Operacion"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
+                    </div>    
+                    <div class="field col-12 md:col-6">   
+                        <p:datePicker value="#{empresaPManagedBean.selectedEmpresaP.fecha_operacion}" id="actividad1" placeholder="Ingrese fecha de operacion" style="background:transparent; color: black; border: none; border-bottom: 3px solid  #f8da45;"/> 
+                    </div>
+                    
+                    <!-- NUMERO DE SUCURSALES -->
+                    
+                    <div class="field col-12 md:col-4">
+                        <p:outputLabel value="11. Numero de Sucursales"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
+                    </div>    
+                    <div class="field col-12 md:col-6">    
+                        <p:inputText value="#{empresaPManagedBean.selectedEmpresaP.numero_s}" id="telf" placeholder="Ingrese el numero de sucursales" style="background:transparent; color: black; border: none; border-bottom: 3px solid  #f8da45;"/> 
+                    </div>
+                </div>
+        
+                    <!-- BOTON PARA AGREGAR LOS REGISTROS -->
+ 
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+                        <p:commandButton style="color: black; font-family: 'Inter', sans-serif; font-weight: 600; background-color: #f8da45; height: 70px; border-color: #000; border-radius: 14px;" action="#{empresaPManagedBean.agregarRegistroEmpresaP}" update="@form" value="Guardar Empresa"/>
+                    </div>
+                    
+                    <!-- TABLA DE REGISTROS --> 
+                    
+                    <p:dataTable id="tablaEmpresaP" value="#{empresaPManagedBean.obtenerRegistrosEmpresaP()}" var="emp" rowKey="#{emp.id_empresa_p}" emptyMessage="No se encontraron registros" reflow="true" rows="4" paginator="true">
+                        <p:column headerText="ID">
+                            <h:outputText value="#{emp.id_empresa_p}" />
+                        </p:column>
+
+                        <!--  CAMPO RUC  -->
+                        
+                        <p:column headerText="Ruc">
+                            <h:outputText value="#{emp.ruc}" />
+                        </p:column>
+
+                        <!--  RAZON SOCIAL  -->
+                        
+                        <p:column headerText="Razon Social">
+                            <h:outputText value="#{emp.razon_s}" />
+                        </p:column>
+
+                        <!--  NOMBRE COMERCIAL  -->
+                        
+                        <p:column headerText="Nombre Comercial">
+                            <h:outputText value="#{emp.nombre_c}" />
+                        </p:column>
+
+                        <!--  ACTIVIDAD ECONOMICA  -->
+                        
+                        <p:column headerText="Actividad Economica">
+                            <h:outputText value="#{emp.actividad}" />
+                        </p:column>
+
+                        <!--  DEPARTAMENTO  -->
+                        
+                        <p:column headerText="Departamento">
+                            <h:outputText value="#{emp.departamento}" />
+                        </p:column>
+
+                        <!--  PROVINCIA  -->
+                        
+                        <p:column headerText="Provincia">
+                            <h:outputText value="#{emp.provincia}" />
+                        </p:column>
+
+                        <!--  DISTRITO  -->
+                        
+                        <p:column headerText="Distrito">
+                            <h:outputText value="#{emp.distrito}" />
+                        </p:column>
+
+                        <!--  DIRECCION  -->
+                        
+                        <p:column headerText="Direccion">
+                            <h:outputText value="#{emp.direccion}" />
+                        </p:column>
+
+                        <!--  TELEFONO  -->
+                        
+                        <p:column headerText="Telefono">
+                            <h:outputText value="#{emp.telefono}" />
+                        </p:column>
+
+                        <!--  CORREO  -->
+                        
+                        <p:column headerText="Correo">
+                            <h:outputText value="#{emp.correo}" />
+                        </p:column>
+
+                        <!--  NUMERO DE LICENCIA  -->
+                        
+                        <p:column headerText="Numero de Licencia">
+                            <h:outputText value="#{emp.num_licencia}" />
+                        </p:column>
+
+                        <!--  FECHA DE FUNDACION  -->
+                        
+                        <p:column headerText="Fecha de Fundación">
+                            <h:outputText value="#{emp.fecha_fundacion}" />
+                        </p:column>
+
+                        <!--  FECHA DE OPERACION   -->
+                        
+                        <p:column headerText="Fecha de Operación">
+                            <h:outputText value="#{emp.fecha_operacion}" />
+                        </p:column>
+
+                        <!--  NUMERO DE SUCURSALES  -->
+                        
+                        <p:column headerText="Numero de Sucursales">
+                            <h:outputText value="#{emp.numero_s}" />
+                        </p:column>
+                        
+                        <p:column headerText="ACCION">
+                            <p:commandButton icon="pi pi-times" 
+                                             styleClass="rounded-button ui-button-danger" 
+                                             action="#{empresaPManagedBean.eliminarRegistroEmp(emp.id_empresa_p)}" 
+                                             update="@form" />
+
+                        </p:column>
+                    </p:dataTable> 
+                    </div>
+        </h:form>
+    </ui:define>
 
 </ui:composition>
