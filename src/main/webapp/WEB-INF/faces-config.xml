@@ -1,15 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+              http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd"
               version="2.3">
     
     <name>primefaces_rain</name>
-    
+
     <component>
         <component-type>org.primefaces.component.RainMenu</component-type>
         <component-class>org.primefaces.rain.component.RainMenu</component-class>
     </component>
+    
+    <navigation-rule>
+        <from-view-id>/formDatosTrabajadores.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>formDatosTrabajadores</from-outcome>
+            <to-view-id>/formDatosTrabajadores.xhtml</to-view-id>
+        </navigation-case>
+        
+        <from-view-id>/formDatosGenerales.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>formDatosGenerales</from-outcome>
+            <to-view-id>/formDatosGenerales.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 
     <managed-bean>
         <managed-bean-name>tercerosManagedBean</managed-bean-name>
@@ -128,12 +143,6 @@
     </managed-bean>
     
     <managed-bean>
-        <managed-bean-name>gravedadManagedBean</managed-bean-name>
-        <managed-bean-class>com.perudatarecovery.configuracion.GravedadManagedBean</managed-bean-class>
-        <managed-bean-scope>view</managed-bean-scope>
-    </managed-bean>
-    
-    <managed-bean>
         <managed-bean-name>permisoManagedBean</managed-bean-name>
         <managed-bean-class>com.perudatarecovery.configuracion.PermisoManagedBean</managed-bean-class>
         <managed-bean-scope>view</managed-bean-scope>
@@ -144,7 +153,6 @@
         <managed-bean-class>com.perudatarecovery.configuracion.Respuesta_IndicadoresManagedBean</managed-bean-class>
         <managed-bean-scope>view</managed-bean-scope>
     </managed-bean>
-    
     
     <render-kit>
         <renderer>

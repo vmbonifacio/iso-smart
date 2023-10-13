@@ -57,12 +57,11 @@
                     <f:selectItems value="#{pruebaManagedBean.ubigeo.listaDistritos}" />
                 </p:selectOneMenu>
 
-
-
                 <h:outputText value="Razon Social:" styleClass="texto-destacado" /><br></br><br></br>
                 <h:inputText value="#{tercerosManagedBean.tercero.razon_social}" styleClass="input-estilo"></h:inputText><br></br><br></br>
                 <h:outputText value="RUC:" styleClass="texto-destacado"/><br></br><br></br>
                 <h:inputText value="#{tercerosManagedBean.tercero.ruc}" styleClass="input-estilo"></h:inputText><br></br><br></br>
+                
                 <!-- NO TOCAR -->
                 <p:commandButton value="Agregar" 
                                  action="#{tercerosManagedBean.agregarRegistro}"
@@ -128,13 +127,9 @@
                                      process="@form" 
                                      update="tablaTerceros">
                     </p:commandButton>
-
-
                 </p:panelGrid>
             </h:form>
         </p:dialog>
-
-
     </h:body>
 </html>
 

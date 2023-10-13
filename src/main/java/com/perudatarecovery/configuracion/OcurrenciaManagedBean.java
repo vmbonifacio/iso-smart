@@ -26,7 +26,7 @@ public class OcurrenciaManagedBean {
     private Ocurrencia selectedOcurrencia;
     private List<Ocurrencia> listaOcurrencia;
     private String tipoOcurrenciaSeleccionada;
-    private String accidenteNombre; // New attribute to store the name for the accident
+    private String accidenteNombre;
 
     public OcurrenciaManagedBean() {
         selectedOcurrencia = new Ocurrencia();
@@ -167,27 +167,26 @@ public class OcurrenciaManagedBean {
             System.out.println("Error al guardar información adicional: " + e.toString());
         }
     }
-    
 
     public void eliminarRegistro() {
-        if (selectedOcurrencia != null) {
-            try ( Connection conn = Conexion.obtenerConexion();  Statement sql = conn.createStatement()) {
-                String query = "DELETE FROM ocurrencia WHERE idOcurrencia = ?";
-                PreparedStatement pst = conn.prepareStatement(query);
-                pst.setInt(1, selectedOcurrencia.getCodigo());
-                pst.executeUpdate();
+        try ( Connection conn = Conexion.obtenerConexion();  PreparedStatement pst = conn.prepareStatement("DELETE FROM ocurrencia WHERE idOcurrencia = ?")) {
+            pst.setInt(1, selectedOcurrencia.getCodigo());
+            int rowsDeleted = pst.executeUpdate();
 
-                // Actualizar la lista de registros después de eliminar uno
+            if (rowsDeleted > 0) {
+                System.out.println(rowsDeleted + " registro(s) eliminado(s)");
+                // Actualiza la lista de registros después de eliminar uno
                 listaOcurrencia = obtenerRegistroOcurrencia();
-
-            } catch (Exception e) {
-                e.printStackTrace();
+            } else {
+                System.out.println("No se encontró ningún registro para eliminar con código: " + selectedOcurrencia.getCodigo());
             }
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar el registro: " + e.toString());
+            e.printStackTrace();
+        } catch (Exception ex) {
+            System.out.println("Ocurrió una excepción no manejada: " + ex.toString());
+            ex.printStackTrace();
         }
-    }
-
-    public void prepararEdicion(Ocurrencia ocurrencia) {
-        selectedOcurrencia = ocurrencia;
     }
 
     private Ocurrencia ocurrencia = new Ocurrencia();

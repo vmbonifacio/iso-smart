@@ -1,0 +1,319 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml"
+                xmlns:webjars="http://webjars.org/ui"
+                webjars:assetLocator="org.webjars.WebJarAssetLocator">
+
+    <ui:define name="head">
+        <h:outputStylesheet library="webjars" name="bootstrap/5.2.3/css/bootstrap.min.css" />
+    </ui:define>
+
+    <ui:define name="title">Consecuencia</ui:define>
+
+    <ui:define name="content">
+        <h:form>
+            <h5 class="h-5rem text-center text-4xl p-4 text-white-alpha-90" 
+                style="background-color: #2A2A2A;
+                font-family: 'Inter', sans-serif;
+                font-weight: 600;">
+                DATOS DEL TRABAJADOR
+            </h5>
+
+            <div class="col-12 p-3" > 
+                <!-- DATOS DEL EMPLEADOR PRINCIPAL -->
+                <div class="ui-fluid formgrid grid pl-2"
+                     style="border-radius: 1rem 1rem 0 0;
+                     border-bottom: none;
+                     background-color: #F8DA45;
+                     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);">
+                    <h5 class="p-3 text-2xl"
+                        style="font-family: 'Inter', sans-serif;
+                        font-weight: 600;
+                        color: black;">
+                        DATOS DEL TRABAJADOR
+                    </h5>  
+                </div>
+
+                <div class="ui-fluid formgrid grid"  
+                     style="background-color: #EDEDED;
+                     margin-bottom: 70px;
+                     padding: 30px 60px 30px  60px;
+                     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+                     border-radius: 0 0 1rem 1rem;">
+
+                    <!-- NOMBRE -->  
+
+                    <div class="field col-12 md:col-4">
+                        <p:outputLabel value="1. Nombre"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />    
+                    </div>
+
+                    <div class="field col-12 md:col-6">
+                        <p:inputText  id="nombre"  class="w-5" value="#{trabajadorManagedBean.selectedTrabajador.nombre}" 
+                                      placeholder="Ingrese el nombre" 
+                                      style="background:transparent; color: black; border: none; border-bottom: 3px solid #f8da45;"/>
+                    </div>
+
+                    <!-- APELLIDO PATERNO -->  
+
+                    <div class="field col-12 md:col-4">
+                        <p:outputLabel value="2. Apellido paterno"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />    
+                    </div>
+
+                    <div class="field col-12 md:col-6">
+                        <p:inputText id="apellidoPaterno" class="w-5" value="#{trabajadorManagedBean.selectedTrabajador.ap_p}" 
+                                     placeholder="Ingrese el apellido paterno" 
+                                     style="background:transparent; color: black; border: none; border-bottom: 3px solid  #f8da45;"/>
+                    </div>
+
+                    <!-- APELLIDO MATERNO -->
+
+                    <div class="field col-12 md:col-4">
+                        <p:outputLabel value="3. Apellido materno"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />    
+                    </div>
+
+                    <div class="field col-12 md:col-6">
+                        <p:inputText  id="apellidoMaterno" class="w-5" value="#{trabajadorManagedBean.selectedTrabajador.ap_m}" 
+                                      placeholder="Ingrese el apellido materno"
+                                      style="background:transparent; color: black; border: none; border-bottom: 3px solid  #f8da45;"/>
+                    </div>
+
+                    <!-- DNI / CARNET DE EXTRANJERIA -->
+
+                    <div class="field col-12 md:col-4">
+                        <p:outputLabel value="4. DNI o Carnet de Extranjería "  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />    
+                    </div>
+
+                    <div class="field col-12 md:col-6">
+                        <p:inputText id="identificacion" class="w-5" value="#{trabajadorManagedBean.selectedTrabajador.dni_ce}" 
+                                     placeholder="Ingrese su DNI o Cárnet de Extranjeria" 
+                                     style="background:transparent; color: black; border: none; border-bottom: 3px solid  #f8da45;"/>
+                    </div>
+
+                    <!-- FECHAS-->
+
+                    <div class="field col-12 md:col-4">
+                        <p:outputLabel value="5. Fecha de nacimiento" class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
+                    </div>
+
+                    <div class="field col-12 md:col-6">
+                        <p:datePicker id="nacimiento" class="w-5" value="#{trabajadorManagedBean.selectedTrabajador.fecha_nacimiento}" 
+                                      placeholder="Ingrese fecha de nacimiento" 
+                                      style="background:transparent; color: black; border: none; border-bottom: 3px solid  #f8da45;"/>
+                    </div>
+
+                    <div class="field col-12 md:col-4">
+                        <p:outputLabel value="6. Fecha de ingreso" class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
+                    </div>
+
+                    <div class="field col-12 md:col-6">
+                        <p:datePicker id="ingreso" class="w-5" value="#{trabajadorManagedBean.selectedTrabajador.fecha_ingreso}" 
+                                      placeholder="Ingrese fecha de ingreso" 
+                                      style="background:transparent; color: black; border: none; border-bottom: 3px solid  #f8da45;"/> 
+                    </div>
+
+                    <div class="field col-12 md:col-4">
+                        <p:outputLabel value="7. Sexo"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />    
+                    </div>
+
+                    <div class="field col-12 md:col-6 mr-auto">
+                        <p:selectOneRadio value="#{trabajadorManagedBean.selectedTrabajador.genero}"  style="color: black;">
+                            <f:selectItem itemLabel="M" itemValue="M" />
+                            <f:selectItem itemLabel="F" itemValue="F" />
+                        </p:selectOneRadio>
+                    </div>   
+
+                    <div class="field col-12 md:col-4">
+                        <p:outputLabel value="8. Estado civil"  style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
+                    </div>
+
+                    <div class="field col-12 md:col-4">
+                        <p:selectOneMenu id="estadocivil" value="#{trabajadorManagedBean.selectedTrabajador.estado_civil}"
+                                         style="background:transparent; color: black; border: none; border-bottom: 3px solid  #f8da45;">
+                            <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                            <f:selectItems value="#{trabajadorManagedBean.listaEstadoCivil}" />
+                        </p:selectOneMenu>
+                    </div>
+
+                    <!-- DIRECCION -->
+                    
+                    <div class="ui-fluid formgrid grid p-4 w-full shadow-5" style="background-color: #f8da45; border-radius: 5px; margin: auto;margin-top:10px;margin-bottom:20px;">
+                        <div class="field col-12 md:col-4">
+                            <p:outputLabel value="9. Domicilio"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />    
+                        </div>
+
+                        <div class="field col-12 md:col-2">                                
+                            <p:outputLabel  value="Departamento"  style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
+                            <p:selectOneMenu id="departamento" value="#{trabajadorManagedBean.trabajador.departamento}" style="background:transparent; border: none; border-bottom: 3px solid black; color: black;">
+                                <f:selectItem itemLabel="Seleccione" noSelectionOption="departamentotrue" />
+                                <f:selectItems value="#{ubigeo.listaDepartamentos}" var="departamento"
+                                               itemValue="#{departamento}" itemLabel="#{departamento}" />
+                                <f:ajax listener="#{ubigeo.obtenerListaProvincias(trabajadorManagedBean.trabajador.departamento)}" render="provincia distrito" />
+                            </p:selectOneMenu>
+                        </div>
+
+                        <div class="field col-12 md:col-2">
+                            <p:outputLabel for="provincia" value="Provincia"  style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
+                            <p:selectOneMenu id="provincia" value="#{trabajadorManagedBean.trabajador.provincia}" style="background:transparent; border: none; border-bottom: 3px solid black; color: black;">
+                                <f:selectItem itemLabel="Seleccione" noSelectionOption="true" />
+                                <f:selectItems value="#{ubigeo.listaProvincias}" var="provincia"
+                                               itemValue="#{provincia}" itemLabel="#{provincia}" />
+                                <f:ajax listener="#{ubigeo.obtenerListaDistritos(trabajadorManagedBean.trabajador.provincia)}" render="distrito" />
+                            </p:selectOneMenu>
+                        </div>
+
+                        <div class="field col-12 md:col-2">
+                            <p:outputLabel for="distrito" value="Distrito"  style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
+                            <p:selectOneMenu id="distrito" value="#{trabajadorManagedBean.trabajador.distrito}" style="background:transparent; border: none; border-bottom: 3px solid black; color: black;">
+                                <f:selectItem itemLabel="Seleccione" noSelectionOption="true" />
+                                <f:selectItems value="#{ubigeo.listaDistritos}" var="distrito"
+                                               itemValue="#{distrito}" itemLabel="#{distrito}" />
+                            </p:selectOneMenu>
+                        </div>
+
+                        <div class="field col-12 md:col-4">
+                            <p:outputLabel value="Dirección"  style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
+                        </div>
+
+                        <div class="field col-12 md:col-6">
+                            <p:inputText value="#{trabajadorManagedBean.selectedTrabajador.direccion}" placeholder="Ingrese aquí su dirección" style="background:transparent;border:none; border-bottom:3px solid black; color: black;"/>
+                        </div>
+                    </div>
+
+                    <div class="field col-12 md:col-4">
+                        <p:outputLabel value="10. Tipo Contrato"  style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
+                    </div>
+
+                    <div class="field col-12 md:col-6">
+                        <p:selectOneMenu id="tipocontrato" value="#{trabajadorManagedBean.selectedTrabajador.tipo_contrato}" 
+                                         style="background:transparent; color: black; border: none; border-bottom: 3px solid  #f8da45;">
+                            <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                            <f:selectItems value="#{trabajadorManagedBean.listaTipoContrato}" />
+                        </p:selectOneMenu>
+                    </div>
+
+                    <div class="field col-12 md:col-4">
+                        <p:outputLabel value="11. Turno" class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />    
+                    </div>
+
+                    <div class="field col-12 md:col-6 mr-auto">
+                        <p:selectOneRadio value="#{trabajadorManagedBean.selectedTrabajador.turno}" style="color: black;">
+                            <f:selectItem itemLabel="M" itemValue="M" />
+                            <f:selectItem itemLabel="T" itemValue="T" />
+                            <f:selectItem itemLabel="N" itemValue="N" />
+                        </p:selectOneRadio>
+                    </div>   
+
+                    <div class="field col-12 md:col-4">
+                        <p:outputLabel value="12. Área de la Empresa"  style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
+                    </div>
+
+                    <div class="field col-12 md:col-6">
+                        <p:selectOneMenu id="areas" value="#{trabajadorManagedBean.selectedTrabajador.area}"
+                                         style="background:transparent; color: black; border: none; border-bottom: 3px solid  #f8da45;">
+                            <f:selectItem itemLabel="Seleccione" noSelectionOption="true"/>
+                            <f:selectItems value="#{trabajadorManagedBean.obtenerListaAreas()}" var="area" itemValue="#{area}" itemLabel="#{area}"/>
+                            <p:ajax update="puestos" listener="#{trabajadorManagedBean.actualizarPuestos()}" />
+                        </p:selectOneMenu>
+                    </div>
+
+
+                    <div class="field col-12 md:col-4">
+                        <p:outputLabel value="13. Puesto en la Empresa"  style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
+                    </div>
+
+                    <div class="field col-12 md:col-6">
+                        <p:selectOneMenu id="puestos" value="#{trabajadorManagedBean.selectedTrabajador.puesto}"
+                                         style="background:transparent; color: black; border: none; border-bottom: 3px solid  #f8da45;">
+                            <f:selectItem itemLabel="Seleccione" noSelectionOption="true"/>
+                            <f:selectItems value="#{trabajadorManagedBean.listaPuestos}" var="puesto" itemValue="#{puesto}" itemLabel="#{puesto}"/>
+                        </p:selectOneMenu>
+                    </div>
+
+                    <div class="field col-12 md:col-3">
+                        <p:commandButton style="color: black; font-family: 'Inter', sans-serif; font-weight: 600; background-color: #f8da45; height: 70px; border-color: #f8da45; border-radius: 14px; box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.1), 0px 4px 5px -2px rgba(0, 0, 0, 0.12), 0px 10px 15px -5px rgba(0, 0, 0, 0.2) !important;" action="#{trabajadorManagedBean.agregarRegistroTrabajador}" update="@form" value="Registrar Trabajador"/>
+                    </div>
+                </div>
+            </div>
+
+            <p:dataTable id="tablaTrabajador" value="#{trabajadorManagedBean.obtenerRegistroTrabajador()}" var="trab" 
+                         rowKey ="#{trab.id_trabajador}" emptyMessage="No se encontraron registros" reflow="true" rows="4" paginator="true">
+
+                <p:column headerText="ID"> 
+                    <h:outputText value="#{trab.id_trabajador}" />
+                </p:column>
+
+                <!--  CAMPO NOMBRE  -->
+
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{trab.nombre}" />
+                </p:column>
+
+                <!--  CAMPO APELLIDO PATERNO  -->
+
+                <p:column headerText="Apellido Paterno">
+                    <h:outputText value="#{trab.ap_p}" />
+                </p:column>
+
+                <p:column headerText="Apellido Materno">
+                    <h:outputText value="#{trab.ap_m}" />
+                </p:column>
+
+                <p:column headerText="DNI/CE">
+                    <h:outputText value="#{trab.dni_ce}" />
+                </p:column>
+
+                <p:column headerText="Fecha de nacimiento">
+                    <h:outputText value="#{trab.fecha_nacimiento}" />
+                </p:column>
+
+                <p:column headerText="Género">
+                    <h:outputText value="#{trab.genero}" />
+                </p:column>
+
+                <p:column headerText="Estado Civil ">
+                    <h:outputText value="#{trab.estado_civil}" />
+                </p:column>
+
+                <p:column headerText="Fecha de Ingreso">
+                    <h:outputText value="#{trab.fecha_ingreso}" />
+                </p:column>
+
+                <p:column headerText="Tipo de Contrato">
+                    <h:outputText value="#{trab.tipo_contrato}" />
+                </p:column>
+
+                <p:column headerText="Turno">
+                    <h:outputText value="#{trab.turno}" />
+                </p:column>
+
+                <p:column headerText="Área">
+                    <h:outputText value="#{trab.area}" />
+                </p:column>
+
+                <p:column headerText="Puesto">
+                    <h:outputText value="#{trab.puesto}" />
+                </p:column>
+
+                <p:column headerText="Dirección">
+                    <h:outputText value="#{trab.direccion}" />
+                </p:column>
+
+                <p:column headerText="Departamento">
+                    <h:outputText value="#{trab.departamento}" />
+                </p:column>
+
+                <p:column headerText="Provincia">
+                    <h:outputText value="#{trab.provincia}" />
+                </p:column>
+
+                <p:column headerText="Distrito">
+                    <h:outputText value="#{trab.distrito}" />
+                </p:column>
+            </p:dataTable>
+        </h:form>
+
+    </ui:define>
+</ui:composition>

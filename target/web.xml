@@ -21,6 +21,15 @@
         <servlet-name>Controlador</servlet-name>
         <servlet-class>com.perudatarecovery.controlador.Controlador</servlet-class>
     </servlet>
+        
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>formDatosTrabajadores</from-outcome>
+            <to-view-id>/formDatosTrabajadores.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>

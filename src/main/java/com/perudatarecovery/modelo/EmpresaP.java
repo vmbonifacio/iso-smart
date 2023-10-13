@@ -3,7 +3,7 @@ import java.util.Date;
 
 public class EmpresaP {
     private int id_empresa_p;
-    private int ruc;
+    private Integer ruc;
     private String razon_s;
     private String nombre_c;
     private String actividad;
@@ -11,17 +11,17 @@ public class EmpresaP {
     private String provincia;
     private String distrito;
     private String direccion;
-    private int telefono;
+    private Integer telefono;
     private String correo;
-    private int num_licencia;
+    private Integer num_licencia;
     private Date fecha_fundacion;
     private Date fecha_operacion;
-    private int numero_s;
-    
+    private Integer numero_s;
+        
     public EmpresaP(){
     }
 
-    public EmpresaP(int id_empresa_p, int ruc, String razon_s, String nombre_c, String actividad, String departamento, String provincia, String distrito, String direccion, int telefono, String correo, int num_licencia, Date fecha_fundacion, Date fecha_operacion, int numero_s) {
+    public EmpresaP(int id_empresa_p, Integer ruc, String razon_s, String nombre_c, String actividad, String departamento, String provincia, String distrito, String direccion, Integer telefono, String correo, Integer num_licencia, Date fecha_fundacion, Date fecha_operacion, Integer numero_s) {
         this.id_empresa_p = id_empresa_p;
         this.ruc = ruc;
         this.razon_s = razon_s;
@@ -39,8 +39,6 @@ public class EmpresaP {
         this.numero_s = numero_s;
     }
 
-    
-
     public int getId_empresa_p() {
         return id_empresa_p;
     }
@@ -49,11 +47,11 @@ public class EmpresaP {
         this.id_empresa_p = id_empresa_p;
     }
 
-    public int getRuc() {
+    public Integer getRuc() {
         return ruc;
     }
 
-    public void setRuc(int ruc) {
+    public void setRuc(Integer ruc) {
         this.ruc = ruc;
     }
 
@@ -113,11 +111,11 @@ public class EmpresaP {
         this.direccion = direccion;
     }
 
-    public int getTelefono() {
+    public Integer getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(Integer telefono) {
         this.telefono = telefono;
     }
 
@@ -129,11 +127,11 @@ public class EmpresaP {
         this.correo = correo;
     }
 
-    public int getNum_licencia() {
+    public Integer getNum_licencia() {
         return num_licencia;
     }
 
-    public void setNum_licencia(int num_licencia) {
+    public void setNum_licencia(Integer num_licencia) {
         this.num_licencia = num_licencia;
     }
 
@@ -153,13 +151,13 @@ public class EmpresaP {
         this.fecha_operacion = fecha_operacion;
     }
 
-    public int getNumero_s() {
+    public Integer getNumero_s() {
         return numero_s;
     }
 
-    public void setNumero_s(int numero_s) {
+    public void setNumero_s(Integer numero_s) {
         this.numero_s = numero_s;
     }
-    
+
     
 }

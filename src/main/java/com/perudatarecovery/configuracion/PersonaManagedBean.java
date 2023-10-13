@@ -30,6 +30,9 @@ public class PersonaManagedBean {
         listaPersona = new ArrayList<>();
         registrosNuevos = new ArrayList<>(); // Inicializar la lista de registros nuevos
         mostrarTabla = true;
+        // Establecer un valor predeterminado
+        persona.setTipo_acci("1");
+        persona.setGenero("M");
     }
 
     public PersonaManagedBean() {
@@ -64,6 +67,24 @@ public class PersonaManagedBean {
         return mostrarTabla;
     }
 
+    private boolean mostrarSelectOneMenu = false;
+
+    public boolean isMostrarSelectOneMenu() {
+        return mostrarSelectOneMenu;
+    }
+
+    public void setMostrarSelectOneMenu(boolean mostrarSelectOneMenu) {
+        this.mostrarSelectOneMenu = mostrarSelectOneMenu;
+    }
+
+    public void handleRadioChange() {
+        if ("2".equals(persona.getTipo_acci())) {
+            mostrarSelectOneMenu = true;
+        } else {
+            mostrarSelectOneMenu = false;
+        }
+    }
+
     public void eliminarRegistro(int idPersonaa) {
         try (
                  Connection conn = Conexion.obtenerConexion();  Statement sql = conn.createStatement()) {
@@ -89,7 +110,8 @@ public class PersonaManagedBean {
     }
 
     public void agregarRegistro() {
-        try ( Connection con = Conexion.obtenerConexion();  PreparedStatement pst = con.prepareStatement("INSERT INTO persona_accipp (tipo_acci, nombres_c, apellido_p, apellido_m, dni_ce, edad, genero, area_trabajo, puesto_trabajo, antiguedad_empleo, turno, tipo_contrato, tiempo_experiencia, h_trabajadas_antes_acci) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
+        try (
+                 Connection con = Conexion.obtenerConexion();  PreparedStatement pst = con.prepareStatement("INSERT INTO persona_accipp (tipo_acci, nombres_c, apellido_p, apellido_m, dni_ce, edad, genero, area_trabajo, puesto_trabajo, antiguedad_empleo, turno, tipo_contrato, tiempo_experiencia, h_trabajadas_antes_acci) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
 
             pst.setString(1, selectedPersona.getTipo_acci());
             pst.setString(2, selectedPersona.getNombres_c());
@@ -141,7 +163,7 @@ public class PersonaManagedBean {
                     selectedPersona = new Persona();
 
                     // Ejecutar un script de JavaScript para agregar la fila a la tabla
-                    PrimeFaces.current().executeScript("agregarFilaATabla(" + nuevoRegistro.getId_personaa() + ");");   
+                    PrimeFaces.current().executeScript("agregarFilaATabla(" + nuevoRegistro.getId_personaa() + ");");
                 }
             }
 
@@ -167,7 +189,7 @@ public class PersonaManagedBean {
     public void prepararEdicion(Persona persona) {
         selectedPersona = persona;
     }
-    
+
     public void prepararGravedad(Persona persona) {
         selectedPersona = persona;
     }

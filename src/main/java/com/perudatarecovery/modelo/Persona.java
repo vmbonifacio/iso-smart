@@ -1,13 +1,13 @@
 package com.perudatarecovery.modelo;
 
 public class Persona {
-    private int id_personaa;
+    private Integer id_personaa;
     private String tipo_acci;
     private String nombres_c;
     private String apellido_p;
     private String apellido_m;
-    private int dni_ce;
-    private int edad;
+    private Integer dni_ce;
+    private Integer edad;
     private String genero;
     private String area_trabajo;
     private String puesto_trabajo;
@@ -15,10 +15,12 @@ public class Persona {
     private String turno;
     private String tipo_contrato;
     private String tiempo_experiencia;
-    private int h_trabajadas_antes_acci;
-    
+    private Integer h_trabajadas_antes_acci;
 
-    public Persona(int id_personaa, String tipo_acci, String nombres_c, String apellido_p, String apellido_m, int dni_ce, int edad, String genero, String area_trabajo, String puesto_trabajo, String antiguedad_empleo, String turno, String tipo_contrato, String tiempo_experiencia, int h_trabajadas_antes_acci) {
+    public Persona() {
+    }
+
+    public Persona(Integer id_personaa, String tipo_acci, String nombres_c, String apellido_p, String apellido_m, Integer dni_ce, Integer edad, String genero, String area_trabajo, String puesto_trabajo, String antiguedad_empleo, String turno, String tipo_contrato, String tiempo_experiencia, Integer h_trabajadas_antes_acci) {
         this.id_personaa = id_personaa;
         this.tipo_acci = tipo_acci;
         this.nombres_c = nombres_c;
@@ -36,15 +38,11 @@ public class Persona {
         this.h_trabajadas_antes_acci = h_trabajadas_antes_acci;
     }
 
-    public Persona() {
-    }
-
-
-    public int getId_personaa() {
+    public Integer getId_personaa() {
         return id_personaa;
     }
 
-    public void setId_personaa(int id_personaa) {
+    public void setId_personaa(Integer id_personaa) {
         this.id_personaa = id_personaa;
     }
 
@@ -80,19 +78,19 @@ public class Persona {
         this.apellido_m = apellido_m;
     }
 
-    public int getDni_ce() {
+    public Integer getDni_ce() {
         return dni_ce;
     }
 
-    public void setDni_ce(int dni_ce) {
+    public void setDni_ce(Integer dni_ce) {
         this.dni_ce = dni_ce;
     }
 
-    public int getEdad() {
+    public Integer getEdad() {
         return edad;
     }
 
-    public void setEdad(int edad) {
+    public void setEdad(Integer edad) {
         this.edad = edad;
     }
 
@@ -152,13 +150,14 @@ public class Persona {
         this.tiempo_experiencia = tiempo_experiencia;
     }
 
-    public int getH_trabajadas_antes_acci() {
+    public Integer getH_trabajadas_antes_acci() {
         return h_trabajadas_antes_acci;
     }
 
-    public void setH_trabajadas_antes_acci(int h_trabajadas_antes_acci) {
+    public void setH_trabajadas_antes_acci(Integer h_trabajadas_antes_acci) {
         this.h_trabajadas_antes_acci = h_trabajadas_antes_acci;
     }
-
+    
+    
     
 }

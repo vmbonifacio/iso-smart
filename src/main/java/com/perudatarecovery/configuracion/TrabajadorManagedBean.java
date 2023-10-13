@@ -80,7 +80,10 @@ public class TrabajadorManagedBean {
     public List<Trabajador> obtenerRegistroTrabajador() {
         List<Trabajador> data = new ArrayList<>();
 
-        try ( Connection con = Conexion.obtenerConexion();  Statement sql = con.createStatement();  ResultSet rs = sql.executeQuery("SELECT * FROM tab_trabajador")) {
+        try ( 
+            Connection con = Conexion.obtenerConexion();  
+            Statement sql = con.createStatement();  
+            ResultSet rs = sql.executeQuery("SELECT * FROM tab_trabajador")) {
 
             while (rs.next()) {
                 Trabajador trabajador = new Trabajador(
@@ -105,19 +108,17 @@ public class TrabajadorManagedBean {
 
                 data.add(trabajador);
             }
-
             Collections.sort(data, Comparator.comparingInt(Trabajador::getId_trabajador));
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return data;
     }
 
     public void agregarRegistroTrabajador() {
         try (
-                 Connection con = Conexion.obtenerConexion();  PreparedStatement pst = con.prepareStatement("INSERT INTO tab_trabajador (nombre, ap_p, ap_m, dni_ce, fecha_nacimiento, genero, estado_civil, fecha_ingreso, tipo_contrato, turno, area, puesto, distrito, provincia, departamento, direccion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+            Connection con = Conexion.obtenerConexion();  
+            PreparedStatement pst = con.prepareStatement("INSERT INTO tab_trabajador (nombre, ap_p, ap_m, dni_ce, fecha_nacimiento, genero, estado_civil, fecha_ingreso, tipo_contrato, turno, area, puesto, distrito, provincia, departamento, direccion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
 
             pst.setString(1, selectedTrabajador.getNombre());
             pst.setString(2, selectedTrabajador.getAp_p());
@@ -141,12 +142,11 @@ public class TrabajadorManagedBean {
             listaTrabajador = obtenerRegistroTrabajador();
 
         } catch (Exception e) {
-            e.printStackTrace();
             System.out.println("Error al agregar el registro: " + e.toString());
         }
     }
 
-    //METODO PARA BOTON ELIMINAR
+    // MÉTODO PARA BOTON ELIMINAR
     public void eliminarRegistroTrabajador(int id_Trabajador) {
         try (
                  Connection conn = Conexion.obtenerConexion();  Statement sql = conn.createStatement()) {

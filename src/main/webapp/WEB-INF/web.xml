@@ -21,6 +21,7 @@
         <servlet-name>Controlador</servlet-name>
         <servlet-class>com.perudatarecovery.controlador.Controlador</servlet-class>
     </servlet>
+    
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>

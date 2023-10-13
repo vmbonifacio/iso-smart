@@ -1,5 +1,6 @@
 package com.perudatarecovery.configuracion;
 
+import com.perudatarecovery.modelo.EmpresaP;
 import com.perudatarecovery.modelo.Tercero;
 
 import javax.inject.Named;
@@ -24,15 +25,21 @@ public class TercerosManagedBean {
     private String departamentoSeleccionado;
     private String provinciaSeleccionada;
     private String distritoSeleccionado;
+    private EmpresaP empresaPManagedBean;
+
+    public EmpresaP getEmpresaPManagedBean() {
+        return empresaPManagedBean;
+    }
+
+    public void setEmpresaPManagedBean(EmpresaP empresaPManagedBean) {
+        this.empresaPManagedBean = empresaPManagedBean;
+    }
 
     private boolean mostrarCampos;
 
     public TercerosManagedBean() {
         selectedTercero = new Tercero();
-
-//        
         listaTerceros = new ArrayList();
-//        
         mostrarCampos = false;
     }
 
@@ -56,20 +63,12 @@ public class TercerosManagedBean {
         this.selectedTercero = selectedTercero;
     }
 
-//    
     public boolean isMostrarCampos() {
         return mostrarCampos;
     }
-//
 
     public void setMostrarCampos(boolean mostrarCampos) {
         this.mostrarCampos = mostrarCampos;
-    }
-
-//    
-    public void limpiarCampos() {
-        listaTerceros.clear();
-        selectedTercero = null;
     }
 
     public void eliminarRegistro(int idEmpresa) {
@@ -109,14 +108,11 @@ public class TercerosManagedBean {
                 int nTrabajadoresNoSctr = rs.getInt("n_trabajadores_nosctr");
                 String nAseguradora = rs.getString("n_aseguradora");
 
-                Tercero tercero = new Tercero(id, razonSocial, ruc, departamento, provincia, distrito, direccion,
-                        aEconomica, nTrabajadores, nTrabajadoresSctr, nTrabajadoresNoSctr, nAseguradora);
+                Tercero tercero = new Tercero(id, razonSocial, ruc, departamento, provincia, distrito, direccion, aEconomica, nTrabajadores, nTrabajadoresSctr, nTrabajadoresNoSctr, nAseguradora);
                 listaTerceros.add(tercero);
             }
 
             Collections.sort(listaTerceros, Comparator.comparingInt(Tercero::getId_empresa_tp));
-
-//            
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Error al obtener los registros: " + e.toString());
@@ -149,15 +145,30 @@ public class TercerosManagedBean {
 
             if (rowsAffected > 0) {
                 // Actualizar la lista de registros después de eliminar uno
-
                 listaTerceros = obtenerRegistrosTerceros();
-
             }
 
+            // Limpia los campos después de agregar el registro
+            limpiarCampos();
         } catch (SQLException e) {
-            e.printStackTrace();
             System.out.println("Error al agregar el registro: " + e.toString());
         }
+    }
+
+    // Método para limpiar los campos
+    public void limpiarCampos() {
+        // Establece los valores de los campos en blanco o en su valor predeterminado
+        selectedTercero.setRazon_social("");
+        selectedTercero.setRuc(null);
+        selectedTercero.setDepartamento("");
+        selectedTercero.setProvincia("");
+        selectedTercero.setDistrito("");
+        selectedTercero.setDireccion("");
+        selectedTercero.setA_economica("");
+        selectedTercero.setN_trabajadores(null);
+        selectedTercero.setN_trabajadores_sctr(null);
+        selectedTercero.setN_trabajadores_nosctr(null);
+        selectedTercero.setN_aseguradora("");
     }
 
     public void prepararEdicion(Tercero tercero) {

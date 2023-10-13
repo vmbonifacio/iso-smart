@@ -10,16 +10,16 @@
     <ui:define name="title">Ocurrencia</ui:define>
 
     <ui:define name="content">
-        <!-- REGISTRO DE INVESTIGACION -->  
-        <h5 class="h-5rem text-center text-5xl p-4 text-white-alpha-90" 
-            style="background-color: #2A2A2A;
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;">
-            Registro de Ocurrencias
-        </h5>
-        <div class="card crud-demo">
-            <h:form id="mainForm">
-                <p:growl id="messages" showDetail="true" />
+        <h:form id="mainForm">
+            <!-- REGISTRO DE INVESTIGACION -->  
+            <h5 class="h-5rem text-center text-5xl p-4 text-white-alpha-90" 
+                style="background-color: #2A2A2A;
+                font-family: 'Inter', sans-serif;
+                font-weight: 600;">
+                Registro de Ocurrencias
+            </h5>
+            <div class="card crud-demo">
+                <!-- <p:growl id="messages" showDetail="true" /> --> 
 
                 <p:toolbar>
                     <p:toolbarGroup>
@@ -37,9 +37,11 @@
 
                     <p:toolbarGroup align="right">
                         <!-- BOTON IMPORTAR-->
+
                         <p:fileUpload mode="simple" skinSimple="true" label="Importar" chooseIcon="pi pi-download" />
 
                         <!-- BOTON EXPORTAR-->
+
                         <p:commandButton value="Exportar" icon="pi pi-upload" styleClass="ui-button-help" ajax="false">
                             <p:dataExporter type="pdf" target="tablaPrincipal" fileName="products" />
                         </p:commandButton>
@@ -126,60 +128,41 @@
 
                     <p:column exportable="false">
                         <!-- BOTÓN PARA EDITAR FILAS INDIVIDUALMENTE -->
+
                         <p:commandButton icon="pi pi-pencil" 
                                          styleClass="edit-button rounded-button ui-button-success" process="@this" >
                             <f:setPropertyActionListener value="#{dashboard}" target="#{ocurrenciaManagedBean.selectedOcurrencia}" />
                         </p:commandButton>
 
                         <!-- BOTÓN PARA ELIMINAR FILAS INDIVIDUALMENTE -->
-                        <p:commandButton class="ui-button-warning rounded-button" icon="pi pi-trash"
-                                         process="@this"
-                                         oncomplete="PF('deleteProductDialog').show()">
-                            <f:setPropertyActionListener value="#{dashboard}" target="#{ocurrenciaManagedBean.selectedOcurrencia}" />
+
+                        <p:commandButton value="Eliminar" oncomplete="if (#{not empty ocurrenciaManagedBean.selectedOcurrencia}) PF('deleteOcurrenciaDialog').show();">
+                            <f:setPropertyActionListener target="#{ocurrenciaManagedBean.selectedOcurrencia}" value="#{dashboard}" />
                         </p:commandButton>
+
+
                     </p:column>
                 </p:dataTable>
 
                 <p:contextMenu for="tablaPrincipal" widgetVar="cMenu">  
                     <p:menuitem value="Edit Cell" icon="pi pi-search"
-                                onclick="PF('cellProducts').showCellEditor();return false;"/>
+                                onclick="PF('cellProducts').showCellEditor();
+                                        return false;"/>
                     <p:menuitem value="Hide Menu" icon="pi pi-times" onclick="PF('cMenu').hide()"/>
                 </p:contextMenu>
 
-
                 <!-- VENTANA EMERGENTE PARA ELIMINAR REGISTRO -->
-                <p:confirmDialog widgetVar="deleteProductDialog" showEffect="fade" width="300"
-                                 message="¿Desea eliminar el producto?" header="Confirmar" severity="warn">
+
+                <p:confirmDialog widgetVar="deleteOcurrenciaDialog" showEffect="fade" width="300"
+                                 message="¿Desea eliminar la ocurrencia?" header="Confirmar" severity="warn">
                     <p:commandButton value="Sí" icon="pi pi-check" styleClass="ui-button-danger"
-                                     actionListener="#{ocurrenciaManagedBean.eliminarRegistro}"
-                                     update=":mainForm:tablaPrincipal"
-                                     oncomplete="PF('deleteProductDialog').hide();" />
+                                     action="#{ocurrenciaManagedBean.eliminarRegistro()}"
+                                     process="@this" 
+                                     oncomplete="PF('deleteOcurrenciaDialog').hide();" />
 
                     <p:commandButton value="No" type="button" styleClass="ui-button-secondary" icon="pi pi-times"
-                                     onclick="PF('deleteProductDialog').hide();" />
+                                     onclick="PF('deleteOcurrenciaDialog').hide();" />
                 </p:confirmDialog>
-
-                <script>
-                    function confirmDelete() {
-                        var codigo = #{ocurrenciaManagedBean.selectedOcurrencia.codigo};
-
-                        $.ajax({
-                            type: "POST",
-                            url: "#{ocurrenciaManagedBean.eliminarRegistro()}",
-                            data: {
-                                codigo: codigo
-                            },
-                            success: function () {
-                                PF('dtOcurrencias').filter(); // Actualiza la tabla
-                            },
-                            error: function () {
-                                console.log("Error al eliminar el registro");
-                            }
-                        });
-                    }
-                </script>
-
-
 
                 <!-- VENTANA EMERGENTE: TIPO DE OCURRENCIA -->
 
@@ -202,21 +185,8 @@
                     </div>
                 </p:dialog>
 
-
                 <!-- VENTANAS EMERGENTES PARA REGISTRAR LA DESCRIPCION -->
                 <!-- CASO 1: ACCIDENTE-->
-
-                <p:confirmDialog widgetVar="deleteProductDialog" showEffect="fade" width="300"
-                                 message="¿Desea eliminar la ocurrencia?" header="Confirmar" severity="warn">
-                    <p:commandButton value="Sí" icon="pi pi-check" styleClass="ui-button-danger"
-                                     actionListener="#{ocurrenciaManagedBean.eliminarRegistro}"
-                                     update=":mainForm" process="@this" 
-                                     oncomplete="PF('deleteProductDialog').hide();" />
-
-                    <p:commandButton value="No" type="button" styleClass="ui-button-secondary" icon="pi pi-times"
-                                     onclick="PF('deleteProductDialog').hide();" />
-                </p:confirmDialog>
-
 
                 <p:dialog id="dialogoAccidente" widgetVar="dialogoAccidente" modal="true" resizable="false" style="box-shadow:0px 0px 31px -4px rgba(255,246,0,1);border-radius:20px;">
                     <div>
@@ -294,8 +264,7 @@
                         }
                     }
                 </script>
-
-            </h:form>
-        </div>
+            </div>
+        </h:form>
     </ui:define>
 </ui:composition>
