@@ -1,0 +1,127 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml"
+                xmlns:webjars="http://webjars.org/ui"
+                webjars:assetLocator="org.webjars.WebJarAssetLocator">
+
+
+
+    <ui:define name="title">Consecuencia</ui:define>
+
+    <ui:define name="content">
+        <h:form>
+            <h5 class="h-4 text-center text-4xl w-full" 
+                style="background-color: transparent; font-family: 'Inter', sans-serif; font-weight: 600; border-radius: 5px; color: white;">
+                CÓMITE DE INVESTIGACIÓN
+            </h5>
+
+            <div class="col-12 p-3" > 
+                <!-- DATOS DEL CÓMITE DE INVESTIGACIÓN -->
+                <div class="ui-fluid formgrid grid pl-2"
+                     style="border-radius: 1rem 1rem 0 0;
+                     border-bottom: none;
+                     background-color: #F8DA45;
+                     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);">
+                    <h5 class="p-3 text-2xl"
+                        style="font-family: 'Inter', sans-serif;
+                        font-weight: 600;
+                        color: black;">
+                        REGISTRO DE CÓMITE DE INVESTIGACIÓN
+                    </h5>  
+                </div>
+
+                <div class="ui-fluid formgrid grid"  
+                     style="background-color: #EDEDED;
+                     margin-bottom: 70px;
+                     padding: 30px 90px 30px 90px;
+                     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+                     border-radius: 0 0 1rem 1rem;">
+
+                    <!-- RAZON SOCIAL O DENOMINACION SOCIAL -->  
+
+                    <div class="field col-12 md:col-4">
+                        <p:outputLabel value="1. Nombre"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />    
+                    </div>
+
+                    <div class="field col-12 md:col-6">
+                        <p:inputText  class="w-full" value="#{comiteInvestigacionManagedBean.selectedComiteI.nombre}" placeholder="Ingrese el nombre" style="background:transparent; color: black; border: none; border-bottom: 3px solid  #f8da45;"/>
+                    </div>
+
+                    <!-- RUC -->  
+
+                    <div class="field col-12 md:col-4">
+                        <p:outputLabel value="2. Apellidos"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />    
+                    </div>
+
+                    <div class="field col-12 md:col-6">
+                        <p:inputText  class="w-8" value="#{comiteInvestigacionManagedBean.selectedComiteI.apellidos}" placeholder="Ingrese el apellido paterno" style="background:transparent; color: black; border: none; border-bottom: 3px solid  #f8da45;"/>
+                    </div>
+
+                    <!-- PUESTO EN EL COMITE -->
+
+                    <div class="field col-12 md:col-4">
+                        <p:outputLabel value="3. Puesto en el Comité"  style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
+                    </div>
+
+                    <div class="field col-12 md:col-6 mr-auto">
+                        <p:selectOneMenu id="puestocomite" value="#{comiteInvestigacionManagedBean.selectedComiteI.estado_persona}" 
+                                         style="background:transparent; color: black; border: none; border-bottom: 3px solid  #f8da45;">
+                            <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                            <f:selectItems value="#{comiteInvestigacionManagedBean.listaPuestoComite}" />
+                        </p:selectOneMenu>
+                    </div> 
+                    
+                    <!-- ESTADO DE LA PERSONA -->
+
+                    <div class="field col-12 md:col-4">
+                        <p:outputLabel value="4. Estado de la Persona "  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />    
+                    </div>
+
+                    <div class="field col-12 md:col-6 mr-auto">
+                        <p:selectOneRadio value="#{cInvestigacion.selectedComiteInvestigacion.estado_persona}"  style="color: black;">
+                            <f:selectItem itemLabel="Titular" itemValue="Titular" />
+                            <f:selectItem itemLabel="Suplente" itemValue="Suplente" />
+                        </p:selectOneRadio>
+                    </div> 
+                    <div> 
+                        <h5 class="p-3 text-2xl"
+                            style="font-family: 'Inter', sans-serif; font-weight: 600;color:black ">
+                            LISTA DE MIEMBROS EN EL COMITE
+                        </h5>  
+                    </div>
+
+                    <div style="margin-left:auto;">
+                        <p:commandButton style="background-color: #751d1d; border:none;" class="w-12 h-3rem mb-4" action="#{comiteInvestigacionManagedBean.agregarRegistroComite()}" update="@form" value="Registrar comite investigacion"/>
+                    </div>
+
+
+                    <p:dataTable id="MiembrosComite" value="#{comiteInvestigacionManagedBean.obtenerRegistroComiteI()}" var="ComI" rowKey="#{ComI.id_comite_investigacion}" lazy="false">
+                        <p:column headerText="Nro." style="text-align: center; background-color: black; color: white; border: 1px solid white;">
+                            <h:outputText value="#{ComI.id_comite_investigacion}" />
+                        </p:column>
+
+                        <p:column headerText="Nombre" style="text-align: center; background-color: black; color: white; border: 1px solid white;">
+                            <h:outputText value="#{ComI.nombre}" />
+                        </p:column>
+
+                        <p:column headerText="Apellidos" style="text-align: center; background-color: black; color: white; border: 1px solid white;">
+                            <h:outputText value="#{ComI.apellidos}" />
+                        </p:column>
+
+                        <p:column headerText="Puesto" style="text-align: center; background-color: black; color: white; border: 1px solid white;">
+                            <h:outputText value="#{ComI.puesto_comite}" />
+                        </p:column>
+
+                        <p:column headerText="Estado" style="text-align: center; background-color: black; color: white; border: 1px solid white;">
+                            <h:outputText value="#{ComI.estado_persona}"  style="text-align: center; background-color: black;" />
+                        </p:column>
+
+                    </p:dataTable>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>

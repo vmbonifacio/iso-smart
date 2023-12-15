@@ -21,34 +21,50 @@ import org.primefaces.PrimeFaces;
 public class PersonaManagedBean {
 
     private Persona selectedPersona;
+    private Persona persona = new Persona();
     private List<Persona> listaPersona;
     private List<Persona> registrosNuevos; // Nueva lista para los registros recién insertados
+    private List<String> listaPuestos;
+    // Declarar la variable contadorRegistros en tu clase
     private boolean mostrarTabla;
+    private boolean mostrarSelectOneMenu = false;
 
     @PostConstruct
     public void init() {
         listaPersona = new ArrayList<>();
         registrosNuevos = new ArrayList<>(); // Inicializar la lista de registros nuevos
         mostrarTabla = true;
-        // Establecer un valor predeterminado
-        persona.setTipo_acci("1");
+        persona.setTipo_acci("1");                 // Establecer un valor predeterminado
         persona.setGenero("M");
     }
 
     public PersonaManagedBean() {
         selectedPersona = new Persona();
+        persona.setTipo_acci("1");
+        persona.setGenero("M");
     }
 
     public void inicializar() {
         listaPersona = obtenerRegistrosPersona();
+        persona.setTipo_acci("1");
+        persona.setGenero("M");
     }
 
+    // Métodos Getter y Setters
     public Persona getSelectedPersona() {
         return selectedPersona;
     }
 
     public void setSelectedPersona(Persona selectedPersona) {
         this.selectedPersona = selectedPersona;
+    }
+
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
     }
 
     public List<Persona> getListaPersona() {
@@ -63,11 +79,17 @@ public class PersonaManagedBean {
         return registrosNuevos;
     }
 
+    public List<String> getListaPuestos() {
+        return listaPuestos;
+    }
+
+    public void setListaPuestos(List<String> listaPuestos) {
+        this.listaPuestos = listaPuestos;
+    }
+
     public boolean isMostrarTabla() {
         return mostrarTabla;
     }
-
-    private boolean mostrarSelectOneMenu = false;
 
     public boolean isMostrarSelectOneMenu() {
         return mostrarSelectOneMenu;
@@ -75,14 +97,6 @@ public class PersonaManagedBean {
 
     public void setMostrarSelectOneMenu(boolean mostrarSelectOneMenu) {
         this.mostrarSelectOneMenu = mostrarSelectOneMenu;
-    }
-
-    public void handleRadioChange() {
-        if ("2".equals(persona.getTipo_acci())) {
-            mostrarSelectOneMenu = true;
-        } else {
-            mostrarSelectOneMenu = false;
-        }
     }
 
     public void eliminarRegistro(int idPersonaa) {
@@ -186,6 +200,59 @@ public class PersonaManagedBean {
         return script.toString();
     }
 
+    // Método para ocultar componente SelectOneMenu
+    public void handleRadioChange() {
+        if ("2".equals(this.selectedPersona.getTipo_acci())) {
+            this.mostrarSelectOneMenu = true;
+        } else {
+            this.mostrarSelectOneMenu = false;
+        }
+    }
+
+    // Métodos para llamar los procedimientos almacenados de Puestos y Areas
+    public void actualizarPuestos() {
+        System.out.println("Actualizando lista de puestos...");
+        if (selectedPersona != null && selectedPersona.getArea_trabajo() != null) {
+            listaPuestos = obtenerListaPuestosPorArea(selectedPersona.getArea_trabajo());
+        } else {
+            listaPuestos = new ArrayList<>();
+        }
+    }
+
+    public List<String> obtenerListaAreas() {
+        List<String> listaAreas = new ArrayList<>();
+
+        try ( Connection con = Conexion.obtenerConexion();  PreparedStatement pst = con.prepareStatement("EXEC SP_ObtenerListaAreas");  ResultSet rs = pst.executeQuery()) {
+
+            while (rs.next()) {
+                listaAreas.add(rs.getString("descripcion_area"));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listaAreas;
+    }
+
+    public List<String> obtenerListaPuestosPorArea(String nombreArea) {
+        List<String> puestosPorArea = new ArrayList<>(); // Cambiamos el nombre de la variable local
+
+        try ( Connection con = Conexion.obtenerConexion();  PreparedStatement pst = con.prepareStatement("EXEC SP_ObtenerListaPuestos ?");) {
+            pst.setString(1, nombreArea);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                puestosPorArea.add(rs.getString("descripcion_puesto"));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return puestosPorArea;
+    }
+
     public void prepararEdicion(Persona persona) {
         selectedPersona = persona;
     }
@@ -194,19 +261,10 @@ public class PersonaManagedBean {
         selectedPersona = persona;
     }
 
-    private Persona persona = new Persona();
-
-    public Persona getPersona() {
-        return persona;
-    }
-
-    public void setPersona(Persona persona) {
-        this.persona = persona;
-    }
-
     // Método para limpiar la lista de registros nuevos y ocultar la tabla
     public void showTable() {
         registrosNuevos.clear();
         mostrarTabla = false;
     }
+
 }

@@ -32,6 +32,11 @@ public class EmpresaPManagedBean implements Serializable {
 
     public void inicializar() {
         listaEmpresaP = obtenerRegistrosEmpresaP();
+        selectedEmpresaP = obtenerRegistroUnicoEmpresaP();
+
+        if (selectedEmpresaP == null) {
+            selectedEmpresaP = new EmpresaP();
+        }
     }
 
     public EmpresaP getEmpresaP() {
@@ -86,18 +91,34 @@ public class EmpresaPManagedBean implements Serializable {
         List<String> data = new ArrayList<>();
 
         try (
-                 Connection con = Conexion.obtenerConexion(); 
-                 PreparedStatement stmt = con.prepareStatement("SELECT " + nombreCampo + " FROM Tab_Empresa_Central"); 
-                 ResultSet rs = stmt.executeQuery()) {
+                 Connection con = Conexion.obtenerConexion();  PreparedStatement stmt = con.prepareStatement("SELECT " + nombreCampo + " FROM Tab_Empresa_Central");  ResultSet rs = stmt.executeQuery()) {
 
-         while (rs.next()) {
-                  String valorCampo = rs.getString(1);  // Obtener el campo en la posición 1 (primer campo)
-                  data.add(valorCampo);
-         }
+            while (rs.next()) {
+                String valorCampo = rs.getString(1);  // Obtener el campo en la posición 1 (primer campo)
+                data.add(valorCampo);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return data;
+    }
+
+    public EmpresaP obtenerRegistroUnicoEmpresaP() {
+        EmpresaP empresa = null;
+
+        try ( Connection con = Conexion.obtenerConexion();  Statement sql = con.createStatement();  ResultSet rs = sql.executeQuery("SELECT Razon_S, Ruc, Actividad FROM Tab_Empresa_Central WHERE ID_Empresa = 10;")) {
+
+            if (rs.next()) {
+                empresa = new EmpresaP();
+                empresa.setRazon_s(rs.getString("Razon_S"));
+                empresa.setRuc(rs.getInt("Ruc"));
+                empresa.setActividad(rs.getString("Actividad"));
+            }
+        } catch (Exception e) {
+            System.out.println("Error al traer el registro único: " + e.toString());
+        }
+
+        return empresa;
     }
 
     public List<EmpresaP> obtenerRegistrosEmpresaP() {

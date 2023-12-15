@@ -7,7 +7,7 @@
 
     <h:head>
         <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>CRUD Básico</title>
+        <title>Java Server Faces Test</title>
         <h:outputStylesheet library="webjars" name="bootstrap/5.2.3/css/bootstrap.min.css" />
 
         <style>
@@ -41,27 +41,11 @@
 
         <div style="width: 400px; margin: 0 auto;">
             <h:form>
-
-                <p:selectOneMenu value="#{pruebaManagedBean.ubigeo.departamentoSeleccionado}" class="mb-4" style="background:white; border: none; border: 2px solid black; color: black; margin-top:20px;">
-                    <f:selectItem itemLabel="Selecciona" itemValue="" />
-                    <f:selectItems value="#{pruebaManagedBean.ubigeo.listaDepartamentos}" />
-                </p:selectOneMenu>
-
-                <p:selectOneMenu value="#{pruebaManagedBean.ubigeo.provinciaSeleccionada}" class="mb-4" style="background:white; border: none; border: 2px solid black; color: black; margin-top:20px;">
-                    <f:selectItem itemLabel="Selecciona" itemValue="" />
-                    <f:selectItems value="#{pruebaManagedBean.ubigeo.listaProvincias}" />
-                </p:selectOneMenu>
-
-                <p:selectOneMenu value="#{pruebaManagedBean.ubigeo.distritoSeleccionado}" class="mb-4" style="background:white; border: none; border: 2px solid black; color: black; margin-top:20px;">
-                    <f:selectItem itemLabel="Selecciona " itemValue="" />
-                    <f:selectItems value="#{pruebaManagedBean.ubigeo.listaDistritos}" />
-                </p:selectOneMenu>
-
                 <h:outputText value="Razon Social:" styleClass="texto-destacado" /><br></br><br></br>
                 <h:inputText value="#{tercerosManagedBean.tercero.razon_social}" styleClass="input-estilo"></h:inputText><br></br><br></br>
                 <h:outputText value="RUC:" styleClass="texto-destacado"/><br></br><br></br>
                 <h:inputText value="#{tercerosManagedBean.tercero.ruc}" styleClass="input-estilo"></h:inputText><br></br><br></br>
-                
+
                 <!-- NO TOCAR -->
                 <p:commandButton value="Agregar" 
                                  action="#{tercerosManagedBean.agregarRegistro}"
@@ -103,6 +87,25 @@
                                  styleClass="ui-button-danger" />      
             </p:column>
         </p:dataTable>
+
+        <p:graphicImage library="img" name="prueba.png" alt="Logo" style="width: 120px; height: 120px;"/>
+
+        <div class="card">
+            <p:imageCompare leftImage="/resources/img/perfil.png"
+                            rightImage="/resources/img/prueba.png"
+                            width="450" height="435"/>
+        </div>
+
+        <p:media value="/resources/demo/media/guide.pdf" width="100%" height="300px">
+            Your browser can't display pdf, <h:outputLink
+                value="#{request.contextPath}/resources/demo/media/guide.pdf">click</h:outputLink> to download pdf instead.
+        </p:media>
+
+        <script src="https://maps.google.com/maps/api/js?sensor=true"></script>
+
+        <div class="card">
+            <p:gmap center="41.381542, 2.122893" zoom="15" type="HYBRID" style="width:100%;height:400px"/>
+        </div>
 
         <!-- Modal -->
         <p:dialog id="modalEditar" widgetVar="dlgEditar" modal="true" resizable="true">

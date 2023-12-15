@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Conexion {
-    private static final String URL = "jdbc:sqlserver://192.168.1.77:1433;databaseName=SEKUR_IPERC";
+    private static final String URL = "jdbc:sqlserver://192.168.1.38:1433;databaseName=SEKUR_IPERC";
     private static final String USUARIO = "sa";
-    private static final String CONTRASENA = "sa123";
+    private static final String CONTRASENA = "@123PDR";
 
     public static Connection obtenerConexion() throws SQLException {
         try {

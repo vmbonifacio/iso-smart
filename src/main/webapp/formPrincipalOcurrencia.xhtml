@@ -7,7 +7,15 @@
                 template="/WEB-INF/template.xhtml">
 
 
-    <ui:define name="title">Ocurrencia</ui:define>
+    <ui:define name="title">Gestión de Ocurrencias</ui:define>
+
+    <ui:define name="viewname">
+        <li>Inspecciones SST</li>
+        <li><i class="pi pi-chevron-right"></i></li>
+        <li>
+            <p:link outcome="/formPrincipalOcurrencia">Formulario de Gestión de Ocurrencias</p:link>
+        </li>
+    </ui:define>
 
     <ui:define name="content">
         <h:form id="mainForm">
@@ -136,11 +144,10 @@
 
                         <!-- BOTÓN PARA ELIMINAR FILAS INDIVIDUALMENTE -->
 
-                        <p:commandButton value="Eliminar" oncomplete="if (#{not empty ocurrenciaManagedBean.selectedOcurrencia}) PF('deleteOcurrenciaDialog').show();">
+                        <p:commandButton icon="pi pi-trash" 
+                                         styleClass="edit-button rounded-button ui-button-warning"  oncomplete="if (#{not empty ocurrenciaManagedBean.selectedOcurrencia}) PF('deleteOcurrenciaDialog').show();">
                             <f:setPropertyActionListener target="#{ocurrenciaManagedBean.selectedOcurrencia}" value="#{dashboard}" />
                         </p:commandButton>
-
-
                     </p:column>
                 </p:dataTable>
 

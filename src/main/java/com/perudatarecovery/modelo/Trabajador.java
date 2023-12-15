@@ -7,7 +7,7 @@ public class Trabajador {
     private String nombre;
     private String ap_p;
     private String ap_m;
-    private int dni_ce;
+    private Integer dni_ce;
     private Date fecha_nacimiento;
     private String genero;
     private String estado_civil;
@@ -25,7 +25,7 @@ public class Trabajador {
 
     }
 
-    public Trabajador(int id_trabajador, String nombre, String ap_p, String ap_m, int dni_ce, Date fecha_nacimiento, String genero, String estado_civil, String departamento, String distrito, String provincia, String direccion, String tipo_contrato, Date fecha_ingreso, String turno, String area, String puesto) {
+    public Trabajador(int id_trabajador, String nombre, String ap_p, String ap_m, Integer dni_ce, Date fecha_nacimiento, String genero, String estado_civil, String departamento, String distrito, String provincia, String direccion, String tipo_contrato, Date fecha_ingreso, String turno, String area, String puesto) {
         this.id_trabajador = id_trabajador;
         this.nombre = nombre;
         this.ap_p = ap_p;
@@ -77,11 +77,11 @@ public class Trabajador {
         this.ap_m = ap_m;
     }
 
-    public int getDni_ce() {
+    public Integer getDni_ce() {
         return dni_ce;
     }
 
-    public void setDni_ce(int dni_ce) {
+    public void setDni_ce(Integer dni_ce) {
         this.dni_ce = dni_ce;
     }
 
@@ -181,5 +181,6 @@ public class Trabajador {
         this.puesto = puesto;
     }
 
+   
     
 }

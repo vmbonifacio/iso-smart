@@ -1,0 +1,102 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml"
+                xmlns:webjars="http://webjars.org/ui"
+                webjars:assetLocator="org.webjars.WebJarAssetLocator">
+
+    <ui:define name="head">
+        <h:outputStylesheet library="webjars" name="bootstrap/5.2.3/css/bootstrap.min.css" />
+    </ui:define>
+
+    <ui:define name="title">Gestión de usuarios</ui:define>
+
+    <ui:define name="viewname">
+        <li>Adm. y Mantenimiento</li>
+        <li><i class="pi pi-chevron-right"></i></li>
+        <li>Creación de usuarios</li>
+        <li><i class="pi pi-chevron-right"></i></li>
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="card crud-demo">
+            <h:form id="form">
+                <p:toolbar style="border-radius: 15px;">
+                    <p:toolbarGroup>
+                        <p:commandButton value="Registrar nuevo usuario"
+                                         class="mr-2" 
+                                         icon="pi pi-users"
+                                         style="background-color:#F8DA45; border:1px solid #ffffff;color:#000000;"
+                                         onclick="PF('nuevoUsuarioDialogVar').show();"/>
+                    </p:toolbarGroup>
+                </p:toolbar>
+
+                <p:dialog id="nuevoUsuarioDialog" widgetVar="nuevoUsuarioDialogVar" modal="true" resizable="false">
+                    <div>
+                        <p:outputLabel value="Registro nuevo usuario" class="text-5xl" style="color: white; font-family: 'Inter', sans-serif; font-weight: 500; text-align: center;" />    
+                    </div>
+                    <div class="mt-2">
+                        <p:outputLabel value="Ingrese nombre:" class="text-xl mr-8" style="color: white; font-family: 'Inter', sans-serif; font-weight: 300;" />    
+                        <p:inputText class="w-full mb-6 mt-2" value="#{usuarioManagedBean.selectedUsuario.nombre}" placeholder="Ingrese aquí" style="background:transparent; color: white; border: none; border-bottom: 3px solid  #FFF600;"/>
+                    </div>
+
+                    <div class="mt-2">
+                        <p:outputLabel value="Ingrese apellido:" class="text-xl mr-8" style="color: white; font-family: 'Inter', sans-serif; font-weight: 300;" />    
+                        <p:inputText class="w-full mb-6 mt-2" placeholder="Ingrese aquí" value="#{usuarioManagedBean.selectedUsuario.apellidos}" style="background:transparent; color: white; border: none; border-bottom: 3px solid  #FFF600;"/>
+                    </div>
+
+                    <div class="mt-2">
+                        <p:outputLabel value="Ingrese correo:" class="text-xl mr-8" style="color: white; font-family: 'Inter', sans-serif; font-weight: 300;" />    
+                        <p:inputText class="w-full mb-6 mt-2" placeholder="Ingrese aquí" value="#{usuarioManagedBean.selectedUsuario.correo}" style="background:transparent; color: white; border: none; border-bottom: 3px solid  #FFF600;"/>
+                    </div>
+
+                    <div class="mt-2">
+                        <p:outputLabel value="Ingrese contraseña:" class="text-xl mr-8" style="color: white; font-family: 'Inter', sans-serif; font-weight: 300;" />    
+                        <p:inputText class="w-full mb-6 mt-2" type="password" placeholder="Ingrese aquí" value="#{usuarioManagedBean.selectedUsuario.contraseña}" style="background:transparent; color: white; border: none; border-bottom: 3px solid  #FFF600;"/>
+                    </div>
+
+                    <div class="text-center">
+                        <p:commandButton value="Registrar" 
+                                         styleClass="ui-button-raised ui-button-warning ui-button w-3 h-3rem mt-8 mb-8" 
+                                         style="background-color:#FFF600; border:2px solid #ffffff;font-weight: 600"
+                                         action="#{usuarioManagedBean.agregarRegistroUsuario}"
+                                         oncomplete="PF('nuevoUsuarioDialog').hide();"
+                                         update="tablaUsuario"/> 
+                    </div>
+                </p:dialog>
+
+
+                <p:dataTable id="tablaUsuario" reflow="true" value="#{usuarioManagedBean.obtenerRegistrosUsuario()}" rowKey="#{usu.id_usuario}" 
+                             var="usu" paginator="true" rowSelectMode="add" paginatorPosition="bottom" >
+
+                    <p:column headerText="ID" style="text-align: center;" class="w-1">
+                        <h:outputText value="#{usu.id_usuario}" />
+                    </p:column>
+
+                    <p:column headerText="Perfil" style="text-align: center;">
+                        <p:graphicImage library="img" name="perfil.png" alt="perfil" style="width: 80px; height: 80px;"/>
+                    </p:column>
+
+                    <p:column 
+                        headerText="Nombre" style="text-align: center;">
+                        <h:outputText value="#{usu.nombre}" />
+                    </p:column>
+
+                    <p:column 
+                        headerText="Apellido" style="text-align: center;">
+                        <h:outputText value="#{usu.apellidos}" />
+                    </p:column>
+
+                    <p:column 
+                        headerText="Correo" style="text-align: center;">
+                        <h:outputText value="#{usu.correo}" />
+                    </p:column>
+
+                </p:dataTable>
+            </h:form>
+        </div>
+    </ui:define>
+
+</ui:composition>

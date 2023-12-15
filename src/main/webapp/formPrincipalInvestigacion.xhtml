@@ -5,10 +5,26 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/template.xhtml">
 
-    <ui:define name="title">Investigacion</ui:define>
+    <ui:define name="title">Gestión de Investigaciones</ui:define>
+
+    <ui:define name="viewname">
+        <li>Investigaciones de Accidentes e Incidentes</li>
+        <li><i class="pi pi-chevron-right"></i></li>
+        <li>
+            <p:link outcome="/formPrincipalOcurrencia">Formulario de Gestión de Investigaciones</p:link>
+        </li>
+    </ui:define>
 
     <ui:define name="content">
         <h:form>
+            <!-- REGISTRO DE INVESTIGACION -->  
+            <h5 class="h-5rem text-center text-5xl p-4 text-white-alpha-90" 
+                style="background-color: #2A2A2A;
+                font-family: 'Inter', sans-serif;
+                font-weight: 600;">
+                Registro de Investigaciones
+            </h5>
+
             <div class="card crud-demo">
                 <h:form id="form">
                     <p:growl id="messages" showDetail="true" />
@@ -27,10 +43,10 @@
                             <p:outputLabel value="¿Qué Investigación desea realizar?"  class="text-5xl" style="color: white; font-family: 'Inter', sans-serif; font-weight: 500;" />    
                         </div>
 
-                            <p:selectOneRadio layout="responsive" columns="1"  class="text-2xl mb-6 mt-6" id="myRadio" onchange="handleChange(this)">
-                                <f:selectItem itemLabel="Registro de Investigacion de Accidentes" itemValue="1"/>
-                                <f:selectItem itemLabel="Registro de Investigacion de Incidentes" itemValue="2"/>
-                            </p:selectOneRadio>
+                        <p:selectOneRadio layout="responsive" columns="1"  class="text-2xl mb-6 mt-6" id="myRadio" onchange="handleChange(this)">
+                            <f:selectItem itemLabel="Registro de Investigacion de Accidentes" itemValue="1"/>
+                            <f:selectItem itemLabel="Registro de Investigacion de Incidentes" itemValue="2"/>
+                        </p:selectOneRadio>
                     </p:dialog> 
 
                     <p:dialog  widgetVar="dlg2" modal="true" height="100" style="background-color:#363636">

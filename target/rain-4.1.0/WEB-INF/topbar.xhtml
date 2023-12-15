@@ -5,9 +5,9 @@
                 xmlns:p="http://primefaces.org/ui" 
                 xmlns:po="http://primefaces.org/rain">
 
-
     <ui:define name="head">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/sass/layout/topbar/_topbar_common.scss"/>
         <style>
             /* Estilo para el menú cerrado */
             .menu-wrapper {
@@ -91,12 +91,11 @@
                 background-color: #cc0000; /* Cambia el color de fondo al pasar el mouse */
             }
         </style>
-
     </ui:define>
 
     <div class="layout-topbar"> 
-        <div class="layout-topbar-wrapper">
-            <div class="layout-topbar-left"  style="background-color: #ffd713;">
+        <div class="layout-topbar-wrapper" style="background-color: #ffd713;">
+            <div class="layout-topbar-left">
                 <h:link id="logolink" outcome="/dashboard" styleClass="layout-topbar-logo">
                     <h:graphicImage library="img" name="LOGO ISO SMART.png" alt="Mi imagen" style="width: 60px; height: 52px; border-radius:10px;box-shadow: 12px 6px 39px -7px rgba(0,0,0,1);" class="mt-1" />
                 </h:link>
@@ -332,11 +331,9 @@
                 <p:menu id="submenu" style="display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); transition: top 0.4s ease;">
                     <p:menuitem value="Cerrar Sesión" outcome="login.xhtml" icon="pi pi-sign-out"/>
                 </p:menu>
-
-
-
             </div>
         </div>
+        
         <script>
             $(document).ready(function () {
                 const toggleMenuButton = document.getElementById("toggleMenuButton");

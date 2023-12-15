@@ -62,7 +62,7 @@
                         <p:inputText id="social" class="w-full" 
                                      placeholder="Ingrese la razón o denominación social" 
                                      style="background:transparent; color: black; border: none; border-bottom: 3px solid  #f8da45;"
-                                     value="#{empresaPManagedBean.selectedEmpresaP.razon_s}" />
+                                     value="#{tercerosManagedBean. selectedEmpresaP.razon_s}" readonly="true" />
                     </div>
 
                     <!-- RUC -->  
@@ -74,7 +74,7 @@
                     <div class="field col-12 md:col-6">
                         <p:inputText id="ruc" class="w-8" placeholder="Ingrese el RUC" 
                                      style="background:transparent; color: black; border: none; border-bottom: 3px solid  #f8da45;"
-                                     value="#{empresaPManagedBean.selectedEmpresaP.ruc}"/>
+                                     value="#{tercerosManagedBean.selectedEmpresaP.ruc}" readonly="true"/>
                     </div>
 
                     <!-- DOMICILIO -->  
@@ -87,39 +87,42 @@
 
                         <div class="field col-12 md:col-2">                                
                             <p:outputLabel for="departamentop" value="Departamento"  style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
-                            <p:selectOneMenu id="departamentop" style="background:transparent; border: none; border-bottom: 3px solid black;color: black;">
-                                <f:selectItem itemLabel="Elija Departamento" itemValue="" />
-                                <f:selectItem itemLabel="Option 1" itemValue="1" />
-                                <f:selectItem itemLabel="Option 2" itemValue="2" />
-                                <f:selectItem itemLabel="Option 3" itemValue="3" />
-                            </p:selectOneMenu>
+
+                            <div class="field col-12 md:col-6" style="padding-left: 0px;">
+                                <p:inputText id="departamentop" class="w-13rem" placeholder="Ingrese el RUC" 
+                                             style="background:transparent; border: none; border-bottom: 3px solid black;color: black;"
+                                             value="#{tercerosManagedBean.selectedEmpresaP.departamento}" readonly="true"/>
+                            </div>
                         </div>
 
-                        <div class="field col-12 md:col-2">
+                        <div class="field col-12 md:col-2" >
                             <p:outputLabel for="provinciap" value="Provincia"  style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
-                            <p:selectOneMenu id="provinciap" style="background:transparent; border: none; border-bottom: 3px solid black;color: black;">
-                                <f:selectItem itemLabel="Elija Provincia" itemValue="" />
-                                <f:selectItem itemLabel="Option 1" itemValue="1" />
-                                <f:selectItem itemLabel="Option 2" itemValue="2" />
-                                <f:selectItem itemLabel="Option 3" itemValue="3" />
-                            </p:selectOneMenu>
+
+                            <div class="field col-12 md:col-6" style="padding-left: 0px;">
+                                <p:inputText id="provinciap" class="w-13rem" placeholder="Ingrese el RUC" 
+                                             style="background:transparent; border: none; border-bottom: 3px solid black;color: black;"
+                                             value="#{tercerosManagedBean.selectedEmpresaP.provincia}" readonly="true"/>
+                            </div>
                         </div>
 
                         <div class="field col-12 md:col-2">
                             <p:outputLabel for="distritop" value="Distrito"  style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
-                            <p:selectOneMenu id="distritop" style="background:transparent; border: none; border-bottom: 3px solid black; color: black;">
-                                <f:selectItem itemLabel="Elija Distrito" itemValue="" />
-                                <f:selectItem itemLabel="Option 1" itemValue="1" />
-                                <f:selectItem itemLabel="Option 2" itemValue="2" />
-                                <f:selectItem itemLabel="Option 3" itemValue="3" />
-                            </p:selectOneMenu>
+
+                            <div class="field col-12 md:col-6" style="padding-left: 0px;">
+                                <p:inputText id="distritop" class="w-13rem" placeholder="Ingrese el RUC" 
+                                             style="background:transparent; border: none; border-bottom: 3px solid black;color: black;"
+                                             value="#{tercerosManagedBean.selectedEmpresaP.distrito}" readonly="true"/>
+                            </div>
                         </div>
 
                         <div class="field col-12 md:col-4">
                             <p:outputLabel for="direccion" value="Dirección"  style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
                         </div>
+
                         <div class="field col-12 md:col-6">
-                            <p:inputText id="direccion" placeholder="Ingrese aquí su dirección" style="background:transparent;border:none; border-bottom:3px solid black; color: black;"/>
+                            <p:inputText id="direccion" class="w-34rem" placeholder="Ingrese el RUC" 
+                                         style="background:transparent; border: none; border-bottom: 3px solid black;color: black;"
+                                         value="#{tercerosManagedBean.selectedEmpresaP.direccion}" readonly="true"/>
                         </div>
                     </div>
 
@@ -130,7 +133,8 @@
                     <div class="field col-12 md:col-6">
                         <p:inputText id="tipo" class="w-8" 
                                      placeholder="Ingrese aqui el tipo de actividad económica" 
-                                     style="background:transparent; border: none; border-bottom: 3px solid #f8da45; color: black;"/>
+                                     style="background:transparent; border: none; border-bottom: 3px solid #f8da45; color: black;"
+                                     value="#{tercerosManagedBean.selectedEmpresaP.actividad}" readonly="true"/>
                     </div>
 
                     <!-- NUM TRABAJADORES -->  
@@ -142,7 +146,8 @@
                     <div class="field col-12 md:col-6">
                         <p:inputText id="trabajadores" class="w-8 "
                                      placeholder="Ingrese aqui el número de trabajadores en el centro laboral"
-                                     style="background:transparent; border: none; border-bottom: 3px solid #f8da45; color: black;" />
+                                     style="background:transparent; border: none; border-bottom: 3px solid #f8da45; color: black;" 
+                                     value="#{tercerosManagedBean.totalRegistros}" readonly="true" />
                     </div>
 
                     <!--COMPLETAR EN CASO DE ACTIVIDADES-->
@@ -211,6 +216,7 @@
                     <div class="field col-12 md:col-6">
                         <p:inputText id="social2"  value="#{tercerosManagedBean.tercero.razon_social}" class="w-full" 
                                      placeholder="Ingrese la razón o denominación social" 
+                                     onkeypress="return /^[a-zA-Z\s]+$/.test(event.key);"
                                      style="background:transparent; color: black; border: none; border-bottom: 3px solid  #f8da45;"/>
                     </div>
 
@@ -223,6 +229,8 @@
                     <div class="field col-12 md:col-6">
                         <p:inputText id="ruc2" value="#{tercerosManagedBean.tercero.ruc}"  class="w-8" 
                                      placeholder="Ingrese el RUC" 
+                                     maxlength="11"
+                                     onkeypress="return /^[0-9]+$/.test(event.key)"
                                      style="background:transparent; color: black; border: none; border-bottom: 3px solid  #f8da45;"/>
                     </div>
 
@@ -264,13 +272,16 @@
                                                itemValue="#{distrito}" itemLabel="#{distrito}" />
                             </p:selectOneMenu>
                         </div>
-                        <!--*********************************-->
+
                         <!-- DIRECCION  --> 
                         <div class="field col-12 md:col-4">
                             <p:outputLabel for="direccion1" value="Dirección"  style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
                         </div>
                         <div class="field col-12 md:col-6">
-                            <p:inputText id="direccion1" value="#{tercerosManagedBean.tercero.direccion}" placeholder="Ingrese aquí su dirección" style="background:transparent;border:none; border-bottom:3px solid black; color: black;"/>
+                            <p:inputText id="direccion1" value="#{tercerosManagedBean.tercero.direccion}" 
+                                         placeholder="Ingrese aquí su dirección" 
+                                         onkeypress="return /^[a-zA-Z\s]+$/.test(event.key);"
+                                         style="background:transparent;border:none; border-bottom:3px solid black; color: black;"/>
                         </div>
                     </div>
 
@@ -283,6 +294,7 @@
                     <div class="field col-12 md:col-6">
                         <p:inputText id="tipo2" value="#{tercerosManagedBean.tercero.a_economica}" class="w-8" 
                                      placeholder="Ingrese aqui el tipo de actividad económica" 
+                                     onkeypress="return /^[a-zA-Z\s]+$/.test(event.key);"
                                      style="background:transparent; border: none; border-bottom: 3px solid #f8da45; color: black;"/>
                     </div>
 
@@ -295,7 +307,9 @@
                     <div class="field col-12 md:col-6">
                         <p:inputText id="trabajadores2" value="#{tercerosManagedBean.tercero.n_trabajadores}" class="w-8 " 
                                      placeholder="Ingrese aqui el número de trabajadores en el centro laboral" 
-                                     style="background:transparent; border: none; border-bottom: 3px solid #f8da45; color: black;"/>
+                                     style="background:transparent; border: none; border-bottom: 3px solid #f8da45; color: black;"
+                                     maxlength="9"
+                                     onkeypress="return /^[0-9]+$/.test(event.key)"/>
                     </div>
 
                     <!-- COMPLETAR EN CASO DE ACTIVIDADES -->
@@ -310,7 +324,9 @@
 
                             <p:inputText id="afiliado1" value="#{tercerosManagedBean.tercero.n_trabajadores_sctr}" 
                                          placeholder="Ingrese aquí los trabajadores afiliados" 
-                                         style="background:#f8da45; color: black; border: none; border-radius: 0 0 0 1rem;"/>
+                                         style="background:#f8da45; color: black; border: none; border-radius: 0 0 0 1rem;"
+                                         maxlength="9"
+                                         onkeypress="return /^[0-9]+$/.test(event.key)"/>
                         </div>
 
                         <!-- TRABAJADORES SIN SCTR -->
@@ -320,7 +336,9 @@
 
                             <p:inputText id="nafiliado1" value="#{tercerosManagedBean.tercero.n_trabajadores_nosctr}" 
                                          placeholder="Ingrese trabajadores no afilidos" 
-                                         style="background:#f8da45; color: black; border: none; border-left: 3px solid white;"/>
+                                         style="background:#f8da45; color: black; border: none; border-left: 3px solid white;"
+                                         maxlength="9"
+                                         onkeypress="return /^[0-9]+$/.test(event.key)"/>
                         </div>
 
                         <!-- NOMBRE DE LA ASEGURADORA -->
@@ -330,75 +348,89 @@
 
                             <p:inputText id="nombrea1" value="#{tercerosManagedBean.tercero.n_aseguradora}" 
                                          placeholder="Ingrese aquí el nombre" 
-                                         style="background:#f8da45; color: black; border: none; border-left: 3px solid white; border-radius: 0 0 1rem 0;"/>
+                                         style="background:#f8da45; color: black; border: none; border-left: 3px solid white; border-radius: 0 0 1rem 0;"
+                                         onkeypress="return /^[a-zA-Z\s]+$/.test(event.key);"/>
                         </div>
 
                         <!-- BOTON REGISTRAR -->
 
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3 mt-2">
-                            <p:commandButton style="color: white; font-family: 'Inter', sans-serif; font-weight: 600; background-color: #741818; height: 50px; border-color: #741818; border-radius: 14px; box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.1), 0px 4px 5px -2px rgba(0, 0, 0, 0.12), 0px 10px 15px -5px rgba(0, 0, 0, 0.2) !important;" 
+                        <div class="flex justify-content-end flex-wrap">
+                            <p:commandButton style="color: white; font-family: 'Inter', sans-serif; font-weight: 600; background-color: #741818; height: 50px; border-color: #741818; border-radius: 8px; box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.1), 0px 4px 5px -2px rgba(0, 0, 0, 0.12), 0px 10px 15px -5px rgba(0, 0, 0, 0.2) !important;" 
                                              action="#{tercerosManagedBean.agregarRegistro}" update="tablaTerceros"
                                              value="Agregar Empleador de terceros"/>
                         </div>
 
                         <!-- TABLA TRABAJADORES -->
 
-                        <p:dataTable id="tablaTerceros" value="#{tercerosManagedBean.obtenerRegistrosTerceros()}" var="ter"  style="box-shadow: 0px 3px 15px 3px rgba(43,43,43,1); margin-top: 24px;" rowKey="#{ter.id_empresa_tp}" emptyMessage="No se encontraron registros" reflow="true" rows="4" paginator="true" >
-                            <p:column headerText="ID" style="border: 1px solid white;">
-                                <h:outputText value="#{ter.id_empresa_tp}"/>
+                        <p:dataTable id="tablaTerceros" value="#{tercerosManagedBean.obtenerRegistrosTerceros()}" var="ter"  resizeMode="expand"
+                                     showGridlines="true" style="box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.1), 0px 4px 5px -2px rgba(0, 0, 0, 0.12), 0px 10px 15px -5px rgba(0, 0, 0, 0.2) !important; margin-top: 24px;" rowKey="#{ter.id_empresa_tp}" emptyMessage="No se encontraron registros" reflow="true" rows="4">
+                            <!-- Fila para la etiqueta "Ubicación" -->
+                            <p:columnGroup type="header">
+                                <p:row>
+                                    <p:column headerText="N°" rowspan="2" style="border: 1px solid white;width: 0px;background-color: #20212B;color: white;text-align: center;" />
+                                    <p:column headerText="Razón Social" rowspan="2" style="border: 1px solid white;width: 0px;background-color: #20212B;color: white;text-align: center;" />
+                                    <p:column headerText="RUC" rowspan="2" style="border: 1px solid white;width: 0px;background-color: #20212B;color: white;text-align: center;" />
+                                    <!-- Columna de etiqueta "Ubicación" -->
+                                    <p:column headerText="Ubicación" colspan="3" style="border: 1px solid white; background-color: #20212B;color: white;text-align: center;" />
+                                    <p:column headerText="Tipo de Actividad económica" rowspan="2" style="border: 1px solid white;width: 0px;background-color: #20212B;color: white;text-align: center;" />
+                                    <p:column headerText="Acción" rowspan="2" style="border: 1px solid white;width: 0px;background-color: #20212B;color: white;text-align: center;" />
+                                </p:row>
+                                <!-- Fila para las etiquetas "Departamento", "Provincia" y "Distrito" -->
+                                <p:row>
+                                    <p:column headerText="Departamento" style="border: 1px solid white;width: 0px;background-color: #20212B;color: white;text-align: center;" />
+                                    <p:column headerText="Provincia"  style="border: 1px solid white;width: 0px;background-color: #20212B;color: white;text-align: center;" />
+                                    <p:column headerText="Distrito"  style="border: 1px solid white;width: 0px;background-color: #20212B;color: white;text-align: center;" />
+                                </p:row>
+                            </p:columnGroup>
+                            <!-- Contenido de la tabla -->
+                            <p:column style="background-color: #F8DA45; text-align: center; border: 1px solid white">
+                                <h:outputText value="#{ter.id_empresa_tp}" />
                             </p:column>
-
-                            <p:column headerText="Razón Social" style="border: 1px solid white;">
+                            <p:column style="background-color: #F8DA45; text-align: center; border: 1px solid white">
                                 <h:outputText value="#{ter.razon_social}" />
                             </p:column>
-
-                            <p:column headerText="RUC" style="border: 1px solid white;">
+                            <p:column style="background-color: #F8DA45; text-align: center; border: 1px solid white">
                                 <h:outputText value="#{ter.ruc}" />
                             </p:column>
-
-                            <p:column headerText="Departamento" style="border: 1px solid white;">
+                            <!-- Columnas de Departamento, Provincia y Distrito -->
+                            <p:column style="background-color: #F8DA45; text-align: center; border: 1px solid white">
                                 <h:outputText value="#{ter.departamento}" />
                             </p:column>
-
-                            <p:column headerText="Provincia" style="border: 1px solid white;">
+                            <p:column style="background-color: #F8DA45; text-align: center; border: 1px solid white">
                                 <h:outputText value="#{ter.provincia}" />
                             </p:column>
-
-                            <p:column headerText="Distrito" style="border: 1px solid white;">
+                            <p:column style="background-color: #F8DA45; text-align: center; border: 1px solid white">
                                 <h:outputText value="#{ter.distrito}" />
                             </p:column>
-
-                            <p:column headerText="Direccion" style="border: 1px solid white;">
-                                <h:outputText value="#{ter.direccion}" />
-                            </p:column>
-
-                            <p:column headerText="Actividad económica" style="border: 1px solid white;">
+                            <p:column style="background-color: #F8DA45; text-align: center; border: 1px solid white">
                                 <h:outputText value="#{ter.a_economica}" />
                             </p:column>
 
-                            <p:column headerText="Acción" style="border: 1px solid white;">
+                            <p:column style="background-color: #F8DA45; text-align: center;">
                                 <p:commandButton oncomplete="PF('dlgEditar').show()" 
-                                                 process="@this"
-                                                 icon="pi pi-pencil"
-                                                 styleClass="rounded-button ui-button-success" >
 
+                                                 process="@this"
+                                                 style="width: 75px; right: 5px;background-color: #172958;border: 1px solid #172958;"
+                                                 styleClass="ui-button-raised" 
+                                                 value="Editar">
                                     <f:setPropertyActionListener target="#{tercerosManagedBean.selectedTercero}" value="#{ter}" />
                                 </p:commandButton>
 
-                                <p:commandButton icon="pi pi-times" 
-                                                 styleClass="rounded-button ui-button-danger"
-                                                 action="#{tercerosManagedBean.eliminarRegistro(ter.id_empresa_tp)}" 
-                                                 update="@form" />
+                                <p:commandButton
+                                    styleClass="ui-button-raised"
+                                    style="width: 75px; left: 5px; background-color: #FF3D3D;border: 1px solid #FF3D3D;"
+                                    action="#{tercerosManagedBean.eliminarRegistro(ter.id_empresa_tp)}" 
+                                    update="@form" 
+                                    value="Borrar"/>
                             </p:column>
                         </p:dataTable>
-                        
                     </div>
 
                     <!-- MODAL  -->
 
-                    <p:dialog id="modalEditarRegistro" widgetVar="dlgEditar" modal="true" resizable="true">
-                        <h:form id="editarFormulario">
-                            <p:panelGrid id="panelEditar" columns="2" layout="grid">
+                    <p:dialog id="modalEditar" widgetVar="dlgEditar" modal="true" resizable="true">
+                        <h:form>
+                            <p:panelGrid id="panelEditar" columns="2" layout="grid" style="background-color: #000000;">
                                 <h:outputLabel value="Razón Social:" />
                                 <p:inputText id="inputRazonSocial" value="#{tercerosManagedBean.selectedTercero.razon_social}" />
 
@@ -424,11 +456,10 @@
                                 <p:inputText id="inputTrabajadores" value="#{tercerosManagedBean.selectedTercero.n_trabajadores}" />
 
                                 <p:commandButton value="Guardar" 
-                                                 action="#{tercerosManagedBean.guardarCambios(tercerosManagedBean.selectedTercero)}" 
+                                                 action="#{tercerosManagedBean.actualizarRegistro(tercerosManagedBean.selectedTercero)}" 
                                                  icon="pi pi-pencil"
                                                  oncomplete="PF('dlgEditar').hide();" 
-                                                 process="@form" 
-                                                 update="@form">
+                                                 process="@form" >
                                 </p:commandButton>
                             </p:panelGrid>
                         </h:form>

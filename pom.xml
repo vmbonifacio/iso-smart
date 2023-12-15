@@ -167,11 +167,13 @@
             <version>3.6.1</version>
             <type>jar</type>
         </dependency>
+        
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
             <artifactId>mssql-jdbc</artifactId>
             <version>9.4.0.jre8</version>
         </dependency>
+        
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>

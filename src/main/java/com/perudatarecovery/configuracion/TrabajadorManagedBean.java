@@ -1,11 +1,13 @@
 package com.perudatarecovery.configuracion;
 
 import com.perudatarecovery.modelo.Trabajador;
+import java.io.Serializable;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,18 +17,21 @@ import javax.annotation.PostConstruct;
 
 @Named(value = "trabajadorManagedBean")
 @RequestScoped
-public class TrabajadorManagedBean {
+public class TrabajadorManagedBean implements Serializable {
 
     private Trabajador selectedTrabajador;
     private List<Trabajador> listaTrabajador;
     private List<String> listaTipoContrato;
     private List<String> listaEstadoCivil;
     private List<String> listaPuestos;
+    // Declarar la variable contadorRegistros en tu clase
+    private int totalRegistros;
 
     @PostConstruct
     public void init() {
         MostrarTipoContrato();
         MostrarEstadoCivil();
+        contarTotalRegistros();
     }
 
     public TrabajadorManagedBean() {
@@ -35,6 +40,7 @@ public class TrabajadorManagedBean {
 
     public void inicializar() {
         listaTrabajador = obtenerRegistroTrabajador();
+        contarTotalRegistros();
     }
 
     public Trabajador getSelectedTrabajador() {
@@ -80,10 +86,8 @@ public class TrabajadorManagedBean {
     public List<Trabajador> obtenerRegistroTrabajador() {
         List<Trabajador> data = new ArrayList<>();
 
-        try ( 
-            Connection con = Conexion.obtenerConexion();  
-            Statement sql = con.createStatement();  
-            ResultSet rs = sql.executeQuery("SELECT * FROM tab_trabajador")) {
+        try (
+                 Connection con = Conexion.obtenerConexion();  Statement sql = con.createStatement();  ResultSet rs = sql.executeQuery("SELECT * FROM tab_trabajador")) {
 
             while (rs.next()) {
                 Trabajador trabajador = new Trabajador(
@@ -105,7 +109,6 @@ public class TrabajadorManagedBean {
                         rs.getString("area"),
                         rs.getString("puesto")
                 );
-
                 data.add(trabajador);
             }
             Collections.sort(data, Comparator.comparingInt(Trabajador::getId_trabajador));
@@ -117,8 +120,7 @@ public class TrabajadorManagedBean {
 
     public void agregarRegistroTrabajador() {
         try (
-            Connection con = Conexion.obtenerConexion();  
-            PreparedStatement pst = con.prepareStatement("INSERT INTO tab_trabajador (nombre, ap_p, ap_m, dni_ce, fecha_nacimiento, genero, estado_civil, fecha_ingreso, tipo_contrato, turno, area, puesto, distrito, provincia, departamento, direccion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+                 Connection con = Conexion.obtenerConexion();  PreparedStatement pst = con.prepareStatement("INSERT INTO tab_trabajador (nombre, ap_p, ap_m, dni_ce, fecha_nacimiento, genero, estado_civil, fecha_ingreso, tipo_contrato, turno, area, puesto, distrito, provincia, departamento, direccion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
 
             pst.setString(1, selectedTrabajador.getNombre());
             pst.setString(2, selectedTrabajador.getAp_p());
@@ -137,8 +139,13 @@ public class TrabajadorManagedBean {
             pst.setString(15, trabajador.getDepartamento());
             pst.setString(16, selectedTrabajador.getDireccion());
 
+            // Ejecuta la consulta
             pst.executeUpdate();
 
+            // Limpia los campos después de agregar el registro
+            limpiarCampos();
+
+            // Actualiza la lista de registros después de agregar uno
             listaTrabajador = obtenerRegistroTrabajador();
 
         } catch (Exception e) {
@@ -146,7 +153,17 @@ public class TrabajadorManagedBean {
         }
     }
 
-    // MÉTODO PARA BOTON ELIMINAR
+    public void contarTotalRegistros() {
+        try ( Connection con = Conexion.obtenerConexion();  Statement stmt = con.createStatement();  ResultSet rs = stmt.executeQuery("SELECT COUNT(*) AS total FROM tab_trabajador")) {
+            if (rs.next()) {
+                totalRegistros = rs.getInt("total");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al contar registros: " + e.toString());
+        }
+    }
+
+    // Método para eliminar registros
     public void eliminarRegistroTrabajador(int id_Trabajador) {
         try (
                  Connection conn = Conexion.obtenerConexion();  Statement sql = conn.createStatement()) {
@@ -232,7 +249,27 @@ public class TrabajadorManagedBean {
         return puestosPorArea;
     }
 
-//    -----------------------------------------------------
+    // Método para limpiar los campos
+    public void limpiarCampos() {
+        // Establece los valores de los campos en blanco o en su valor predeterminado
+        selectedTrabajador.setNombre("");
+        selectedTrabajador.setAp_p("");
+        selectedTrabajador.setAp_m("");
+        selectedTrabajador.setDni_ce(null);
+        selectedTrabajador.setFecha_nacimiento(null);
+        selectedTrabajador.setGenero("");
+        selectedTrabajador.setEstado_civil("");
+        selectedTrabajador.setFecha_ingreso(null);
+        selectedTrabajador.setTipo_contrato("");
+        selectedTrabajador.setTurno("");
+        selectedTrabajador.setArea("");
+        selectedTrabajador.setPuesto("");
+        selectedTrabajador.setDireccion("");
+        selectedTrabajador.setDepartamento("");
+        selectedTrabajador.setProvincia("");
+        selectedTrabajador.setDistrito("");
+    }
+
     private Trabajador trabajador = new Trabajador();
 
     public Trabajador getTrabajador() {
@@ -271,4 +308,11 @@ public class TrabajadorManagedBean {
         this.distritoSeleccionado = distritoSeleccionado;
     }
 
+    public int getTotalRegistros() {
+        return totalRegistros;
+    }
+
+    public void setTotalRegistros(int totalRegistros) {
+        this.totalRegistros = totalRegistros;
+    }
 }

@@ -94,6 +94,7 @@
     mr-2                                                  margin-right: 0.5rem;
     text-sm                                             font-size: .875rem;
     -->    
+    
     <h:form id="menuform">
         <div class="menu-wrapper" id="menuWrapper">
             <pr:menu widgetVar="RainMenuWidget">
@@ -148,20 +149,17 @@
 
                     <ul class="menu-list" style="margin-left: 20px;">
                         <li style="margin-bottom: 4px;">
-                            <p:link id="datosGeneralesLink" outcome="formDEmpresa"
-                                    class="text-white-alpha-90 no-underline"
-                                    rendered="#{usuarioManagedBean.enlaceDatosGeneralesHabilitado}"
-                                    onclick="return #{usuarioManagedBean.tienePermiso('Datos Generales', usuarioManagedBean.selectedUsuario.getNombre())}">Datos Generales</p:link>
+                            <p:link outcome="formDatosEmpresa" class="text-white-alpha-90 no-underline">Datos Generales</p:link>
                         </li>
 
                         <li style="margin-bottom: 4px;">
-                            <p:link outcome="organigrama" class="text-white-alpha-90 no-underline">Estructura Organizacional</p:link>
+                            <p:link outcome="formGestorOrganizacionalTwo" class="text-white-alpha-90 no-underline">Estructura Organizacional</p:link>
                         </li>
                         <li style="margin-bottom: 4px;">
                             <p:link outcome="formDatosTrabajadores" class="text-white-alpha-90 no-underline">Gestión de Trabajadores</p:link>
                         </li>
                         <li style="margin-bottom: 4px;">
-                            <p:link outcome="PruebaPLUMB" class="text-white-alpha-90 no-underline">Gestión de Áreas y Puestos</p:link>
+                            <p:link outcome="formGestorOrganizacional" class="text-white-alpha-90 no-underline">Gestión de Áreas y Puestos</p:link>
                         </li>
                     </ul>
 
@@ -192,13 +190,13 @@
 
                     <div class="margin-bottom-20">
                         <p:link>
-                            <p class="font-bold ml-4 mt-3" style="color: #ffd713;  text-decoration: none;"><i class="pi pi-chart-line mr-2" style="color: #ffd713;" />Linea Base</p>
+                            <p class="font-bold ml-4 mt-3" style="color: #ffd713;  text-decoration: none;"><i class="pi pi-chart-line mr-2" style="color: #ffd713;" />Lineamientos Base</p>
                         </p:link>
                     </div>
 
                     <ul class="menu-list" style="margin-left: 20px;">
                         <li style="margin-bottom: 4px;">
-                            <p:link outcome="LineaBase" class="text-white-alpha-90 no-underline">Auditoría - Linea Base</p:link>
+                            <p:link outcome="formLineamientosBase" class="text-white-alpha-90 no-underline">Auditoría</p:link>
                         </li>
                         <li style="margin-bottom: 4px;">
                             <p:link class="text-white-alpha-90 no-underline">Informe de Inspecciones</p:link>
@@ -215,28 +213,27 @@
 
                     <ul class="menu-list" style="margin-left: 20px;">
                         <li style="margin-bottom: 4px;">
-                            <p:link outcome="formMatrices" class="text-white-alpha-90 no-underline">Descargas de Formatos y Formularios</p:link>
+                            <p:link class="text-white-alpha-90 no-underline">Descargas de Formatos y Formularios</p:link>
                         </li>
                         <li style="margin-bottom: 4px;">
                             <p:link class="text-white-alpha-90 no-underline">Carga del Comité de Seguridad</p:link>
                         </li>
                         <li style="margin-bottom: 4px;">
-                            <p:link outcome="comiteI" class="text-white-alpha-90 no-underline">Carga del Comité de Investigación</p:link>
+                            <p:link outcome="formComiteInvestigacion" class="text-white-alpha-90 no-underline">Carga del Comité de Investigación</p:link>
                         </li>
                     </ul>
 
                     <!-- MATRIZ DE RIESGOS IPERC -->
 
                     <div class="margin-bottom-20">
-                        <p:link outcome="formPrincipalMatrizIPERC">
+                        <p:link>
                             <p class="font-bold ml-4 mt-3" style="color: #ffd713;  text-decoration: none;"><i class="pi pi-th-large mr-2" style="color: #ffd713;" />Matriz de Riesgos</p>
                         </p:link>
                     </div>
 
-
                     <ul class="menu-list" style="margin-left: 20px;">
                         <li style="margin-bottom: 4px;">
-                            <p:link class="text-white-alpha-90 no-underline">Creación de Procesos IPERC</p:link>
+                            <p:link outcome="formPrincipalMatrizIPERC" class="text-white-alpha-90 no-underline">Creación de Procesos IPERC</p:link>
                         </li>
                         <li style="margin-bottom: 4px;">
                             <p:link class="text-white-alpha-90 no-underline">Gestión de Matriz IPERC</p:link>
@@ -262,7 +259,7 @@
 
                     <ul class="menu-list" style="margin-left: 20px;">
                         <li style="margin-bottom: 4px;">
-                            <p:link outcome="formPrincipalOcurrencia" class="text-white-alpha-90 no-underline">Inspecciones de SST</p:link>
+                            <p:link class="text-white-alpha-90 no-underline">Inspecciones de SST</p:link>
                         </li>
                         <li style="margin-bottom: 4px;">
                             <p:link outcome="formAccidente" class="text-white-alpha-90 no-underline">Registro de Accidentes</p:link>
@@ -274,71 +271,71 @@
                             <p:link class="text-white-alpha-90 no-underline">Dashboard de Inspecciones</p:link>
                         </li>
                         <li style="margin-bottom: 4px;">
-                            <p:link class="text-white-alpha-90 no-underline">Dashboard de Ocurrencia</p:link>
+                            <p:link outcome="formPrincipalOcurrencia" class="text-white-alpha-90 no-underline">Dashboard de Ocurrencia</p:link>
                         </li>
                     </ul>
 
                     <!-- REGISTRO DE INVESTIGACION -->
 
                     <div class="margin-bottom-20">
-                        <p:link outcome="formPrincipalInvestigacion">
+                        <p:link>
                             <p class="font-bold ml-4 mt-3" style="color: #ffd713;  text-decoration: none;"><i class="pi pi-search mr-2" style="color: #ffd713;" />Investigaciones de Accidentes e Incidentes</p>
                         </p:link> 
                     </div>
 
                     <ul class="menu-list" style="margin-left: 20px;">
                         <li style="margin-bottom: 4px;">
-                            <p:link outcome="formInvestigacion" class="text-white-alpha-90 no-underline">Investigación de Accidentes</p:link>
+                            <p:link outcome="formInvestigacion"  class="text-white-alpha-90 no-underline">Investigación de Accidentes</p:link>
                         </li>
                         <li style="margin-bottom: 4px;">
-                            <p:link outcome="formInvestigacionTwo" class="text-white-alpha-90 no-underline">Investigación de Incidentes </p:link>
+                            <p:link outcome="formInvestigacionIncidentes" class="text-white-alpha-90 no-underline">Investigación de Incidentes </p:link>
                         </li>
                         <li style="margin-bottom: 4px;">
-                            <p:link class="text-white-alpha-90 no-underline">Dashboard de Investigación</p:link>
+                            <p:link outcome="formPrincipalInvestigacion" class="text-white-alpha-90 no-underline">Dashboard de Investigación</p:link>
                         </li>
                     </ul>
 
                     <!-- MEDIDAS CORRECTIVAS -->
 
                     <div class="margin-bottom-20">
-                        <p class="font-bold ml-4 mt-3" style="color: #ffd713; text-decoration: none;"><i class="pi pi-pencil mr-2" />Medidas correctivas (M.C)</p> 
+                        <p class="font-bold ml-4 mt-3" style="color: #ffd713; text-decoration: none;"><i class="pi pi-pencil mr-2" />Medidas Correctivas</p> 
                     </div>
 
                     <ul class="menu-list" style="margin-left: 20px;">
                         <li style="margin-bottom: 4px;">
-                            <p:link class="text-white-alpha-90 no-underline">M.C. para Accidentes</p:link>
+                            <p:link class="text-white-alpha-90 no-underline">M. C. para Accidentes</p:link>
                         </li>
                         <li style="margin-bottom: 4px;">
-                            <p:link class="text-white-alpha-90 no-underline">M.C. para Incidentes </p:link>
+                            <p:link class="text-white-alpha-90 no-underline">M. C. para Incidentes </p:link>
                         </li>
                         <li style="margin-bottom: 4px;">
-                            <p:link class="text-white-alpha-90 no-underline">Dashboard de M.C.</p:link>
+                            <p:link class="text-white-alpha-90 no-underline">Dashboard de M. C.</p:link>
                         </li>
                     </ul>
 
                     <!-- ADMINISTRACION Y MANTENIMIENTO -->
 
                     <div class="margin-bottom-20">
-                        <p class="font-bold ml-4 mt-3" style="color: #ffd713;  text-decoration: none;"><i class="pi pi-cog mr-2" style="color: #ffd713;" />Adm. y Mantenimiento</p> 
+                        <p class="font-bold ml-4 mt-3" style="color: #ffd713;  text-decoration: none;"><i class="pi pi-cog mr-2" style="color: #ffd713;" />Administración y Mantenimiento</p> 
                     </div>
 
                     <ul class="menu-list" style="margin-left: 20px;">
                         <li style="margin-bottom: 4px;">
-                            <p:link outcome="creacionUsuarios" class="text-white-alpha-90 no-underline">Creación de Usuarios </p:link>
+                            <p:link outcome="formGestorUsuario" class="text-white-alpha-90 no-underline">Creación de Usuarios </p:link>
                         </li>
                         <li style="margin-bottom: 4px;">
-                            <p:link outcome="formRoles" class="text-white-alpha-90 no-underline">Gestión de Roles y Accesibilidad</p:link>
+                            <p:link outcome="formRolesUsuario" class="text-white-alpha-90 no-underline" style="width: 210px;">Gestión de Roles y Accesibilidad</p:link>
                         </li>
                     </ul>
 
                     <!-- Categoria Formularios del SideBar -->
                     <div class="margin-bottom-20">
-                        <p class="font-bold mr-3 w-2 text-sm mr-3 w-2 ml-4 mt-3" style="color: #ffd713;  text-decoration: none;">FORMULARIOS</p>   <!-- CATEGORIA -->
+                        <p class="font-bold ml-4 mt-3" style="color: #ffd713;  text-decoration: none;"><i class="pi pi-server mr-2" style="color: #ffd713;" />Formularios</p> 
                     </div>
 
                     <ul class="menu-list" style="margin-left: 20px;">
                         <li style="margin-bottom: 4px;">
-                            <p:link outcome="index"  class="text-white-alpha-90 no-underline">CRUD</p:link>
+                            <p:link outcome="index" class="text-white-alpha-90 no-underline">Test Page</p:link>
                         </li>
                     </ul>
                 </div>

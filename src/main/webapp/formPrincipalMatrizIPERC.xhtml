@@ -5,8 +5,6 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/template.xhtml">
 
-    <ui:define name="title">Ocurrencia</ui:define>
-
     <ui:define name="head">
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -51,6 +49,16 @@
                 background-color: #96DD50;
             }
         </style>
+    </ui:define>
+
+    <ui:define name="title">Gestión de Matriz IPERC</ui:define>
+
+    <ui:define name="viewname">
+        <li>Matriz de Riesgos</li>
+        <li><i class="pi pi-chevron-right"></i></li>
+        <li>
+            <p:link outcome="/formPrincipalMatrizIPERC">Formulario de Matriz IPERC</p:link>
+        </li>
     </ui:define>
 
     <ui:define name="content">
@@ -418,7 +426,6 @@
                                       border: 1px solid white;"/>
                         </p:row>
                     </p:columnGroup>
-
 
                     <p:column style="background-color:#F8DA45; border: 1px solid white; text-align: center" class="no-drag">
                         <h:outputText value="#{ges.id_gestor_iperc}"/>

@@ -1,6 +1,7 @@
 package com.perudatarecovery.modelo;
 
 public class Persona {
+    
     private Integer id_personaa;
     private String tipo_acci;
     private String nombres_c;

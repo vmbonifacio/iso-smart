@@ -1,0 +1,417 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="title">Datos de Empresa</ui:define>
+
+    <ui:define name="viewname">
+        <li>Gestión de Empresa</li>
+        <li><i class="pi pi-chevron-right"></i></li>
+        <li><p:link outcome="/formDatosEmpresa">Formulario de Empresa Principal</p:link></li>
+    </ui:define>
+
+    <ui:define name="head">
+        <style>
+            .title-config{
+                background-color: #2A2A2A;
+                font-family: 'Inter', sans-serif;
+                font-weight: 600;
+            }
+
+            .subtitle-config{
+                font-family: 'Inter', sans-serif;
+                font-weight: 600;
+            }
+
+            .content{
+                background-color: #F8DA45;
+                border-radius: 1rem 1rem 0 0;
+                border-bottom: none;
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            }
+
+            .content-double{
+                background-color: #EDEDED;
+                margin-bottom: 70px;
+                padding: 30px 140px 30px 140px;
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+                border-radius: 0 0 1rem 1rem;
+            }
+            
+            .button-add{
+                background-color: #F8DA45;
+            }
+            
+            .input-config{
+                background-color: transparent !important;
+                border: none !important;
+                border-bottom: 3px solid  #f8da45 !important;
+            }
+
+            .input-config-direccion{
+                background-color: transparent !important;
+                border: none !important;
+                border-bottom: 3px solid  #000000 !important;
+            }
+
+            .output-config{
+                font-family: 'Inter', sans-serif !important;
+            }
+        </style>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form> 
+            <!-- DATOS DE LA EMPRESA PRINCIPAL -->
+            <h5 class="h-5rem text-center text-4xl p-4 text-white-alpha-90 w-full title-config" >REGISTRO DE EMPRESA</h5>
+
+            <div class="col-12 p-3" > 
+                <div class="ui-fluid formgrid grid pl-2 w-full content">
+                    <h5 class="p-3 text-2xl text-black-alpha-90 subtitle-config">DATOS DE LA EMPRESA</h5>  
+                </div>
+
+                <div class="ui-fluid formgrid grid w-full content-double">
+                    <!-- LADO A: FORMULARIO -->
+                    
+                    <!-- LADO DERECHO: FORMULARIO -->
+                    <div class="ui-grid-col-6">
+                        <div class="field col-12 md:col-12">
+                            <!-- RUC -->
+                            <div class="ui-grid-col-6 mt-5">
+                                <p:outputLabel value="1. RUC" class="pt-2 text-lg text-black-alpha-90 font-semibold output-config" />
+                            </div>    
+
+                            <!-- RAZON SOCIAL -->
+                            <div class="ui-grid-col-6 mt-5">
+                                <p:outputLabel value="2. Razón Social" class="pt-2 text-lg text-black-alpha-90 font-semibold output-config"/>
+                            </div>
+                        </div>
+
+                        <div class="field col-12 md:col-12"> 
+                            <!-- RUC ENTRADA -->
+                            <div class="ui-grid-col-6 mt-5">
+                                <p:inputText id="ruc" placeholder="Ingrese el RUC" value="#{empresaPManagedBean.selectedEmpresaP.ruc}" 
+                                             class="text-black-alpha-90 border-bottom-3 border-primary-500 input-config" maxlength="11" onkeypress="return /^[0-9]+$/.test(event.key)" />
+                            </div>
+                            <!-- RAZON SOCIAL ENTRADA -->
+                            <div class="ui-grid-col-6 mt-5"> 
+                                <p:inputText id="razonsocial" placeholder="Ingrese razón social" value="#{empresaPManagedBean.selectedEmpresaP.razon_s}" 
+                                             class="text-black-alpha-90 border-bottom-3 border-primary-500 input-config" maxlength="28" onkeypress="return /^[a-zA-Z\s]+$/.test(event.key);"/> 
+                            </div>
+                        </div>
+
+                        <div class="field col-12 md:col-12">  
+                            <!-- NOMBRE COMERCIAL -->
+                            <div class="ui-grid-col-6 mt-5">
+                                <p:outputLabel value="3. Nombre Comercial" class="pt-2 text-lg text-black-alpha-90 font-semibold output-config"/>
+                            </div>  
+                            <!-- ACTIVIDAD ECONOMICA -->
+                            <div class="ui-grid-col-6 mt-5">
+                                <p:outputLabel value="4.  Actividad Económica" class="pt-2 text-lg text-black-alpha-90 font-semibold output-config" />
+                            </div> 
+                        </div>
+
+                        <div class="field col-12 md:col-12">  
+                            <div class="ui-grid-col-6 mt-5">
+                                <p:inputText id="comercial" placeholder="Ingrese nombre comercial"  value="#{empresaPManagedBean.selectedEmpresaP.nombre_c}" 
+                                             class="text-black-alpha-90 border-bottom-3 border-primary-500 input-config" maxlength="28" onkeypress="return /^[a-zA-Z\s]+$/.test(event.key);"/> 
+                            </div>  
+                        </div>
+
+                        <!-- ACTIVIDAD ECONOMICA -->
+
+                        <div class="ui-grid-col-6 mt-5">
+                            <p:inputText id="actividad"  placeholder="Ingrese la actividad económica" value="#{empresaPManagedBean.selectedEmpresaP.actividad}" 
+                                         class="text-black-alpha-90 border-bottom-3 border-primary-500 input-config" maxlength="28" onkeypress="return /^[a-zA-Z\s]+$/.test(event.key);"/> 
+                        </div>
+                    </div>
+
+                    <!-- LADO IZQUIERDO: IMAGEN -->
+                    <div class="ui-grid-col-6">
+                        <div style="border: 1px dashed #cbcbcb; border-radius: 1rem; padding: 20px; text-align: center; position: relative;">
+                            <!-- Contenedor de imagen de perfil redonda con líneas trazadas -->
+                            <div style="width: 220px; height: 220px; border-radius: 50%; overflow: hidden; display: inline-block; position: relative; border: 3px dashed #cbcbcb;">
+                                <!-- Capa de oscurecimiento al pasar el mouse -->
+                                <div id="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.3); opacity: 0; transition: opacity 0.3s;"></div>
+                                <img id="profile-image" src="resources/img/placeholder-image-2.png" alt="Imagen de ejemplo" style="max-width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 50%;" onmouseover="darkenImage()" onmouseout="lightenImage()" />
+                            </div>
+                            <!-- Botón para cargar imagen -->
+                            <p:fileUpload mode="advanced"
+                                          multiple="false"
+                                          sizeLimit="102400" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+                                          invalidSizeMessage="Maximum file size allowed is 100 KB"
+                                          invalidFileMessage="only gif | jpg | jpeg | png is allowed"
+                                          label="Subir Imagen"
+                                          style="display: block; margin-top: 10px; margin-left: auto; margin-right: auto;"
+                                          />
+                        </div>
+                    </div>
+
+                    <!-- DOMICILIO -->
+                    <div class="ui-fluid formgrid grid p-4 w-full shadow-5" style="background-color: #f8da45; border-radius: 5px; margin: auto;margin-top:10px;margin-bottom:20px;">
+                        <div class="field col-12 md:col-2">
+                            <p:outputLabel value="5. Domicilio" class="pt-2 text-lg text-black-alpha-90 font-semibold output-config"/>    
+                        </div>
+
+                        <div class="field col-12 md:col-3"> 
+                            <!-- DEPARTAMENTO -->
+                            <p:outputLabel value="Departamento" class="pt-2 text-lg text-black-alpha-90 font-semibold output-config"/>
+                            <!-- ENTRADA DEPARTAMENTO  -->
+                            <p:selectOneMenu id="departamento" value="#{empresaPManagedBean.empresaP.departamento}" style="background:transparent; border: none; border-bottom: 3px solid black; color: black;">
+                                <f:selectItem itemLabel="Seleccione" noSelectionOption="departamentotrue" />
+                                <!-- OBTENIENDO DEPARTAMENTOS -->
+                                <f:selectItems value="#{ubigeo.listaDepartamentos}" var="departamento" itemValue="#{departamento}" itemLabel="#{departamento}" />
+                                <f:ajax listener="#{ubigeo.obtenerListaProvincias(empresaPManagedBean.empresaP.departamento)}" render="provincia distrito" />
+                            </p:selectOneMenu>
+                        </div>
+
+                        <div class="field col-12 md:col-3">
+                            <!-- PROVINCIA -->
+                            <p:outputLabel value="Provincia" class="pt-2 text-lg text-black-alpha-90 font-semibold output-config" />
+                            <!-- ENTRADA PROVINCIA -->
+                            <p:selectOneMenu id="provincia" value="#{empresaPManagedBean.empresaP.provincia}" style="background:transparent; border: none; border-bottom: 3px solid black; color: black;">
+                                <f:selectItem itemLabel="Seleccione" noSelectionOption="true" />
+                                <!-- OBTENIENDO DISTRITOS -->
+                                <f:selectItems value="#{ubigeo.listaProvincias}" var="provincia" itemValue="#{provincia}" itemLabel="#{provincia}" />
+                                <f:ajax listener="#{ubigeo.obtenerListaDistritos(empresaPManagedBean.empresaP.provincia)}" render="distrito" />
+                            </p:selectOneMenu>
+                        </div>
+
+                        <div class="field col-12 md:col-3">
+                            <!-- DISTRITO -->
+                            <p:outputLabel value="Distrito" class="pt-2 text-lg text-black-alpha-90 font-semibold output-config"/>
+                            <!-- ENTRADA DISTRITO -->
+                            <p:selectOneMenu id="distrito" value="#{empresaPManagedBean.empresaP.distrito}" style="background:transparent; border: none; border-bottom: 3px solid black; color: black;">
+                                <f:selectItem itemLabel="Seleccione" noSelectionOption="true" />
+                                <!-- OBTENIENDO DISTRITOS -->
+                                <f:selectItems value="#{ubigeo.listaDistritos}" var="distrito" itemValue="#{distrito}" itemLabel="#{distrito}" />
+                            </p:selectOneMenu>
+                        </div>
+
+                        <div class="field col-12 md:col-2">
+                            <!-- DIRECCION -->
+                            <p:outputLabel value=" Direccion" class="pt-2 text-lg text-black-alpha-90 font-semibold output-config" />
+                        </div>
+                        <div class="field col-12 md:col-9">    
+                            <!-- ENTRADA DIRECCION -->
+                            <p:inputText id="direccion" placeholder="Ingrese aquí su dirección" value="#{empresaPManagedBean.selectedEmpresaP.direccion}"
+                                         class="text-black-alpha-90 border-bottom-3 border-black-alpha-90 input-config-direccion" maxlength="28" onkeypress="return /^[a-zA-Z\s]+$/.test(event.key);"/>
+                        </div>
+                    </div>
+
+                    <!-- LADO B: FORMULARIO -->
+                    <div class="field col-12 md:col-12">  
+                        <!-- TELEFONO -->
+                        <div class="ui-grid-col-6 mt-5">
+                            <p:outputLabel value="6. Telefono" class="pt-2 text-lg text-black-alpha-90 font-semibold output-config" />
+                        </div>  
+                        <!-- CORREO -->
+                        <div class="ui-grid-col-6 mt-5">
+                            <p:outputLabel value="7. Correo" class="pt-2 text-lg text-black-alpha-90 font-semibold output-config" />
+                        </div>
+                    </div>  
+
+                    <div class="field col-12 md:col-12">
+                        <!-- ENTRADA TELEFONO -->
+                        <div class="ui-grid-col-6 mt-5">
+                            <p:inputText id="telefono" placeholder="Ingrese teléfono" value="#{empresaPManagedBean.selectedEmpresaP.telefono}" 
+                                         class="text-black-alpha-90 border-bottom-3 border-primary-500 input-config" maxlength="9" onkeypress="return /^[0-9]+$/.test(event.key)"/> 
+                        </div>  
+
+                        <div class="ui-grid-col-6 mt-5">
+                            <!-- ENTRADA CORREO -->
+                            <p:inputText id="correo" placeholder="Ingrese correo" value="#{empresaPManagedBean.selectedEmpresaP.correo}"  
+                                         class="text-black-alpha-90 border-bottom-3 border-primary-500 input-config" maxlength="25"/> 
+                        </div>
+                    </div>
+
+                    <div class="field col-12 md:col-12">  
+                        <!-- NÚMERO DE LICENCIAS -->
+                        <div class="ui-grid-col-6 mt-5">
+                            <p:outputLabel value="8. Núm. de Licencias" class="pt-2 text-lg text-black-alpha-90 font-semibold output-config" />
+                        </div>  
+                        <!-- FECHA DE FUNDACIÓN -->
+                        <div class="ui-grid-col-6 mt-5">
+                            <p:outputLabel value="9. Fecha de Fundación"  class="pt-2 text-lg text-black-alpha-90 font-semibold output-config" />
+                        </div>
+                    </div>   
+
+                    <div class="field col-12 md:col-12">   
+                        <!-- ENTRADA NÚMERO DE LICENCIAS -->
+                        <div class="ui-grid-col-6 mt-5">
+                            <p:inputText id="licencias" placeholder="Ingrese el número de licencias"  value="#{empresaPManagedBean.selectedEmpresaP.num_licencia}" 
+                                         class="text-black-alpha-90 border-bottom-3 border-primary-500 input-config" maxlength="4" onkeypress="return /^[0-9]+$/.test(event.key)"/> 
+                        </div>
+                        <!-- ENTRADA FECHA DE FUNDACIÓN -->
+                        <div class="ui-grid-col-6 mt-5">
+                            <p:datePicker id="fundacion" placeholder="Ingrese fecha de fundación" value="#{empresaPManagedBean.selectedEmpresaP.fecha_fundacion}" 
+                                          class="text-black-alpha-90 border-bottom-3 border-primary-500 input-config" yearNavigator="true" monthNavigator="true"/> 
+                        </div>
+                    </div>
+
+                    <div class="field col-12 md:col-12">   
+                        <!-- FECHA DE OPERACIÓN -->
+                        <div class="ui-grid-col-6 mt-5">
+                            <p:outputLabel value="10. Fecha de Operación" class="pt-2 text-lg text-black-alpha-90 font-semibold output-config" />
+                        </div>    
+
+                        <!-- NÚMERO DE SUCURSALES -->
+                        <div class="ui-grid-col-6 mt-5">
+                            <p:outputLabel value="11. Núm. de Sucursales" class="pt-2 text-lg text-black-alpha-90 font-semibold output-config" />
+                        </div>   
+
+                    </div>
+
+                    <div class="field col-12 md:col-12">
+                        <!-- ENTRADA FECHA DE OPERACIÓN -->
+                        <div class="ui-grid-col-6 mt-5">
+                            <p:datePicker id="operacion" placeholder="Ingrese fecha de operación" value="#{empresaPManagedBean.selectedEmpresaP.fecha_operacion}" 
+                                          class="text-black-alpha-90 border-bottom-3 border-primary-500 input-config" yearNavigator="true" monthNavigator="true"/> 
+                        </div>
+                        <!-- ENTRADA NÚMERO DE SUCURSALES -->
+                        <div class="ui-grid-col-6 mt-5">
+                            <p:inputText id="sucursales" placeholder="Ingrese el número de sucursales"  value="#{empresaPManagedBean.selectedEmpresaP.numero_s}" 
+                                         class="text-black-alpha-90 border-bottom-3 border-primary-500 input-config" maxlength="4" onkeypress="return /^[0-9]+$/.test(event.key)"/> 
+                        </div>
+                    </div>
+
+                    <!-- BOTON AGREGAR: EMPRESA PRINCIPAL -->
+                   
+                    <div class="field col-12 md:col-3">
+                        <p:commandButton oncomplete="mostrarMensaje()"  class="pt-2 text-lg text-black-alpha-90 font-semibold output-config" style="height: 70px; border-color: #f8da45; border-radius: 14px; box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.1), 0px 4px 5px -2px rgba(0, 0, 0, 0.12), 0px 10px 15px -5px rgba(0, 0, 0, 0.2) !important;" action="#{empresaPManagedBean.agregarRegistroEmpresaP}" update="@form" value="Guardar Empresa"/>
+                    </div>
+                </div>
+
+                <!-- TABLA DE DATOS: EMPRESA PRINCIPAL --> 
+                
+                <p:dataTable id="tablaEmpresaP" value="#{empresaPManagedBean.obtenerRegistrosEmpresaP()}" var="emp" rowKey="#{emp.id_empresa_p}" emptyMessage="No se encontraron registros" reflow="true" rows="4" paginator="true">
+
+                    <!--  CÓDIGO DEL REGISTRO -->
+                    <p:column headerText="ID">
+                        <h:outputText value="#{emp.id_empresa_p}" />
+                    </p:column>
+
+                    <!--  RUC  -->
+                    <p:column headerText="RUC">
+                        <h:outputText value="#{emp.ruc}" />
+                    </p:column>
+
+                    <!--  RAZON SOCIAL  -->
+                    <p:column headerText="Razón Social">
+                        <h:outputText value="#{emp.razon_s}" />
+                    </p:column>
+
+                    <!--  NOMBRE COMERCIAL  -->
+                    <p:column headerText="Nombre Comercial">
+                        <h:outputText value="#{emp.nombre_c}" />
+                    </p:column>
+
+                    <!--  ACTIVIDAD ECONOMICA  -->
+                    <p:column headerText="Actividad Económica">
+                        <h:outputText value="#{emp.actividad}" />
+                    </p:column>
+
+                    <!--  DEPARTAMENTO  -->
+                    <p:column headerText="Departamento" style="font-size: 11px;">
+                        <h:outputText value="#{emp.departamento}" />
+                    </p:column>
+
+                    <!--  PROVINCIA  -->
+                    <p:column headerText="Provincia">
+                        <h:outputText value="#{emp.provincia}" />
+                    </p:column>
+
+                    <!--  DISTRITO  -->
+                    <p:column headerText="Distrito">
+                        <h:outputText value="#{emp.distrito}" />
+                    </p:column>
+
+                    <!--  DIRECCION  -->
+                    <p:column headerText="Dirección">
+                        <h:outputText value="#{emp.direccion}" />
+                    </p:column>
+                    
+                    <!--  TELEFONO  -->
+                    <p:column headerText="Telefono">
+                        <h:outputText value="#{emp.telefono}" />
+                    </p:column>
+
+                    <!--  CORREO  -->
+                    <p:column headerText="Correo">
+                        <h:outputText value="#{emp.correo}" />
+                    </p:column>
+
+                    <!--  NUMERO DE LICENCIA  -->
+                    <p:column headerText="Núm. de Licencias">
+                        <h:outputText value="#{emp.num_licencia}" />
+                    </p:column>
+
+                    <!--  FECHA DE FUNDACION  -->
+                    <p:column headerText="Fecha de Fundación">
+                        <h:outputText value="#{emp.fecha_fundacion}" />
+                    </p:column>
+
+                    <!--  FECHA DE OPERACION   -->
+                    <p:column headerText="Fecha de Operación">
+                        <h:outputText value="#{emp.fecha_operacion}" />
+                    </p:column>
+
+                    <!--  NUMERO DE SUCURSALES  -->
+                    <p:column headerText="Núm. de Sucursales">
+                        <h:outputText value="#{emp.numero_s}" />
+                    </p:column>
+
+                    <p:column headerText="Acciones">
+                        <p:commandButton icon="pi pi-times" 
+                                         styleClass="rounded-button ui-button-danger" 
+                                         action="#{empresaPManagedBean.eliminarRegistroEmp(emp.id_empresa_p)}" 
+                                         update="@form"/>
+                    </p:column>
+                </p:dataTable> 
+            </div>
+        </h:form>
+
+        <script>
+            function darkenImage() {
+                document.getElementById('overlay').style.opacity = '1';
+            }
+
+            function lightenImage() {
+                document.getElementById('overlay').style.opacity = '0';
+            }
+
+            PrimeFaces.locales['es'] = {
+                closeText: 'Cerrar',
+                prevText: 'Anterior',
+                nextText: 'Siguiente',
+                monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                dayNamesMin: ['D', 'L', 'M', 'X', 'J', 'V', 'S'],
+                weekHeader: 'Semana',
+                firstDay: 1,
+                isRTL: false,
+                showMonthAfterYear: false,
+                yearSuffix: '',
+                timeOnlyTitle: 'Sólo hora',
+                timeText: 'Tiempo',
+                hourText: 'Hora',
+                minuteText: 'Minuto',
+                secondText: 'Segundo',
+                millisecondText: 'Milisegundo',
+                currentText: 'Fecha actual',
+                ampm: false,
+                month: 'Mes',
+                week: 'Semana',
+                day: 'Día',
+                allDayText: 'Todo el día',
+                today: 'Hoy',
+                clear: 'Claro'
+            };
+        </script>    
+    </ui:define>
+</ui:composition>
