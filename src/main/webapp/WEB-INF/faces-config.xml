@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+              http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd"
+              version="2.3">
+    
+    <name>primefaces_rain</name>
+
+    <component>
+        <component-type>org.primefaces.component.RainMenu</component-type>
+        <component-class>org.primefaces.rain.component.RainMenu</component-class>
+    </component>
+    
+    <navigation-rule>
+        <from-view-id>/formDatosTrabajadores.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>formDatosTrabajadores</from-outcome>
+            <to-view-id>/formDatosTrabajadores.xhtml</to-view-id>
+        </navigation-case>
+        
+        <from-view-id>/formDatosGenerales.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>formDatosGenerales</from-outcome>
+            <to-view-id>/formDatosGenerales.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <managed-bean>
+        <managed-bean-name>tercerosManagedBean</managed-bean-name>
+        <managed-bean-class>com.perudatarecovery.configuracion.TercerosManagedBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>personaManagedBean</managed-bean-name>
+        <managed-bean-class>com.perudatarecovery.configuracion.PersonaManagedBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>personaTManagedBean</managed-bean-name>
+        <managed-bean-class>com.perudatarecovery.configuracion.PersonaTManagedBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>personaCManagedBean</managed-bean-name>
+        <managed-bean-class>com.perudatarecovery.configuracion.PersonaCManagedBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>tercerosIncManagedBean</managed-bean-name>
+        <managed-bean-class>com.perudatarecovery.configuracion.TercerosIncManagedBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>empresaPManagedBean</managed-bean-name>
+        <managed-bean-class>com.perudatarecovery.configuracion.EmpresaPManagedBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <!-- INCIDENTE -->
+    
+    <managed-bean>
+        <managed-bean-name>personaTIncManagedBean</managed-bean-name>
+        <managed-bean-class>com.perudatarecovery.configuracion.PersonaTIncManagedBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>personaPIncManagedBean</managed-bean-name>
+        <managed-bean-class>com.perudatarecovery.configuracion.PersonaPIncManagedBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>personaCIncManagedBean</managed-bean-name>
+        <managed-bean-class>com.perudatarecovery.configuracion.PersonaCIncManagedBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>organigramView</managed-bean-name>
+        <managed-bean-class>com.perudatarecovery.configuracion.OrganigramView</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>comiteManagedBean</managed-bean-name>
+        <managed-bean-class>com.perudatarecovery.configuracion.ComiteManagedBean</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>gestionMatrizManagedBean</managed-bean-name>
+        <managed-bean-class>com.perudatarecovery.configuracion.GestionMatrizManagedBean</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>usuarioManagedBean</managed-bean-name>
+        <managed-bean-class>com.perudatarecovery.configuracion.UsuarioManagedBean</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>trabajadorManagedBean</managed-bean-name>
+        <managed-bean-class>com.perudatarecovery.configuracion.TrabajadorManagedBean</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>validacionManagedBean</managed-bean-name>
+        <managed-bean-class>com.perudatarecovery.configuracion.ValidacionManagedBean</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>comiteInvestigacionManagedBean</managed-bean-name>
+        <managed-bean-class>com.perudatarecovery.configuracion.ComiteInvestigacionManagedBean</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>rolesManagedBean</managed-bean-name>
+        <managed-bean-class>com.perudatarecovery.configuracion.RolesManagedBean</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+     
+    <managed-bean>
+        <managed-bean-name>lineaBaseManagedBean</managed-bean-name>
+        <managed-bean-class>com.perudatarecovery.configuracion.LineaBaseManagedBean</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>usuManagedBean</managed-bean-name>
+        <managed-bean-class>com.perudatarecovery.configuracion.UsuBaseManagedBean</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>permisoManagedBean</managed-bean-name>
+        <managed-bean-class>com.perudatarecovery.configuracion.PermisoManagedBean</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>Respuesta_IndicadoresManagedBean
+        <managed-bean-name>respuesta_IndicadoresManagedBean</managed-bean-name>
+        <managed-bean-class>com.perudatarecovery.configuracion.Respuesta_IndicadoresManagedBean</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <render-kit>
+        <renderer>
+            <component-family>org.primefaces.component</component-family>
+            <renderer-type>org.primefaces.component.RainMenuRenderer</renderer-type>
+            <renderer-class>org.primefaces.rain.component.RainMenuRenderer</renderer-class>
+        </renderer>
+    </render-kit>
+    
+    <managed-bean>
+        <managed-bean-name>ocurrenciaManagedBean</managed-bean-name>
+        <managed-bean-class>com.perudatarecovery.configuracion.OcurrenciaManagedBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+</faces-config>

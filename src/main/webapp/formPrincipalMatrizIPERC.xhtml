@@ -1,0 +1,534 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="head">
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+        <style>
+            .ventana{
+                background: #000000;
+                width: 400px;
+            }
+
+            body .ui-dialog.ui-resizable .ui-dialog-content {
+                width:1600px;
+                background-color:#000000;
+            }
+
+            body .ui-dialog .ui-dialog-titlebar{
+                background-color:#000000;
+            }
+
+            ::-webkit-scrollbar {
+                width: 6px; /* Ancho del scrollbar vertical */
+                background-color: #000000; /* Color de fondo del scrollbar */
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: rgb(74,73,57);
+                background: linear-gradient(0deg, rgba(74,73,57,1) 0%, rgba(255,235,0,1) 100%);
+                height: 10px;
+                border-radius:4px;
+            }
+
+            .fila-roja {
+                background-color: #FF6646;
+            }
+
+            .fila-amarilla {
+                background-color: #FFE359;
+            }
+
+            .fila-verde {
+                background-color: #96DD50;
+            }
+        </style>
+    </ui:define>
+
+    <ui:define name="title">Gestión de Matriz IPERC</ui:define>
+
+    <ui:define name="viewname">
+        <li>Matriz de Riesgos</li>
+        <li><i class="pi pi-chevron-right"></i></li>
+        <li>
+            <p:link outcome="/formPrincipalMatrizIPERC">Formulario de Matriz IPERC</p:link>
+        </li>
+    </ui:define>
+
+    <ui:define name="content">
+        <!-- REGISTRO DE MATRICES IPERC -->  
+        <h5 class="h-5rem text-center text-5xl p-4 text-white-alpha-90" 
+            style="background-color: #2A2A2A;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;">
+            Gestor de Matrices IPERC
+        </h5>
+        <div class="card crud-demo w-full" style="padding-right: 80px; padding-left: 80px;">
+            <h:form id="mainForm">
+
+                <p:growl id="messages" showDetail="true" />
+
+                <p:toolbar>
+                    <p:toolbarGroup>
+                        <!-- BOTONES AGREGAR Y ELIMINAR-->
+                        <p:commandButton value="Agregar Proceso" icon="pi pi-plus" 
+                                         class="mr-2" 
+                                         style="background-color:#3C9462; border:1px solid #3C9462;"
+                                         onclick="mostrarVentanaEmergente();" />   
+                    </p:toolbarGroup>
+                </p:toolbar>
+
+                <!-- VENTANA EMERGENTE PROCESO -->
+
+                <p:dialog widgetVar="ventanaEmergente" modal="true" draggable="false" resizable="false" style="box-shadow:0px 0px 31px -4px rgba(255,246,0,1);border-radius:20px;">
+                    <div>
+                        <p:outputLabel value="Registrar nuevo proceso" class="text-5xl" style="color: white; font-family: 'Inter', sans-serif; font-weight: 500; text-align: center;" />    
+                    </div>
+                    <div class="mt-8">
+                        <p:outputLabel value="Nuevo proceso:" class="text-xl mr-8" style="color: white; font-family: 'Inter', sans-serif; font-weight: 300;" />    
+                        <p:inputText class="w-full mb-6 mt-4" value="#{gestionMatrizManagedBean.selectedGestorM.nombre_proceso}" placeholder="Ingrese aquí" style="background:transparent; color: white; border: none; border-bottom: 3px solid  #FFF600;"/>
+                    </div>
+
+                    <div class="text-center">
+                        <p:commandButton value="Aceptar"
+                                         styleClass="ui-button-raised ui-button-warning ui-button w-3 h-3rem mt-8 mb-8"
+                                         style="background-color:#FFF600; border:2px solid #ffffff;font-weight: 600"
+                                         onkeyup="convertirAMayusculas(this);"
+                                         action="#{gestionMatrizManagedBean.agregarProceso}"
+                                         oncomplete="PF('ventanaEmergente').hide();"
+                                         update="tablaPrincipal"/> <!-- Actualiza la tabla después de agregar -->
+                    </div>
+                </p:dialog>
+
+                <!-- VENTANA EMERGENTE SUB PROCESO -->
+
+                <p:dialog widgetVar="ventanaEmergente2" modal="true" draggable="false" resizable="false" style="box-shadow:0px 0px 31px -4px rgba(255,246,0,1);border-radius:20px;">
+                    <div>
+                        <p:outputLabel value="Agregar nuevo subproceso" class="text-5xl" style="color: white; font-family: 'Inter', sans-serif; font-weight: 500; text-align: center;" />    
+                    </div>
+                    <div class="mt-8">
+                        <p:outputLabel value="Nuevo subproceso:" class="text-xl mr-8" style="color: white; font-family: 'Inter', sans-serif; font-weight: 300;" />    
+                        <p:inputText class="w-full mb-6 mt-4" value="#{gestionMatrizManagedBean.selectedGestorM.nombre_subproceso}" placeholder="Ingrese aquí" style="background:transparent; color: white; border: none; border-bottom: 3px solid  #FFF600;"/>
+                    </div>
+
+                    <div class="text-center">
+                        <p:commandButton value="Aceptar" 
+                                         styleClass="ui-button-raised ui-button-warning ui-button w-3 h-3rem mt-8 mb-8" 
+                                         style="background-color:#FFF600; border:2px solid #ffffff;font-weight: 600"
+                                         onkeyup="convertirAMayusculas(this);" 
+                                         oncomplete="mostrarNuevaVentanaEmergente();"/> <!-- Cerrar el modal después de agregar -->
+                    </div>
+                </p:dialog>
+
+                <!-- VENTANA EMERGENTE DETALLES DEL SUB PROCESO -->
+
+                <p:dialog widgetVar="ventanaEmergente3" modal="true" draggable="false" styleClass="Ventana" style="background:#000000; box-shadow: -1px -1px 44px -11px rgba(255,246,0,0.57);">
+                    <div style="overflow-y: scroll; max-height: 800px;">   <!--  <div style="overflow-y: scroll; max-height: 800px;"> VENTANA EMERGENTE CON SCROLL -->
+                        <div class="flex flex-wrap justify-between" style="padding: 20px;">
+
+                            <!-- Detalles de actividad -->
+                            <div class="section" style="width: 45%; display: flex; flex-direction: column; align-items: center;">
+                                <h3 style="text-align: center; margin-bottom:40px; color: #ffffff;">DETALLES DE ACTIVIDAD</h3>
+
+                                <div class="field" style="display: flex; flex-direction: row; margin-bottom: 50px; width: 700px;">
+                                    <div class="column" style="width: 50%; width: 280px;">
+                                        <p:outputLabel value="Actividad:" style="color: white; font-family: 'Inter', sans-serif; font-weight: 600;font-size:16px; width: 154px;" />
+                                        <p:inputText value="#{gestionMatrizManagedBean.selectedGestorM.actividad}" class="w-full" placeholder="Ingrese aqui la actividad" style="width: 280px; background:transparent; color: white; border: none; border-bottom: 3px solid  #f8da45;" />
+                                    </div>
+
+                                    <div class="column" style="width: 50%; margin-left: 80px;">
+                                        <p:outputLabel value="Rutinaria:" style="color: white; font-family: 'Inter', sans-serif; font-weight: 600; font-size:16px;" />
+
+                                        <p:selectOneRadio layout="responsive" value="#{gestionMatrizManagedBean.selectedGestorM.rutinaria}" columns="2">
+                                            <f:selectItem itemLabel="Si" itemValue="Si" />
+                                            <f:selectItem itemLabel="No" itemValue="No" />
+                                        </p:selectOneRadio>
+                                    </div>
+                                </div>
+
+                                <div class="field" style="display: flex; flex-direction: row; margin-bottom: 50px; width: 700px;">
+                                    <div class="column" style="width: 50%; margin-right: 70px;">
+                                        <p:outputLabel value="Peligro:"  style="color: white; font-family: 'Inter', sans-serif; font-weight: 600;font-size:16px;"/>
+                                        <p:inputText value="#{gestionMatrizManagedBean.selectedGestorM.peligros}"  class="w-full" placeholder="Ingrese aqui el peligro" style="background:transparent; color: white; border: none; border-bottom: 3px solid  #f8da45;" />
+                                    </div>
+
+                                    <div class="column" style="width: 50%; margin-right: 70px;">
+                                        <p:outputLabel value="Riesgo:"  style="color: white; font-family: 'Inter', sans-serif; font-weight: 600;font-size:16px;"/>
+                                        <p:inputText value="#{gestionMatrizManagedBean.selectedGestorM.riesgos}" class="w-full" placeholder="Ingrese aqui el riesgo" style="background:transparent; color: white; border: none; border-bottom: 3px solid  #f8da45;" />
+                                    </div>
+                                </div>
+
+                                <div class="field" style="display: flex; flex-direction: row; margin-bottom: 50px;">
+                                    <div class="column" style="width: 50%; margin-right: 70px;">
+                                        <p:outputLabel value="Tipo de Riesgo:" style="color: white; font-family: 'Inter', sans-serif; font-weight: 600;font-size:16px;"/>
+                                        <p:inputText value="#{gestionMatrizManagedBean.selectedGestorM.tipo_riesgo}"  class="w-full" placeholder="Ingrese aqui el tipo riesgo" style="background:transparent; color: white; border: none; border-bottom: 3px solid  #f8da45;" />
+                                    </div>
+
+                                    <div class="column" style="width: 50%; margin-right: 70px;">
+                                        <p:outputLabel value="Consecuencia:" style="color: white; font-family: 'Inter', sans-serif; font-weight: 600;font-size:16px;"/>
+                                        <p:inputText value="#{gestionMatrizManagedBean.selectedGestorM.consecuencia}" class="w-full" placeholder="Ingrese aqui la consecuencia" style="background:transparent; color: white; border: none; border-bottom: 3px solid  #f8da45;" />
+                                    </div>
+                                </div>
+
+                                <div class="field" style="display: flex; flex-direction: row; margin-bottom: 90px;">
+                                    <div class="column" style="width: 50%; margin-right: 70px;">
+                                        <p:outputLabel value="Controles actuales:" style="color: white; font-family: 'Inter', sans-serif; font-weight: 600;font-size:16px;"/>
+                                        <p:inputText value="#{gestionMatrizManagedBean.selectedGestorM.controles}" class="w-full" placeholder="Ingrese aqui los controles actuales" style="background:transparent; color: white; border: none; border-bottom: 3px solid  #f8da45;" />
+                                    </div>
+                                    <div class="column" style="width: 50%; margin-right: 70px;">
+                                        <p:outputLabel value="Legislación:" style="color: white; font-family: 'Inter', sans-serif; font-weight: 600;font-size:16px;"/>
+                                        <p:inputText value="#{gestionMatrizManagedBean.selectedGestorM.legislacion}" class="w-full" placeholder="Ingrese aqui la legislacion" style="background:transparent; color: white; border: none; border-bottom: 3px solid  #f8da45;" />
+
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <p:commandButton  value="Aceptar"
+                                                      styleClass="ui-button-raised ui-button-warning ui-button w-3 h-3rem mt-8 mb-8" 
+                                                      style="background-color: #FFF600; border: 2px solid #ffffff; font-weight: 600; color: black;"
+                                                      onkeyup="convertirAMayusculas(this);" 
+                                                      action="#{gestionMatrizManagedBean.agregarSubproceso}"
+                                                      update="tablaPrincipal"
+                                                      class="w-12 h-3rem"
+                                                      oncomplete="PF('ventanaEmergente3').hide();;" />      
+                                </div>
+                            </div>
+
+                            <!-- Separador -->
+                            <div class="divider" style="width: 5%; border-right: 1px solid #4d4d4d;"></div>
+
+                            <!-- Estimación de riesgo -->
+                            <div class="section" style="width: 50%; display: flex; flex-direction: column; align-items: center;">
+                                <h3 style="text-align: center; margin-bottom:40px;color: #ffffff;">ESTIMACIÓN DE RIESGO</h3>
+
+                                <div class="field" style="display: flex; flex-direction: row; margin-bottom: 20px; width: 750px;">
+                                    <div class="column" style="width:  90%; margin-left: 80px;">
+                                        <p:outputLabel class="mb-2" value="1. ¿Cuántas personas son expuestas?" style="color: white; font-family: 'Inter', sans-serif; font-weight: 600;font-size:16px;"/>
+                                        <p:selectOneRadio id="opcionPregunta1" layout="responsive" columns="3" value="#{gestionMatrizManagedBean.opcionPregunta1}">
+                                            <f:selectItem itemLabel="1 A 3" itemValue="1" />
+                                            <f:selectItem itemLabel="4 A 12" itemValue="2" />
+                                            <f:selectItem itemLabel="12 A MÁS" itemValue="3" />
+                                            <p:ajax update="tablaIPERC" process="@this"/>
+                                        </p:selectOneRadio>
+                                    </div>
+                                </div>
+
+                                <div class="field" style="display: flex; flex-direction: row; margin-bottom: 20px; width: 750px;">
+                                    <div class="column" style="width:  90%; margin-left: 80px;">
+                                        <p:outputLabel class="mb-2" value="2. ¿Cuántos son los procedimientos existentes?" style="color: white; font-family: 'Inter', sans-serif; font-weight: 600;font-size:16px;padding: 0px;"/>    
+                                        <p:selectOneRadio id="opcionPregunta2" layout="responsive" columns="3" value="#{gestionMatrizManagedBean.opcionPregunta2}">
+                                            <f:selectItem itemLabel="Existen son satisfactorios" itemValue="1" />
+                                            <f:selectItem itemLabel="Existen parcialmente, no son satisfactorios" itemValue="2" />
+                                            <f:selectItem itemLabel="No existen" itemValue="3" />
+                                            <p:ajax update="tablaIPERC" process="@this"/>
+                                        </p:selectOneRadio>
+                                    </div>
+                                </div>
+
+                                <div class="field" style="display: flex; flex-direction: row; margin-bottom: 20px; width: 750px;">
+                                    <div class="column" style="width:  90%; margin-left: 80px;">
+                                        <p:outputLabel class="mb-2" value="3. ¿Cuántas personas son capacitadas?" style="color: white; font-family: 'Inter', sans-serif; font-weight: 600;font-size:16px;padding: 0px;"/>
+                                        <p:selectOneRadio id="opcionPregunta3" layout="responsive" columns="3" value="#{gestionMatrizManagedBean.opcionPregunta3}">
+                                            <f:selectItem itemLabel="Personal entrenado" itemValue="1" />
+                                            <f:selectItem itemLabel="Personal parcialmente entrenado" itemValue="2" />
+                                            <f:selectItem itemLabel="Personal no entrenado" itemValue="3" />
+                                            <p:ajax update="tablaIPERC" process="@this"/>
+                                        </p:selectOneRadio>
+                                    </div>
+                                </div>
+
+                                <div class="field" style="display: flex; flex-direction: row; margin-bottom: 20px; width: 750px;">
+                                    <div class="column" style="width: 90%; margin-left: 80px;">
+                                        <p:outputLabel class="mb-2" value="4. ¿Cuántas personas son expuestas al riesgo?" style="color: white; font-family: 'Inter', sans-serif; font-weight: 600;font-size:16px;padding: 0px;"/>
+                                        <p:selectOneRadio id="opcionPregunta4" layout="responsive" columns="3" value="#{gestionMatrizManagedBean.opcionPregunta4}">
+                                            <f:selectItem itemLabel="Una vez al año" itemValue="1" />
+                                            <f:selectItem itemLabel="Una vez al mes" itemValue="2" />
+                                            <f:selectItem itemLabel="Permanentemente" itemValue="3" />
+                                            <p:ajax update="tablaIPERC" process="@this" />
+
+                                        </p:selectOneRadio>
+                                    </div>
+                                </div>
+
+                                <div class="field" style="display: flex; flex-direction: row; margin-bottom: 20px; width: 750px;">
+                                    <div class="column" style="width:  90%; margin-left: 80px;">
+                                        <p:outputLabel class="mb-2" value="5. ¿Cuál es la consecuencia?" style="color: white; font-family: 'Inter', sans-serif; font-weight: 600;font-size:16px;padding: 0px;"/>
+                                        <p:selectOneRadio id="opcionPregunta5" layout="responsive" columns="3" value="#{gestionMatrizManagedBean.opcionPregunta5}">
+                                            <f:selectItem itemLabel="Lesión sin incapacidad" itemValue="1" />
+                                            <f:selectItem itemLabel="Lesión con incapacidad temporal" itemValue="2" />
+                                            <f:selectItem itemLabel="Lesión con incapacidad permanente" itemValue="3" />
+                                            <p:ajax update="tablaIPERC" process="@this"/>
+                                        </p:selectOneRadio>
+                                    </div>
+                                </div>
+
+                                <div class="field" style="display: flex; flex-direction: row; width: 750px;">
+                                    <div class="column" style="width: 90%; margin-left: 80px;">
+                                        <p:dataTable id="tablaIPERC" style="box-shadow: 0px 0px 24px -3px rgba(255,255,255,1);" lazy="true">
+                                            <p:columnGroup type="header">
+                                                <p:row>
+                                                    <p:column colspan="4" headerText="INDICE DE PROBABILIDAD" style="text-align: center;
+                                                              background-color: #000000;
+                                                              color: white;
+                                                              border: 1px solid white;
+                                                              width: 160px;"/>
+                                                    <p:column rowspan="2" headerText="PROBABILIDAD" style="text-align: center;
+                                                              background-color: #000000;
+                                                              color: white;
+                                                              border: 1px solid white;
+                                                              width: 20px;"/>
+                                                    <p:column rowspan="2" headerText="SEVERIDAD" style="text-align: center;
+                                                              background-color: #000000;
+                                                              color: white;
+                                                              border: 1px solid white;
+                                                              width: 20px;"/>
+                                                    <p:column rowspan="2" headerText="GRADO DE RIESGO" style="text-align: center;
+                                                              background-color: #000000;
+                                                              color: white;
+                                                              border: 1px solid white;
+                                                              width: 20px;"/>
+                                                </p:row>
+                                                <p:row>
+                                                    <p:column headerText="IPE" style="text-align: center;
+                                                              background-color: #000000;
+                                                              color: white;
+                                                              border: 1px solid white;"/>
+                                                    <p:column headerText="IPr" style="text-align: center;
+                                                              background-color: #000000;
+                                                              color: white;
+                                                              border: 1px solid white;"/>
+                                                    <p:column headerText="IEC" style="text-align: center;
+                                                              background-color: #000000;
+                                                              color: white;
+                                                              border: 1px solid white;"/>
+                                                    <p:column headerText="IER" style="text-align: center;
+                                                              background-color: #000000;
+                                                              color: white;
+                                                              border: 1px solid white;"/>
+                                                </p:row>
+
+                                            </p:columnGroup>
+
+                                            <p:column style="background-color:#F8DA45; border: 1px solid white; text-align: center">
+                                                <h:outputText value="#{gestionMatrizManagedBean.opcionPregunta1}"/>
+                                            </p:column>
+
+                                            <p:column style="background-color:#F8DA45; border: 1px solid white; text-align: center">
+                                                <h:outputText value="#{gestionMatrizManagedBean.opcionPregunta2}"/>
+                                            </p:column>
+
+                                            <p:column style="background-color:#F8DA45; border: 1px solid white; text-align: center">
+                                                <h:outputText value="#{gestionMatrizManagedBean.opcionPregunta3}"/>
+                                            </p:column>
+
+                                            <p:column style="background-color:#F8DA45; border: 1px solid white; text-align: center">
+                                                <h:outputText value="#{gestionMatrizManagedBean.opcionPregunta4}"/>
+                                            </p:column>
+
+                                            <p:column style="background-color:#F8DA45; border: 1px solid white; text-align: center">
+                                                <h:outputText value="#{gestionMatrizManagedBean.sumaValores}"/>
+                                            </p:column>
+
+                                            <p:column style="background-color:#F8DA45; border: 1px solid white; text-align: center">
+                                                <h:outputText value="#{gestionMatrizManagedBean.sumaValores * gestionMatrizManagedBean.opcionPregunta5}" style="font-size: 30px; font-weight: bold;" />
+                                            </p:column>
+
+
+                                            <p:column style="background-color:#F8DA45; border: 1px solid white; text-align: center">
+                                                <h:outputText value="#{ges.esti_riesgo}" style="font-size: 30px; font-weight: bold;" />
+                                            </p:column>
+
+                                        </p:dataTable>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </p:dialog>
+
+                <!-- TABLA DE DATOS - CRUD (CREATE, READ, UPDATE & DELETE-->
+
+                <p:dataTable id="tablaPrincipal" var="ges" reflow="true" styleClass="products-table"
+                             value="#{gestionMatrizManagedBean.obtenerRegistrosGestorM()}" rowKey="#{ges.id_gestor_iperc}"  widgetVar="cellProducts" selectionMode="single" >   <!-- selection="#{gestionMatrizManagedBean.selectedGestorM}" Se utiliza para eliminar -->
+
+                    <p:columnGroup type="header">
+                        <p:row>
+                            <p:column rowspan="2" headerText="N°" style="text-align: center;
+                                      background-color: #000000;
+                                      color: white;
+                                      overflow: hidden; /* Oculta el contenido que desborda del borde redondo */
+                                      border: 1px solid white; /* Agrega un borde para que el redondeo sea más visible */"/>
+                            <p:column rowspan="2" headerText="PROCESOS" style="text-align: center;
+                                      background-color: #000000;
+                                      color: white;
+                                      border: 1px solid white;
+                                      width: 40px;"
+                                      id="procesoHeader"/>
+                            <p:column rowspan="2" headerText="SUB PROCESOS" style="text-align: center;
+                                      background-color: #000000;
+                                      color: white;
+                                      border: 1px solid white;
+                                      width: 40px;"/>
+                            <p:column colspan="5" headerText="DETALLES DEL SUB PROCESO" style="text-align: center;
+                                      background-color: #000000;
+                                      color: white;
+                                      border: 1px solid white;
+                                      width: 160px;"/>
+                            <p:column rowspan="2" headerText="CONSECUENCIA" style="text-align: center;
+                                      background-color: #000000;
+                                      color: white;
+                                      border: 1px solid white;
+                                      width: 20px;"/>
+                            <p:column rowspan="2" headerText="CONTROLES ACTUALES" style="text-align: center;
+                                      background-color: #000000;
+                                      color: white;
+                                      border: 1px solid white;
+                                      width: 20px;"/>
+                            <p:column rowspan="2" headerText="LEGISLACIÓN" style="text-align: center;
+                                      background-color: #000000;
+                                      color: white;
+                                      border: 1px solid white;
+                                      width: 20px;"/>
+                            <p:column rowspan="2" headerText="ESTIMACIÓN RIESGO" style="text-align: center;
+                                      background-color: #000000;
+                                      color: white;
+                                      border: 1px solid white;
+                                      width: 20px;"/>
+                        </p:row>
+
+                        <p:row>
+                            <p:column headerText="ACTIVIDAD" style="text-align: center;
+                                      background-color: #000000;
+                                      color: white;
+                                      border: 1px solid white;"/>
+                            <p:column headerText="RUTINARIA" style="text-align: center;
+                                      background-color: #000000;
+                                      color: white;
+                                      border: 1px solid white;"/>
+                            <p:column headerText="PELIGRO" style="text-align: center;
+                                      background-color: #000000;
+                                      color: white;
+                                      border: 1px solid white;"/>
+                            <p:column headerText="RIESGO" style="text-align: center;
+                                      background-color: #000000;
+                                      color: white;
+                                      border: 1px solid white;"/>
+                            <p:column headerText="TIPO DE RIESGO" style="text-align: center;
+                                      background-color: #000000;
+                                      color: white;
+                                      border: 1px solid white;"/>
+                        </p:row>
+                    </p:columnGroup>
+
+                    <p:column style="background-color:#F8DA45; border: 1px solid white; text-align: center" class="no-drag">
+                        <h:outputText value="#{ges.id_gestor_iperc}"/>
+                    </p:column>
+
+                    <p:column id="procesoColumn" style="background-color:#F8DA45; border: 1px solid white; text-align: center" class="no-drag">
+                        <h:outputText value="#{ges.nombre_proceso}"/>
+                    </p:column>  
+
+                    <p:column style="background-color:#F8DA45; border: 1px solid white; text-align: center" class="drag-and-drop">
+                        <h:outputText value="#{ges.actividad}"/>
+                    </p:column>
+
+                    <p:column style="background-color:#F8DA45; border: 1px solid white; text-align: center" class="drag-and-drop">
+                        <h:outputText value="#{ges.rutinaria}" />
+                    </p:column> 
+
+                    <p:column style="background-color:#F8DA45; border: 1px solid white; text-align: center" class="drag-and-drop">
+                        <h:outputText value="#{ges.peligros}" />
+                    </p:column>
+
+                    <p:column style="background-color:#F8DA45; border: 1px solid white; text-align: center" class="drag-and-drop">
+                        <h:outputText value="#{ges.riesgos}"/>
+                    </p:column>
+
+                    <p:column style="background-color:#F8DA45; border: 1px solid white; text-align: center" class="drag-and-drop">
+                        <h:outputText value="#{ges.tipo_riesgo}"/>
+                    </p:column> 
+
+                    <p:column style="background-color:#F8DA45; border: 1px solid white; text-align: center" class="drag-and-drop">
+                        <h:outputText value="#{ges.consecuencia}"/>
+                    </p:column>
+
+                    <p:column style="background-color:#FFFFFF; border: 1px solid black; text-align: center" class="drag-and-drop">
+                        <h:outputText value="#{ges.controles}"/>
+                    </p:column>
+
+                    <p:column style="background-color:#FFFFFF; border: 1px solid black; text-align: center" class="drag-and-drop">
+                        <h:outputText value="#{ges.legislacion}"/>
+                    </p:column>
+
+                    <p:column style="background-color:#FFFFFF; border: 1px solid black; text-align: center" class="drag-and-drop">
+                        <h:outputText value="#{ges.nombre_subproceso}"/>
+                    </p:column>
+
+                    <p:column class="drag-and-drop" style="text-align: center;font-size:30px;font-weight: bold; #{ges.esti_riesgo >= 25 ? 'background-color: #FA5C3C; border: 1px solid black;' : ges.esti_riesgo >= 9 ? 'background-color: #F2F911; border: 1px solid black;' : 'background-color: #96DD50; border: 1px solid black;'}">
+                        <h:outputText value="#{ges.esti_riesgo}"/>
+                    </p:column>
+
+                </p:dataTable>
+
+                <p:contextMenu for="tablaPrincipal" widgetVar="cMenu">
+                    <p:menuitem value="Sub proceso" icon="pi pi-plus" onclick="mostrarVentanaEmergente2()"/>
+                    <p:menuitem value="Editar" icon="pi pi-pencil" onclick="PF('cMenu').hide()"/>
+                    <p:menuitem value="Eliminar" icon="pi pi-trash" action="#{gestionMatrizManagedBean.eliminarRegistro}" update="tablaPrincipal"/>
+                </p:contextMenu>
+            </h:form>
+        </div>
+
+        <script>
+            function mostrarVentanaEmergente() {
+                PF('ventanaEmergente').show();
+            }
+
+            function mostrarVentanaEmergente2() {
+                PF('ventanaEmergente2').show();
+            }
+
+            function mostrarNuevaVentanaEmergente() {
+                PF('ventanaEmergente3').show(); // Abre la segunda ventana emergente
+            }
+
+            function convertirAMayusculas(inputElement) {
+                inputElement.value = inputElement.value.toUpperCase();
+            }
+
+            $(document).ready(function () {
+                var draggedRow = null;
+                var droppedRow = null;
+                $(".products-table tbody tr").not(".no-drag").draggable({
+                    helper: "clone",
+                    start: function (event, ui) {
+                        draggedRow = $(this);
+                        draggedRow.css("opacity", "0.5"); // Reducir la opacidad de la fila arrastrada
+                    },
+                    stop: function (event, ui) {
+                        draggedRow.css("opacity", "1"); // Restaurar la opacidad de la fila arrastrada
+                    }
+                });
+                $(".products-table tbody tr").not(".no-drag").droppable({
+                    accept: ".products-table tbody tr:not(.no-drag)",
+                    drop: function (event, ui) {
+                        droppedRow = $(this);
+                        // Intercambiar las filas
+                        var tempData = draggedRow.html();
+                        draggedRow.html(droppedRow.html());
+                        droppedRow.html(tempData);
+                        draggedRow.css("opacity", "1"); // Restaurar la opacidad de la fila arrastrada
+                    }
+                });
+            });
+
+        </script>
+    </ui:define>
+</ui:composition>
+

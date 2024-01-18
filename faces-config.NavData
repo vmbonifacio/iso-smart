@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="formAccidente.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="formInvestigacion.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="formAccidente2.xhtml" x="150" y="1350" zoom="true"/>
+        <Node id="formIncidente3.xhtml" x="1400" y="600" zoom="true"/>
+        <Node id="index.xhtml" x="1900" y="150" zoom="true"/>
+        <Node id="formIncidente2.xhtml" x="1150" y="300" zoom="true"/>
+        <Node id="resources/primeblocks/blockViewer.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="formAccidente3.xhtml" x="400" y="1200" zoom="true"/>
+        <Node id="formIncidente.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="formConsecuencia.xhtml" x="2400" y="150" zoom="true"/>
+        <Node id="dashboard.xhtml" x="2150" y="150" zoom="true"/>
+        <Node id="login.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="princOcurrencia.xhtml" x="2150" y="300" zoom="true"/>
+        <Node id="formEstructuraOrg.xhtml" x="150" y="1200" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

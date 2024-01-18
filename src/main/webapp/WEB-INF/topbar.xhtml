@@ -1,0 +1,384 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core" 
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" 
+                xmlns:po="http://primefaces.org/rain">
+
+    <ui:define name="head">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/sass/layout/topbar/_topbar_common.scss"/>
+        <style>
+            /* Estilo para el menú cerrado */
+            .menu-wrapper {
+                display: none; /* Oculta el menú al cargar la página */
+                transform: translateX(-100%); /* Desliza el menú hacia la izquierda para ocultarlo */
+            }
+
+            /* Estilo para el menú abierto */
+            .menu-open {
+                display: block; /* Muestra el menú cuando se aplica la clase menu-open */
+                animation: fadeinleft 0.40s linear; /* Aplica la animación al abrir */
+            }
+
+            /* Define la animación */
+            @keyframes fadeinleft {
+                0%   {
+                    opacity: 0;
+                    transform: translateX(-100%);
+                    transition: transform .40s cubic-bezier(0, 0, 0.2, 1), opacity .12s cubic-bezier(0, 0, 0.2, 1);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateX(0%);
+                }
+            }
+
+            /* Asegúrate de que los íconos de hamburguesa y aspa tengan las clases correctas */
+            .menu-button-bars span,
+            .menu-button-times span {
+                /* Estilos para las líneas de la hamburguesa */
+            }
+
+            /* Agrega estilos para ocultar las líneas de la hamburguesa y mostrar las de aspa */
+            .menu-button-times span {
+                display: none; /* Oculta las líneas de la hamburguesa */
+            }
+
+            /* Puedes ajustar el estilo de la clase .hide según tus necesidades */
+            .hide {
+                display: none;
+            }
+
+            ::-webkit-scrollbar {
+                width: 6px; /* Ancho del scrollbar vertical */
+                background-color: #000000; /* Color de fondo del scrollbar */
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: rgb(74,73,57);
+                background: linear-gradient(0deg, rgba(74,73,57,1) 0%, rgba(255,235,0,1) 100%);
+                height: 10px;
+                border-radius: 4px;
+            }
+
+            /* Estilo para el submenu oculto */
+            .layout-rightpanel-submenu {
+                display: none;
+                position: absolute;
+                top: 100%; /* Coloca el submenu justo debajo del botón */
+                left: 0;
+                width: 100%;
+                background-color: #fff;
+                padding: 10px;
+                border-top: 1px solid #ddd;
+                transition: top 0.4s ease; /* Añade una transición para la posición */
+                z-index: 100; /* Ajusta el z-index según sea necesario */
+            }
+
+            /* Estilo para el botón Cerrar Sesión */
+            .close-session-button {
+                background-color: #ff0000; /* Cambia el color de fondo según tus preferencias */
+                color: #fff;
+                padding: 10px 20px;
+                border: none;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+
+            /* Cambia el color de fondo del botón al pasar el mouse por encima */
+            .close-session-button:hover {
+                background-color: #cc0000; /* Cambia el color de fondo al pasar el mouse */
+            }
+        </style>
+    </ui:define>
+
+    <div class="layout-topbar"> 
+        <div class="layout-topbar-wrapper" style="background-color: #ffd713;">
+            <div class="layout-topbar-left">
+                <h:link id="logolink" outcome="/dashboard" styleClass="layout-topbar-logo">
+                    <h:graphicImage library="img" name="LOGO ISO SMART.png" alt="Mi imagen" style="width: 60px; height: 52px; border-radius:10px;box-shadow: 12px 6px 39px -7px rgba(0,0,0,1);" class="mt-1" />
+                </h:link>
+            </div>
+            <div class="layout-topbar-right" style="background-color: #ffd713;">
+                <div class="menu-button-wrapper" id="menuButton">
+                    <a href="#" class="menu-button" id="toggleMenuButton">
+                        <div class="menu-button-bars">
+                            <span style="color:black;"></span>
+                            <span style="color:black;"></span>
+                            <span style="color:black;"></span>
+                        </div>
+                        <div class="menu-button-times">
+                            <span style="color:black;"></span>
+                            <span style="color:black;"></span>
+                        </div>
+                    </a>
+                </div>
+                <ul class="layout-topbar-actions">
+                    <li class="search-item topbar-item">
+                        <h:form onsubmit="return false;">
+                            <h:panelGroup styleClass="md-inputfield search-input-wrapper"> 
+                                <p:inputText style="background-color: #ffd713; color:black; border: 2px solid black;"
+                                             placeholder="Buscar... "/>
+                                <i class="pi pi-search" style="color:black;"></i>
+                            </h:panelGroup>
+                        </h:form>
+                    </li>
+                    <li class="topbar-item notifications">
+                        <a href="#">
+                            <i class="topbar-icon pi pi-bell" style="color:black;"></i>
+                        </a>
+                        <ul>
+                            <li class="layout-submenu-header">
+                                <h6 class="header-text">Notificaciones</h6>
+                            </li>
+                            <li>
+                                <a tabindex="0">
+                                    <i class="pi pi-shopping-cart"></i>
+                                    <div class="notification-item">
+                                        <div class="notification-summary">Nueva orden</div>
+                                        <div class="notification-detail">Usted tiene<strong>3</strong>nuevas ordenes.</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a tabindex="0">
+                                    <i class="pi pi-check-square"></i>
+                                    <div class="notification-item">
+                                        <div class="notification-summary">Retiro completado</div>
+                                        <div class="notification-detail">Los fondos están en camino.</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a tabindex="0">
+                                    <i class="pi pi-chart-line"></i>
+                                    <div class="notification-item">
+                                        <div class="notification-summary">Reportes mensuales</div>
+                                        <div class="notification-detail">Los nuevos reportes están listos.</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a tabindex="0">
+                                    <i class="pi pi-comment"></i>
+                                    <div class="notification-item">
+                                        <div class="notification-summary">Comentarios</div>
+                                        <div class="notification-detail"><strong>2</strong> Nuevos comentarios.</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a tabindex="0">
+                                    <i class="pi pi-refresh"></i>
+                                    <div class="notification-item">
+                                        <div class="notification-summary">Solicitud de contracargo</div>
+                                        <div class="notification-detail"><strong>1</strong> Para revisar.</div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="topbar-item messages">
+                        <a href="#">
+                            <i class="topbar-icon pi pi-comment" style="color:black;"></i>
+                        </a>
+                        <ul >
+                            <li class="layout-submenu-header">
+                                <h6 class="header-text">Mensajes </h6>
+                            </li>
+                            <li>
+                                <a tabindex="0">
+                                    <p:graphicImage name="images/dashboard/avatar-1.png" library="demo" />
+                                    <div class="notification-item">
+                                        <div class="notification-summary">Nueva Orden</div>
+                                        <div class="notification-detail">Usted tiene<strong>3</strong> nuevas ordenes.</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a tabindex="0">
+                                    <p:graphicImage name="images/dashboard/avatar-2.png" library="demo" />
+                                    <div class="notification-item">
+                                        <div class="notification-summary">Retiro compleado</div>
+                                        <div class="notification-detail">Los fondos están en camino.</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a tabindex="0">
+                                    <p:graphicImage name="images/dashboard/avatar-3.png" library="demo" />
+                                    <div class="notification-item">
+                                        <div class="notification-summary">Reportes mensuales</div>
+                                        <div class="notification-detail">Los nuevos reportes están en camino.</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a tabindex="0">
+                                    <p:graphicImage name="images/dashboard/avatar-2.png" library="demo" />
+                                    <div class="notification-item">
+                                        <div class="notification-summary">Comentarios</div>
+                                        <div class="notification-detail"><strong>2</strong> Nuevos comentarios.</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a tabindex="0">
+                                    <p:graphicImage name="images/dashboard/avatar-4.png" library="demo" />
+                                    <div class="notification-item">
+                                        <div class="notification-summary">Solicitud de contracargo</div>
+                                        <div class="notification-detail"><strong>1</strong> Para revisar.</div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="topbar-item sales">
+                        <a href="#">
+                            <i class="topbar-icon pi pi-tag" style="color:black;"></i>
+                        </a>
+                        <ul >
+                            <li class="layout-submenu-header">
+                                <h6 class="header-text">Ventas </h6>
+                            </li>
+                            <li>
+                                <a tabindex="0">
+                                    <i class="pi pi-mobile"></i>
+                                    <div class="notification-item">
+                                        <div class="notification-summary">Estuche negro mate</div>
+                                        <div class="notification-detail"><strong>2</strong> item</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a tabindex="0">
+                                    <i class="pi pi-tag"></i>
+                                    <div class="notification-item">
+                                        <div class="notification-summary">Camiseta del espacio</div>
+                                        <div class="notification-detail"><strong>1</strong> item</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a tabindex="0">
+                                    <i class="pi pi-tag"></i>
+                                    <div class="notification-item">
+                                        <div class="notification-summary">Sudadera naranja con negro</div>
+                                        <div class="notification-detail"><strong>1</strong> item</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a tabindex="0">
+                                    <i class="pi pi-paperclip"></i>
+                                    <div class="notification-item">
+                                        <div class="notification-summary">Cuaderno maravilla</div>
+                                        <div class="notification-detail"><strong>2</strong> item</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a tabindex="0">
+                                    <i class="pi pi-desktop"></i>
+                                    <div class="notification-item">
+                                        <div class="notification-summary">Sticker de portal verde</div>
+                                        <div class="notification-detail"><strong>5</strong> item</div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <ui:fragment rendered="#{guestPreferences.profileMode == 'popup' ? true : false}">
+                        <li class="topbar-item user-profile">
+                            <a href="#">
+                                <p:graphicImage name="images/avatar-profilemenu.png" library="rain-layout" />
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <i class="pi pi-user"></i>
+                                        <span>Perfil</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="pi pi-cog"></i>
+                                        <span>Configuraciones</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="pi pi-envelope"></i>
+                                        <span>Mensajes</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="pi pi-bell"></i>
+                                        <span>Notificaciones</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ui:fragment>
+
+                </ul>
+                <a href="#" class="layout-rightpanel-button" id="toggleSubmenuButton">
+                    <i class="pi pi-ellipsis-v" style="color:black;"></i>
+                </a>
+
+                <p:menu id="submenu" style="display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); transition: top 0.4s ease;">
+                    <p:menuitem value="Cerrar Sesión" outcome="login.xhtml" icon="pi pi-sign-out"/>
+                </p:menu>
+            </div>
+        </div>
+        
+        <script>
+            $(document).ready(function () {
+                const toggleMenuButton = document.getElementById("toggleMenuButton");
+                const menuWrapper = document.querySelector(".menu-wrapper");
+
+                toggleMenuButton.addEventListener("click", () => {
+                    menuWrapper.classList.toggle("menu-open");
+                });
+            });
+
+            $(document).ready(function () {
+                const toggleSubmenuButton = document.getElementById("toggleSubmenuButton");
+                const submenu = document.getElementById("submenu");
+                let isOpen = false; // Variable para rastrear si el menú está abierto o cerrado
+
+                toggleSubmenuButton.addEventListener("click", () => {
+                    if (isOpen) {
+                        // Si el menú está abierto, ciérralo
+                        submenu.style.display = "none";
+                    } else {
+                        // Si el menú está cerrado, ábrelo y calcula la posición
+                        const buttonRect = toggleSubmenuButton.getBoundingClientRect();
+                        const buttonWidth = toggleSubmenuButton.offsetWidth;
+                        const left = buttonRect.left;
+                        const top = buttonRect.bottom;
+
+                        // Ajusta la posición del menú para que aparezca correctamente
+                        const windowWidth = window.innerWidth;
+                        const menuWidth = submenu.offsetWidth;
+                        const maxLeft = windowWidth - menuWidth;
+
+                        if (left > maxLeft) {
+                            submenu.style.left = maxLeft + "px";
+                        } else {
+                            submenu.style.left = left + "px";
+                        }
+
+                        submenu.style.top = top + "px";
+                        submenu.style.display = "block";
+                    }
+
+                    // Cambia el estado de isOpen
+                    isOpen = !isOpen;
+                });
+            });
+        </script>
+    </div>
+</ui:composition>

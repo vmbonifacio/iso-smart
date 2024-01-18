@@ -1,0 +1,378 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="title">Consecuencia</ui:define>
+
+
+    <ui:define name="viewname">
+        <li>FORMULARIO</li>
+        <li><i class="pi pi-chevron-right"></i></li>
+        <li>CONSECUENCIA</li>
+        <li><i class="pi pi-chevron-right"></i></li>
+        <li>ACCIDENTE</li>
+        <li><i class="pi pi-chevron-right"></i></li>
+        <li>DATOS DEL ACCIDENTADO</li>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form>
+            <h5 class="h-5rem text-center text-4xl p-4 text-white-alpha-90" 
+                style="background-color: #2A2A2A;
+                font-family: 'Inter', sans-serif;
+                font-weight: 600;">
+                REGISTRO DE ACCIDENTES
+            </h5>
+
+            <div class="col-12 p-3" > 
+                <!-- DATOS DEL EMPLEADOR PRINCIPAL -->
+                <div class="ui-fluid formgrid grid pl-2"
+                     style="border-radius: 1rem 1rem 0 0;
+                     border-bottom: none;
+                     background-color: #F8DA45;
+                     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);">
+                    <h5 class="p-3 text-2xl"
+                        style="font-family: 'Inter', sans-serif;
+                        font-weight: 600;
+                        color: black;">
+                        DATOS DEL EMPLEADOR PRINCIPAL
+                    </h5>  
+                </div>
+
+                <div class="ui-fluid formgrid grid"  
+                     style="background-color: #EDEDED;
+                     margin-bottom: 70px;
+                     padding: 30px 90px 30px 90px;
+                     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+                     border-radius: 0 0 1rem 1rem;">
+
+                    <!-- TIPO DE ACCIDENTADO -->
+
+                    <div class="field col-12 md:6 w-8 mr-auto" style="color: black;">
+                        <p:outputLabel  value="13. TIPO DE ACCIDENTADO" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;"/>
+                        <p:selectOneRadio id="radioOption" layout="responsive" value="#{personaTManagedBean.selectedPersonaT.tipo_acci}" columns="3" immediate="true" onchange="handleChange(this)">
+                            <f:selectItem itemLabel="Trabajador de empleador principal" itemValue="1" />
+                            <f:selectItem itemLabel="Trabajador de empleador de terceros" itemValue="radioOption2" id="radioOption2" />
+                            <f:selectItem itemLabel="Civil" itemValue="3"  />
+                        </p:selectOneRadio>
+                    </div>
+                    <div class="field col-12 md:col-6 w-4" >
+                        <p:outputLabel  value="13.1 MARCAR COMO NN" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;"/>
+                        <p:selectManyCheckbox layout="responsive" columns="1">
+                            <f:selectItem itemLabel="" itemValue="NN" />
+                        </p:selectManyCheckbox> 
+                    </div>
+
+                    <!--NOMBRES Y APELLIDOS-->
+
+                    <div class="grid formgrid w-full mt-4">
+                        <div class="col-12 mb-2 lg:col-4 mb-lg-0">
+                            <p:outputLabel for="ncompleto" value="14. Nombres completos"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />    
+                            <p:inputText id="ncompleto" class="w-full" value="#{personaTManagedBean.selectedPersonaT.nombres_c}" placeholder="Ingrese aqui sus nombres completos" style="background:transparent; color: black; border: none; border-bottom: 3px solid  #f8da45;"/>
+                        </div>
+
+                        <div class="col-12 mb-2 lg:col-4 mb-lg-0">
+                            <p:outputLabel for="apaterno" value="15. Apellido paterno"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />    
+                            <p:inputText id="apaterno" class="w-full" value="#{personaTManagedBean.selectedPersonaT.apellido_p}" placeholder="Ingrese aqui su apellido paterno" style="background:transparent; color: black; border: none; border-bottom: 3px solid  #f8da45;"/>
+                        </div>
+
+                        <div class="col-12 mb-2 lg:col-4 mb-lg-0">
+                            <p:outputLabel for="amaterno" value="16. Apellido materno"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />    
+                            <p:inputText id="amaterno" class="w-full" value="#{personaTManagedBean.selectedPersonaT.apellido_m}" placeholder="Ingrese aqui su apellido materno" style="background:transparent; color: black; border: none; border-bottom: 3px solid  #f8da45;"/>
+                        </div>
+                    </div>
+                    <div class="grid formgrid w-8 mt-4 mb-3">
+                        <div class="col-12 mb-2 lg:col-4 mb-lg-0">
+                            <p:outputLabel for="dni" value="17. N° DNI/CE"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />    
+                            <p:inputText id="dni" class="w-full" value="#{personaTManagedBean.selectedPersonaT.dni_ce}" placeholder="Ingrese aqui su DNI/CE" style="background:transparent; color: black; border: none; border-bottom: 3px solid  #f8da45;"
+                                         onkeypress="return /^[0-9]+$/.test(event.key)"
+                                         maxlength="8"/>
+                        </div>
+
+                        <div class="col-12 mb-2 lg:col-4 mb-lg-0">
+                            <p:outputLabel for="edad" value="18. Edad"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />    
+                            <p:inputText id="edad"  value="#{personaTManagedBean.selectedPersonaT.edad}" placeholder="Ingrese aqui su edad" style="background:transparent; color: black; border: none; border-bottom: 3px solid #f8da45;"
+                                         onkeypress="return /^[0-9]+$/.test(event.key)"
+                                         maxlength="2"/>
+                        </div>
+
+                        <div class="field col-12 md:col-6 w-4 mr-auto" style="color: black;">
+                            <p:outputLabel  value="19. Género" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;"/>
+                            <p:selectOneRadio layout="responsive" value="#{personaTManagedBean.selectedPersonaT.genero}" columns="2">
+                                <f:selectItem itemLabel="M" itemValue="M"/>
+                                <f:selectItem itemLabel="F" itemValue="F" />
+                            </p:selectOneRadio>
+                        </div>
+                    </div>
+
+                    <!-- DATOS TRABAJADOR PRINCIPAL-->
+
+                    <div class="ui-fluid formgrid w-full shadow-6" style="background-color: #f8da45; border-radius: 16px; margin: auto;margin-top:25px;margin-bottom: 40px; padding-left: 40px; padding-top: 30px; padding-right: 40px; padding-bottom: 30px;">
+
+                        <div class="grid formgrid w-full">     
+                            <!-- MOSTRAR EMPRESA TERCIARIA -->
+
+                            <div class="col-12 mb-2 lg:col-4 mb-lg-0">
+                                <p:outputLabel value="Empresa tercera a la que pertenece:" class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />   
+                                
+                                <p:selectOneMenu id="empresa" value="#{personaTManagedBean.selectedPersonaT.empresa_p}" 
+                                                 style="background:transparent; color: black; border: none; border-bottom: 3px solid black;">
+                                    <f:selectItem itemLabel="Seleccione" noSelectionOption="true"/>
+                                    <f:selectItems value="#{personaTManagedBean.listaRazonSocial}" var="empresa" />
+                                </p:selectOneMenu>
+                            </div>
+
+                            <!-- ÁREA DE TRABAJO -->
+
+                            <div class="col-12 mb-2 lg:col-4 mb-lg-0">
+                                <p:outputLabel value="Área de trabajo"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;"/>    
+
+                                <p:inputText id="areatb" class="w-full" value="#{personaTManagedBean.selectedPersonaT.area_trabajo}" placeholder="Ingrese aqui el área de trabajo" 
+                                             style="background:transparent; color: black; border: none; border-bottom: 3px solid black;"/>
+                            </div>
+
+                            <!-- PUESTO DE TRABAJO -->
+
+                            <div class="col-12 mb-2 lg:col-4 mb-lg-0">
+                                <p:outputLabel value="Puesto de trabajo"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />  
+
+                                <p:inputText id="ptrabajo" class="w-full" value="#{personaTManagedBean.selectedPersonaT.puesto_trabajo}" placeholder="Ingrese aqui el puesto de trabajo" 
+                                             style="background:transparent; color: black; border: none; border-bottom: 3px solid black;"/>
+                            </div>
+                        </div>
+
+                        <!-- TURNO DEL EMPLEO -->
+
+                        <div class="grid formgrid w-full">      
+                            <!-- ANTIGUEDAD DE EMPLEO -->
+
+                            <div class="col-12 mb-2 lg:col-4 mb-lg-0">
+                                <p:outputLabel value="Antiguedad de empleo"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;"/>    
+
+                                <p:inputText id="aempleo" class="w-full" value="#{personaTManagedBean.selectedPersonaT.antiguedad_empleo}"  placeholder="Ingrese aqui la antiguedad de empleo" 
+                                             style="background:transparent; color: black; border: none; border-bottom: 3px solid black;"/>
+                            </div>
+
+                            <!-- TURNO DEL EMPLEO -->
+
+                            <div class="col-12 mb-2 lg:col-4 mb-lg-0" style="color: black;">
+                                <p:outputLabel  value="Turno" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;"/>
+                                
+                                <p:selectOneRadio layout="responsive" value="#{personaTManagedBean.selectedPersonaT.turno}" columns="3">
+                                    <f:selectItem itemLabel="Mañana" itemValue="Mañana"/>
+                                    <f:selectItem itemLabel="Tarde" itemValue="Tarde"/>
+                                    <f:selectItem itemLabel="Noche" itemValue="Noche"/>
+                                </p:selectOneRadio>
+                            </div>
+
+                            <!-- TIPO DE CONTRATO -->
+                            <div class="col-12 mb-2 lg:col-4 mb-lg-0">
+                                <p:outputLabel for="contrato" value="Tipo de contrato"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />   
+
+                                <p:inputText id="contrato" class="w-full" value="" 
+                                             placeholder="Ingrese aqui el tipo de contrato"
+                                             style="background:transparent; color: black; border: none; border-bottom: 3px solid black;"
+                                             onkeypress="return /^[a-zA-Z\s]+$/.test(event.key);"/>
+                            </div>
+
+                            <!-- TIEMPO DE EXPERIENCIA -->
+
+                            <div class="col-12 mb-2 lg:col-4 mb-lg-0 mt-2">
+                                <p:outputLabel for="texpe" value="Tiempo de experiencia en el trabajo"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />    
+                                <p:inputText id="texpe" class="w-full" value="" 
+                                             placeholder="Ingrese aqui el tiempo de exp." 
+                                             style="background:transparent; color: black; border: none; border-bottom: 3px solid black;"/>
+                            </div>
+
+
+                            <!-- NUM HORAS TRABAJADAS -->
+                            <div class="col-12 mb-2 lg:col-4 mb-lg-0 mt-2">
+                                <p:outputLabel for="jlaboral" value="N° horas trabajadas en jornada laboral (antes del accidente)"  class="pt-2" style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />    
+
+                                <p:inputText id="jlaboral" class="w-6" value="#{personaTManagedBean.selectedPersonaT.h_trabajadas_antes_acci}" placeholder="Ingrese aqui el numero de horas" style="background:transparent; color: black; border: none; border-bottom: 3px solid black;"/>
+                            </div>
+                        </div>    
+                    </div>
+
+                    <!-- BOTON -->
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3 mt-2">
+                        <p:commandButton style="color: white; font-family: 'Inter', sans-serif; font-weight: 600; background-color: #741818; height: 50px; border-color: #741818; border-radius: 14px; box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.1), 0px 4px 5px -2px rgba(0, 0, 0, 0.12), 0px 10px 15px -5px rgba(0, 0, 0, 0.2) !important;" 
+                                         action="#{personaTManagedBean.agregarRegistroT}" update="tablaPersonasT" value="Registrar persona accidentada"/>
+                    </div>
+
+                    <!-- TABLA DE TRABAJADORES DE EMPRESAS TERCIARIAS -->
+
+                    <div class="w-full mt-2">
+                        <h3 style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" >LISTA DE TRABAJADORES ACCIDENTADOS</h3>
+                    </div>
+
+                    <p:dataTable id="tablaPersonasT" value="#{personaTManagedBean.obtenerRegistrosPersonaT()}" var="pert" resizeMode="expand" 
+                                 showGridlines="true" rowKey="#{pert.id_personaa_t}" emptyMessage="No se encontraron registros" reflow="true" rows="4" 
+                                 style="box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.1), 0px 4px 5px -2px rgba(0, 0, 0, 0.12), 0px 10px 15px -5px rgba(0, 0, 0, 0.2) !important; margin-top: 24px; display: #{personaManagedBean.mostrarTabla ? 'table' : 'none'}"  >
+
+                        <p:columnGroup type="header">
+                            <p:row>
+                                <p:column headerText="N°" rowspan="2" style="border: 1px solid white;width: 0px;background-color: #20212B;color: white;text-align: center;"/>
+                                <p:column headerText="DNI / CE" rowspan="2" style="border: 1px solid white;width: 0px;background-color: #20212B;color: white;text-align: center;"/>
+                                <p:column headerText="TRABAJADOR ACCIDENTADO" colspan="3" style="border: 1px solid white;width: 43px;background-color: #20212B;color: white;text-align: center;"/>
+                                <p:column headerText="Edad" rowspan="2" style="border: 1px solid white;width: 0px;background-color: #20212B;color: white;text-align: center;"/>
+                                <p:column headerText="Sexo" rowspan="2" style="border: 1px solid white;width: 0px;background-color: #20212B;color: white;text-align: center;"/>
+                                <p:column headerText="Área de Trabajo" rowspan="2" style="border: 1px solid white;width: 0px;background-color: #20212B;color: white;text-align: center;"/>
+                                <p:column headerText="Empresa a la que pertenece" rowspan="2" style="border: 1px solid white;width: 0px;background-color: #20212B;color: white;text-align: center;"/>
+                                <p:column headerText="Turno" rowspan="2" style="border: 1px solid white;width: 0px;background-color: #20212B;color: white;text-align: center;"/>
+                                <p:column headerText="Acción" rowspan="2" style="border: 1px solid white;width: 0px;background-color: #20212B;color: white;text-align: center;"/>
+                            </p:row>
+                            <p:row>
+                                <p:column headerText="Nombre" style="border: 1px solid white;width: 0px;background-color: #20212B;color: white;text-align: center;" />
+                                <p:column headerText="Apellido Paterno" style="border: 1px solid white;width: 0px;background-color: #20212B;color: white;text-align: center;" />
+                                <p:column headerText="Apellido Materno" style="border: 1px solid white;width: 0px;background-color: #20212B;color: white;text-align: center;" />
+                            </p:row>
+                        </p:columnGroup>
+
+                        <p:column style="background-color: #F8DA45; text-align: center; border: 1px solid white">
+                            <h:outputText value="#{pert.id_personaa_t}" />
+                        </p:column>
+
+                        <p:column style="background-color: #F8DA45; text-align: center; border: 1px solid white">
+                            <h:outputText value="#{pert.dni_ce}" />
+                        </p:column>
+
+                        <p:column style="background-color: #F8DA45; text-align: center; border: 1px solid white">
+                            <h:outputText value="#{pert.nombres_c}" />
+                        </p:column>
+
+                        <p:column style="background-color: #F8DA45; text-align: center; border: 1px solid white">
+                            <h:outputText value="#{pert.apellido_p}" />
+                        </p:column>
+
+                        <p:column style="background-color: #F8DA45; text-align: center; border: 1px solid white">
+                            <h:outputText value="#{pert.apellido_m}" />
+                        </p:column>
+
+                        <p:column style="background-color: #F8DA45; text-align: center; border: 1px solid white">
+                            <h:outputText value="#{pert.edad}" />
+                        </p:column>
+
+                        <p:column style="background-color: #F8DA45; text-align: center; border: 1px solid white">
+                            <h:outputText value="#{pert.genero}" />
+                        </p:column>
+
+                        <p:column style="background-color: #F8DA45; text-align: center; border: 1px solid white">
+                            <h:outputText value="#{pert.area_trabajo}" />
+                        </p:column>
+
+                        <p:column style="background-color: #F8DA45; text-align: center; border: 1px solid white">
+                            <h:outputText value="#{pert.puesto_trabajo}" />
+                        </p:column>
+
+                        <p:column style="background-color: #F8DA45; text-align: center; border: 1px solid white">
+                            <h:outputText value="#{pert.turno}" />
+                        </p:column>
+
+                        <p:column headerText="Acción" style="border: 1px solid white;">
+                            <p:commandButton 
+                                value="Editar"
+                                oncomplete="PF('dlgEditar').show()" 
+                                process="@this"
+                                styleClass="rounded-button ui-button-info mb-2" >
+
+                                <f:setPropertyActionListener target="#{personaManagedBean.personaT}" value="#{per}" />
+                            </p:commandButton>
+
+                            <p:commandButton 
+                                value="Borrar"
+                                styleClass="rounded-button ui-button-danger mb-2" 
+                                action="#{personaTManagedBean.eliminarRegistroT(pert.id_personaa_t)}"                
+                                update="@form" />
+                        </p:column>
+                    </p:dataTable>    
+                </div>  
+            </div>
+
+
+            <!--BOTONES-->
+            <div class="w-full" style="background-color: transparent;">
+                <div class="p-toolbar" style="display: flex; justify-content: flex-end; align-items: center;">
+                    <div style="margin-left: auto;">
+                        <p:button outcome="formAccidente" value="Regresar" styleClass="ui-button-raised ui-button-warning"
+                                  style="background-color: #2A2A2A; color: #FFF600; font-family: 'Inter', sans-serif; font-weight: 600; border-radius: 10px; width: 210px; height: 50px; border-color: #2A2A2A;" />
+                        <p:button outcome="formPrincipalOcurrencia" value="Guardar Cambios" styleClass="ui-button-raised ui-button-warning"
+                                  style="background-color: #FFF600; color: black; font-family: 'Inter', sans-serif; font-weight: 600; border-radius: 10px; width: 210px; height: 50px; margin-left: 10px; border-color:  #FFF600;" />
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                function handleChange(radio) {
+                    if (radio.value === '1') {
+                        window.location.href = 'formAccidente2.xhtml';
+                    } else if (radio.value === '3') {
+                        window.location.href = 'formAccidente4.xhtml';
+                    }
+                }
+
+                document.getElementById("radioOption").select("radioOption2");
+
+
+                function agregarFilaATabla(id) {
+                    var table = document.getElementById("tablaPersonasT");
+                    var newRow = table.insertRow();
+
+                    // Agregar celdas con los valores del registro
+                    var registro = obtenerRegistroPorId(id);
+
+                    var celdaId = newRow.insertCell();
+                    celdaId.textContent = registro.id_personaa_t;
+
+                    var celdaTipo = newRow.insertCell();
+                    celdaTipo.textContent = registro.tipo_acci;
+
+                    var celdaNombres = newRow.insertCell();
+                    celdaNombres.textContent = registro.nombres_c;
+
+                    var celdaApellidoPaterno = newRow.insertCell();
+                    celdaApellidoPaterno.textContent = registro.apellido_p;
+
+                    var celdaApellidoMaterno = newRow.insertCell();
+                    celdaApellidoMaterno.textContent = registro.apellido_m;
+
+                    var celdaDniCe = newRow.insertCell();
+                    celdaDniCe.textContent = registro.dni_ce;
+
+                    var celdaEdad = newRow.insertCell();
+                    celdaEdad.textContent = registro.edad;
+
+                    var celdaGenero = newRow.insertCell();
+                    celdaGenero.textContent = registro.genero;
+
+                    var celdaEmpresa = newRow.insertCell();
+                    celdaEmpresa.textContent = registro.empresa_p;
+
+                    var celdaAreaTrabajo = newRow.insertCell();
+                    celdaAreaTrabajo.textContent = registro.area_trabajo;
+
+                    var celdaPuesto = newRow.insertCell();
+                    celdaPuesto.textContent = registro.puesto_trabajo;
+
+                    var celdaAntiguedad = newRow.insertCell();
+                    celdaAntiguedad.textContent = registro.antiguedad_empleo;
+
+                    var celdaTurno = newRow.insertCell();
+                    celdaTurno.textContent = registro.turno;
+
+                    var celdaHorasTrabajadas = newRow.insertCell();
+                    celdaHorasTrabajadas.textContent = registro.h_trabajadas_antes_acci;
+
+                    // Asegúrate de agregar todas las celdas restantes de acuerdo con la estructura de tu tabla
+
+                    // Asegurarse de que "tablaPersonasT" sea el ID correcto de la tabla en tu página
+                    PrimeFaces.current().ajax().update("tablaPersonasT");
+                }
+            </script>
+        </h:form>
+    </ui:define>
+</ui:composition>

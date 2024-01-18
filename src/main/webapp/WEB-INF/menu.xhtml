@@ -1,0 +1,345 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+                xmlns:h="http://java.sun.com/jsf/html" 
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pr="http://primefaces.org/rain">
+
+    <script src="resources/js/menu.js"></script>
+
+    <style>
+        /* Estilo para el menú cerrado */
+        .menu-wrapper {
+            display: none; /* Oculta el menú al cargar la página */
+            transform: translateX(-100%); /* Desliza el menú hacia la izquierda para ocultarlo */
+        }
+
+        /* Estilo para el menú abierto */
+        .menu-open {
+            display: block; /* Muestra el menú cuando se aplica la clase menu-open */
+            animation: fadeinleft 0.40s linear; /* Aplica la animación fadeinleft */
+        }
+
+        @keyframes fadeinleft {
+            0%   {
+                opacity: 0;
+                transform: translateX(-100%);
+                transition: transform .40s cubic-bezier(0, 0, 0.2, 1), opacity .12s cubic-bezier(0, 0, 0.2, 1);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0%);
+            }
+        }
+
+        /* Estilos para la lista y los enlaces */
+        .menu-list {
+            list-style-type: none; /* Elimina el punto negro de las listas */
+            padding: 0; /* Elimina el relleno predeterminado de la lista */
+        }
+
+        .menu-list li {
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu-list li a {
+            text-decoration: none; /* Elimina la subrayado de los enlaces */
+            color: #ffffff; /* Cambia el color del texto de los enlaces */
+            font-size: 14px; /* Tamaño de fuente para los enlaces */
+            margin-bottom: -6px; /* Espacio entre los enlaces */
+            display: block; /* Asegura que todo el espacio del elemento li sea clickeable */
+            padding: 5px; /* Añade espacio alrededor del texto */
+            transition: background-color 0.3s; /* Agrega una transición suave para el cambio de fondo */
+        }
+
+        .menu-list li a:hover {
+            background-color: #333; /* Cambia el color de fondo al pasar el mouse */
+            color: #ffd713; /* Cambia el color del texto al pasar el mouse */
+            margin-right: 10px;
+        }
+
+        .layout-profile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out; /* Agrega una transición suave a max-height */
+        }
+
+        .layout-profile-button:focus + .layout-profile-menu,
+        .layout-profile-menu:hover {
+            max-height: 200px; /* Ajusta la altura máxima que deseas para mostrar los elementos */
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px; /* Ancho del scrollbar vertical */
+            background-color: #000000; /* Color de fondo del scrollbar */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgb(74,73,57);
+            background: linear-gradient(0deg, rgba(74,73,57,1) 0%, rgba(255,235,0,1) 100%);
+            height: 10px;
+            border-radius:4px;
+        }
+
+    </style>
+
+    <!-- 
+                               BREVE DOCUMENTACIÓN 
+    PRIMEFLEX                               /                    CSS
+    text-white-alpha-90                         color: rgba(255,255,255,0.9);
+    no-underline                                    text-decoration: no-underline;
+    ml-4                                                  margin-left: 1.5rem;
+    mr-3                                                  margin-right: 1rem;
+    mr-2                                                  margin-right: 0.5rem;
+    text-sm                                             font-size: .875rem;
+    -->    
+    
+    <h:form id="menuform">
+        <div class="menu-wrapper" id="menuWrapper">
+            <pr:menu widgetVar="RainMenuWidget">
+                <div class="layout-menu-container menu-wrapper menu-open">
+                    <!-- Categoria Utilidades del SideBar -->
+                    <ui:fragment rendered="#{guestPreferences.profileMode == 'popup' ? false : true}">
+                        <div class="layout-profile">
+                            <a class="layout-profile-button" href="#">
+                                <span class="image-name">
+                                    <p:graphicImage name="images/avatar-profilemenu.png" library="rain-layout" />
+                                    <span class="layout-profile-userinfo">
+                                        <span class="layout-profile-name">Veronica Mendoza</span>
+                                        <span class="layout-profile-mail">Veronica.Mendoza@gmail.com</span>
+                                    </span>
+                                </span>
+                                <i class="layout-profile-icon pi pi-chevron-down"/>
+                            </a>
+                            <ul class="layout-profile-menu">
+                                <li>
+                                    <a href="#">
+                                        <i class="pi pi-user"/>
+                                        <span>Profile</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="pi pi-cog"/>
+                                        <span>Settings</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="pi pi-envelope"/>
+                                        <span>Messages</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="pi pi-bell"/>
+                                        <span>Notifications</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </ui:fragment>
+
+                    <!-- GESTION DE EMPRESA -->
+
+                    <div class="margin-bottom-20">
+                        <p class="font-bold ml-4 mt-4" style="color: #ffd713; margin-bottom: 20px;"><i class="pi pi-slack mr-2" style="color: #ffd713;" />Gestión de Empresa</p> 
+                    </div>
+
+                    <ul class="menu-list" style="margin-left: 20px;">
+                        <li style="margin-bottom: 4px;">
+                            <p:link outcome="formDatosEmpresa" class="text-white-alpha-90 no-underline">Datos Generales</p:link>
+                        </li>
+
+                        <li style="margin-bottom: 4px;">
+                            <p:link outcome="formGestorOrganizacionalTwo" class="text-white-alpha-90 no-underline">Estructura Organizacional</p:link>
+                        </li>
+                        <li style="margin-bottom: 4px;">
+                            <p:link outcome="formDatosTrabajadores" class="text-white-alpha-90 no-underline">Gestión de Trabajadores</p:link>
+                        </li>
+                        <li style="margin-bottom: 4px;">
+                            <p:link outcome="formGestorOrganizacional" class="text-white-alpha-90 no-underline">Gestión de Áreas y Puestos</p:link>
+                        </li>
+                    </ul>
+
+                    <!-- MAPA DE PROCESOS -->
+
+                    <div class="margin-bottom-20">
+                        <p:link>
+                            <p class="font-bold ml-4 mt-3" style="color: #ffd713; text-decoration: none;"><i class="pi pi-map mr-2" style="color: #ffd713;" />Mapa de Procesos</p>
+                        </p:link>
+                    </div>
+
+                    <ul class="menu-list" style="margin-left: 20px;">
+                        <li style="margin-bottom: 4px;">
+                            <p:link class="text-white-alpha-90 no-underline">Crear Procesos Estratégicos</p:link>
+                        </li>
+                        <li style="margin-bottom: 4px;">
+                            <p:link class="text-white-alpha-90 no-underline" style="margin-right: 15px;">Crear Sub Procesos de Apoyo</p:link>
+                        </li>
+                        <li style="margin-bottom: 4px;">
+                            <p:link class="text-white-alpha-90 no-underline">Crear Actividades Directas</p:link>
+                        </li>
+                        <li style="margin-bottom: 4px;">
+                            <p:link class="text-white-alpha-90 no-underline">Crear Tareas</p:link>
+                        </li>
+                    </ul>
+
+                    <!-- LINEA BASE - INSPECCIONES -->
+
+                    <div class="margin-bottom-20">
+                        <p:link>
+                            <p class="font-bold ml-4 mt-3" style="color: #ffd713;  text-decoration: none;"><i class="pi pi-chart-line mr-2" style="color: #ffd713;" />Lineamientos Base</p>
+                        </p:link>
+                    </div>
+
+                    <ul class="menu-list" style="margin-left: 20px;">
+                        <li style="margin-bottom: 4px;">
+                            <p:link outcome="formLineamientosBase" class="text-white-alpha-90 no-underline">Auditoría</p:link>
+                        </li>
+                        <li style="margin-bottom: 4px;">
+                            <p:link class="text-white-alpha-90 no-underline">Informe de Inspecciones</p:link>
+                        </li>
+                    </ul>
+
+                    <!-- COMITE DE SEGURIDAD Y SALUD -->
+
+                    <div class="margin-bottom-20">
+                        <p:link>
+                            <p class="font-bold ml-4 mt-3" style="color: #ffd713;  text-decoration: none;"><i class="pi pi-users mr-2" style="color: #ffd713;" />Comité de Seguridad y Salud</p>
+                        </p:link>
+                    </div>
+
+                    <ul class="menu-list" style="margin-left: 20px;">
+                        <li style="margin-bottom: 4px;">
+                            <p:link class="text-white-alpha-90 no-underline">Descargas de Formatos y Formularios</p:link>
+                        </li>
+                        <li style="margin-bottom: 4px;">
+                            <p:link class="text-white-alpha-90 no-underline">Carga del Comité de Seguridad</p:link>
+                        </li>
+                        <li style="margin-bottom: 4px;">
+                            <p:link outcome="formComiteInvestigacion" class="text-white-alpha-90 no-underline">Carga del Comité de Investigación</p:link>
+                        </li>
+                    </ul>
+
+                    <!-- MATRIZ DE RIESGOS IPERC -->
+
+                    <div class="margin-bottom-20">
+                        <p:link>
+                            <p class="font-bold ml-4 mt-3" style="color: #ffd713;  text-decoration: none;"><i class="pi pi-th-large mr-2" style="color: #ffd713;" />Matriz de Riesgos</p>
+                        </p:link>
+                    </div>
+
+                    <ul class="menu-list" style="margin-left: 20px;">
+                        <li style="margin-bottom: 4px;">
+                            <p:link outcome="formPrincipalMatrizIPERC" class="text-white-alpha-90 no-underline">Creación de Procesos IPERC</p:link>
+                        </li>
+                        <li style="margin-bottom: 4px;">
+                            <p:link class="text-white-alpha-90 no-underline">Gestión de Matriz IPERC</p:link>
+                        </li>
+                        <li style="margin-bottom: 4px;">
+                            <p:link class="text-white-alpha-90 no-underline">Dashboard de Matriz IPERC</p:link>
+                        </li>
+                        <li style="margin-bottom: 4px;">
+                            <p:link class="text-white-alpha-90 no-underline">Control Operacional</p:link>
+                        </li>
+                        <li style="margin-bottom: 4px;">
+                            <p:link class="text-white-alpha-90 no-underline">Plan de Acción</p:link>
+                        </li>
+                    </ul>
+
+                    <!-- INSPECCIONES DE SST -->
+
+                    <div class="margin-bottom-20">
+                        <p:link>
+                            <p class="font-bold ml-4 mt-3" style="color: #ffd713;  text-decoration: none;"><i class="pi pi-book mr-2" style="color: #ffd713;" />Inspecciones de SST</p>
+                        </p:link>
+                    </div>
+
+                    <ul class="menu-list" style="margin-left: 20px;">
+                        <li style="margin-bottom: 4px;">
+                            <p:link class="text-white-alpha-90 no-underline">Inspecciones de SST</p:link>
+                        </li>
+                        <li style="margin-bottom: 4px;">
+                            <p:link outcome="formAccidente" class="text-white-alpha-90 no-underline">Registro de Accidentes</p:link>
+                        </li>
+                        <li style="margin-bottom: 4px;">
+                            <p:link outcome="formIncidente" class="text-white-alpha-90 no-underline">Registro de Incidentes</p:link>
+                        </li>
+                        <li style="margin-bottom: 4px;">
+                            <p:link class="text-white-alpha-90 no-underline">Dashboard de Inspecciones</p:link>
+                        </li>
+                        <li style="margin-bottom: 4px;">
+                            <p:link outcome="formPrincipalOcurrencia" class="text-white-alpha-90 no-underline">Dashboard de Ocurrencia</p:link>
+                        </li>
+                    </ul>
+
+                    <!-- REGISTRO DE INVESTIGACION -->
+
+                    <div class="margin-bottom-20">
+                        <p:link>
+                            <p class="font-bold ml-4 mt-3" style="color: #ffd713;  text-decoration: none;"><i class="pi pi-search mr-2" style="color: #ffd713;" />Investigaciones de Accidentes e Incidentes</p>
+                        </p:link> 
+                    </div>
+
+                    <ul class="menu-list" style="margin-left: 20px;">
+                        <li style="margin-bottom: 4px;">
+                            <p:link outcome="formInvestigacion"  class="text-white-alpha-90 no-underline">Investigación de Accidentes</p:link>
+                        </li>
+                        <li style="margin-bottom: 4px;">
+                            <p:link outcome="formInvestigacionIncidentes" class="text-white-alpha-90 no-underline">Investigación de Incidentes </p:link>
+                        </li>
+                        <li style="margin-bottom: 4px;">
+                            <p:link outcome="formPrincipalInvestigacion" class="text-white-alpha-90 no-underline">Dashboard de Investigación</p:link>
+                        </li>
+                    </ul>
+
+                    <!-- MEDIDAS CORRECTIVAS -->
+
+                    <div class="margin-bottom-20">
+                        <p class="font-bold ml-4 mt-3" style="color: #ffd713; text-decoration: none;"><i class="pi pi-pencil mr-2" />Medidas Correctivas</p> 
+                    </div>
+
+                    <ul class="menu-list" style="margin-left: 20px;">
+                        <li style="margin-bottom: 4px;">
+                            <p:link class="text-white-alpha-90 no-underline">M. C. para Accidentes</p:link>
+                        </li>
+                        <li style="margin-bottom: 4px;">
+                            <p:link class="text-white-alpha-90 no-underline">M. C. para Incidentes </p:link>
+                        </li>
+                        <li style="margin-bottom: 4px;">
+                            <p:link class="text-white-alpha-90 no-underline">Dashboard de M. C.</p:link>
+                        </li>
+                    </ul>
+
+                    <!-- ADMINISTRACION Y MANTENIMIENTO -->
+
+                    <div class="margin-bottom-20">
+                        <p class="font-bold ml-4 mt-3" style="color: #ffd713;  text-decoration: none;"><i class="pi pi-cog mr-2" style="color: #ffd713;" />Administración y Mantenimiento</p> 
+                    </div>
+
+                    <ul class="menu-list" style="margin-left: 20px;">
+                        <li style="margin-bottom: 4px;">
+                            <p:link outcome="formGestorUsuario" class="text-white-alpha-90 no-underline">Creación de Usuarios </p:link>
+                        </li>
+                        <li style="margin-bottom: 4px;">
+                            <p:link outcome="formRolesUsuario" class="text-white-alpha-90 no-underline" style="width: 210px;">Gestión de Roles y Accesibilidad</p:link>
+                        </li>
+                    </ul>
+
+                    <!-- Categoria Formularios del SideBar -->
+                    <div class="margin-bottom-20">
+                        <p class="font-bold ml-4 mt-3" style="color: #ffd713;  text-decoration: none;"><i class="pi pi-server mr-2" style="color: #ffd713;" />Formularios</p> 
+                    </div>
+
+                    <ul class="menu-list" style="margin-left: 20px;">
+                        <li style="margin-bottom: 4px;">
+                            <p:link outcome="index" class="text-white-alpha-90 no-underline">Test Page</p:link>
+                        </li>
+                    </ul>
+                </div>
+            </pr:menu>
+        </div>  
+    </h:form>
+</ui:composition>

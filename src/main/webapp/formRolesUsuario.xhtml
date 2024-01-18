@@ -1,0 +1,174 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml"
+                xmlns:webjars="http://webjars.org/ui"
+                webjars:assetLocator="org.webjars.WebJarAssetLocator">
+
+    <ui:define name="head">
+        <h:outputStylesheet library="webjars" name="bootstrap/5.2.3/css/bootstrap.min.css" />
+        <h:outputStylesheet library="primefaces" name="themes/your-theme/theme.css" />
+        <h:outputScript library="primefaces" name="jquery/jquery.js" />
+        <h:outputScript library="primefaces" name="primefaces.js" />
+    </ui:define>
+
+    <ui:define name="title">Gestión de Roles</ui:define>
+
+    <ui:define name="viewname">
+        <li>Adm. y Mantenimiento</li>
+        <li><i class="pi pi-chevron-right"></i></li>
+        <li>Gestión de Roles</li>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form id="form">
+            <div class="card col-12 pl-2 pr-2 pt-0" style="background-color: #EDEDED; border-radius: 1rem 1rem 0 0;"> 
+                <div class="ui-fluid formgrid grid"
+                     style="border: 1px solid #fff; border-radius: 1rem 1rem 0 0; border-bottom: none;background-color: #f8da45;box-shadow: 0px 0px 5px 1px white;">
+                    <h5 class="p-3 text-2xl"
+                        style="font-family: 'Inter', sans-serif; font-weight: 600;color:black ">
+                        ASIGNACIÓN DE ROLES
+                    </h5>  
+                </div>
+
+                <div class="ui-fluid formgrid grid w-auto" style="background-color: transparent; padding: 25px;" >
+                    <div class="field col-12 md:col-2">
+                        <p:outputLabel value="Miembro :"  style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
+                    </div>
+
+                    <div class="field col-12 md:col-4">
+                        <p:selectOneMenu id="miembro"
+                                         value="#{permisoManagedBean.selectedPermiso.usuario}"
+                                         style="background:transparent; color: black; border: none; border-bottom: 3px solid #f8da45;"
+                                         onchange="toggleRolesSelect(this.value);">
+                            <f:selectItem itemLabel="Seleccionar miembro" itemValue=""/>
+                            <f:selectItems value="#{rolesManagedBean.listaUsuarios}" />
+                        </p:selectOneMenu>
+
+                    </div>
+
+                    <div class="field col-12 md:col-2 pl-5">
+                        <p:outputLabel value="Elección roles :"  style="color: black; font-family: 'Inter', sans-serif; font-weight: 600;" />
+                    </div>
+
+                    <div class="field col-12 md:col-4">
+                        <p:selectOneMenu id="roles" value="#{rolesManagedBean.selectedRoles.rol}"
+                                         style="background:transparent; color: black; border: none; border-bottom: 3px solid #f8da45;"
+                                         onchange="if (this.value === 'Administracion') {
+                                                     PF('adminDialogVar').show();
+                                                 } else {
+                                                     PF('adminDialogVar').hide();
+                                                 }">
+                            <f:selectItem itemLabel="Seleccionar rol" itemValue=""/>
+                            <f:selectItems value="#{rolesManagedBean.listaRoles}" />
+                        </p:selectOneMenu>
+                    </div>
+                </div> 
+
+                <!-- =================VENTANAS EMERGENTES PARA ACCEDER PERMISOS====================== -->
+
+                <p:dialog id="adminDialog" widgetVar="adminDialogVar" resizable="false" modal="true">
+
+                    <div class="ui-fluid formgrid grid" style="background-color:transparent; text-align: center;">
+                        <h5 class="p-3 text-2xl"
+                            style="font-family: 'Inter', sans-serif; font-weight: 600;color:white;text-align: center;">
+                            SELECCIÓN DE PERMISOS - Administración
+                        </h5>
+                    </div>
+
+
+                    <div class="margin-bottom-20">
+                        <p class="font-bold ml-4 mt-4" style="color: #ffd713; margin-bottom: 20px;"><i class="pi pi-slack mr-2" style="color: #ffd713;" />Gestión de Empresa</p> 
+                    </div>
+
+                    <p:selectManyCheckbox layout="pageDirection" value="#{permisoManagedBean.selectedPermisos}">
+                        <f:selectItem itemLabel="Datos Generales" itemValue="Datos Generales"/>
+                        <f:selectItem itemLabel="Estructura Organizacional" itemValue="Estructura Organizacional"/>
+                        <f:selectItem itemLabel="Gestión de Trabajadores" itemValue="Gestión de Trabajadores"/>
+                        <f:selectItem itemLabel="Gestión de Áreas y Puestos" itemValue="Gestión de Áreas y Puestos"/>
+                    </p:selectManyCheckbox>
+
+
+                    <div class="margin-bottom-20">
+                        <p class="font-bold ml-4 mt-3 mb-3" style="color: #ffd713;  text-decoration: none;"><i class="pi pi-book mr-2" style="color: #ffd713;" />Inspecciones de SST</p>
+                    </div>
+
+                    <p:selectManyCheckbox id="Mo2"  layout="pageDirection">
+                        <!-- <p:ajax listener="#{checkboxView.selectedOptionsChanged}" /> -->
+                        <f:selectItem itemLabel="Inspecciones de SST" itemValue="Option 1" class="mb-2 text-yellow font-bold"/>
+                        <f:selectItem itemLabel="Registro de Accidentes" itemValue="Option 2"/>
+                        <f:selectItem itemLabel="Registro de Incidentes" itemValue="Option 3"/>
+                        <f:selectItem itemLabel="Dashboard de Inspecciones" itemValue="Option 4"/>
+                        <f:selectItem itemLabel="Dashboard de Ocurrencia" itemValue="Option 5"/>
+                    </p:selectManyCheckbox>
+
+                    <div class="margin-bottom-20">
+                        <p class="font-bold ml-4 mt-3" style="color: #ffd713;  text-decoration: none;"><i class="pi pi-search mr-2" style="color: #ffd713;" />Investigaciones de Accidentes e Incidentes</p>
+                    </div>
+
+                    <p:selectManyCheckbox id="Mo3"  layout="pageDirection">
+                        <f:selectItem itemLabel="Investigación de Accidentes" itemValue="Option 1" class="mb-2 text-yellow font-bold"/>
+                        <f:selectItem itemLabel="Investigación de Incidentes" itemValue="Option 2"/>
+                        <f:selectItem itemLabel="Dashboard de Investigación" itemValue="Option 3"/>
+                    </p:selectManyCheckbox>
+
+                    <div style="margin-left:auto; margin-top: 14px;">
+                        <p:commandButton value="Guardar" action="#{permisoManagedBean.setUsuarioYAgregarPermiso}"
+                                         update="@form" />
+                    </div>
+                </p:dialog>
+
+                <!-- ==============================REGISTROOOO=============================== -->
+                <div style="margin-left:auto;">
+                    <p:commandButton style="background-color: #751d1d; border:none;" action="#{rolesManagedBean.agregarRegistroRoles}" class="w-12 h-3rem mb-4" styleClass="p-button p-button-danger" value="Registrar"/>
+                </div>
+
+                <p:dataTable id="tablarol" value="#{rolesManagedBean.obtenerRegistroRoles()}" rowKey="#{rol.id_asig}" var="rol" reflow="true" styleClass="products-table m-4" widgetVar="cellProducts" selectionMode="single">  
+                    <p:columnGroup type="header">
+                        <p:row>
+                            <p:column rowspan="2" headerText="N°" style="text-align: center;
+                                      background-color: #000000;
+                                      color: white;
+                                      overflow: hidden; /* Oculta el contenido que desborda del borde redondo */
+                                      border: 1px solid white; /* Agrega un borde para que el redondeo sea más visible */"/>
+                            <p:column rowspan="2" headerText="USUARIO" style="text-align: center;
+                                      background-color: #000000;
+                                      color: white;
+                                      border: 1px solid white;
+                                      width: 40px;"/>
+                            <p:column rowspan="2" headerText="ROL" style="text-align: center;
+                                      background-color: #000000;
+                                      color: white;
+                                      border: 1px solid white;
+                                      width: 40px;"/>
+                            <p:column colspan="2" headerText="ACCION" style="text-align: center;
+                                      background-color: #000000;
+                                      color: white;
+                                      border: 1px solid white;
+                                      width: 40px;"/>
+                        </p:row>
+                    </p:columnGroup>
+
+                    <p:column style="background-color:#F8DA45; border: 1px solid white; text-align: center">
+                        <h:outputText value="#{rol.id_asig}"/>
+                    </p:column>
+
+                    <p:column style="background-color:#F8DA45; border: 1px solid white; text-align: center">
+                        <h:outputText value="#{rol.usuario}"/>
+                    </p:column> 
+
+                    <p:column style="background-color:#F8DA45; border: 1px solid white; text-align: center">
+                        <h:outputText value="#{rol.rol}"/>
+                    </p:column>
+
+                    <p:column style="background-color:#F8DA45; border: 1px solid white; text-align: center">
+                        <p:button value="Editar" styleClass="ui-button-raised ui-button-success" />
+                        <p:commandButton  value="Eliminar" action="#{rolesManagedBean.eliminarRegistroRoles(rol.id_asig)}" update="@form" styleClass="ui-button-raised ui-button-danger" />
+                    </p:column>
+                </p:dataTable>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>

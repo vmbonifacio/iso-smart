@@ -1,0 +1,123 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="title">Gestión de Investigaciones</ui:define>
+
+    <ui:define name="viewname">
+        <li>Investigaciones de Accidentes e Incidentes</li>
+        <li><i class="pi pi-chevron-right"></i></li>
+        <li>
+            <p:link outcome="/formPrincipalOcurrencia">Formulario de Gestión de Investigaciones</p:link>
+        </li>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form>
+            <!-- REGISTRO DE INVESTIGACION -->  
+            <h5 class="h-5rem text-center text-5xl p-4 text-white-alpha-90" 
+                style="background-color: #2A2A2A;
+                font-family: 'Inter', sans-serif;
+                font-weight: 600;">
+                Registro de Investigaciones
+            </h5>
+
+            <div class="card crud-demo">
+                <h:form id="form">
+                    <p:growl id="messages" showDetail="true" />
+
+                    <!-- TOOLBAR: COMPONENTE PRIMEFACES -->
+
+                    <p:toolbar>
+                        <p:toolbarGroup>
+                            <p:commandButton value="Nueva Investigación" type="button" onclick="PF('dlg1').show();" icon="pi pi-plus" class="mr-2" style="background-color:#3C9462; border:1px solid #3C9462;"/>
+                            <p:commandButton value="Eliminar" type="button" onclick="PF('dlg2').show();" icon="pi pi-trash" style="background-color:red; border:1px solid red;"/>
+                        </p:toolbarGroup>
+                    </p:toolbar>
+
+                    <p:dialog widgetVar="dlg1" modal="true" style="box-shadow:0px 0px 31px -4px rgba(255,246,0,1);border-radius:20px;">
+                        <div>
+                            <p:outputLabel value="¿Qué Investigación desea realizar?"  class="text-5xl" style="color: white; font-family: 'Inter', sans-serif; font-weight: 500;" />    
+                        </div>
+
+                        <p:selectOneRadio layout="responsive" columns="1"  class="text-2xl mb-6 mt-6" id="myRadio" onchange="handleChange(this)">
+                            <f:selectItem itemLabel="Registro de Investigacion de Accidentes" itemValue="1"/>
+                            <f:selectItem itemLabel="Registro de Investigacion de Incidentes" itemValue="2"/>
+                        </p:selectOneRadio>
+                    </p:dialog> 
+
+                    <p:dialog  widgetVar="dlg2" modal="true" height="100" style="background-color:#363636">
+                        <h:outputText value="¿Está seguro que desea eliminar este registro?" />
+                    </p:dialog> 
+
+                    <!-- DATABLE CRUD: COMPONENTE PRIMEFACES -->
+
+                    <p:dataTable id="dt-products" widgetVar="dtProducts" var="product" value="#{crudView.products}"
+                                 reflow="true" styleClass="products-table" selection="#{crudView.selectedProducts}"
+                                 rowKey="#{product.id}" paginator="true" rows="10" rowSelectMode="add" paginatorPosition="bottom">
+                        <f:facet name="header"> 
+                            <div class="products-table-header">
+                                <span style="font-weight: bold">Investigaciones registradas</span>
+                                <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
+                                    <p:inputText id="globalFilter" onkeyup="PF('dtProducts').filter()" placeholder="Search" />
+                                </span>
+                            </div>
+                        </f:facet>
+
+                        <p:column 
+                            selectionMode="multiple" exportable="false">
+                        </p:column>
+
+                        <p:column headerText="Codigo" filterBy="#{product.codigo}" class="w-1 text-center">
+                            <h:outputText value="#{product.codigo}" />
+                        </p:column>
+
+                        <p:column headerText="Nombre" filterBy="#{product.nombre}" class="text-center">
+                            <h:outputText value="#{product.nombre}" />
+                        </p:column>
+
+                        <p:column headerText="Tipo de ocurrencia" filterBy="#{product.tocu}">
+                            <h:outputText value="#{product.tocu}" />
+                        </p:column>
+
+                        <p:column headerText="Fecha de Registro" filterBy="#{product.fecha}">
+                            <h:outputText value="#{product.fecha}" />
+                        </p:column>
+
+                        <p:column headerText="N° de personas afectadas" filterBy="#{product.peafec}">
+                            <h:outputText value="#{product.peafec}" />
+                        </p:column>
+
+                        <p:column exportable="false" headerText="Acción" class="text-center" >
+                            <p:commandButton icon="pi pi-pencil" 
+                                             oncomplete="PF('manageProductDialog').show()"
+                                             styleClass="edit-button rounded-button ui-button-success" process="@this">
+                                <f:setPropertyActionListener value="#{product}" target="#{crudView.selectedProduct}" />
+                            </p:commandButton>
+                            <p:commandButton class="ui-button-warning rounded-button" icon="pi pi-trash"
+                                             process="@this"
+                                             oncomplete="PF('deleteProductDialog').show()">
+                                <f:setPropertyActionListener value="#{product}" target="#{crudView.selectedProduct}" />
+                            </p:commandButton>
+                        </p:column>
+
+                    </p:dataTable>
+                </h:form>
+                <script>
+                    function handleChange(radio) {
+                        if (radio.value === '1') {
+                            window.location.href = 'formInvestigacion.xhtml';
+                        } else if (radio.value === '2') {
+                            window.location.href = 'formInvestigacionIncidentes.xhtml';
+                        } else {
+                            window.location.href = 'formPrincipalInvestigacion.xhtml';
+                        }
+                    }
+                </script>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>
